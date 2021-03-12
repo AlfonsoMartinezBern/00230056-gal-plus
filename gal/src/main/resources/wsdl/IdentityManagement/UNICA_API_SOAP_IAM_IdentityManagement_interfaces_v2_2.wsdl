@@ -1,0 +1,152 @@
+<!-- Release Date: December 20, 2011 --><wsdl:definitions targetNamespace="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/interfaces" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/interfaces" xmlns:uct="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1" xmlns:ucf="http://www.telefonica.com/wsdl/UNICA/SOAP/common/v1/faults" xmlns:ns="http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement/v2/" xmlns:ns1="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/local">
+    <wsdl:import namespace="http://www.telefonica.com/wsdl/UNICA/SOAP/common/v1/faults" location="UNICA_API_SOAP_common_faults_v1_0.wsdl"/>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/local" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:p="http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement_Extensions/v1/">
+            <xsd:import namespace="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1" schemaLocation="UNICA_API_SOAP_common_types_v1_1.xsd"/>
+            <xsd:import namespace="http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement/v2/" schemaLocation="UNICA_API_SOAP_IAM_IdentityManagement_types_v2_2.xsd"/>
+            <xsd:import namespace="http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement_Extensions/v1/" schemaLocation="UNICA_API_SOAP_IAM_IdentityManagement_Extensions_v1_0.xsd"/>
+            <xsd:element name="authenticateUser">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="user" type="uct:UserIdType"/>
+                        <xsd:element name="password" type="xsd:string"/>
+                        <xsd:element name="userRole" type="xsd:unsignedInt" minOccurs="0"/>
+                        <xsd:element name="additionalCredentials" type="uct:ExtensionType" minOccurs="0">
+                         </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="authenticateUserResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="userId" type="uct:UserIdType"/>
+                        <xsd:element name="pendingVerification" type="xsd:boolean" minOccurs="0" default="false"/>
+                        <xsd:element name="verificationMeans" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:enumeration value="email"/>
+                                    <xsd:enumeration value="sms"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="changePassword">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="user" type="uct:UserIdType"/>
+                        <xsd:element name="oldPassword" type="xsd:string"/>
+                        <xsd:element name="newPassword" type="xsd:string"/>
+						<xsd:element name="passwordId" type="xsd:unsignedInt" minOccurs="0"/> 
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="rememberPassword">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="user" type="uct:UserIdType"/>
+						<xsd:element name="channel">
+							<xsd:simpleType>
+                    			<xsd:restriction base="xsd:int">
+                        			<xsd:enumeration value="0"/>
+                        			<xsd:enumeration value="1"/>
+                    			</xsd:restriction>
+                			</xsd:simpleType>
+            			</xsd:element>
+						<xsd:element name="message" type="ns:MessageType"/>
+						<xsd:element name="passwordId" type="xsd:unsignedInt" minOccurs="0"/> 
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="isCustomer">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="userIdentity" type="uct:UserIdType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="isCustomerResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="registeredUser" type="xsd:boolean"/>
+                        <xsd:element name="servingOB" type="xsd:int" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="rememberUser">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="contactAddress" type="uct:UserIdType"/>
+						<xsd:element name="channel">
+							<xsd:simpleType>
+                    			<xsd:restriction base="xsd:int">
+                        			<xsd:enumeration value="0"/>
+                        			<xsd:enumeration value="1"/>
+                    			</xsd:restriction>
+                			</xsd:simpleType>
+            			</xsd:element>
+						<xsd:element name="message" type="ns:MessageType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="AuthenticateUserRequest">
+        <wsdl:part name="parameters" element="ns1:authenticateUser"/>
+    </wsdl:message>
+    <wsdl:message name="AuthenticateUserResponse">
+        <wsdl:part name="parameters" element="ns1:authenticateUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangePasswordRequest">
+        <wsdl:part name="parameters" element="ns1:changePassword"/>
+    </wsdl:message>
+    <wsdl:message name="ChangePasswordResponse"/>
+    <wsdl:message name="RememberPasswordRequest">
+        <wsdl:part name="parameters" element="ns1:rememberPassword"/>
+    </wsdl:message>
+    <wsdl:message name="RememberPasswordResponse"/>
+    <wsdl:message name="RememberUserRequest">
+        <wsdl:part name="parameters" element="ns1:rememberUser"/>
+    </wsdl:message>
+    <wsdl:message name="RememberUserResponse"/>
+    <wsdl:message name="IsCustomerRequest">
+        <wsdl:part name="parameters" element="ns1:isCustomer"/>
+    </wsdl:message>
+    <wsdl:message name="IsCustomerResponse">
+        <wsdl:part name="parameters" element="ns1:isCustomerResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="IdentityManagementPort">
+        <wsdl:operation name="authenticateUser">
+            <wsdl:input message="tns:AuthenticateUserRequest"/>
+            <wsdl:output message="tns:AuthenticateUserResponse"/>
+            <wsdl:fault name="ClientException" message="ucf:ClientException"/>
+            <wsdl:fault name="ServerException" message="ucf:ServerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="changePassword">
+            <wsdl:input message="tns:ChangePasswordRequest"/>
+            <wsdl:output message="tns:ChangePasswordResponse"/>
+            <wsdl:fault name="ClientException" message="ucf:ClientException"/>
+            <wsdl:fault name="ServerException" message="ucf:ServerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="rememberPassword">
+            <wsdl:input message="tns:RememberPasswordRequest"/>
+            <wsdl:output message="tns:RememberPasswordResponse"/>
+            <wsdl:fault name="ClientException" message="ucf:ClientException"/>
+            <wsdl:fault name="ServerException" message="ucf:ServerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="rememberUser">
+            <wsdl:input message="tns:RememberUserRequest"/>
+            <wsdl:output message="tns:RememberUserResponse"/>
+            <wsdl:fault name="ClientException" message="ucf:ClientException"/>
+            <wsdl:fault name="ServerException" message="ucf:ServerException"/>
+        </wsdl:operation>
+        <wsdl:operation name="isCustomer">
+            <wsdl:input message="tns:IsCustomerRequest"/>
+            <wsdl:output message="tns:IsCustomerResponse"/>
+            <wsdl:fault name="ClientException" message="ucf:ClientException"/>
+            <wsdl:fault name="ServerException" message="ucf:ServerException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

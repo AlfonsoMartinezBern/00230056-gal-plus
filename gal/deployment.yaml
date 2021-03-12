@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gal
+  name: gal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gal
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: gal
+    spec:
+      containers:
+      - image: springguides/gal
+        name: gal
+        resources: {}
+status: {}
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo
+  name: demo
+spec:
+  ports:
+  - name: 8888-8888
+    port: 8888
+    protocol: TCP
+    targetPort: 8888
+  selector:
+    app: demo
+  type: ClusterIP
+status:
+  loadBalancer: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo
+  name: demo
+spec:
+  ports:
+  - name: 8888-8888
+    port: 8888
+    protocol: TCP
+    targetPort: 8888
+  selector:
+    app: demo
+  type: ClusterIP
+status:
+  loadBalancer: {}

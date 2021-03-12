@@ -1,0 +1,8 @@
+server:
+ port: 8888
+
+webservice:
+ identitymanagement:
+  uri: "/ws"
+  targetNamespace: "http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/local"
+  xsd: "wsdl/IdentityManagement/UNICA_API_SOAP_IAM_IdentityManagement_Extensions_v1_0.xsd"
