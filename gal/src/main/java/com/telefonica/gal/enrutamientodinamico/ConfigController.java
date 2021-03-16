@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.apidemo.ConfigController;
+import com.example.demo.apidemo.ConfigService;
+
 @SpringBootApplication
 @RestController
 @RequestMapping("/conf")
@@ -20,6 +23,7 @@ public class ConfigController{
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		SpringApplication.run(ConfigController.class, args);
+		conf = ConfigService.chargeConf();
 	}
 	
 	@PostMapping("/charge")
@@ -35,9 +39,14 @@ public class ConfigController{
 		}
 	}
 	
-	@GetMapping("/get/{nombre}")
+	@GetMapping("/getEndpoint/{nombre}")
 	public String getEndpoint(@PathVariable String nombre) {
 		return (String) conf.getJSONObject(nombre).get("endpoint");
+	}
+	
+	@GetMapping("/getService/{nombre}")
+	public String getService(@PathVariable String nombre) {
+		return (String) conf.getJSONObject(nombre).get("service");
 	}
 	
 }
