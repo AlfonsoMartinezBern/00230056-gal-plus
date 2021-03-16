@@ -1,0 +1,39 @@
+<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+  <xs:complexType name="ResultDataContractOfboolean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q1:StatusCode" xmlns:q1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q2:Severity" xmlns:q2="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfboolean" nillable="true" type="tns:ResultDataContractOfboolean"/>
+  <xs:complexType name="ResultDataContractOfUserDataContractPvrQt8hh">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q3:StatusCode" xmlns:q3="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q4:Severity" xmlns:q4="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="q5:UserDataContract" xmlns:q5="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfUserDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfUserDataContractPvrQt8hh"/>
+  <xs:complexType name="ResultDataContractOfUserDetailedDataContractPvrQt8hh">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q6:StatusCode" xmlns:q6="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q7:Severity" xmlns:q7="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="q8:UserDetailedDataContract" xmlns:q8="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfUserDetailedDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfUserDetailedDataContractPvrQt8hh"/>
+  <xs:complexType name="ResultDataContractOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q9:StatusCode" xmlns:q9="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q10:Severity" xmlns:q10="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfstring" nillable="true" type="tns:ResultDataContractOfstring"/>
+</xs:schema>

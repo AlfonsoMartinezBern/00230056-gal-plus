@@ -1,0 +1,45 @@
+<xs:schema elementFormDefault="qualified" targetNamespace="GVP.GAL" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="GVP.GAL" xmlns:pref="http://www.telefonica.com/ServiceId">
+	<xs:import schemaLocation="TD_SubscriptionService2.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>	
+	<xs:import schemaLocation="TD_SubscriptionService3.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+	<xs:import schemaLocation="TD_SubscriptionService5.xsd" namespace="http://schemas.datacontract.org/2004/07/System"/>
+	<xs:import schemaLocation="../../../../common/xsd/ServiceId.xsd" namespace="http://www.telefonica.com/ServiceId"/>
+	<xs:element name="AddMultipleSubscription">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+				<xs:element minOccurs="0" name="platformId" type="xs:int"/>
+				<xs:element minOccurs="0" name="serviceId" nillable="false" type="q0:ServiceIdType" xmlns:q0="http://www.telefonica.com/ServiceId"/>
+					
+				<xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+				<xs:element minOccurs="0" name="productIds" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+				<xs:element minOccurs="0" name="endDates" nillable="true" type="q3:ArrayOfNullableOfdateTime" xmlns:q3="http://schemas.datacontract.org/2004/07/System"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AddMultipleSubscriptionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="AddMultipleSubscriptionResult" nillable="true" type="q2:ResultDataContractOfboolean" xmlns:q2="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RemoveMultipleSubscription">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+				<xs:element minOccurs="0" name="platformId" type="xs:int"/>
+				<xs:element minOccurs="0" name="serviceId" nillable="false" type="q0:ServiceIdType" xmlns:q0="http://www.telefonica.com/ServiceId"/>
+				<xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+				<xs:element minOccurs="0" name="productIds" nillable="true" type="q3:ArrayOfstring" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+				<xs:element minOccurs="0" name="endDates" nillable="true" type="q3:ArrayOfNullableOfdateTime" xmlns:q3="http://schemas.datacontract.org/2004/07/System"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RemoveMultipleSubscriptionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="RemoveMultipleSubscriptionResult" nillable="true" type="q4:ResultDataContractOfboolean" xmlns:q4="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

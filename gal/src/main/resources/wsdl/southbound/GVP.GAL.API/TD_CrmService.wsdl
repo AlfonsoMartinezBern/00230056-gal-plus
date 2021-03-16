@@ -1,0 +1,1949 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CrmSoapService" targetNamespace="GVP.GAL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="GVP.GAL" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="GVP.GAL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      <xs:element name="ResetPin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="pinType" type="q1:UserPinType" xmlns:q1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ResetPinResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ResetPinResult" nillable="true" type="q2:ResultDataContractOfboolean" xmlns:q2="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetUserInfoResult" nillable="true" type="q3:ResultDataContractOfUserDataContractPvrQt8hh" xmlns:q3="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserDetailedInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="serviceId" type="q4:ServiceIdType" xmlns:q4="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="dataBlocks" nillable="true" type="q5:ArrayOfDataBlockType" xmlns:q5="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            <xs:element minOccurs="1" name="searchParameters" nillable="true" type="q6:ArrayOfUserFieldDataContract" xmlns:q6="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            <xs:element minOccurs="1" name="email" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserDetailedInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetUserDetailedInfoResult" nillable="true" type="q7:ResultDataContractOfUserDetailedDataContractPvrQt8hh" xmlns:q7="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="NotifyPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="NotifyPasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="NotifyPasswordResult" nillable="true" type="q8:ResultDataContractOfboolean" xmlns:q8="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetNewRentalExpireDate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="productId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="productType" type="q9:ProductType" xmlns:q9="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            <xs:element minOccurs="1" name="newDate" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="serviceId" type="q10:ServiceIdType" xmlns:q10="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetNewRentalExpireDateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SetNewRentalExpireDateResult" nillable="true" type="q11:ResultDataContractOfboolean" xmlns:q11="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDefaultOBPinNumbers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDefaultOBPinNumbersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetDefaultOBPinNumbersResult" nillable="true" type="q12:ResultDataContractOfArrayOfPinDataContractPvrQt8hh" xmlns:q12="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RegisterTrustedDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="trustedDeviceTypeId" type="xs:int"/>
+            <xs:element minOccurs="1" name="trustedDeviceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="friendlyName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceExternalId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceManufacturer" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceModel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceOperatingSystem" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="macAddress" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="clientVersion" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RegisterTrustedDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RegisterTrustedDeviceResult" nillable="true" type="q13:ResultDataContractOfboolean" xmlns:q13="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveTrustedDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="trustedDeviceTypeId" type="xs:int"/>
+            <xs:element minOccurs="1" name="trustedDeviceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceManufacturer" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceModel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceOperatingSystem" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="macAddress" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="clientVersion" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveTrustedDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RemoveTrustedDeviceResult" nillable="true" type="q14:ResultDataContractOfboolean" xmlns:q14="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveAllTrustedDevices">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveAllTrustedDevicesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RemoveAllTrustedDevicesResult" nillable="true" type="q15:ResultDataContractOfboolean" xmlns:q15="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ModifyTrustedDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="trustedDeviceTypeId" type="xs:int"/>
+            <xs:element minOccurs="1" name="trustedDeviceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="friendlyName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="enabled" nillable="true" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="deviceExternalId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceManufacturer" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceModel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceOperatingSystem" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="macAddress" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="clientVersion" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ModifyTrustedDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ModifyTrustedDeviceResult" nillable="true" type="q16:ResultDataContractOfboolean" xmlns:q16="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CancelRental">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="productId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="productType" type="q17:ProductType" xmlns:q17="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            <xs:element minOccurs="1" name="serviceId" type="q18:ServiceIdType" xmlns:q18="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CancelRentalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CancelRentalResult" nillable="true" type="q19:ResultDataContractOfboolean" xmlns:q19="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="HealthCheck">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="HealthCheckResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="HealthCheckResult" nillable="true" type="q20:ResultDataContractOfstring" xmlns:q20="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserBillingRecord">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserBillingRecordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetUserBillingRecordResult" nillable="true" type="q21:ResultDataContractOfArrayOfBillingRecordDataContractPvrQt8hh" xmlns:q21="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PurchasePayPerView">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="outputBillingRecords" nillable="true" type="q22:ArrayOfOutputBillingRecordDataContract" xmlns:q22="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PurchasePayPerViewResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PurchasePayPerViewResult" nillable="true" type="q23:ResultDataContractOfBillingRecordsResponseSerializedDataContractPvrQt8hh" xmlns:q23="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendMassiveExpiredPayPerView">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendMassiveExpiredPayPerViewResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SendMassiveExpiredPayPerViewResult" nillable="true" type="q24:ResultDataContractOfboolean" xmlns:q24="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserPayPerView">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="startDate" type="xs:long"/>
+            <xs:element minOccurs="1" name="endDate" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserPayPerViewResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetUserPayPerViewResult" nillable="true" type="q25:ResultDataContractOfArrayOfBillingRecordDataContractPvrQt8hh" xmlns:q25="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserSubscriptionStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="startDate" type="xs:long"/>
+            <xs:element minOccurs="1" name="endDate" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserSubscriptionStatusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetUserSubscriptionStatusResult" nillable="true" type="q26:ResultDataContractOfArrayOfProductDataContractPvrQt8hh" xmlns:q26="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDeletableBillingRecords">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDeletableBillingRecordsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetDeletableBillingRecordsResult" nillable="true" type="q27:ResultDataContractOfBillingRecordsResponseSerializedDataContractPvrQt8hh" xmlns:q27="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDeletableBillingRecords">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="deletableBillingRecord" nillable="true" type="q28:ArrayOfBillingRecordResponseDataContract" xmlns:q28="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDeletableBillingRecordsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UpdateDeletableBillingRecordsResult" nillable="true" type="q29:ResultDataContractOfBillingRecordsResponseSerializedDataContractPvrQt8hh" xmlns:q29="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendRequestToDevice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" name="instanceId" type="xs:int"/>
+            <xs:element minOccurs="1" name="platformId" type="xs:int"/>
+            <xs:element minOccurs="1" name="serviceId" type="q30:ServiceIdType" xmlns:q30="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            <xs:element minOccurs="1" name="reason" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="forceReboot" nillable="true" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="deviceType" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="1" name="uniqueId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="1" name="deviceId" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendRequestToDeviceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SendRequestToDeviceResult" nillable="true" type="q31:ResultDataContractOfboolean" xmlns:q31="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+      <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+      <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+      <xs:element name="byte" nillable="true" type="xs:byte"/>
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+      <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+      <xs:element name="double" nillable="true" type="xs:double"/>
+      <xs:element name="float" nillable="true" type="xs:float"/>
+      <xs:element name="int" nillable="true" type="xs:int"/>
+      <xs:element name="long" nillable="true" type="xs:long"/>
+      <xs:element name="QName" nillable="true" type="xs:QName"/>
+      <xs:element name="short" nillable="true" type="xs:short"/>
+      <xs:element name="string" nillable="true" type="xs:string"/>
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+      <xs:element name="char" nillable="true" type="tns:char"/>
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int"/>
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration"/>
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid"/>
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName"/>
+      <xs:attribute name="Id" type="xs:ID"/>
+      <xs:attribute name="Ref" type="xs:IDREF"/>
+    </xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/GVP.GAL.Model">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:simpleType name="UserPinType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="ParentalControl"/>
+          <xs:enumeration value="PurchaseControl"/>
+          <xs:enumeration value="AdultControl"/>
+          <xs:enumeration value="All">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">99</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="UserPinType" nillable="true" type="tns:UserPinType"/>
+      <xs:simpleType name="StatusCode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotImplemented">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="NotSupported">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UnknownError">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="OK">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidInstanceId">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidPlatformId">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserAlreadyExists">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserDoesNotExist">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ProductDoesNotExist">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ProductAlreadyDeleted">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserAlreadyHasSubscription">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserDoesnotHaveSubscription">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserIsAlreadyEnabled">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserIsAlreadyDisabled">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CannotDeleteEnabledUser">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="MissingMandatoryParameter">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidParameter">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">13</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidParameterValue">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">14</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Wrongorunsupportedparametervalue">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidParameterLength">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidParameterFormat">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">17</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DeviceNotRegistered">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">19</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ReachedMaximumNumberOfDevices">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">50</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DeviceAlreadyRegisteredToTheAuthenticatedUser">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">51</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DeviceAlreadyRegisteredToOtherUser">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">52</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DeviceIsNotRegisteredToTheAuthenticatedUser">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">53</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserDoesNotHaveAnyDevices">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">54</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="NoHTMLForResetPurchaseEmail">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">55</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Serviceunavailable">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">100</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidPassword">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">102</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Usernotauthorized">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">103</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PinDoesNotExist">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">105</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CannotconnecttogSDP">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">196</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InternalservererroringSDP_D26">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">197</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InternalservererrorinOBsystem">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">198</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="OtherAuthenticationError">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">199</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ProductAlreadyExists">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">202</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidChargingClass">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">203</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InternalservererroringSDP">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">297</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="OtherProductLoadingError">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">299</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ServiceDisabled">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">303</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="OtherPurchaseError">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">399</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ProductAlreadyInCancelling">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">400</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ProductAlreadyInTrial">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">401</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="TrialNotAllowed">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">402</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="EndDateAlreadyExpired">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">403</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserAlreadyHasPPV">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">404</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UserDoesNotHavePPV">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">405</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidDevice">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">406</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidInputValue">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1002</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="InvalidRequestedOperation">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1003</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Expectedparametermissing">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1020</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Wrongorunsupportedparameter">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1021</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="GenericClientError">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1099</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="StatusCode" nillable="true" type="tns:StatusCode"/>
+      <xs:simpleType name="Severity">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Info"/>
+          <xs:enumeration value="Warning"/>
+          <xs:enumeration value="Error"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="Severity" nillable="true" type="tns:Severity"/>
+      <xs:complexType name="UserDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UserId" type="xs:int"/>
+          <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="CustomFields" nillable="true" type="tns:ArrayOfUserCustomFieldDataContract"/>
+          <xs:element minOccurs="0" name="Status" type="tns:UserStatus"/>
+          <xs:element minOccurs="0" name="InstanceId" type="xs:int"/>
+          <xs:element minOccurs="0" name="EWallet" type="xs:double"/>
+          <xs:element minOccurs="0" name="PlatformId" type="xs:int"/>
+          <xs:element minOccurs="0" name="Products" nillable="true" type="tns:ArrayOfProductDataContract"/>
+          <xs:element minOccurs="0" name="ServiceType" type="tns:ServiceIdType"/>
+          <xs:element minOccurs="0" name="VideoServiceInfo" nillable="true" type="tns:UserVideoServiceInfoDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserDataContract" nillable="true" type="tns:UserDataContract"/>
+      <xs:complexType name="ArrayOfUserCustomFieldDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="UserCustomFieldDataContract" nillable="true" type="tns:UserCustomFieldDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfUserCustomFieldDataContract" nillable="true" type="tns:ArrayOfUserCustomFieldDataContract"/>
+      <xs:complexType name="UserCustomFieldDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserCustomFieldDataContract" nillable="true" type="tns:UserCustomFieldDataContract"/>
+      <xs:simpleType name="UserStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Active"/>
+          <xs:enumeration value="AwaitingEmailConfirmation"/>
+          <xs:enumeration value="Suspended"/>
+          <xs:enumeration value="Excluded"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="UserStatus" nillable="true" type="tns:UserStatus"/>
+      <xs:complexType name="ArrayOfProductDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDataContract" nillable="true" type="tns:ProductDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfProductDataContract" nillable="true" type="tns:ArrayOfProductDataContract"/>
+      <xs:complexType name="ProductDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ProductType" type="tns:ProductType"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="RequiresPin" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="PricingModel" nillable="true" type="tns:PricingModelDataContract"/>
+          <xs:element minOccurs="0" name="SerieId" type="xs:int"/>
+          <xs:element minOccurs="0" name="SeasonId" type="xs:int"/>
+          <xs:element minOccurs="0" name="Producer" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="PurchaseType" type="tns:SubscriptionPurchaseType"/>
+          <xs:element minOccurs="0" name="ReleaseDate" type="xs:long"/>
+          <xs:element minOccurs="0" name="Year" type="xs:int"/>
+          <xs:element minOccurs="0" name="Genres" nillable="true" type="tns:ArrayOfGenreDataContract"/>
+          <xs:element minOccurs="0" name="ImdbRating" type="xs:double"/>
+          <xs:element minOccurs="0" name="AgeRating" type="xs:int"/>
+          <xs:element minOccurs="0" name="Stars" type="xs:double"/>
+          <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageDataContract"/>
+          <xs:element minOccurs="0" name="Staff" nillable="true" type="tns:ArrayOfMovieStaffDataContract"/>
+          <xs:element minOccurs="0" name="Medias" nillable="true" type="tns:ArrayOfMediaDataContract"/>
+          <xs:element minOccurs="0" name="Subtitles" nillable="true" type="tns:ArrayOfSubtitleDataContract"/>
+          <xs:element minOccurs="0" name="Tags" nillable="true" type="tns:ArrayOfProductTagDataContract"/>
+          <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ExpireDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="Status" type="tns:ProductStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ProductDataContract" nillable="true" type="tns:ProductDataContract"/>
+      <xs:simpleType name="ProductType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Credit"/>
+          <xs:enumeration value="Movie"/>
+          <xs:enumeration value="Bundle"/>
+          <xs:enumeration value="Subscription"/>
+          <xs:enumeration value="Playlist"/>
+          <xs:enumeration value="Season"/>
+          <xs:enumeration value="Serie"/>
+          <xs:enumeration value="PayPerView"/>
+          <xs:enumeration value="LiveChannel"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ProductType" nillable="true" type="tns:ProductType"/>
+      <xs:complexType name="PricingModelDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Chargingclass" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="UserType" type="tns:UserType"/>
+          <xs:element minOccurs="0" name="Price" type="xs:double"/>
+          <xs:element minOccurs="0" name="RecurrenceType" type="tns:RecurrenceType"/>
+          <xs:element minOccurs="0" name="DevicesType" nillable="true" type="tns:ArrayOfDeviceTypeDataContract"/>
+          <xs:element minOccurs="0" name="Isrecurring" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="GrantAllDevices" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="StartDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="EndDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="Quality" type="tns:Quality"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PricingModelDataContract" nillable="true" type="tns:PricingModelDataContract"/>
+      <xs:simpleType name="UserType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Telefonica"/>
+          <xs:enumeration value="NonTelefonica"/>
+          <xs:enumeration value="Both"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="UserType" nillable="true" type="tns:UserType"/>
+      <xs:simpleType name="RecurrenceType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Daily"/>
+          <xs:enumeration value="Weekly"/>
+          <xs:enumeration value="Monthly"/>
+          <xs:enumeration value="Quarter"/>
+          <xs:enumeration value="Half"/>
+          <xs:enumeration value="Yearly"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="RecurrenceType" nillable="true" type="tns:RecurrenceType"/>
+      <xs:complexType name="ArrayOfDeviceTypeDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DeviceTypeDataContract" nillable="true" type="tns:DeviceTypeDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDeviceTypeDataContract" nillable="true" type="tns:ArrayOfDeviceTypeDataContract"/>
+      <xs:complexType name="DeviceTypeDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DeviceTypeDataContract" nillable="true" type="tns:DeviceTypeDataContract"/>
+      <xs:simpleType name="Quality">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="HighDefinitionFull"/>
+          <xs:enumeration value="HighDefinition"/>
+          <xs:enumeration value="StandardDefinition"/>
+          <xs:enumeration value="LowDefinition"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="Quality" nillable="true" type="tns:Quality"/>
+      <xs:simpleType name="SubscriptionPurchaseType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="ApiOnly"/>
+          <xs:enumeration value="ProvisioningOnly"/>
+          <xs:enumeration value="Both"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="SubscriptionPurchaseType" nillable="true" type="tns:SubscriptionPurchaseType"/>
+      <xs:complexType name="ArrayOfGenreDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GenreDataContract" nillable="true" type="tns:GenreDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfGenreDataContract" nillable="true" type="tns:ArrayOfGenreDataContract"/>
+      <xs:complexType name="GenreDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GenreDataContract" nillable="true" type="tns:GenreDataContract"/>
+      <xs:complexType name="ArrayOfImageDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ImageDataContract" nillable="true" type="tns:ImageDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfImageDataContract" nillable="true" type="tns:ArrayOfImageDataContract"/>
+      <xs:complexType name="ImageDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Width" type="xs:int"/>
+          <xs:element minOccurs="0" name="Height" type="xs:int"/>
+          <xs:element minOccurs="0" name="Type" type="tns:ImageType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ImageDataContract" nillable="true" type="tns:ImageDataContract"/>
+      <xs:simpleType name="ImageType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Cover"/>
+          <xs:enumeration value="VideoFrame"/>
+          <xs:enumeration value="Banner"/>
+          <xs:enumeration value="Icon"/>
+          <xs:enumeration value="Background"/>
+          <xs:enumeration value="Logo"/>
+          <xs:enumeration value="OriginalCover"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ImageType" nillable="true" type="tns:ImageType"/>
+      <xs:complexType name="ArrayOfMovieStaffDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="MovieStaffDataContract" nillable="true" type="tns:MovieStaffDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfMovieStaffDataContract" nillable="true" type="tns:ArrayOfMovieStaffDataContract"/>
+      <xs:complexType name="MovieStaffDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Role" type="tns:Role"/>
+          <xs:element minOccurs="0" name="Person" nillable="true" type="tns:PersonDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="MovieStaffDataContract" nillable="true" type="tns:MovieStaffDataContract"/>
+      <xs:simpleType name="Role">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="MiscStaff"/>
+          <xs:enumeration value="Director"/>
+          <xs:enumeration value="Actor"/>
+          <xs:enumeration value="Producer"/>
+          <xs:enumeration value="Writer"/>
+          <xs:enumeration value="Composer"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="Role" nillable="true" type="tns:Role"/>
+      <xs:complexType name="PersonDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PersonDataContract" nillable="true" type="tns:PersonDataContract"/>
+      <xs:complexType name="ArrayOfMediaDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="MediaDataContract" nillable="true" type="tns:MediaDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfMediaDataContract" nillable="true" type="tns:ArrayOfMediaDataContract"/>
+      <xs:complexType name="MediaDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Languages" nillable="true" type="tns:ArrayOfLanguageDataContract"/>
+          <xs:element minOccurs="0" name="Quality" type="tns:Quality"/>
+          <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Aspect" type="xs:double"/>
+          <xs:element minOccurs="0" name="DRM" type="tns:DRMType"/>
+          <xs:element minOccurs="0" name="Type" type="tns:MediaType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="MediaDataContract" nillable="true" type="tns:MediaDataContract"/>
+      <xs:complexType name="ArrayOfLanguageDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="LanguageDataContract" nillable="true" type="tns:LanguageDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfLanguageDataContract" nillable="true" type="tns:ArrayOfLanguageDataContract"/>
+      <xs:complexType name="LanguageDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="LanguageDataContract" nillable="true" type="tns:LanguageDataContract"/>
+      <xs:simpleType name="DRMType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Widevine"/>
+          <xs:enumeration value="PlayReady"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="DRMType" nillable="true" type="tns:DRMType"/>
+      <xs:simpleType name="MediaType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Movie"/>
+          <xs:enumeration value="Trailer"/>
+          <xs:enumeration value="Teaser"/>
+          <xs:enumeration value="Interview"/>
+          <xs:enumeration value="MakingOf"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="MediaType" nillable="true" type="tns:MediaType"/>
+      <xs:complexType name="ArrayOfSubtitleDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SubtitleDataContract" nillable="true" type="tns:SubtitleDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSubtitleDataContract" nillable="true" type="tns:ArrayOfSubtitleDataContract"/>
+      <xs:complexType name="SubtitleDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:int"/>
+          <xs:element minOccurs="0" name="Language" nillable="true" type="tns:LanguageDataContract"/>
+          <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SubtitleDataContract" nillable="true" type="tns:SubtitleDataContract"/>
+      <xs:complexType name="ArrayOfProductTagDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductTagDataContract" nillable="true" type="tns:ProductTagDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfProductTagDataContract" nillable="true" type="tns:ArrayOfProductTagDataContract"/>
+      <xs:complexType name="ProductTagDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Type" type="tns:TagType"/>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ProductTagDataContract" nillable="true" type="tns:ProductTagDataContract"/>
+      <xs:simpleType name="TagType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Stars"/>
+          <xs:enumeration value="Favorite"/>
+          <xs:enumeration value="Watched"/>
+          <xs:enumeration value="Wishlist"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="TagType" nillable="true" type="tns:TagType"/>
+      <xs:simpleType name="ProductStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Active"/>
+          <xs:enumeration value="Canceled"/>
+          <xs:enumeration value="PendingActivation"/>
+          <xs:enumeration value="PendingCancellation"/>
+          <xs:enumeration value="Expired"/>
+          <xs:enumeration value="Failed"/>
+          <xs:enumeration value="Trial"/>
+          <xs:enumeration value="Cancelling"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ProductStatus" nillable="true" type="tns:ProductStatus"/>
+      <xs:simpleType name="ServiceIdType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="OTT"/>
+          <xs:enumeration value="IPTV"/>
+          <xs:enumeration value="OTTandIPTV"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ServiceIdType" nillable="true" type="tns:ServiceIdType"/>
+      <xs:complexType name="UserVideoServiceInfoDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreditLimit" nillable="true" type="xs:long"/>
+          <xs:element minOccurs="0" name="GeographicArea" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="BlackoutArea" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="TimeZone" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="DvrEnabled" nillable="true" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="SDMediaStreams" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="HDMediaStreams" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="DvbtTuners" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="ServiceGroup" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ServerCodeList" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="DeviceIdList" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+          <xs:element minOccurs="0" name="MasterDeviceId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="TimeShiftStatusId" nillable="true" type="xs:int"/>
+          <xs:element minOccurs="0" name="TimeShiftStatusDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserVideoServiceInfoDataContract" nillable="true" type="tns:UserVideoServiceInfoDataContract"/>
+      <xs:complexType name="ArrayOfDataBlockType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DataBlockType" type="tns:DataBlockType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfDataBlockType" nillable="true" type="tns:ArrayOfDataBlockType"/>
+      <xs:simpleType name="DataBlockType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="UserAttributes"/>
+          <xs:enumeration value="UserActivePurchases"/>
+          <xs:enumeration value="UserHistoryPurchases"/>
+          <xs:enumeration value="UserDevices"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="DataBlockType" nillable="true" type="tns:DataBlockType"/>
+      <xs:complexType name="ArrayOfUserFieldDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="UserFieldDataContract" nillable="true" type="tns:UserFieldDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfUserFieldDataContract" nillable="true" type="tns:ArrayOfUserFieldDataContract"/>
+      <xs:complexType name="UserFieldDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Field" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserFieldDataContract" nillable="true" type="tns:UserFieldDataContract"/>
+      <xs:complexType name="UserDetailedDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CommonUserInfo" nillable="true" type="tns:CommonUserInfoDataContract"/>
+          <xs:element minOccurs="0" name="UserAttributes" nillable="true" type="tns:UserAttributesDataContract"/>
+          <xs:element minOccurs="0" name="UserActivePurchases" nillable="true" type="tns:ArrayOfUserActivePurchasesDataContract"/>
+          <xs:element minOccurs="0" name="UserHistoryPurchases" nillable="true" type="tns:ArrayOfUserHistoryPurchasesDataContract"/>
+          <xs:element minOccurs="0" name="UserDevices" nillable="true" type="tns:ArrayOfUserDevicesDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserDetailedDataContract" nillable="true" type="tns:UserDetailedDataContract"/>
+      <xs:complexType name="CommonUserInfoDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Status" type="tns:UserStatus"/>
+          <xs:element minOccurs="0" name="ServiceType" type="tns:ServiceIdType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CommonUserInfoDataContract" nillable="true" type="tns:CommonUserInfoDataContract"/>
+      <xs:complexType name="UserAttributesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OttUserAttributes" nillable="true" type="tns:OttUserAttributesDataContract"/>
+          <xs:element minOccurs="0" name="IptvUserAttributes" nillable="true" type="tns:UserVideoServiceInfoDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserAttributesDataContract" nillable="true" type="tns:UserAttributesDataContract"/>
+      <xs:complexType name="OttUserAttributesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OttUserAttributesDataContract" nillable="true" type="tns:OttUserAttributesDataContract"/>
+      <xs:complexType name="ArrayOfUserActivePurchasesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="UserActivePurchasesDataContract" nillable="true" type="tns:UserActivePurchasesDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfUserActivePurchasesDataContract" nillable="true" type="tns:ArrayOfUserActivePurchasesDataContract"/>
+      <xs:complexType name="UserActivePurchasesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ProductType" type="tns:ProductType"/>
+          <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="ExpireDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="Price" type="xs:double"/>
+          <xs:element minOccurs="0" name="ChargingClass" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Quality" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Status" type="tns:ProductStatus"/>
+          <xs:element minOccurs="0" name="PlaybackTime" nillable="true" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserActivePurchasesDataContract" nillable="true" type="tns:UserActivePurchasesDataContract"/>
+      <xs:complexType name="ArrayOfUserHistoryPurchasesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="UserHistoryPurchasesDataContract" nillable="true" type="tns:UserHistoryPurchasesDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfUserHistoryPurchasesDataContract" nillable="true" type="tns:ArrayOfUserHistoryPurchasesDataContract"/>
+      <xs:complexType name="UserHistoryPurchasesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ProductType" type="tns:ProductType"/>
+          <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="ExpireDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="Price" type="xs:double"/>
+          <xs:element minOccurs="0" name="ChargingClass" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Quality" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Status" type="tns:ProductStatus"/>
+          <xs:element minOccurs="0" name="PlaybackTime" nillable="true" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserHistoryPurchasesDataContract" nillable="true" type="tns:UserHistoryPurchasesDataContract"/>
+      <xs:complexType name="ArrayOfUserDevicesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDevicesDataContract" nillable="true" type="tns:UserDevicesDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfUserDevicesDataContract" nillable="true" type="tns:ArrayOfUserDevicesDataContract"/>
+      <xs:complexType name="UserDevicesDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DeviceTrustedId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="DeviceExternalId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="DeviceTypeId" type="xs:int"/>
+          <xs:element minOccurs="0" name="DeviceName" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="DeviceModel" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="DeviceOperatingSystem" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserDevicesDataContract" nillable="true" type="tns:UserDevicesDataContract"/>
+      <xs:complexType name="ArrayOfPinDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PinDataContract" nillable="true" type="tns:PinDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPinDataContract" nillable="true" type="tns:ArrayOfPinDataContract"/>
+      <xs:complexType name="PinDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Type" type="tns:UserPinType"/>
+          <xs:element minOccurs="0" name="DefaultValue" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="EnabledByDefault" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PinDataContract" nillable="true" type="tns:PinDataContract"/>
+      <xs:complexType name="ArrayOfBillingRecordDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BillingRecordDataContract" nillable="true" type="tns:BillingRecordDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfBillingRecordDataContract" nillable="true" type="tns:ArrayOfBillingRecordDataContract"/>
+      <xs:complexType name="BillingRecordDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="AccountID" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Rating" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Price" type="xs:double"/>
+          <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="PurchaseDateTime" type="xs:long"/>
+          <xs:element minOccurs="0" name="StartDateTime" type="xs:long"/>
+          <xs:element minOccurs="0" name="EndDatetime" type="xs:long"/>
+          <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Status" type="tns:BillingStatus"/>
+          <xs:element minOccurs="0" name="ServiceId" type="tns:ServiceIdType"/>
+          <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="TransactionDate" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BillingRecordDataContract" nillable="true" type="tns:BillingRecordDataContract"/>
+      <xs:simpleType name="BillingStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Active"/>
+          <xs:enumeration value="Expired"/>
+          <xs:enumeration value="Canceled"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="BillingStatus" nillable="true" type="tns:BillingStatus"/>
+      <xs:complexType name="ArrayOfOutputBillingRecordDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OutputBillingRecordDataContract" nillable="true" type="tns:OutputBillingRecordDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfOutputBillingRecordDataContract" nillable="true" type="tns:ArrayOfOutputBillingRecordDataContract"/>
+      <xs:complexType name="OutputBillingRecordDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EndDate" type="xs:long"/>
+          <xs:element minOccurs="0" name="ExternalId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Price" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="PrincipalExternalId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="PrincipalType" type="tns:PrincipalTypeTransfer"/>
+          <xs:element minOccurs="0" name="PurchaseDateTime" type="xs:long"/>
+          <xs:element minOccurs="0" name="ResourceExternalId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ResourceId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="StartDate" type="xs:long"/>
+          <xs:element minOccurs="0" name="Status" type="tns:BillingEventStatusTransfer"/>
+          <xs:element minOccurs="0" name="SubSystem" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Rating" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="ppv_asset_search_key" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OutputBillingRecordDataContract" nillable="true" type="tns:OutputBillingRecordDataContract"/>
+      <xs:simpleType name="PrincipalTypeTransfer">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="Account"/>
+          <xs:enumeration value="Device"/>
+          <xs:enumeration value="Group"/>
+          <xs:enumeration value="User"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="PrincipalTypeTransfer" nillable="true" type="tns:PrincipalTypeTransfer"/>
+      <xs:simpleType name="BillingEventStatusTransfer">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown"/>
+          <xs:enumeration value="UnRead"/>
+          <xs:enumeration value="Read"/>
+          <xs:enumeration value="Recorded"/>
+          <xs:enumeration value="Deletable"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="BillingEventStatusTransfer" nillable="true" type="tns:BillingEventStatusTransfer"/>
+      <xs:complexType name="BillingRecordsResponseSerializedDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusOk" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="ExceptionMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="BillingRecordsResponse" nillable="true" type="tns:ArrayOfBillingRecordResponseDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BillingRecordsResponseSerializedDataContract" nillable="true" type="tns:BillingRecordsResponseSerializedDataContract"/>
+      <xs:complexType name="ArrayOfBillingRecordResponseDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BillingRecordResponseDataContract" nillable="true" type="tns:BillingRecordResponseDataContract"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfBillingRecordResponseDataContract" nillable="true" type="tns:ArrayOfBillingRecordResponseDataContract"/>
+      <xs:complexType name="BillingRecordResponseDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Status" type="tns:BillingEventStatusTransfer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BillingRecordResponseDataContract" nillable="true" type="tns:BillingRecordResponseDataContract"/>
+    </xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:complexType name="ResultDataContractOfboolean">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q1:StatusCode" xmlns:q1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q2:Severity" xmlns:q2="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfboolean" nillable="true" type="tns:ResultDataContractOfboolean"/>
+      <xs:complexType name="ResultDataContractOfUserDataContractPvrQt8hh">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="UserDataContract" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q3:StatusCode" xmlns:q3="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q4:Severity" xmlns:q4="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="q5:UserDataContract" xmlns:q5="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfUserDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfUserDataContractPvrQt8hh"/>
+      <xs:complexType name="ResultDataContractOfUserDetailedDataContractPvrQt8hh">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="UserDetailedDataContract" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q6:StatusCode" xmlns:q6="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q7:Severity" xmlns:q7="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="q8:UserDetailedDataContract" xmlns:q8="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfUserDetailedDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfUserDetailedDataContractPvrQt8hh"/>
+      <xs:complexType name="ResultDataContractOfArrayOfPinDataContractPvrQt8hh">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="ArrayOfPinDataContract" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q9:StatusCode" xmlns:q9="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q10:Severity" xmlns:q10="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="q11:ArrayOfPinDataContract" xmlns:q11="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfArrayOfPinDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfArrayOfPinDataContractPvrQt8hh"/>
+      <xs:complexType name="ResultDataContractOfstring">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q12:StatusCode" xmlns:q12="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q13:Severity" xmlns:q13="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfstring" nillable="true" type="tns:ResultDataContractOfstring"/>
+      <xs:complexType name="ResultDataContractOfArrayOfBillingRecordDataContractPvrQt8hh">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="ArrayOfBillingRecordDataContract" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q14:StatusCode" xmlns:q14="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q15:Severity" xmlns:q15="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="q16:ArrayOfBillingRecordDataContract" xmlns:q16="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfArrayOfBillingRecordDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfArrayOfBillingRecordDataContractPvrQt8hh"/>
+      <xs:complexType name="ResultDataContractOfBillingRecordsResponseSerializedDataContractPvrQt8hh">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="BillingRecordsResponseSerializedDataContract" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q17:StatusCode" xmlns:q17="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q18:Severity" xmlns:q18="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="q19:BillingRecordsResponseSerializedDataContract" xmlns:q19="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfBillingRecordsResponseSerializedDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfBillingRecordsResponseSerializedDataContractPvrQt8hh"/>
+      <xs:complexType name="ResultDataContractOfArrayOfProductDataContractPvrQt8hh">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="ArrayOfProductDataContract" Namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StatusCode" type="q20:StatusCode" xmlns:q20="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="Severity" type="q21:Severity" xmlns:q21="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+          <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="q22:ArrayOfProductDataContract" xmlns:q22="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ResultDataContractOfArrayOfProductDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfArrayOfProductDataContractPvrQt8hh"/>
+    </xs:schema>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+      <xs:complexType name="ArrayOfstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ITD_CrmService_ResetPin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPin"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_ResetPin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPinResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfo"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserDetailedInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDetailedInfo"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserDetailedInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDetailedInfoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_NotifyPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPassword"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_NotifyPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPasswordResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_SetNewRentalExpireDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewRentalExpireDate"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_SetNewRentalExpireDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewRentalExpireDateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetDefaultOBPinNumbers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultOBPinNumbers"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetDefaultOBPinNumbers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultOBPinNumbersResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_RegisterTrustedDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTrustedDevice"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_RegisterTrustedDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTrustedDeviceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_RemoveTrustedDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveTrustedDevice"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_RemoveTrustedDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveTrustedDeviceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_RemoveAllTrustedDevices_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAllTrustedDevices"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_RemoveAllTrustedDevices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAllTrustedDevicesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_ModifyTrustedDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyTrustedDevice"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_ModifyTrustedDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyTrustedDeviceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_CancelRental_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelRental"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_CancelRental_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelRentalResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_HealthCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:HealthCheck"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_HealthCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HealthCheckResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserBillingRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserBillingRecord"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserBillingRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserBillingRecordResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_PurchasePayPerView_InputMessage">
+    <wsdl:part name="parameters" element="tns:PurchasePayPerView"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_PurchasePayPerView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PurchasePayPerViewResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_SendMassiveExpiredPayPerView_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMassiveExpiredPayPerView"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_SendMassiveExpiredPayPerView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMassiveExpiredPayPerViewResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserPayPerView_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserPayPerView"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserPayPerView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserPayPerViewResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserSubscriptionStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSubscriptionStatus"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetUserSubscriptionStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSubscriptionStatusResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetDeletableBillingRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeletableBillingRecords"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_GetDeletableBillingRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeletableBillingRecordsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_UpdateDeletableBillingRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeletableBillingRecords"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_UpdateDeletableBillingRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeletableBillingRecordsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_SendRequestToDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendRequestToDevice"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_CrmService_SendRequestToDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendRequestToDeviceResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ITD_CrmService">
+    <wsdl:operation name="ResetPin">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/ResetPin" message="tns:ITD_CrmService_ResetPin_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/ResetPinResponse" message="tns:ITD_CrmService_ResetPin_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/GetUserInfo" message="tns:ITD_CrmService_GetUserInfo_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/GetUserInfoResponse" message="tns:ITD_CrmService_GetUserInfo_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailedInfo">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/GetUserDetailedInfo" message="tns:ITD_CrmService_GetUserDetailedInfo_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/GetUserDetailedInfoResponse" message="tns:ITD_CrmService_GetUserDetailedInfo_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPassword">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/NotifyPassword" message="tns:ITD_CrmService_NotifyPassword_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/NotifyPasswordResponse" message="tns:ITD_CrmService_NotifyPassword_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SetNewRentalExpireDate">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/SetNewRentalExpireDate" message="tns:ITD_CrmService_SetNewRentalExpireDate_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/SetNewRentalExpireDateResponse" message="tns:ITD_CrmService_SetNewRentalExpireDate_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultOBPinNumbers">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/GetDefaultOBPinNumbers" message="tns:ITD_CrmService_GetDefaultOBPinNumbers_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/GetDefaultOBPinNumbersResponse" message="tns:ITD_CrmService_GetDefaultOBPinNumbers_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterTrustedDevice">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/RegisterTrustedDevice" message="tns:ITD_CrmService_RegisterTrustedDevice_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/RegisterTrustedDeviceResponse" message="tns:ITD_CrmService_RegisterTrustedDevice_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustedDevice">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/RemoveTrustedDevice" message="tns:ITD_CrmService_RemoveTrustedDevice_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/RemoveTrustedDeviceResponse" message="tns:ITD_CrmService_RemoveTrustedDevice_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAllTrustedDevices">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/RemoveAllTrustedDevices" message="tns:ITD_CrmService_RemoveAllTrustedDevices_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/RemoveAllTrustedDevicesResponse" message="tns:ITD_CrmService_RemoveAllTrustedDevices_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyTrustedDevice">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/ModifyTrustedDevice" message="tns:ITD_CrmService_ModifyTrustedDevice_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/ModifyTrustedDeviceResponse" message="tns:ITD_CrmService_ModifyTrustedDevice_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="CancelRental">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/CancelRental" message="tns:ITD_CrmService_CancelRental_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/CancelRentalResponse" message="tns:ITD_CrmService_CancelRental_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="HealthCheck">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/HealthCheck" message="tns:ITD_CrmService_HealthCheck_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/HealthCheckResponse" message="tns:ITD_CrmService_HealthCheck_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserBillingRecord">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/GetUserBillingRecord" message="tns:ITD_CrmService_GetUserBillingRecord_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/GetUserBillingRecordResponse" message="tns:ITD_CrmService_GetUserBillingRecord_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="PurchasePayPerView">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/PurchasePayPerView" message="tns:ITD_CrmService_PurchasePayPerView_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/PurchasePayPerViewResponse" message="tns:ITD_CrmService_PurchasePayPerView_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendMassiveExpiredPayPerView">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/SendMassiveExpiredPayPerView" message="tns:ITD_CrmService_SendMassiveExpiredPayPerView_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/SendMassiveExpiredPayPerViewResponse" message="tns:ITD_CrmService_SendMassiveExpiredPayPerView_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPayPerView">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/GetUserPayPerView" message="tns:ITD_CrmService_GetUserPayPerView_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/GetUserPayPerViewResponse" message="tns:ITD_CrmService_GetUserPayPerView_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSubscriptionStatus">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/GetUserSubscriptionStatus" message="tns:ITD_CrmService_GetUserSubscriptionStatus_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/GetUserSubscriptionStatusResponse" message="tns:ITD_CrmService_GetUserSubscriptionStatus_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeletableBillingRecords">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/GetDeletableBillingRecords" message="tns:ITD_CrmService_GetDeletableBillingRecords_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/GetDeletableBillingRecordsResponse" message="tns:ITD_CrmService_GetDeletableBillingRecords_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeletableBillingRecords">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/UpdateDeletableBillingRecords" message="tns:ITD_CrmService_UpdateDeletableBillingRecords_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/UpdateDeletableBillingRecordsResponse" message="tns:ITD_CrmService_UpdateDeletableBillingRecords_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendRequestToDevice">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_CrmService/SendRequestToDevice" message="tns:ITD_CrmService_SendRequestToDevice_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_CrmService/SendRequestToDeviceResponse" message="tns:ITD_CrmService_SendRequestToDevice_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ITD_CrmService" type="tns:ITD_CrmService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ResetPin">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/ResetPin" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/GetUserInfo" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailedInfo">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/GetUserDetailedInfo" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPassword">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/NotifyPassword" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNewRentalExpireDate">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/SetNewRentalExpireDate" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultOBPinNumbers">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/GetDefaultOBPinNumbers" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterTrustedDevice">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/RegisterTrustedDevice" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustedDevice">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/RemoveTrustedDevice" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAllTrustedDevices">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/RemoveAllTrustedDevices" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyTrustedDevice">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/ModifyTrustedDevice" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelRental">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/CancelRental" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HealthCheck">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/HealthCheck" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserBillingRecord">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/GetUserBillingRecord" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurchasePayPerView">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/PurchasePayPerView" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMassiveExpiredPayPerView">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/SendMassiveExpiredPayPerView" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPayPerView">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/GetUserPayPerView" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSubscriptionStatus">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/GetUserSubscriptionStatus" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeletableBillingRecords">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/GetDeletableBillingRecords" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeletableBillingRecords">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/UpdateDeletableBillingRecords" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendRequestToDevice">
+      <soap:operation soapAction="GVP.GAL/ITD_CrmService/SendRequestToDevice" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CrmSoapService">
+    <wsdl:port name="BasicHttpBinding_ITD_CrmService" binding="tns:BasicHttpBinding_ITD_CrmService">
+      <soap:address location="http://gal-bss.ottcert.gvp.telefonica.com:8080/Service/TD_CrmService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
