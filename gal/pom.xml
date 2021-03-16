@@ -48,6 +48,14 @@
 			<artifactId>cxf-rt-bindings-soap</artifactId>
 			<version>3.3.5</version>
 		</dependency>
+		
+		<!-- Enrutamiento dinamico -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20200518</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
