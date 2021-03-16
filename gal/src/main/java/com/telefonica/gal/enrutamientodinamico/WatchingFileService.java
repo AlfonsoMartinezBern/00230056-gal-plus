@@ -1,4 +1,4 @@
-package com.telefonica.gal.apidemo;
+package com.telefonica.gal.enrutamientodinamico;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -21,7 +21,6 @@ public class WatchingFileService {
 	
 	static WatchService watchServ;
 	WatchKey wKey;
-//	JSONObject conf = new JSONObject("C:/Develop/STSWorkspace/demo/directory/conf.json");
 	static JSONObject conf;
 	
 	public static void main(String[] args) throws IOException, InterruptedException {

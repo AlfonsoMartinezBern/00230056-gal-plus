@@ -1,4 +1,4 @@
-package com.telefonica.gal.apidemo;
+package com.telefonica.gal.enrutamientodinamico;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,10 +18,6 @@ public class ConfigService {
 		while ((linea = reader.readLine()) != null ) {
 			json = json + linea;
 		}
-//		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
-//		System.out.println("Servicio: " + conf.getJSONObject("example1").get("servicio"));
-//		System.out.println("EndPoint: " + conf.getJSONObject("example1").get("endpoint"));
-//		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		
 		return new JSONObject(json);
 	}
