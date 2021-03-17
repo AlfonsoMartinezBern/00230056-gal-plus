@@ -90,7 +90,30 @@
 										<extraarg>com.telefonica.gal.wsdl.northbound.provManagement</extraarg>
 									</extraargs>
 								</wsdlOption>
-
+								<wsdlOption>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/GVP.GAL.API/TD_RegistrationService.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/TD_RegistrationService.wsdl</wsdlLocation>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-exsh</extraarg>
+										<extraarg>true</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>com.telefonica.gal.wsdl.southbound.gvp</extraarg>
+									</extraargs>
+								</wsdlOption>
+								<!--<wsdlOption>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-exsh</extraarg>
+										<extraarg>true</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>com.telefonica.gal.wsdl.southbound.umg</extraarg>
+									</extraargs>
+								</wsdlOption>-->
 							</wsdlOptions>
 						</configuration>
 						<goals>
