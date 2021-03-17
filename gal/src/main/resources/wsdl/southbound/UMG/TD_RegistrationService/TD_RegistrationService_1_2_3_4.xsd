@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.telefonica.com/schemas/TD_RegistrationService/common" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/schemas/TD_RegistrationService/common">
+  <xs:simpleType name="TimeZoneType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GMT_Minus_0400_Santiago"/>
+      <xs:enumeration value="GMT_Minus_0300_Brasilia"/>
+      <xs:enumeration value="GMT_Minus_0300_Buenos_Aires_Georgetown"/>
+      <xs:enumeration value="GMT_GreenwichMeanTime_Dublin_Edinburgh_Lisbon_London"/>
+      <xs:enumeration value="GMT_Plus_0100_Brussels_Copenhagen_Madrid_Paris"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TimeZoneType" nillable="true" type="tns:TimeZoneType"/>
+</xs:schema>
