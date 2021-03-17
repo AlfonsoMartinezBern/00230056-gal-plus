@@ -25,8 +25,9 @@ public class ApiServiceImpl implements ApiService {
 
         response.setUserId(userIdType);
         response.setPendingVerification(true);
-        response.setVerificationMeans("Prueba");
+        response.setVerificationMeans("Prueba GAL");
 
         return response;
     }
+
 }

@@ -75,7 +75,7 @@
 						<configuration>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${project.basedir}/src/main/resources/wsdl/IdentityManagement/UNICA_API_SOAP_IAM_IdentityManagement_services_v2_2.wsdl</wsdl>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/identityManagement/UNICA_API_SOAP_IAM_IdentityManagement_services_v2_2.wsdl</wsdl>
 									<wsdlLocation>classpath:wsdl/UNICA_API_SOAP_IAM_IdentityManagement_services_v2_2.wsdl</wsdlLocation>
 									<extraargs>
 										<extraarg>-fe</extraarg>
@@ -86,6 +86,42 @@
 										<extraarg>com.telefonica.gal.wsdl.identityManagement</extraarg>
 									</extraargs>
 								</wsdlOption>
+								<wsdlOption>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/northbound/provManagement/UNICA_API_SOAP_OProv_Management_services_v7_1.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/UNICA_API_SOAP_OProv_Management_services_v7_1.wsdl</wsdlLocation>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-exsh</extraarg>
+										<extraarg>true</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>com.telefonica.gal.wsdl.northbound.provManagement</extraarg>
+									</extraargs>
+								</wsdlOption>
+								<wsdlOption>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/GVP.GAL.API/TD_RegistrationService.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/TD_RegistrationService.wsdl</wsdlLocation>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-exsh</extraarg>
+										<extraarg>true</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>com.telefonica.gal.wsdl.southbound.gvp</extraarg>
+									</extraargs>
+								</wsdlOption>
+								<!--<wsdlOption>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-exsh</extraarg>
+										<extraarg>true</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>com.telefonica.gal.wsdl.southbound.umg</extraarg>
+									</extraargs>
+								</wsdlOption>-->
 							</wsdlOptions>
 						</configuration>
 						<goals>
