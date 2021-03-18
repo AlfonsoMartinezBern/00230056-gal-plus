@@ -73,7 +73,7 @@ public class ConfigController {
 			return e.getMessage();
 		}
 	}
-	
+
 	@GetMapping("/list")
 	public String listJSON() {
 		try {
@@ -83,4 +83,52 @@ public class ConfigController {
 		}
 	}
 
+	@GetMapping("/getflow")
+	public String getFlow(@RequestBody DynamicRoutingDTO dto) {
+		try {
+			for (JSONObject json : conf) {
+				if (json.getString("serviceID").equals(dto.getServiceID())
+						&& json.getString("operationTD").equals(dto.getOperationTD())
+						&& json.getString("uri").equals(dto.getUri())) {
+					return json.get("flow").toString();
+				}
+			}
+			return "{\"Error\" : \"No se ha encontrado el servicio\"}";
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+
+	@GetMapping("/gettargetendpoint")
+	public String getTargetEndpoint(@RequestBody DynamicRoutingDTO dto) {
+		try {
+			for (JSONObject json : conf) {
+				if (json.getString("serviceID").equals(dto.getServiceID())
+						&& json.getString("operationTD").equals(dto.getOperationTD())
+						&& json.getString("uri").equals(dto.getUri())) {
+					return json.get("targetEndpoint").toString();
+				}
+			}
+			return "{\"Error\" : \"No se ha encontrado el servicio\"}";
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+
+	@GetMapping("/getendpointtype")
+	public String getEndpointType(@RequestBody DynamicRoutingDTO dto) {
+		try {
+			for (JSONObject json : conf) {
+				if (json.getString("serviceID").equals(dto.getServiceID())
+						&& json.getString("operationTD").equals(dto.getOperationTD())
+						&& json.getString("uri").equals(dto.getUri())) {
+					return json.get("endpointType").toString();
+				}
+			}
+			return "{\"Error\" : \"No se ha encontrado el servicio\"}";
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
 }
