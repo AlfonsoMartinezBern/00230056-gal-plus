@@ -25,6 +25,7 @@ public class WsITDregistrationService implements ITDRegistrationService {
     @Override
     public ResultDataContractOfstring createUser(int instanceId, int platformId, UserDataContract user) {
         RegistrationSoapService registrationSoapService = new RegistrationSoapService(getWdslUrl());
+
         ITDRegistrationService itdRegistrationService = registrationSoapService.getBasicHttpBindingITDRegistrationService();
 
         itdRegistrationService.createUser(instanceId,platformId,user);
@@ -45,7 +46,7 @@ public class WsITDregistrationService implements ITDRegistrationService {
     private URL getWdslUrl() {
         try {
             //http://gal-bss.ottcert.gvp.telefonica.com:8080/Service/TD_RegistrationService?wsdl
-            return new URL("http://gal-bss.ottcert.gvp.telefonica.com:8080/Service/TD_RegistrationService?wsdl");
+            return new URL("http://localhost:20100/GVP_TD_RegistrationService?wsdl");
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
