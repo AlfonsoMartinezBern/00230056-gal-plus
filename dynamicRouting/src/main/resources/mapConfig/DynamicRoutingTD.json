@@ -1,4 +1,7 @@
-{ "dynamicRoutingTD":
+{ 
+"version":"0.0.1",
+"info":"created 2021-03-22",
+"routes":
 [
   {
     "serviceID": "OTT",
@@ -8,7 +11,7 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
+    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "GVP.GAL"
     },
@@ -16,11 +19,10 @@
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
-    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
     "endpointType": "GVP.GAL"
     }],
-     "flow": [{"step":1,"endpointID":"01","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":false}]
+     "flows": [{"step":1,"endpointID":"05","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
   },
   {
     "serviceID": "IPTV",
@@ -30,11 +32,11 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
+    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService3",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "GVP.GAL"
     }],
-    "flow":[{"step":1,"endpointID":"01","type":"source","active":false}]
+    "flows":[{"step":1,"endpointID":"01","type":"source","active":true}]
   },
   {
     "serviceID": "IPTV",
@@ -44,11 +46,11 @@
     "endpoints": [{
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
+    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService4",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "UMG"
     }],
-     "flow":[]
+     "flows":[]
   },
   {
    
@@ -58,11 +60,11 @@
     "endpoints": [{
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
+    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService5",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "UMG"
   }],
-   "flow":[]
+   "flows":[]
   },
   {
     "serviceID": "OTT",
@@ -72,7 +74,7 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
+    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService6",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "GVP.GAL"
     },
@@ -80,11 +82,11 @@
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
+    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService7",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "UMG"
     }],
-     "flow": [{"step":1,"endpointID":"01","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
+     "flows": [{"step":1,"endpointID":"01","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
   },
   {
     "serviceID": "OTT",
@@ -94,19 +96,11 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
+    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService8",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "GVP.GAL"
-    },
-    {
-    "id": "02",
-    "instanceID": 2,
-    "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService",
-    "alterFlow": "SERIE_SEASON_TO_MOVIE",
-    "endpointType": "UMG"
     }],
-     "flow": []
+     "flows": []
   }
 ]
 }

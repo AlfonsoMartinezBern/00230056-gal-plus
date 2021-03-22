@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="d801a329-b084-422c-86b9-9949515a03bd" activeEnvironment="Default" name="GAL_SOUTHBOUND_GVP_MOCKS" resourceRoot="" soapui-version="5.6.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="29e72828-068d-4e9e-880f-d2ed1b393575" wsaVersion="NONE" name="BasicHttpBinding_ITD_RegistrationService" type="wsdl" bindingName="{GVP.GAL}BasicHttpBinding_ITD_RegistrationService" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/GVP.GAL.API/TD_RegistrationService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/GVP.GAL.API/TD_RegistrationService.wsdl"><con:part><con:url>file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/GVP.GAL.API/TD_RegistrationService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="RegistrationSoapService" targetNamespace="GVP.GAL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="GVP.GAL" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+<con:soapui-project id="d801a329-b084-422c-86b9-9949515a03bd" activeEnvironment="Default" name="GAL_SOUTHBOUND_GVP_MOCKS" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="29e72828-068d-4e9e-880f-d2ed1b393575" wsaVersion="NONE" name="BasicHttpBinding_ITD_RegistrationService" type="wsdl" bindingName="{GVP.GAL}BasicHttpBinding_ITD_RegistrationService" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/GVP.GAL.API/TD_RegistrationService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/GVP.GAL.API/TD_RegistrationService.wsdl"><con:part><con:url>file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/GVP.GAL.API/TD_RegistrationService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="RegistrationSoapService" targetNamespace="GVP.GAL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="GVP.GAL" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="GVP.GAL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
@@ -1861,6 +1861,83 @@
       </gvp:EnableUserResponse>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/EnableUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="ModifyUser" id="98418e82-04b2-4012-9d17-d3cf7b3e9277" interface="BasicHttpBinding_ITD_RegistrationService" operation="ModifyUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="dd69afcc-b38c-47a4-8ff4-9519e3e6b684" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:ModifyUserResponse>
+         <!--Optional:-->
+         <gvp:ModifyUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:ModifyUserResult>
+      </gvp:ModifyUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/ModifyUser"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService port="20100" path="/GVP_TD_RegistrationService_2" host="localhost" name="GAL_SOUTHBOUND_GVP_MOCKS_2" bindToHostOnly="false" docroot="" id="7bf8885e-29f2-429a-8632-cb27a9a5bf71"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CreateUser" id="4493ee0f-ec1c-41ad-9026-19bcf5371bc2" interface="BasicHttpBinding_ITD_RegistrationService" operation="CreateUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="be8b17f7-1f74-454e-bdfd-ab9b11f3574d" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:CreateUserResponse>
+         <gvp:CreateUserResult>
+            <gvp1:StatusCode>OK</gvp1:StatusCode>
+         </gvp:CreateUserResult>
+      </gvp:CreateUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/CreateUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="DeleteUser" id="6734c30a-76ef-405f-a309-ee10395b64b2" interface="BasicHttpBinding_ITD_RegistrationService" operation="DeleteUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="528d2c46-b91a-4f4a-9a0b-f57bfeca6808" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:DeleteUserResponse>
+         <!--Optional:-->
+         <gvp:DeleteUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:DeleteUserResult>
+      </gvp:DeleteUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/DeleteUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="DisableUser" id="213a1171-913e-488a-9477-ff1916e6fa6c" interface="BasicHttpBinding_ITD_RegistrationService" operation="DisableUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="7b22c87f-489f-40cf-854c-d5527ff09f93" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:DisableUserResponse>
+         <!--Optional:-->
+         <gvp:DisableUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:DisableUserResult>
+      </gvp:DisableUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/DisableUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="EnableUser" id="98632d06-5b5f-4529-bc21-3aecbaac8a95" interface="BasicHttpBinding_ITD_RegistrationService" operation="EnableUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="b34e19bc-2835-493d-a197-7c84832a6bfc" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:EnableUserResponse>
+         <!--Optional:-->
+         <gvp:EnableUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:EnableUserResult>
+      </gvp:EnableUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/EnableUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="ModifyUser" id="cf329119-2152-4693-a7d5-ed9ef673280b" interface="BasicHttpBinding_ITD_RegistrationService" operation="ModifyUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="068fbb30-f1af-4593-ad0f-f3d8ab114c34" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
    <soapenv:Header/>
    <soapenv:Body>
       <gvp:ModifyUserResponse>

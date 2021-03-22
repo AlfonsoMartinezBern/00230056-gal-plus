@@ -1,4 +1,4 @@
-package com.example.demo.apidemo;
+package com.telefonica.gal.dinamicrouting;
 
 public class DynamicRoutingDTO {
 	

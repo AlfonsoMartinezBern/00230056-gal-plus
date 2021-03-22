@@ -12,6 +12,13 @@ import java.net.URL;
 
 @Service
 public class WsITDregistrationService implements ITDRegistrationService {
+	
+	private String url;
+	
+	public void setURL(String url) {
+		this.url = url;
+	}
+	
     @Override
     public ResultDataContractOfboolean enableUser(int instanceId, int platformId, UserDataContract user) {
         return null;
@@ -24,13 +31,15 @@ public class WsITDregistrationService implements ITDRegistrationService {
 
     @Override
     public ResultDataContractOfstring createUser(int instanceId, int platformId, UserDataContract user) {
+    	 System.out.println(url);
         RegistrationSoapService registrationSoapService = new RegistrationSoapService(getWdslUrl());
-
+        System.out.println(registrationSoapService.toString());
         ITDRegistrationService itdRegistrationService = registrationSoapService.getBasicHttpBindingITDRegistrationService();
+        System.out.println(itdRegistrationService.toString());
+        ResultDataContractOfstring result = itdRegistrationService.createUser(instanceId,platformId,user);
 
-        itdRegistrationService.createUser(instanceId,platformId,user);
-
-        return null;
+        System.out.println(result);
+        return result;
     }
 
     @Override
@@ -46,7 +55,7 @@ public class WsITDregistrationService implements ITDRegistrationService {
     private URL getWdslUrl() {
         try {
             //http://gal-bss.ottcert.gvp.telefonica.com:8080/Service/TD_RegistrationService?wsdl
-            return new URL("http://localhost:20100/GVP_TD_RegistrationService?wsdl");
+            return new URL(this.url);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;

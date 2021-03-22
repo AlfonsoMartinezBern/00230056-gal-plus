@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "40cf94e3-2df9-4afa-9af3-ada8a911c83b",
+		"name": "GAL+",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DynamicRouting",
+			"item": [
+				{
+					"name": "Charge ConfigurationFile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/dinamicRoutingTD/charge",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"dinamicRoutingTD",
+								"charge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isValid Configuración",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/dinamicRoutingTD/isValidConfigFile",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"dinamicRoutingTD",
+								"isValidConfigFile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInfo ConfigurationFile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/dinamicRoutingTD/getInfo",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"dinamicRoutingTD",
+								"getInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/dinamicRoutingTD/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"dinamicRoutingTD",
+								"search"
+							],
+							"query": [
+								{
+									"key": "serviceID",
+									"value": "OTT"
+								},
+								{
+									"key": "operationTD",
+									"value": "CreateUser"
+								},
+								{
+									"key": "uri",
+									"value": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Test0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/dinamicRoutingTD/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"dinamicRoutingTD",
+								"search"
+							],
+							"query": [
+								{
+									"key": "serviceID",
+									"value": "OTT"
+								},
+								{
+									"key": "operationTD",
+									"value": "CreateUser"
+								},
+								{
+									"key": "uri",
+									"value": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Test1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceID\": \"IPTV\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/dinamicRoutingTD/search?serviceID=test&operationTD=test&uri=test",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"dinamicRoutingTD",
+								"search"
+							],
+							"query": [
+								{
+									"key": "serviceID",
+									"value": "test"
+								},
+								{
+									"key": "operationTD",
+									"value": "test"
+								},
+								{
+									"key": "uri",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

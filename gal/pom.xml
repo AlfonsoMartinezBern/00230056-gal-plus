@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -48,14 +49,19 @@
 			<artifactId>cxf-rt-bindings-soap</artifactId>
 			<version>3.3.5</version>
 		</dependency>
-		
+
 		<!-- Enrutamiento dinamico -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.json</groupId> -->
+		<!-- <artifactId>DynamicRoutingTD_Client</artifactId> -->
+		<!-- <version>20200518</version> -->
+		<!-- </dependency> -->
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20200518</version>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>rt</artifactId>
+			<version>2.3.1</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -100,7 +106,7 @@
 								</wsdlOption>
 								<wsdlOption>
 									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/GVP.GAL.API/TD_RegistrationService.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/TD_RegistrationService.wsdl</wsdlLocation>
+									<wsdlLocation>classpath:wsdl/southbound/GVP.GAL.API/TD_RegistrationService.wsdl</wsdlLocation>
 									<extraargs>
 										<extraarg>-fe</extraarg>
 										<extraarg>jaxws21</extraarg>
@@ -110,18 +116,11 @@
 										<extraarg>com.telefonica.gal.wsdl.southbound.gvp</extraarg>
 									</extraargs>
 								</wsdlOption>
-								<!--<wsdlOption>
-									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation>
-									<extraargs>
-										<extraarg>-fe</extraarg>
-										<extraarg>jaxws21</extraarg>
-										<extraarg>-exsh</extraarg>
-										<extraarg>true</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>com.telefonica.gal.wsdl.southbound.umg</extraarg>
-									</extraargs>
-								</wsdlOption>-->
+								<!--<wsdlOption> <wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl> 
+									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation> 
+									<extraargs> <extraarg>-fe</extraarg> <extraarg>jaxws21</extraarg> <extraarg>-exsh</extraarg> 
+									<extraarg>true</extraarg> <extraarg>-p</extraarg> <extraarg>com.telefonica.gal.wsdl.southbound.umg</extraarg> 
+									</extraargs> </wsdlOption> -->
 							</wsdlOptions>
 						</configuration>
 						<goals>
