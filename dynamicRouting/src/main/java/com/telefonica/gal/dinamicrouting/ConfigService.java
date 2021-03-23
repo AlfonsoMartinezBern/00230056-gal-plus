@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import com.telefonica.gal.dinamicrouting.dto.RoutingTDMapper;
@@ -49,7 +50,7 @@ public class ConfigService {
 	
 	private  DynamicRoutingTDRepository getDynamicRoutingTDFromJson() {
 		try (BufferedReader reader = new BufferedReader(
-				new FileReader(new File(configFile)))) {
+				new FileReader(ResourceLoader.class.getResource(configFile).getFile()))) {
 			return repository.dynamicRoutingTDFromJson(reader.lines().collect(Collectors.joining()));
 		} catch (FileNotFoundException e) {
 			return null;
