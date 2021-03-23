@@ -22,7 +22,7 @@
     "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
     "endpointType": "GVP.GAL"
     }],
-     "flows": [{"step":1,"endpointID":"05","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
+     "flows": [{"step":1,"endpointID":"01","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
   },
   {
     "serviceID": "IPTV",
