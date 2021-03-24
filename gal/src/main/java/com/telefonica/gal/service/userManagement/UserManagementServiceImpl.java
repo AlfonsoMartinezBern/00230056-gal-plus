@@ -1,26 +1,32 @@
 package com.telefonica.gal.service.userManagement;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.telefonica.gal.dynamicrouting.tdo.Endpoint;
+import com.telefonica.gal.dynamicrouting.tdo.RoutingTDInfo;
+import com.telefonica.gal.dynamicrouting.tdo.RoutingTDKey;
+import com.telefonica.gal.transform.CreateUserRequestMapper;
+import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
+import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
+import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
+import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
+import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.telefonica.gal.dynamicrouting.tdo.RoutingTDInfo;
-import com.telefonica.gal.dynamicrouting.tdo.RoutingTDKey;
-import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
-import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
-import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
-import com.telefonica.gal.wsdl.southbound.gvp.ArrayOfUserCustomFieldDataContract;
-import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
-import com.telefonica.gal.wsdl.southbound.gvp.UserCustomFieldDataContract;
-import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
+import javax.xml.bind.JAXBElement;
+import javax.xml.namespace.QName;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
+	private final static CreateUserRequestMapper CREATE_USER_REQUEST_MAPPER =
+			Mappers.getMapper(CreateUserRequestMapper.class);
+
     private final WsITDregistrationService wsITDregistrationService;
+
 
     public UserManagementServiceImpl(WsITDregistrationService wsITDregistrationService) {
         this.wsITDregistrationService = wsITDregistrationService;
@@ -29,40 +35,39 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Override
     public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser) {
     	
-    	CreateUserResponse cur = new CreateUserResponse();
-    	
+    	CreateUserResponse response = new CreateUserResponse();
+
+    	// TODO Inicio agregado por JM
     	String alias = createUser.getUserCreation().getUserNickName().getAlias();
     	String email = createUser.getUserCreation().getEmail();
 
     	RoutingTDKey tdKey = new RoutingTDKey("OTT", "createUser", "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management");
-    	
+
+
 		RoutingTDInfo routingTDInfo = callDynamicRouting(tdKey );
 
-		String url = routingTDInfo.getEndpoints().get(0).getTargetEndpoint();
-		int instanceID = routingTDInfo.getEndpoints().get(0).getInstanceID();
-		int platformID = routingTDInfo.getEndpoints().get(0).getPlatformID();
-		
-    	
-        ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
+		List<Endpoint> endpointList = targetEndpoint(routingTDInfo);
+
+		String url = endpointList.get(0).getTargetEndpoint();
+		int instanceId = endpointList.get(0).getInstanceID();
+		int platformId = endpointList.get(0).getPlatformID();
 
         UserDataContract userDataContract = new UserDataContract();
-        JAXBElement<String> uniqueID =  new JAXBElement(new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model", "UniqueId"), String.class, alias);
-		userDataContract.setUniqueId(uniqueID);
-		 JAXBElement<String> email_ =  new JAXBElement(new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model", "Email"), String.class, email);
-        userDataContract.setEmail(email_);
-        
-	//        JAXBElement<UserCustomFieldDataContract> customField =  new JAXBElement(new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model", "UserCustomFieldDataContract"), UserCustomFieldDataContract.class, email);
-	//		JAXBElement<ArrayOfUserCustomFieldDataContract> customFields = new JAXBElement(new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model", "CustomFields"), ArrayOfUserCustomFieldDataContract.class, customField);;
-	//		userDataContract.setCustomFields(customFields);
-        
-        wsITDregistrationService.setURL(url);
+        userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
 
-        
-        resultDataContractOfstring = wsITDregistrationService.createUser(instanceID,platformID,userDataContract);
-        
-        System.out.println(resultDataContractOfstring);
-        
-        return cur;
+		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
+
+
+        wsITDregistrationService.setURL(url);
+		resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract);
+
+
+		JAXBElement<ResultDataContractOfstring> jaxbElement =  new JAXBElement(
+				new QName("createUserResult"), ResultDataContractOfstring.class, resultDataContractOfstring);
+
+		response.setCreateUserResult(jaxbElement);
+
+        return response;
     }
     
     private RoutingTDInfo callDynamicRouting(RoutingTDKey key) {
@@ -71,8 +76,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     	
     	String json = restTemplate.getForObject(dynamicRoutingURL, String.class);
-    	
-    	//RoutingTDInfo json = restTemplate.getForObject(dynamicRoutingURL, RoutingTDInfo.class);
+
     	
     	ObjectMapper objectMapper = new ObjectMapper();
     	RoutingTDInfo dynamicRoutingTD;
@@ -84,12 +88,12 @@ public class UserManagementServiceImpl implements UserManagementService {
 			e.printStackTrace();
 			return null;
 		}
-	
-    	
-//    	RestTemplate restTemplate = new RestTemplate();
-//    	String dynamicRoutingURL = "http://localhost:8081/dinamicRoutingTD/search?serviceID={serviceID}&operationTD=CreateUser&uri={uri}";
-//    	System.out.println(dynamicRoutingURL);
-//    	return restTemplate.getForObject( dynamicRoutingURL, RoutingTDInfo.class,key.getServiceID(),key.getUri());
     }
 
+    private List<Endpoint> targetEndpoint(final RoutingTDInfo routingTDInfo ) {
+
+		List<Endpoint> url = routingTDInfo.getEndpoints().stream().collect(Collectors.toList());
+
+    	return url;
+	}
 }

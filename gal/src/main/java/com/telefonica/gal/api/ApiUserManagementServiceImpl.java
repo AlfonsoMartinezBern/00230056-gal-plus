@@ -2,7 +2,7 @@ package com.telefonica.gal.api;
 
 import com.telefonica.gal.service.userManagement.UserManagementService;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
-import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
+import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -21,7 +21,6 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
     @ResponsePayload
     public CreateUserResponse callWsUserManagementCreateUser(@RequestPayload CreateUser createUser) {
         CreateUserResponse response = new CreateUserResponse();
-        System.out.println("test1");
         response = userManagementService.callWsUserManagementCreateUser(createUser);
 
         return response;

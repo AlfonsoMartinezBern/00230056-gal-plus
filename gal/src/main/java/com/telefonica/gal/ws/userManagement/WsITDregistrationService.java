@@ -31,14 +31,11 @@ public class WsITDregistrationService implements ITDRegistrationService {
 
     @Override
     public ResultDataContractOfstring createUser(int instanceId, int platformId, UserDataContract user) {
-    	 System.out.println(url);
+
         RegistrationSoapService registrationSoapService = new RegistrationSoapService(getWdslUrl());
-        System.out.println(registrationSoapService.toString());
         ITDRegistrationService itdRegistrationService = registrationSoapService.getBasicHttpBindingITDRegistrationService();
-        System.out.println(itdRegistrationService.toString());
         ResultDataContractOfstring result = itdRegistrationService.createUser(instanceId,platformId,user);
 
-        System.out.println(result);
         return result;
     }
 
