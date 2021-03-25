@@ -12,16 +12,22 @@ import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
 import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
+	private static String IPTV = "IPTV";
+	@Value("${dynamicRouting.api.domain}")
+	private String URL;
+
 	private final static CreateUserRequestMapper CREATE_USER_REQUEST_MAPPER =
 			Mappers.getMapper(CreateUserRequestMapper.class);
 
@@ -33,21 +39,19 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
-    public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser) {
+    public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser, String serviceId) {
     	
     	CreateUserResponse response = new CreateUserResponse();
 
-    	// TODO Inicio agregado por JM
-    	String alias = createUser.getUserCreation().getUserNickName().getAlias();
-    	String email = createUser.getUserCreation().getEmail();
-
-    	RoutingTDKey tdKey = new RoutingTDKey("OTT", "createUser", "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management");
-
+    	// TODO URI: Corresponde al FROM de la cabecera ws-a WS-Addressing
+		if (serviceId.contains(IPTV)) {
+			isPresentEmail(createUser.getUserCreation().getEmail());
+		}
+    	RoutingTDKey tdKey = new RoutingTDKey(serviceId, "createUser", "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management");
 
 		RoutingTDInfo routingTDInfo = callDynamicRouting(tdKey );
 
 		List<Endpoint> endpointList = targetEndpoint(routingTDInfo);
-
 		String url = endpointList.get(0).getTargetEndpoint();
 		int instanceId = endpointList.get(0).getInstanceID();
 		int platformId = endpointList.get(0).getPlatformID();
@@ -56,7 +60,6 @@ public class UserManagementServiceImpl implements UserManagementService {
         userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
 
 		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
-
 
         wsITDregistrationService.setURL(url);
 		resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract);
@@ -71,12 +74,11 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
     
     private RoutingTDInfo callDynamicRouting(RoutingTDKey key) {
-    	String dynamicRoutingURL = "http://localhost:8081/dinamicRoutingTD/search?serviceID="+key.getServiceID()+"&operationTD=CreateUser&uri="+key.getUri();
+    	String dynamicRoutingURL = URL +"/dinamicRoutingTD/search?serviceID="+key.getServiceID()+
+				"&operationTD=CreateUser&uri="+key.getUri();
     	RestTemplate restTemplate = new RestTemplate();
 
-    	
     	String json = restTemplate.getForObject(dynamicRoutingURL, String.class);
-
     	
     	ObjectMapper objectMapper = new ObjectMapper();
     	RoutingTDInfo dynamicRoutingTD;
@@ -91,9 +93,12 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     private List<Endpoint> targetEndpoint(final RoutingTDInfo routingTDInfo ) {
-
 		List<Endpoint> url = routingTDInfo.getEndpoints().stream().collect(Collectors.toList());
-
     	return url;
+	}
+
+	private void isPresentEmail(final String email) {
+		Optional<String> emailIptv = Optional.ofNullable(email);
+		emailIptv.orElseThrow(NumberFormatException::new); // TODO Si no existe el campo email, Llamada al servicio de errores
 	}
 }
