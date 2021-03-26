@@ -1,10 +1,10 @@
 package com.telefonica.gal.dinamicrouting;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 import com.telefonica.gal.dinamicrouting.dto.RoutingTDMapper;
 import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepository;
 import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepositoryMapper;
+import com.telefonica.gal.dinamicrouting.model.Endpoint;
+import com.telefonica.gal.dinamicrouting.model.Flow;
 
 @Component
 public class ConfigService {
@@ -45,10 +47,10 @@ public class ConfigService {
 		if(repository==null) {
 			return false;
 		}
-		return repository.isValid();
+		return repository.isValid(repository.getRoutes());
 	}
 	
-	private  DynamicRoutingTDRepository getDynamicRoutingTDFromJson() {
+	public DynamicRoutingTDRepository getDynamicRoutingTDFromJson() {
 		try (BufferedReader reader = new BufferedReader(
 				new FileReader(ResourceLoader.class.getResource(configFile).getFile()))) {
 			return repository.dynamicRoutingTDFromJson(reader.lines().collect(Collectors.joining()));
@@ -59,6 +61,26 @@ public class ConfigService {
 		}
 	}
 	
+	public boolean isAllRequiredParameters(List<Endpoint> endpoints, List<Flow> flows) {
+		return (this.isAllEndpointsParameters(endpoints)) && (this.isAllFlowsParameters(flows));
+	}
+
+	private boolean isAllEndpointsParameters(List<Endpoint> endpoints) {
+		for (Endpoint ep : endpoints) {
+			if (ep.getId() == null || ep.getEndpointType() == null || ((Integer) ep.getInstanceID()) == null
+					|| ((Integer) ep.getPlatformID()) == null || ep.getTargetEndpoint() == null)
+				return false;
+		}
+		return true;
+	}
+
+	private boolean isAllFlowsParameters(List<Flow> flows) {
+		for (Flow fl : flows) {
+			if (fl.getEndpointID() == null || ((Integer) fl.getStep()) == null || fl.getType() == null)
+				return false;
+		}
+		return true;
+	}
 	
 	
 //	private DynamicRoutingTD dynamicRoutingTDFromJson(String json) throws JsonMappingException, JsonProcessingException {
