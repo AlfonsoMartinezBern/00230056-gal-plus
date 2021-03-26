@@ -44,7 +44,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     	
     	CreateUserResponse response = new CreateUserResponse();
 
-    	// TODO URI: Corresponde al FROM de la cabecera ws-a WS-Addressing
+    	// TODO URI: Corresponde al FROM de la cabecera wsa:From WS-Addressing
 		if (serviceId.contains(IPTV)) {
 			isPresentEmail(createUser.getUserCreation().getEmail());
 		}

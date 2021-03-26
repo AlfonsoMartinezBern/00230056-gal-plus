@@ -27,6 +27,7 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
     @ResponsePayload
     public CreateUserResponse callWsUserManagementCreateUser(@RequestPayload CreateUser createUserRequest) {
         String serviceId = httpServletRequest.getHeader("wsa05");
+        String wsFrom = httpServletRequest.getHeader("wsaFrom");
         CreateUserResponse response = new CreateUserResponse();
         response = userManagementService.callWsUserManagementCreateUser(createUserRequest, serviceId);
 
