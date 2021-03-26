@@ -1,6 +1,7 @@
 package com.telefonica.gal.transform;
 
 import com.telefonica.gal.wsdl.southbound.gvp.ArrayOfUserCustomFieldDataContract;
+import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
 import com.telefonica.gal.wsdl.southbound.gvp.UserCustomFieldDataContract;
 
 import javax.xml.bind.JAXBElement;
@@ -19,6 +20,8 @@ public class ObjectFactory {
     private final static QName _UserCreationTypePassword_QNAME = new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model",
             "CustomFields");
 
+    private final static QName _UserCreation_ResultDataContract_QNAME = new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model",
+            "createUserResult");
 
     public ObjectFactory() {
     }
@@ -52,6 +55,12 @@ public class ObjectFactory {
     public JAXBElement<ArrayOfUserCustomFieldDataContract> password(String value) {
         return new JAXBElement(new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model","CustomFields"),
                 String.class, value);
+    }
+
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/GVP.GAL.Model", name = "createUserResult")
+    public JAXBElement<ResultDataContractOfstring> createUserResponse (ResultDataContractOfstring value) {
+        return new JAXBElement<ResultDataContractOfstring>(_UserCreation_ResultDataContract_QNAME, ResultDataContractOfstring.class,
+                value);
     }
 
 }

@@ -6,6 +6,7 @@ import com.telefonica.gal.dynamicrouting.tdo.Endpoint;
 import com.telefonica.gal.dynamicrouting.tdo.RoutingTDInfo;
 import com.telefonica.gal.dynamicrouting.tdo.RoutingTDKey;
 import com.telefonica.gal.transform.CreateUserRequestMapper;
+import com.telefonica.gal.transform.CreateUserResponseMapper;
 import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
@@ -16,8 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,8 +30,10 @@ public class UserManagementServiceImpl implements UserManagementService {
 	private final static CreateUserRequestMapper CREATE_USER_REQUEST_MAPPER =
 			Mappers.getMapper(CreateUserRequestMapper.class);
 
-    private final WsITDregistrationService wsITDregistrationService;
+	private final static CreateUserResponseMapper CREATE_USER_RESPONSE_MAPPER =
+			Mappers.getMapper(CreateUserResponseMapper.class);
 
+    private final WsITDregistrationService wsITDregistrationService;
 
     public UserManagementServiceImpl(WsITDregistrationService wsITDregistrationService) {
         this.wsITDregistrationService = wsITDregistrationService;
@@ -64,11 +65,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         wsITDregistrationService.setURL(url);
 		resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract);
 
-
-		JAXBElement<ResultDataContractOfstring> jaxbElement =  new JAXBElement(
-				new QName("createUserResult"), ResultDataContractOfstring.class, resultDataContractOfstring);
-
-		response.setCreateUserResult(jaxbElement);
+		response = CREATE_USER_RESPONSE_MAPPER.createUserResponseMapper(resultDataContractOfstring);
 
         return response;
     }
