@@ -14,26 +14,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.telefonica.gal.dinamicrouting.dto.RoutingTDInfo;
 import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepository;
 
-@RunWith( SpringRunner.class )
+@RunWith(SpringRunner.class)
 @SpringBootTest
 class DynamicRoutingControllerTest {
 
 	@Autowired
 	DynamicRoutingController dynamicRoutingController;
 
-	@Test
+	@Test // OKAY
 	public void testChargeConf() {
 		assertEquals("OK", dynamicRoutingController.chargeConf().getResult());
 	}
 
-	@Test
-	public void testChargConf() throws IOException {
-		ConfigService confServ = new ConfigService("/mapConfig/", "DynamicRoutingTD.json");
-		DynamicRoutingTDRepository repo = confServ.getDynamicRoutingTDFromJson();
+	@Test // NULL POINTER EXCEPTION
+	public void testChargeValidConf() throws IOException {
+//		ConfigService confServ = new ConfigService("/mapConfig/", "DynamicRoutingTD.json");
+		DynamicRoutingTDRepository repo = new ConfigService("/mapConfig/", "DynamicRoutingTD.json")
+				.getDynamicRoutingTDFromJson();
 		assertThat(repo.isValid(repo.getRoutes())).isTrue();
 	}
 
-	@Test
+	@Test // OKAY
 	public void testAllJsonRequiredParameters() throws IOException {
 		RoutingTDInfo info = dynamicRoutingController.getJSON("OTT", "CreateUser",
 				"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management");
@@ -41,13 +42,13 @@ class DynamicRoutingControllerTest {
 				.isAllRequiredParameters(info.getEndpoints(), info.getFlows()));
 	}
 
-	@Test
+	@Test // TODO
 	public void testIsValidConfigFile() {
 		dynamicRoutingController.isValidConfigFile();
 		fail("Not yet implemented");
 	}
 
-	@Test
+	@Test // TODO
 	public void testGetLastChargeDate() {
 		dynamicRoutingController.getLastChargeDate();
 		fail("Not yet implemented");
