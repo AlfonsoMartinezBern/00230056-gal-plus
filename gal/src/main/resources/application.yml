@@ -11,3 +11,6 @@ webservice:
    uri: "/ws"
    targetNamespace: "http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/services"
    xsd: "wsdl/northbound/provManagement/UNICA_API_SOAP_OProv_Management_types_v7_1.xsd"
+dynamicRouting:
+ api:
+  domain: http://localhost:8081
