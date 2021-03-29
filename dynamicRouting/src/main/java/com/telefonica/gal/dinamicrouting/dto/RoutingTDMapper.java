@@ -25,7 +25,7 @@ public class RoutingTDMapper {
 
 
 	public boolean parseToRoutingTable(DynamicRoutingTDRepository dynamicRouting) {
-		if(!dynamicRouting.isValid()) {
+		if(!dynamicRouting.isValid(dynamicRouting.getRoutes())) {
 			return false;
 		}
 		
@@ -42,7 +42,7 @@ public class RoutingTDMapper {
 		return new RoutingTDKey(route.getServiceID(), route.getOperationTD(), route.getUri());
 	}
 
-	private RoutingTDInfo parseToRoutingTDInfo(Route route) {
+	public RoutingTDInfo parseToRoutingTDInfo(Route route) {
 		List<Flow> flows = setFlows(route.getFlows());
 		List<Endpoint> enpoints = setEndpoints(flows, route);
 		return new RoutingTDInfo(enpoints, flows);
