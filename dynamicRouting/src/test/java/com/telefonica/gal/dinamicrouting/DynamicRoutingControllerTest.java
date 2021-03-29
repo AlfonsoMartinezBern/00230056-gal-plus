@@ -20,26 +20,38 @@ class DynamicRoutingControllerTest {
 
 	@Autowired
 	DynamicRoutingController dynamicRoutingController;
+	
+	@Autowired
+	ConfigService confServ;
+
 
 	@Test // OKAY
-	public void testChargeConf() {
+	public void testChargeDefaultConf() {
 		assertEquals("OK", dynamicRoutingController.chargeConf().getResult());
 	}
 
-	@Test // NULL POINTER EXCEPTION
+	@Test // OKAY
 	public void testChargeValidConf() throws IOException {
-//		ConfigService confServ = new ConfigService("/mapConfig/", "DynamicRoutingTD.json");
-		DynamicRoutingTDRepository repo = new ConfigService("/mapConfig/", "DynamicRoutingTD.json")
-				.getDynamicRoutingTDFromJson();
+		confServ.setConfigFile("/mapConfig/DynamicRoutingTD.json");
+		DynamicRoutingTDRepository repo = confServ.getDynamicRoutingTDFromJson();
 		assertThat(repo.isValid(repo.getRoutes())).isTrue();
 	}
 
 	@Test // OKAY
 	public void testAllJsonRequiredParameters() throws IOException {
+		confServ.setConfigFile("/mapConfig/DynamicRoutingTD.json");
 		RoutingTDInfo info = dynamicRoutingController.getJSON("OTT", "CreateUser",
 				"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management");
-		assertEquals(true, new ConfigService("/mapConfig/", "DynamicRoutingTD.json")
-				.isAllRequiredParameters(info.getEndpoints(), info.getFlows()));
+		assertEquals(true, confServ.isAllRequiredParameters(info.getEndpoints(), info.getFlows()));
+	}
+
+	@Test // OKAY
+	public void testAllJsonRequiredParameters_fail() throws IOException {
+		confServ.setConfigFile("/mapConfig/DynamicRoutingTDfail.json");
+		dynamicRoutingController.configService = confServ;
+		RoutingTDInfo info = dynamicRoutingController.getJSON("OTT", "CreateUser",
+				"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management");
+		assertEquals(false, confServ.isAllRequiredParameters(info.getEndpoints(), info.getFlows()));
 	}
 
 	@Test // TODO

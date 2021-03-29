@@ -29,6 +29,14 @@ public class ConfigService {
 	
 	private String configFile;
 
+	public String getConfigFile() {
+		return configFile;
+	}
+
+	public void setConfigFile(String configFile) {
+		this.configFile = configFile;
+	}
+
 	public ConfigService(@Value("${configFile.path}") String path,@Value("${configFile.name}") String name) throws IOException {
 		super();
 		this.configFile=path+name;
@@ -66,6 +74,7 @@ public class ConfigService {
 	}
 
 	private boolean isAllEndpointsParameters(List<Endpoint> endpoints) {
+		if (endpoints == null) return false;
 		for (Endpoint ep : endpoints) {
 			if (ep.getId() == null || ep.getEndpointType() == null || ((Integer) ep.getInstanceID()) == null
 					|| ((Integer) ep.getPlatformID()) == null || ep.getTargetEndpoint() == null)
@@ -75,6 +84,7 @@ public class ConfigService {
 	}
 
 	private boolean isAllFlowsParameters(List<Flow> flows) {
+		if (flows == null) return false;
 		for (Flow fl : flows) {
 			if (fl.getEndpointID() == null || ((Integer) fl.getStep()) == null || fl.getType() == null)
 				return false;
