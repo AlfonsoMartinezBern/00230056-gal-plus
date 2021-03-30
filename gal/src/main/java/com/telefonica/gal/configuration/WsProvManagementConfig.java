@@ -29,18 +29,17 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
     @Value("${webservice.northbound.provManagement.uri}")
     private String uri;
 
-    @Override
+    /*@Override
     public void addInterceptors(List<EndpointInterceptor> interceptors) {
         PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();
         validatingInterceptor.setValidateRequest(true);
-        //validatingInterceptor.setValidateResponse(true);
         try {
             validatingInterceptor.setXsdSchemaCollection(userManagementSchema());
         } catch (Exception e) {
             e.printStackTrace();
         }
         interceptors.add(validatingInterceptor);
-    }
+    }*/
 
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServletUserManagement(ApplicationContext applicationContext) {
