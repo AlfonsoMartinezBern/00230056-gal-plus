@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigurationHandler {
     @Bean
     public WsAddressInjectHandler wsAddressInjectHandler(){
+    	System.out.println("configuration");
         return new WsAddressInjectHandler();
     }
 }

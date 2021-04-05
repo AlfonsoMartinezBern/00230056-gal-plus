@@ -1,0 +1,259 @@
+[33mcommit 304ffc33f5f1407956318c58052463efc3e5f0d2[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: josemaria.gonzalez <josemaria.gonzalez@entelgydigital.com>
+Date:   Mon Apr 5 11:40:13 2021 +0200
+
+    cliente dynamicRouting
+
+[33mcommit f36c45bb9fbd71be6a2c539a6d047509e50c1759[m[33m ([m[1;31morigin/feature/validate[m[33m)[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Mon Apr 5 11:16:24 2021 +0200
+
+    Handler interceptor del mensaje
+
+[33mcommit b3e77853fe70038df6e1cf9139f3e23fb8726395[m[33m ([m[1;32minterceptorHeader[m[33m)[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Wed Mar 31 09:15:51 2021 +0200
+
+    Se actualiza a la version 11 de Java
+
+[33mcommit 68508f94396ec46c3cfa16b1ef73139e6e60208e[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 30 16:29:18 2021 +0200
+
+    Dependencia Junit pom.xml DynamicRouting
+
+[33mcommit 8ce96bb6c60eb5ae26643e454991198addd4b953[m
+Merge: 5f5ff6c c61ce14
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 30 13:43:53 2021 +0200
+
+    Merge branch 'develop' into feature/validate
+
+[33mcommit 5f5ff6c611ed25dddbce2a0c21d48a5300ffdbe4[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 30 13:41:59 2021 +0200
+
+    Sin funcionar el Validate
+
+[33mcommit c61ce14d320855c2aa4b85ff68940ad3deb9497d[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Mon Mar 29 17:55:56 2021 +0200
+
+    Añadidos archivos modificados perdidos en el commit anterior
+
+[33mcommit 2f4112ddd500955fa7896de70adbfbf5cedc842f[m[33m ([m[1;31morigin/testunitarios[m[33m, [m[1;32mtestunitarios[m[33m)[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Mon Mar 29 17:41:27 2021 +0200
+
+    Añadidas funcionalidades a los Test Unitarios
+
+[33mcommit 7b5513b4edc4a2086f2bf33d288edfc19f381104[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Mon Mar 29 10:46:23 2021 +0200
+
+    Test Unitarios
+
+[33mcommit e50196945745724803ce11e9462aa5c3ce8896cc[m
+Merge: 052c444 26f7666
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Mon Mar 29 08:51:11 2021 +0200
+
+    Merge branch 'develop' of http://pregitlab.entelgy.com/clientes/telefonica/00230056-gal-plus.git into develop
+
+[33mcommit a305f8f423db2d1a3022864b8ca4fe7d961ee148[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Fri Mar 26 16:09:37 2021 +0100
+
+    Validate
+
+[33mcommit 052c44492a2ce826bbb6a8ea8c1ff4b3cde2df5e[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Fri Mar 26 14:28:35 2021 +0100
+
+    Añadidos Test Unitarios y DynamicRoutingTDRepository
+
+[33mcommit 26f766666b0b411cc861e026c8152b263dd619ef[m[33m ([m[1;31morigin/feature/validateRequest[m[33m)[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Fri Mar 26 13:09:44 2021 +0100
+
+    Obtener header
+
+[33mcommit 23e085d011ed00410af0dcd56eda5bb5973dd7a6[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Fri Mar 26 09:23:13 2021 +0100
+
+    Mapper response CreateUserIPTV
+
+[33mcommit 1b1e823464dce8f74a648d483b083784249bdc42[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Thu Mar 25 17:47:32 2021 +0100
+
+    Acceso Header
+
+[33mcommit e0a43525bc4a95ab574b45415fb7072f05992425[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Wed Mar 24 17:15:00 2021 +0100
+
+    CreateUser IPTV Mapeo request
+
+[33mcommit 1a3a51f4971449b237387e8512f0e5f510e8683a[m
+Merge: e902194 0584046
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 23 11:40:43 2021 +0100
+
+    Merge branch 'develop' into feature/validateRequest
+
+[33mcommit 0584046c6bd0e786296076c5b62fab3d64d5cffb[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 23 11:38:52 2021 +0100
+
+    Ajuste flow DynamicRoutingTD.json
+
+[33mcommit e9021947a1e845ae700300d6340c08227329d9ee[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 23 11:04:31 2021 +0100
+
+    Generacion clases java UMG
+
+[33mcommit fd868480417ee8a622a8733fa5309e110f5c1258[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Tue Mar 23 10:58:22 2021 +0100
+
+    Implementada ruta relativa del fichero JSON del DynamicRouting
+
+[33mcommit c03b3b91926d378a1e2f496e3043e2911739fca5[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Mon Mar 22 13:12:44 2021 +0100
+
+    Integrando cambios de JM
+
+[33mcommit aad96bcff7788cf60be193b9d21bb4076eaca078[m
+Merge: 84b2d26 2765b1f
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Thu Mar 18 13:41:07 2021 +0100
+
+    Merge branch 'develop' of http://pregitlab.entelgy.com/clientes/telefonica/00230056-gal-plus.git into develop
+
+[33mcommit 84b2d2686f470219c8e8c4772f612d187b41b181[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Thu Mar 18 13:39:30 2021 +0100
+
+    Funciones añadidas y funcionalidades obsoletas borradas
+
+[33mcommit 2765b1f091cf14c39b988623cceba46bae7b4490[m
+Merge: 6ddf140 79feb7f
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Thu Mar 18 12:36:08 2021 +0100
+
+    Merge branch 'develop' into feature/createUserIptvV2
+
+[33mcommit 6ddf140dc828afb0e629d8f87cd9be3e9a8485e4[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Thu Mar 18 09:00:52 2021 +0100
+
+    Mapper CreateUserIPTV
+
+[33mcommit 4bcfa870a7a2dc034cade20ef2add0ac0095ac03[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Wed Mar 17 18:04:37 2021 +0100
+
+    Ajustes Api CreateUserIptv
+
+[33mcommit 79feb7fb84a84defaa939ab784f0e3a36f3376c4[m
+Merge: da1fa32 dcc0e4b
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Wed Mar 17 17:11:28 2021 +0100
+
+    Merge branch 'develop' of http://pregitlab.entelgy.com/clientes/telefonica/00230056-gal-plus into develop
+
+[33mcommit da1fa3226632ed0666b4e85f82d87609519ba77e[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Wed Mar 17 17:10:08 2021 +0100
+
+    Dynamic Routing adaptado a los JSON nuevos
+
+[33mcommit dcc0e4bc14a461792e8f2b105c519c49927c843e[m
+Merge: 18ff112 b961fe9
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Wed Mar 17 12:36:28 2021 +0100
+
+    Merge branch 'feature/createUserIptv' into develop
+
+[33mcommit b961fe9a72c0a38c9f69dae2b571cd386ae16ee5[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Wed Mar 17 12:32:22 2021 +0100
+
+    Cambio CreateUserIPTV
+
+[33mcommit 0b0e869fc2e51cf151f19f6cd4da5817964efc9e[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Wed Mar 17 11:58:19 2021 +0100
+
+    Consumir Servicio ITDRegistroService
+
+[33mcommit 18ff1122fea77cc06c66e4c30868b9fbbc9bf0d3[m
+Author: josemaria.gonzalez <josemaria.gonzalez@entelgydigital.com>
+Date:   Wed Mar 17 09:15:45 2021 +0100
+
+    simuladores southbound UMG, GVP
+
+[33mcommit 97e2d5502ed32418634eddd9c3e3c7a313dd4dc7[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 16 19:23:29 2021 +0100
+
+    Ajuste UserManagementService
+
+[33mcommit cf0dfcd164f92a3faec5c59e23fdbec677006734[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Tue Mar 16 19:09:01 2021 +0100
+
+    CreateUserIPTV
+
+[33mcommit 60357940e1e01a8b216566e97e1e6f601b5e9969[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Tue Mar 16 17:46:38 2021 +0100
+
+    Dynamic Routing
+
+[33mcommit 0078cb51921c822c3aaba9f2ec491162fb7de21b[m
+Author: Javier Sanchez Gonzalez <javier.sanchez@entelgy.com>
+Date:   Tue Mar 16 16:23:36 2021 +0000
+
+    Add new directory
+
+[33mcommit c78b0991d48c7e9a7c84f453983900482b06c5ad[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Tue Mar 16 13:31:23 2021 +0100
+
+    Nueva funcionalidad en ConfigController.java
+
+[33mcommit df939678660556f575705771d0e39eebd1655c4d[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Tue Mar 16 13:22:07 2021 +0100
+
+    Añadida función a ConfigController y resueltos pequeños fallos
+
+[33mcommit 5fb4ae26a044f5eebd7dfc691af9d12c4baeae3f[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Tue Mar 16 11:35:28 2021 +0100
+
+    Enrutamiento dinamico
+
+[33mcommit d7753f73ec2e834ab7331c57fb01e5923166d9ff[m
+Author: Javier Sánchez González <javier.sanchez@entelgy.com>
+Date:   Tue Mar 16 11:32:47 2021 +0100
+
+    Enrutamiento dinamico(Faltan las dependencias en el pom, pero me da
+    fallos)
+
+[33mcommit 55d27e1afbfa5741b8484546a60ab0e5da4ea21f[m
+Author: Gatby Romero <gatby.romero@entelgydigital.com>
+Date:   Fri Mar 12 13:48:32 2021 +0100
+
+    first service web
+
+[33mcommit 5b3561438e7d414ba18767a6cf88961947fc7838[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Lucas Rubia Matos <lucas.rubia@entelgy.com>
+Date:   Thu Feb 18 12:42:30 2021 +0000
+
+    Initial commit

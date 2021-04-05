@@ -7,5 +7,8 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.ws.handler.MessageContext;
 
 public interface ApiUserManagementService {
-    CreateUserResponse callWsUserManagementCreateUser (CreateUser createUser, MessageContext messageContext);
+    CreateUserResponse callWsUserManagementCreateUser (CreateUser createUser);
+//    CreateUserResponse callWsUserManagementCreateUser (CreateUser createUser, MessageContext messageContext);
+
+    
 }

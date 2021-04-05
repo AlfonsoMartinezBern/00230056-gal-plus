@@ -33,11 +33,30 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
 
     }
 
+//    @PayloadRoot(namespace = NAMESPACE, localPart = "createUser")
+//    @ResponsePayload
+//    public CreateUserResponse callWsUserManagementCreateUser(@RequestPayload CreateUser createUserRequest, MessageContext messageContext) {
+//    	 System.out.println("configurationHandler");
+//        SOAPMessageContext soapMessageContext = (SOAPMessageContext) messageContext;
+//       
+//        configurationHandler.wsAddressInjectHandler().handleMessage(soapMessageContext);
+//
+//        String serviceId = httpServletRequest.getHeader("wsa05");
+//
+//
+//        CreateUserResponse response = new CreateUserResponse();
+//        response = userManagementService.callWsUserManagementCreateUser(createUserRequest, serviceId);
+//
+//        return response;
+//    }
+    
     @PayloadRoot(namespace = NAMESPACE, localPart = "createUser")
     @ResponsePayload
-    public CreateUserResponse callWsUserManagementCreateUser(@RequestPayload CreateUser createUserRequest, MessageContext messageContext) {
-        SOAPMessageContext soapMessageContext = (SOAPMessageContext) messageContext;
-        configurationHandler.wsAddressInjectHandler().handleMessage(soapMessageContext);
+    public CreateUserResponse callWsUserManagementCreateUser(@RequestPayload CreateUser createUserRequest) {
+    	 System.out.println("configurationHandler");
+//        SOAPMessageContext soapMessageContext = (SOAPMessageContext) messageContext;
+//       
+//        configurationHandler.wsAddressInjectHandler().handleMessage(soapMessageContext);
 
         String serviceId = httpServletRequest.getHeader("wsa05");
 
@@ -47,4 +66,6 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
 
         return response;
     }
+
+
 }
