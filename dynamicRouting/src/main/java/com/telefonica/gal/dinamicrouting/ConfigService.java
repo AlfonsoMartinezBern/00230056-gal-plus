@@ -23,10 +23,10 @@ public class ConfigService {
 
 	@Autowired
 	RoutingTDMapper routingTDMapper;
-	
+
 	@Autowired
 	DynamicRoutingTDRepositoryMapper repository;
-	
+
 	private String configFile;
 
 	public String getConfigFile() {
@@ -35,29 +35,31 @@ public class ConfigService {
 
 	public void setConfigFile(String configFile) {
 		this.configFile = configFile;
+		this.chargeConf();
 	}
 
-	public ConfigService(@Value("${configFile.path}") String path,@Value("${configFile.name}") String name) throws IOException {
+	public ConfigService(@Value("${configFile.path}") String path, @Value("${configFile.name}") String name)
+			throws IOException {
 		super();
-		this.configFile=path+name;
+		this.configFile = path + name;
 	}
 
 	public boolean chargeConf() {
 		DynamicRoutingTDRepository repository = getDynamicRoutingTDFromJson();
-		if(repository==null) {
+		if (repository == null) {
 			return false;
 		}
 		return routingTDMapper.parseToRoutingTable(repository);
 	}
-	
+
 	public boolean isValidChargeConf() {
 		DynamicRoutingTDRepository repository = getDynamicRoutingTDFromJson();
-		if(repository==null) {
+		if (repository == null) {
 			return false;
 		}
 		return repository.isValid(repository.getRoutes());
 	}
-	
+
 	public DynamicRoutingTDRepository getDynamicRoutingTDFromJson() {
 		try (BufferedReader reader = new BufferedReader(
 				new FileReader(ResourceLoader.class.getResource(configFile).getFile()))) {
@@ -68,31 +70,34 @@ public class ConfigService {
 			return null;
 		}
 	}
-	
+
 	public boolean isAllRequiredParameters(List<Endpoint> endpoints, List<Flow> flows) {
 		return (this.isAllEndpointsParameters(endpoints)) && (this.isAllFlowsParameters(flows));
 	}
 
 	private boolean isAllEndpointsParameters(List<Endpoint> endpoints) {
-		if (endpoints == null) return false;
+		if (endpoints == null)
+			return false;
 		for (Endpoint ep : endpoints) {
 			if (ep.getId() == null || ep.getEndpointType() == null || ((Integer) ep.getInstanceID()) == null
-					|| ((Integer) ep.getPlatformID()) == null || ep.getTargetEndpoint() == null)
+					|| ((Integer) ep.getInstanceID()) == 0 || ((Integer) ep.getPlatformID()) == null
+					|| ((Integer) ep.getPlatformID()) == 0 || ep.getTargetEndpoint() == null)
 				return false;
 		}
 		return true;
 	}
 
 	private boolean isAllFlowsParameters(List<Flow> flows) {
-		if (flows == null) return false;
+		if (flows == null)
+			return true;
 		for (Flow fl : flows) {
-			if (fl.getEndpointID() == null || ((Integer) fl.getStep()) == null || fl.getType() == null)
+			if (fl.getEndpointID() == null || ((Integer) fl.getStep()) == null || ((Integer) fl.getStep()) == 0
+					|| fl.getType() == null)
 				return false;
 		}
 		return true;
 	}
-	
-	
+
 //	private DynamicRoutingTD dynamicRoutingTDFromJson(String json) throws JsonMappingException, JsonProcessingException {
 //		ObjectMapper objectMapper = new ObjectMapper();
 //		DynamicRoutingTD dynamicRoutingTD = objectMapper.readValue(json, DynamicRoutingTD.class);
