@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.cxf.ws.addressing.MAPAggregator;
 import org.apache.wss4j.dom.WSConstants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -67,6 +68,9 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
     }
     
     
+
+    
+    
     //WSS interceptors
     @Bean
     SimplePasswordValidationCallbackHandler callbackHandler() {
@@ -108,12 +112,12 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
     }
     
 
+
     
     @Override
     public void addInterceptors(List<EndpointInterceptor> interceptors) {
         interceptors.add(wss4jSecurityInterceptor());
         interceptors.add(validatingOProvManagementInterceptor());
-
     }
 
 }
