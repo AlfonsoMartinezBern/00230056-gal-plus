@@ -26,7 +26,7 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
 
     private final ConfigurationHandler configurationHandler;
     
-    private WSAHeaderImpl wsaHeader;
+  
 
     public ApiUserManagementServiceImpl(UserManagementService userManagementService, HttpServletRequest httpServletRequest,
                                         ConfigurationHandler configurationHandler) {
@@ -40,15 +40,10 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
     @ResponsePayload
     public CreateUserResponse callWsUserManagementCreateUser(@RequestPayload CreateUser createUserRequest,
     		MessageContext context) throws Exception {
-    		
-    	 wsaHeader = new WSAHeaderImpl(context);
-  
-    	 System.out.println(wsaHeader.getAction());
-    	 System.out.println(wsaHeader.getFrom());
-    	 System.out.println(wsaHeader.getTo());
-
+    
         CreateUserResponse response = new CreateUserResponse();
-        response = userManagementService.callWsUserManagementCreateUser(createUserRequest, wsaHeader);
+        
+        response = userManagementService.callWsUserManagementCreateUser(createUserRequest, new WSAHeaderImpl(context));
 
         return response;
     }
