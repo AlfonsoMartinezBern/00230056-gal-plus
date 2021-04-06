@@ -21,7 +21,7 @@ public class WsAddressInjectHandler implements SOAPHandler<SOAPMessageContext> {
 
                 String wsa = soapMsg.getSOAPHeader().getAttributeNS("http://schemas.datacontract.org/2004/07/GVP.GAL.Model", "xmlns:wsa");
 
-                System.out.println("Probando obtener heard: " + wsa);
+                System.out.println("Probando obtener head: " + wsa);
 
 
             }catch(SOAPException e){

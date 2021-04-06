@@ -74,6 +74,13 @@
 			<version>${org.mapstruct.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-security -->
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-security</artifactId>
+			<version>3.0.10.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -128,15 +135,17 @@
 										<extraarg>com.telefonica.gal.wsdl.southbound.gvp</extraarg>
 									</extraargs>
 								</wsdlOption>
-								<wsdlOption> <wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation> 
+								<wsdlOption>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation>
 									<extraargs>
 										<extraarg>-fe</extraarg>
 										<extraarg>jaxws21</extraarg>
 										<extraarg>-exsh</extraarg>
 										<extraarg>true</extraarg>
-									</extraargs> </wsdlOption>
-								</wsdlOptions>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
 						</configuration>
 						<goals>
 							<goal>wsdl2java</goal>
