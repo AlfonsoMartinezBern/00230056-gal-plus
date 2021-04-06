@@ -2,21 +2,17 @@ package com.telefonica.gal.service.userManagement;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.ws.context.MessageContext;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
-import com.telefonica.gal.header.wsa.facade.WSAHeaderImpl;
+import com.telefonica.gal.header.wsa.WSAHeader;
 import com.telefonica.gal.transform.CreateUserRequestMapper;
 import com.telefonica.gal.transform.CreateUserResponseMapper;
 import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
@@ -45,11 +41,11 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
-    public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser,WSAHeaderImpl wsaHeader ) {
+    public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser,MessageContext context ) throws Exception {
+    	WSAHeader wsaHeader = new WSAHeader(context);
     	
     	CreateUserResponse response = new CreateUserResponse();
 
-    	// TODO URI: Corresponde al FROM de la cabecera wsa:From WS-Addressing
 		if (wsaHeader.getAction().contains("IPTV")) {
 			isPresentEmail(createUser.getUserCreation().getEmail());
 		}
@@ -62,6 +58,8 @@ public class UserManagementServiceImpl implements UserManagementService {
 		System.out.println(routingTDInfo);
 		
 		List<Endpoint> endpointList = routingTDInfo.getEndpoints();
+		
+		//TODO Tratamiento dinamico del routingTD
 		
 		String url = endpointList.get(0).getTargetEndpoint();
 		int instanceId = endpointList.get(0).getInstanceID();
@@ -79,30 +77,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 
         return response;
     }
-    
-//    private RoutingTDInfo callDynamicRouting(RoutingTDKey key) {
-//    	String dynamicRoutingURL = URL +"/dinamicRoutingTD/search?serviceID="+key.getServiceID()+
-//				"&operationTD=CreateUser&uri="+key.getUri();
-//    	RestTemplate restTemplate = new RestTemplate();
-//
-//    	String json = restTemplate.getForObject(dynamicRoutingURL, String.class);
-//    	
-//    	ObjectMapper objectMapper = new ObjectMapper();
-//    	RoutingTDInfo dynamicRoutingTD;
-//		try {
-//			dynamicRoutingTD = objectMapper.readValue(json, RoutingTDInfo.class);	    	
-//	    	return dynamicRoutingTD;
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return null;
-//		}
-//    }
 
-    private List<Endpoint> targetEndpoint(final RoutingTDInfo routingTDInfo ) {
-		List<Endpoint> url = routingTDInfo.getEndpoints().stream().collect(Collectors.toList());
-    	return url;
-	}
 
 	private void isPresentEmail(final String email) {
 		Optional<String> emailIptv = Optional.ofNullable(email);

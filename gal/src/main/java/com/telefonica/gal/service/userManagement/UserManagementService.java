@@ -1,10 +1,11 @@
 package com.telefonica.gal.service.userManagement;
 
-import com.telefonica.gal.header.wsa.facade.WSAHeaderImpl;
+import org.springframework.ws.context.MessageContext;
+
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
 
 public interface UserManagementService {
 
-	CreateUserResponse callWsUserManagementCreateUser(CreateUser createUserRequest, WSAHeaderImpl wsaHeader);
+	CreateUserResponse callWsUserManagementCreateUser(CreateUser createUserRequest, MessageContext context) throws Exception;
 }

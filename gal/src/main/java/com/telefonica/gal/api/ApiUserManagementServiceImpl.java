@@ -10,7 +10,6 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.telefonica.gal.configuration.ConfigurationHandler;
-import com.telefonica.gal.header.wsa.facade.WSAHeaderImpl;
 import com.telefonica.gal.service.userManagement.UserManagementService;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
@@ -43,7 +42,7 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
     
         CreateUserResponse response = new CreateUserResponse();
         
-        response = userManagementService.callWsUserManagementCreateUser(createUserRequest, new WSAHeaderImpl(context));
+        response = userManagementService.callWsUserManagementCreateUser(createUserRequest, context);
 
         return response;
     }
