@@ -11,13 +11,9 @@ import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
 
 public interface ApiUserManagementService {
    
-    CreateUserResponse callWsUserManagementCreateUser (CreateUser createUser,  
-    		SoapHeaderElement action,
-    		SoapHeaderElement from,
-    		SoapHeaderElement to) throws JAXBException;
     
-//    CreateUserResponse callWsUserManagementCreateUser (CreateUser createUser,  
-//    		MessageContext context) throws JAXBException;
+    CreateUserResponse callWsUserManagementCreateUser (CreateUser createUser,  
+    		MessageContext context) throws Exception;
 
     
 }

@@ -81,6 +81,16 @@
 			<version>3.0.10.RELEASE</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>wsaHeader</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.telefonica.gal.client</groupId>
+			<artifactId>client-DynamicRoutingTD</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
