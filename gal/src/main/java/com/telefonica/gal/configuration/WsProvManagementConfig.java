@@ -1,7 +1,8 @@
 package com.telefonica.gal.configuration;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.wss4j.dom.WSConstants;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,21 +11,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.EndpointInterceptor;
 import org.springframework.ws.soap.security.wss4j2.Wss4jSecurityInterceptor;
 import org.springframework.ws.soap.security.wss4j2.callback.SimplePasswordValidationCallbackHandler;
-import org.springframework.ws.soap.security.wss4j2.callback.SpringSecurityPasswordValidationCallbackHandler;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.XsdSchemaCollection;
 import org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection;
 
-import com.telefonica.gal.handler.SOAPSecurityValidationCallbackHandler;
-import com.telefonica.gal.handler.UserDetailsServiceWSSE;
+
 
 @EnableWs
 @Configuration
@@ -38,17 +36,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
     @Value("${webservice.northbound.provManagement.uri}")
     private String uri;
 
-    /*@Override
-    public void addInterceptors(List<EndpointInterceptor> interceptors) {
-        PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();
-        validatingInterceptor.setValidateRequest(true);
-        try {
-            validatingInterceptor.setXsdSchemaCollection(userManagementSchema());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        interceptors.add(validatingInterceptor);
-    }*/
 
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServletUserManagement(ApplicationContext applicationContext) {
@@ -84,20 +71,18 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
     @Bean
     SimplePasswordValidationCallbackHandler callbackHandler() {
        SimplePasswordValidationCallbackHandler callbackHandler = new SimplePasswordValidationCallbackHandler();
-       callbackHandler.setUsersMap(Collections.singletonMap("gvp_app", "gvp_123456"));
-       callbackHandler.setUsersMap(Collections.singletonMap("gvp_app1", "gvp_123456"));
-       SOAPSecurityValidationCallbackHandler callbackHandler1 = new SOAPSecurityValidationCallbackHandler();
+       
+       callbackHandler.setUsersMap(userPasswordMap());
+
        return callbackHandler;
     }
     
-    //WSS interceptors2
-//    @Bean
-//    SpringSecurityPasswordValidationCallbackHandler callbackHandler2() {
-//    	SpringSecurityPasswordValidationCallbackHandler callbackHandler1 = new SOAPSecurityValidationCallbackHandler();
-//		UserDetailsService uds = new UserDetailsServiceWSSE();
-//		callbackHandler1.setUserDetailsService(uds);
-//       return callbackHandler1;
-//    }
+    private Map<String, String> userPasswordMap() {
+    	Map<String, String> map = new HashMap<String,String>();
+    	map.put("gvp_app", "gvp_123456");
+    	map.put("gvp_app1","gvp_123456");
+		return map;
+	}
     
     
     @Bean
@@ -105,7 +90,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
         Wss4jSecurityInterceptor interceptor = new Wss4jSecurityInterceptor();
         interceptor.setValidationActions(WSConstants.USERNAME_TOKEN_LN);
         interceptor.setValidationCallbackHandler(callbackHandler());
-//        interceptor.setValidationCallbackHandler(callbackHandler());
         return interceptor;
     }
 
@@ -118,7 +102,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
         try {
 			validatingInterceptor.setXsdSchemaCollection(userManagementSchema());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	return validatingInterceptor;
