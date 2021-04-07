@@ -24,7 +24,7 @@ public class RoutingTDInfo extends MessageResponse{
 	public RoutingTDInfo(List<Endpoint> endpoints, List<Flow> flows) {
 		super(endpoints==null?"KO":"OK", endpoints==null?"No Data Found":null);
 		this.endpoints = endpoints;
-		this.flows = flows!=null && flows.size()>1?flows:null;
+		this.flows = flows!=null && flows.size()>0?flows:null;
 	}
 	
 

@@ -3,6 +3,7 @@ package com.telefonica.gal.dinamicrouting.model;
 import java.util.List;
 
 public class Route {
+
 	private String serviceID;
 	private String operationTD;
 	private String uri;
@@ -50,7 +51,6 @@ public class Route {
 	}
 
 	public boolean isFlowForRoute() {
-
 		for (Flow flow : this.flows) {
 			if (flow.isActive() && !this.existRouteID(flow.getEndpointID())) {
 				return false;
@@ -63,10 +63,12 @@ public class Route {
 	private boolean existRouteID(String endpointID) {
 		if (endpointID == null)
 			return false;
-		else for (Endpoint endpoint : this.endpoints) {
-				if (endpoint.existId(endpointID)) {
+		else
+			for (Endpoint endpoint : this.endpoints) {
+				if (endpoint.getId() == null)
+					return false;
+				if (endpoint.existId(endpointID))
 					return true;
-				}
 			}
 		return false;
 	}

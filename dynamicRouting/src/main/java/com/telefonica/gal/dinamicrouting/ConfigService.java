@@ -29,10 +29,6 @@ public class ConfigService {
 
 	private String configFile;
 
-	public String getConfigFile() {
-		return configFile;
-	}
-
 	public void setConfigFile(String configFile) {
 		this.configFile = configFile;
 		this.chargeConf();
