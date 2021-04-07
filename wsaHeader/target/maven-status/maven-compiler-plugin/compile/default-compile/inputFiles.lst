@@ -1,4 +1,3 @@
-C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\facade\WSAHeader.java
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\MetadataType.java
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\ObjectFactory.java
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\AttributedQNameType.java
@@ -7,6 +6,6 @@ C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\ProblemActionType.java
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\AttributedURIType.java
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\RelatesToType.java
-C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\facade\WSAHeaderImpl.java
+C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\WSAHeader.java
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\EndpointReferenceType.java
 C:\WORKSPACES\TESTS\wsaHeader\src\main\java\com\telefonica\gal\header\wsa\model\package-info.java

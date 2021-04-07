@@ -1,4 +1,4 @@
-package com.telefonica.gal.header.wsa.facade;
+package com.telefonica.gal.header.wsa;
 
 import java.util.Iterator;
 
@@ -17,16 +17,19 @@ import com.telefonica.gal.header.wsa.model.ObjectFactory;
 
 
 
-public class WSAHeaderImpl implements WSAHeader {
+public class WSAHeader {
 
-
+	private static final String ACTION = "Action";
+	private static final String TO = "To";
+	private static final String FROM = "From";
+	
 	private MessageContext messageContext;
 	
 	private String from;
 	private String to;
 	private String action;
 	
-	public WSAHeaderImpl(MessageContext context) throws Exception {
+	public WSAHeader(MessageContext context) throws Exception {
 		super();
 		this.messageContext = context;
 		analizeMessageContext();
@@ -52,16 +55,28 @@ public class WSAHeaderImpl implements WSAHeader {
 	        
 	        Iterator<SoapHeaderElement> itr = reqheader.examineAllHeaderElements();
 	        while (itr.hasNext()) {
-	            SoapHeaderElement ele = itr.next();
+	            SoapHeaderElement element = itr.next();
 	           
-	            if(ele.getName().getLocalPart().equals("Action")) {
-	            	this.action=ele.getText();
-	            }else if(ele.getName().getLocalPart().equals("To")) {
-	            	this.to=ele.getText();
-	            }else if(ele.getName().getLocalPart().equals("From")) {
-	            	this.from=getAddressFrom(ele);
+	            if(isAction(element)) {
+	            	this.action=element.getText();
+	            }else if(isTo(element)) {
+	            	this.to=element.getText();
+	            }else if(isFrom(element)) {
+	            	this.from=getAddressFrom(element);
 	            }
 	        }
+	}
+
+	private boolean isFrom(SoapHeaderElement ele) {
+		return ele.getName().getLocalPart().equals(FROM);
+	}
+
+	private boolean isTo(SoapHeaderElement ele) {
+		return ele.getName().getLocalPart().equals(TO);
+	}
+
+	private boolean isAction(SoapHeaderElement ele) {
+		return ele.getName().getLocalPart().equals(ACTION);
 	}
 	
 	private String getAddressFrom(SoapHeaderElement from) throws JAXBException {
