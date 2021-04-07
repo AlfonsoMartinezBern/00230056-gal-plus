@@ -17,7 +17,7 @@ import com.telefonica.gal.transform.CreateUserRequestMapper;
 import com.telefonica.gal.transform.CreateUserResponseMapper;
 import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
-import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
+import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
 import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
 

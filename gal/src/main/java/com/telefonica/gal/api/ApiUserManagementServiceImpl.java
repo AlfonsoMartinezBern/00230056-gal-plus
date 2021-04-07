@@ -12,7 +12,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.telefonica.gal.service.userManagement.UserManagementService;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
-import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
+import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 
 @Endpoint
 public class ApiUserManagementServiceImpl implements ApiUserManagementService {
