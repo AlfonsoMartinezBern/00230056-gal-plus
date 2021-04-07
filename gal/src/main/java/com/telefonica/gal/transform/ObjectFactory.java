@@ -23,6 +23,9 @@ public class ObjectFactory {
     private final static QName _UserCreation_ResultDataContract_QNAME = new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model",
             "createUserResult");
 
+    private final static QName _CreateUserResponse_Content_QNAME = new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model",
+            "content");
+
     public ObjectFactory() {
     }
 
@@ -61,6 +64,11 @@ public class ObjectFactory {
     public JAXBElement<ResultDataContractOfstring> createUserResponse (ResultDataContractOfstring value) {
         return new JAXBElement<ResultDataContractOfstring>(_UserCreation_ResultDataContract_QNAME, ResultDataContractOfstring.class,
                 value);
+    }
+
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/GVP.GAL.Model", name = "content")
+    public String createUserResponse(JAXBElement<String> value) {
+        return new String(String.valueOf(value));
     }
 
 }

@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(uses = ObjectFactory.class)
 public interface CreateUserResponseMapper {
-    @Mapping(source = "response", target = "globalUserID")
-    CreateUserResponse createUserResponseMapper(gal.gvp.CreateUserResponse response);
+    @Mapping(source = "response.content", target = "globalUserID.alias")
+    CreateUserResponse createUserResponseMapper(ResultDataContractOfstring response);
 }
