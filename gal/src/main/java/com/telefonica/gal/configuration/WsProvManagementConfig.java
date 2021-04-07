@@ -81,6 +81,7 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
        return callbackHandler;
     }
     
+    //TODO CARGA DINÁMICA POR FICHERO.
     private Map<String, String> userPasswordMap() {
     	Map<String, String> map = new HashMap<String,String>();
     	map.put("gvp_app", "gvp_123456");
