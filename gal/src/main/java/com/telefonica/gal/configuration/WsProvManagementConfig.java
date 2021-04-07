@@ -88,7 +88,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
 		return map;
 	}
     
-    
     @Bean
     public Wss4jSecurityInterceptor wss4jSecurityInterceptor() {
         Wss4jSecurityInterceptor interceptor = new Wss4jSecurityInterceptor();
@@ -111,8 +110,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
     	return validatingInterceptor;
     }
     
-
-
     
     @Override
     public void addInterceptors(List<EndpointInterceptor> interceptors) {

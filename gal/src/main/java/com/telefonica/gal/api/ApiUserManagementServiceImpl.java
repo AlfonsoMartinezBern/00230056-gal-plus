@@ -9,7 +9,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.telefonica.gal.configuration.ConfigurationHandler;
+
 import com.telefonica.gal.service.userManagement.UserManagementService;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.southbound.gvp.CreateUserResponse;
@@ -23,15 +23,14 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
 
     private final UserManagementService userManagementService;
 
-    private final ConfigurationHandler configurationHandler;
+
     
   
 
-    public ApiUserManagementServiceImpl(UserManagementService userManagementService, HttpServletRequest httpServletRequest,
-                                        ConfigurationHandler configurationHandler) {
+    public ApiUserManagementServiceImpl(UserManagementService userManagementService, HttpServletRequest httpServletRequest) {
         this.userManagementService = userManagementService;
         this.httpServletRequest = httpServletRequest;
-        this.configurationHandler = configurationHandler;
+
 
     }
 
@@ -40,11 +39,10 @@ public class ApiUserManagementServiceImpl implements ApiUserManagementService {
     public CreateUserResponse callWsUserManagementCreateUser(@RequestPayload CreateUser createUserRequest,
     		MessageContext context) throws Exception {
     
-        CreateUserResponse response = new CreateUserResponse();
         
-        response = userManagementService.callWsUserManagementCreateUser(createUserRequest, context);
+        return userManagementService.callWsUserManagementCreateUser(createUserRequest, context);
 
-        return response;
+         
     }
     
     

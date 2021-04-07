@@ -104,21 +104,6 @@
 						<phase>generate-sources</phase>
 						<configuration>
 							<wsdlOptions>
-								<!-- <wsdlOption> -->
-								<!-- <wsdl>${project.basedir}/src/main/resources/wsdl/identityManagement/UNICA_API_SOAP_IAM_IdentityManagement_services_v2_2.wsdl</wsdl> -->
-								<!-- <wsdlLocation>classpath:wsdl/UNICA_API_SOAP_IAM_IdentityManagement_services_v2_2.wsdl</wsdlLocation> -->
-								<!-- <extraargs> -->
-								<!-- <extraarg>-fe</extraarg> -->
-								<!-- <extraarg>jaxws21</extraarg> -->
-								<!-- <extraarg>-exsh</extraarg> -->
-								<!-- <extraarg>true</extraarg> -->
-								<!-- <extraarg>-p</extraarg> -->
-								<!-- <extraarg>com.telefonica.gal.wsdl.identityManagement</extraarg> -->
-								<!-- </extraargs> -->
-								<!-- </wsdlOption> -->
-								<!-- <wsdlOption> -->
-								<!-- <wsdl>${project.basedir}/src/main/resources/wsdl/wsa/ws-addr.xsd</wsdl> -->
-								<!-- </wsdlOption> -->
 								<wsdlOption>
 									<wsdl>${project.basedir}/src/main/resources/wsdl/northbound/provManagement/UNICA_API_SOAP_OProv_Management_services_v7_1.wsdl</wsdl>
 									<wsdlLocation>classpath:wsdl/UNICA_API_SOAP_OProv_Management_services_v7_1.wsdl</wsdlLocation>
@@ -184,41 +169,6 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>2.5.0</version>
-				 <executions>
-                <execution>
-                    <id>xjc</id>
-                    <goals>
-                        <goal>xjc</goal>
-                    </goals>
-                </execution>
-            </executions>
-             <configuration>
-                <!--
-                    Include the sources from 3 locations:
-                    1) a directory (including recursively finding all files in it)
-                    2) an explicitly named file
-                    3) a non-existent path, which is silently ignored
-                -->
-                <sources>
-                    <source>src/main/resources/wsdl/wsa</source>
-                </sources>
-
-                <!--
-                    Package name of the generated sources.
-                -->
-                <packageName>com.telefonica.gal.header.wsa</packageName>
-
-                <!--
-                    Copy all source XSDs into the generate artifact.
-                    Place them at the supplied xsdPathWithinArtifact, that is within the given directory.
-                -->
-                <xsdPathWithinArtifact>source/xsds</xsdPathWithinArtifact>
-            </configuration>
 			</plugin>
 		</plugins>
 	</build>
