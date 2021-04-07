@@ -496,61 +496,29 @@
          <loc:verificationCode>?</loc:verificationCode>\r
       </loc:confirmUser>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:confirmUser"/></con:call></con:operation><con:operation id="175533b6-c70b-4a12-81ce-dfc5c7975f32" isOneWay="false" action="urn:createUser" name="createUser" bindingOperationName="createUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a768774c-2e10-4902-b273-74510cf1b6e3" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/UNICA_SDP/OProv_Management/UserManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/local" xmlns:v7="http://www.telefonica.com/schemas/UNICA/SOAP/OProv_Management/v7/" xmlns:v1="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <loc:createUser>\r
-         <loc:userCreation>\r
-            <!--Optional:-->\r
-            <v7:userNickName>\r
-               <!--You have a CHOICE of the next 5 items at this level-->\r
-               <v1:phoneNumber>?</v1:phoneNumber>\r
-               <v1:anyUri>?</v1:anyUri>\r
-               <v1:ipAddress>\r
-                  <!--You have a CHOICE of the next 2 items at this level-->\r
-                  <v1:ipv4>?</v1:ipv4>\r
-                  <v1:ipv6>?</v1:ipv6>\r
-               </v1:ipAddress>\r
-               <v1:alias>?</v1:alias>\r
-               <v1:otherId>\r
-                  <v1:type>?</v1:type>\r
-                  <v1:value>?</v1:value>\r
-               </v1:otherId>\r
-            </v7:userNickName>\r
-            <!--Optional:-->\r
-            <v7:userPassword>?</v7:userPassword>\r
-            <!--Optional:-->\r
-            <v7:userIdentity>?</v7:userIdentity>\r
-            <!--Optional:-->\r
-            <v7:email>?</v7:email>\r
-            <!--Optional:-->\r
-            <v7:externalIdentity>\r
-               <v1:type>?</v1:type>\r
-               <v1:value>?</v1:value>\r
-            </v7:externalIdentity>\r
-            <!--Optional:-->\r
-            <v7:language>?</v7:language>\r
-            <!--Optional:-->\r
-            <v7:country>?</v7:country>\r
-            <!--Optional:-->\r
-            <v7:userChargingProfile>\r
-               <!--Optional:-->\r
-               <v7:chargingID>?</v7:chargingID>\r
-               <!--Optional:-->\r
-               <v7:defaultPaymentMethod>?</v7:defaultPaymentMethod>\r
-            </v7:userChargingProfile>\r
-            <v7:verificationMessage>\r
-               <!--Optional:-->\r
-               <v7:subject>?</v7:subject>\r
-               <v7:body>?</v7:body>\r
-            </v7:verificationMessage>\r
-            <v7:channel>?</v7:channel>\r
-            <!--Optional:-->\r
-            <v7:userRole>?</v7:userRole>\r
-         </loc:userCreation>\r
-      </loc:createUser>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:createUser"/></con:call></con:operation><con:operation id="ed7bf867-2824-4c07-9e01-6e78d056e7fe" isOneWay="false" action="urn:deleteUser" name="deleteUser" bindingOperationName="deleteUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8963faa9-3fd4-4e6a-ab70-79905a5e8dc8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/UNICA_SDP/OProv_Management/UserManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/local" xmlns:v1="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1">\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:confirmUser"/></con:call></con:operation><con:operation id="175533b6-c70b-4a12-81ce-dfc5c7975f32" isOneWay="false" action="urn:createUser" name="createUser" bindingOperationName="createUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a768774c-2e10-4902-b273-74510cf1b6e3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8888/ws/UNICA_SDP/OProv_Management/UserManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:loc="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/local" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1" xmlns:v6="http://www.telefonica.com/schemas/UNICA/SOAP/OProv_Management/v6/" xmlns:v7="http://www.telefonica.com/schemas/UNICA/SOAP/OProv_Management/v7/">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+      <wsa:Action>OTT</wsa:Action>
+      <wsa:From>
+         <wsa:Address>http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management</wsa:Address>
+      </wsa:From>
+      <wsa:To>http://telefonica.com/GVP/IPTV/OProv_Subscriptions</wsa:To>
+   </soapenv:Header>
+   <soapenv:Body>
+      <loc1:createUser xmlns:loc1="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/local">
+         <loc1:userCreation>
+            <v7:userNickName>
+               <v1:alias>new_user</v1:alias>
+            </v7:userNickName>
+            <v7:email>mail@mail.com</v7:email>
+            <v7:verificationMessage>
+               <v7:body>aa</v7:body>
+            </v7:verificationMessage>
+            <v7:channel>2</v7:channel>
+         </loc1:userCreation>
+      </loc1:createUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:createUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ed7bf867-2824-4c07-9e01-6e78d056e7fe" isOneWay="false" action="urn:deleteUser" name="deleteUser" bindingOperationName="deleteUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8963faa9-3fd4-4e6a-ab70-79905a5e8dc8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/UNICA_SDP/OProv_Management/UserManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/local" xmlns:v1="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <loc:deleteUser>\r
