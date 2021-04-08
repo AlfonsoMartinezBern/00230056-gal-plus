@@ -23,9 +23,6 @@ public class ObjectFactory {
     private final static QName _UserCreation_ResultDataContract_QNAME = new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model",
             "createUserResult");
 
-    private final static QName _CreateUserResponse_Content_QNAME = new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model",
-            "content");
-
     public ObjectFactory() {
     }
 

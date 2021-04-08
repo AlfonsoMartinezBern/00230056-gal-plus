@@ -1,10 +1,5 @@
 package com.telefonica.gal.configuration;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.cxf.ws.addressing.MAPAggregator;
 import org.apache.wss4j.dom.WSConstants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -23,7 +18,9 @@ import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.XsdSchemaCollection;
 import org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection;
 
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @EnableWs
 @Configuration
@@ -36,7 +33,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
 
     @Value("${webservice.northbound.provManagement.uri}")
     private String uri;
-
 
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServletUserManagement(ApplicationContext applicationContext) {
@@ -66,11 +62,7 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
         xsds.setInline(true);
         return xsds;
     }
-    
-    
 
-    
-    
     //WSS interceptors
     @Bean
     SimplePasswordValidationCallbackHandler callbackHandler() {
@@ -97,8 +89,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
         return interceptor;
     }
 
-    
-    //Validator
     private PayloadValidatingInterceptor validatingOProvManagementInterceptor() {
     	PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();
         validatingInterceptor.setValidateRequest(true);
@@ -110,7 +100,6 @@ public class WsProvManagementConfig extends WsConfigurerAdapter {
 		}
     	return validatingInterceptor;
     }
-    
     
     @Override
     public void addInterceptors(List<EndpointInterceptor> interceptors) {

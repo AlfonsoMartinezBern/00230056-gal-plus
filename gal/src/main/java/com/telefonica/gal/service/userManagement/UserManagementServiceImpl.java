@@ -1,13 +1,5 @@
 package com.telefonica.gal.service.userManagement;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.ws.context.MessageContext;
-
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
@@ -20,6 +12,13 @@ import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
 import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ws.context.MessageContext;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
@@ -58,9 +57,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 		System.out.println(routingTDInfo);
 		
 		List<Endpoint> endpointList = routingTDInfo.getEndpoints();
-		
-		//TODO Tratamiento dinamico del routingTD
-		
+
 		String url = endpointList.get(0).getTargetEndpoint();
 		int instanceId = endpointList.get(0).getInstanceID();
 		int platformId = endpointList.get(0).getPlatformID();
