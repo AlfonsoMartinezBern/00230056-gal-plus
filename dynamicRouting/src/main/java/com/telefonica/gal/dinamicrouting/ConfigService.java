@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.stereotype.Component;
 import com.telefonica.gal.dinamicrouting.dto.RoutingTDMapper;
 import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepository;
 import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepositoryMapper;
-import com.telefonica.gal.dinamicrouting.model.Endpoint;
-import com.telefonica.gal.dinamicrouting.model.Flow;
 
 @Component
 public class ConfigService {
@@ -65,33 +62,6 @@ public class ConfigService {
 		} catch (IOException e) {
 			return null;
 		}
-	}
-
-	public boolean isAllRequiredParameters(List<Endpoint> endpoints, List<Flow> flows) {
-		return (this.isAllEndpointsParameters(endpoints)) && (this.isAllFlowsParameters(flows));
-	}
-
-	private boolean isAllEndpointsParameters(List<Endpoint> endpoints) {
-		if (endpoints == null)
-			return false;
-		for (Endpoint ep : endpoints) {
-			if (ep.getId() == null || ep.getEndpointType() == null || ((Integer) ep.getInstanceID()) == null
-					|| ((Integer) ep.getInstanceID()) == 0 || ((Integer) ep.getPlatformID()) == null
-					|| ((Integer) ep.getPlatformID()) == 0 || ep.getTargetEndpoint() == null)
-				return false;
-		}
-		return true;
-	}
-
-	private boolean isAllFlowsParameters(List<Flow> flows) {
-		if (flows == null)
-			return true;
-		for (Flow fl : flows) {
-			if (fl.getEndpointID() == null || ((Integer) fl.getStep()) == null || ((Integer) fl.getStep()) == 0
-					|| fl.getType() == null)
-				return false;
-		}
-		return true;
 	}
 
 //	private DynamicRoutingTD dynamicRoutingTDFromJson(String json) throws JsonMappingException, JsonProcessingException {
