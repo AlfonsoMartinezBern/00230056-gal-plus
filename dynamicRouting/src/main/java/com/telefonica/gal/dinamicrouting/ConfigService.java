@@ -1,6 +1,7 @@
 package com.telefonica.gal.dinamicrouting;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,7 +10,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import com.telefonica.gal.dinamicrouting.dto.RoutingTDMapper;
@@ -58,7 +58,7 @@ public class ConfigService {
 
 	public DynamicRoutingTDRepository getDynamicRoutingTDFromJson() {
 		try (BufferedReader reader = new BufferedReader(
-				new FileReader(ResourceLoader.class.getResource(configFile).getFile()))) {
+				new FileReader(new File(configFile)))) {
 			return repository.dynamicRoutingTDFromJson(reader.lines().collect(Collectors.joining()));
 		} catch (FileNotFoundException e) {
 			return null;
