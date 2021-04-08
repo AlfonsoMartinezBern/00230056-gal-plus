@@ -9,13 +9,13 @@
 		<version>2.4.3</version>
 		<!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.telefonica</groupId>
-	<artifactId>gal</artifactId>
+	<groupId>com.telefonica.gal</groupId>
+	<artifactId>OProv_Management</artifactId>
 	<version>2.4.3</version>
-	<name>gal</name>
-	<description>Demo project for Spring Boot</description>
+	<name>OProv_Management</name>
+	<description>POC OProv_Management</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 	</properties>
 	<dependencies>
@@ -56,12 +56,7 @@
 			<artifactId>cxf-rt-bindings-soap</artifactId>
 			<version>3.3.5</version>
 		</dependency>
-		<!-- Enrutamiento dinamico -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.json</groupId> -->
-		<!-- <artifactId>DynamicRoutingTD_Client</artifactId> -->
-		<!-- <version>20200518</version> -->
-		<!-- </dependency> -->
+
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>rt</artifactId>
@@ -74,6 +69,23 @@
 			<version>${org.mapstruct.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-security -->
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-security</artifactId>
+			<version>3.0.10.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>wsaHeader</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.telefonica.gal.client</groupId>
+			<artifactId>client-DynamicRoutingTD</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -92,18 +104,6 @@
 						<phase>generate-sources</phase>
 						<configuration>
 							<wsdlOptions>
-								<wsdlOption>
-									<wsdl>${project.basedir}/src/main/resources/wsdl/identityManagement/UNICA_API_SOAP_IAM_IdentityManagement_services_v2_2.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/UNICA_API_SOAP_IAM_IdentityManagement_services_v2_2.wsdl</wsdlLocation>
-									<extraargs>
-										<extraarg>-fe</extraarg>
-										<extraarg>jaxws21</extraarg>
-										<extraarg>-exsh</extraarg>
-										<extraarg>true</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>com.telefonica.gal.wsdl.identityManagement</extraarg>
-									</extraargs>
-								</wsdlOption>
 								<wsdlOption>
 									<wsdl>${project.basedir}/src/main/resources/wsdl/northbound/provManagement/UNICA_API_SOAP_OProv_Management_services_v7_1.wsdl</wsdl>
 									<wsdlLocation>classpath:wsdl/UNICA_API_SOAP_OProv_Management_services_v7_1.wsdl</wsdlLocation>
@@ -128,15 +128,17 @@
 										<extraarg>com.telefonica.gal.wsdl.southbound.gvp</extraarg>
 									</extraargs>
 								</wsdlOption>
-								<wsdlOption> <wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation> 
+								<wsdlOption>
+									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
+									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation>
 									<extraargs>
 										<extraarg>-fe</extraarg>
 										<extraarg>jaxws21</extraarg>
 										<extraarg>-exsh</extraarg>
 										<extraarg>true</extraarg>
-									</extraargs> </wsdlOption>
-								</wsdlOptions>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
 						</configuration>
 						<goals>
 							<goal>wsdl2java</goal>
