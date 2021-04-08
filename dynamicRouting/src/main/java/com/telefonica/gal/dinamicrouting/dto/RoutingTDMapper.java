@@ -17,18 +17,17 @@ public class RoutingTDMapper {
 
 	@Autowired
 	RoutingTableTD routingTable;
-	
+
 	public RoutingTDMapper() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public boolean parseToRoutingTable(DynamicRoutingTDRepository dynamicRouting) {
-		if(!dynamicRouting.isValid(dynamicRouting.getRoutes())) {
+		if (!dynamicRouting.isValid(dynamicRouting.getRoutes())) {
 			return false;
 		}
-		
+
 		for (Route route : dynamicRouting.getRoutes()) {
 			routingTable.add(parseToRoutingTDKey(route).toString(), parseToRoutingTDInfo(route));
 		}
@@ -47,26 +46,25 @@ public class RoutingTDMapper {
 		List<Endpoint> enpoints = setEndpoints(flows, route);
 		return new RoutingTDInfo(enpoints, flows);
 	}
-	
-	private List<Endpoint> setEndpoints(List<Flow> flows,Route route) {
+
+	private List<Endpoint> setEndpoints(List<Flow> flows, Route route) {
 		List<Endpoint> newEndPoints = new ArrayList<Endpoint>();
-		if(route.getFlows()==null && route.getEndpoints().size()==1 ) {
+		if ((route.getFlows() == null && route.getEndpoints().size() == 1)
+				|| ((flows.isEmpty() || flows == null) && route.getEndpoints().size() == 1)) {
 			return route.getEndpoints();
 		}
-		
-		
-		for(Flow flow:flows) {
+
+		for (Flow flow : flows) {
 			newEndPoints.add(route.getEndpointsById(flow.getEndpointID()));
 		}
-		
+
 		return newEndPoints;
 	}
 
-
-	private List<Flow> setFlows(List<Flow> flows){
+	private List<Flow> setFlows(List<Flow> flows) {
 		List<Flow> newFlows = new ArrayList<Flow>();
-		for(Flow flow:flows) {
-			if(flow.isActive()) {
+		for (Flow flow : flows) {
+			if (flow.isActive()) {
 				newFlows.add(flow);
 			}
 		}

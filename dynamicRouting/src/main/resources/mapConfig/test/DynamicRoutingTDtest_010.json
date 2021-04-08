@@ -1,0 +1,20 @@
+{ 
+"version":"0.0.1",
+"info":"created 2021-03-22",
+"routes":
+[
+  {
+    "serviceID": "Test010",
+    "operationTD": "testAllJsonRequiredParameters_failAlterFlow",
+	"uri": "http://telefonica.com/test010",
+    "endpoints": [{
+    "id": "01",
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+    "endpointType": "UMG"
+  }],
+    "flows":[{"step":1,"endpointID":"01","type":"source","active":true}]
+  }
+]
+}

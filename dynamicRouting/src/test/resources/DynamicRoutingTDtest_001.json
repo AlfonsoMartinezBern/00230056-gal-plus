@@ -8,6 +8,7 @@
     "operationTD": "CreateUser",
     "uri": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
     "endpoints": [{
+    "id": "01",
     "instanceID": 2,
     "platformID": 2,
     "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
@@ -21,7 +22,7 @@
     "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
     "endpointType": "GVP.GAL"
     }],
-     "flows": [{"step":1, "type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
+     "flows": [{"step":1,"endpointID":"01","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
   },
   {
     "serviceID": "IPTV",
