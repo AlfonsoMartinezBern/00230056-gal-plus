@@ -66,9 +66,4 @@ public class ObjectFactory {
                 value);
     }
 
-    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/GVP.GAL.Model", name = "content")
-    public String createUserResponse(JAXBElement<String> value) {
-        return new String(String.valueOf(value));
-    }
-
 }

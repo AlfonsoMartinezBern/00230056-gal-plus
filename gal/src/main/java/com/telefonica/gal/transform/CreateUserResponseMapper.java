@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(uses = ObjectFactory.class)
 public interface CreateUserResponseMapper {
-    @Mapping(source = "response.content", target = "globalUserID.alias")
+    @Mapping(source = "response.statusCode", target = "globalUserID.alias")
     CreateUserResponse createUserResponseMapper(ResultDataContractOfstring response);
 }
