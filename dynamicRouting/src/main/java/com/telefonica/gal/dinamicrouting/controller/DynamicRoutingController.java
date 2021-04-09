@@ -1,25 +1,22 @@
-package com.telefonica.gal.dinamicrouting;
+package com.telefonica.gal.dinamicrouting.controller;
 
-import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.telefonica.gal.dinamicrouting.config.ConfigService;
 import com.telefonica.gal.dinamicrouting.dto.MessageResponse;
 import com.telefonica.gal.dinamicrouting.dto.RoutingTDInfo;
 import com.telefonica.gal.dinamicrouting.dto.RoutingTDKey;
 import com.telefonica.gal.dinamicrouting.dto.RoutingTableTD;
 
-@SpringBootApplication
+
 @RestController
 @RequestMapping("/dinamicRoutingTD")
-
 public class DynamicRoutingController {
 
 	@Autowired
@@ -30,9 +27,6 @@ public class DynamicRoutingController {
 
 	private boolean isCharged = false;
 
-	public static void main(String[] args) throws IOException, InterruptedException {
-		SpringApplication.run(DynamicRoutingController.class, args);
-	}
 
 	@PutMapping("/charge")
 	public MessageResponse chargeConf() {

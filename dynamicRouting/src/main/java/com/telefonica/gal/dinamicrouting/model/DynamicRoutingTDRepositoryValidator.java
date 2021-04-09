@@ -39,7 +39,7 @@ public class DynamicRoutingTDRepositoryValidator {
 		if (endpoints == null)
 			return false;
 		for (Endpoint ep : endpoints) {
-			if (ep.getId() == null || ep.getEndpointType() == null || ((Integer) ep.getInstanceID()) == null
+			if (ep.getEndpointType() == null || ((Integer) ep.getInstanceID()) == null
 					|| ((Integer) ep.getInstanceID()) == 0 || ((Integer) ep.getPlatformID()) == null
 					|| ((Integer) ep.getPlatformID()) == 0 || ep.getTargetEndpoint() == null)
 				return false;

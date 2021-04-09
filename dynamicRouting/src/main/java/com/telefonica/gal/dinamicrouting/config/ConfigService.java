@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting;
+package com.telefonica.gal.dinamicrouting.config;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,7 +53,7 @@ public class ConfigService {
 		return repository.isValid(repository.getRoutes());
 	}
 
-	public DynamicRoutingTDRepository getDynamicRoutingTDFromJson() {
+	private DynamicRoutingTDRepository getDynamicRoutingTDFromJson() {
 		try (BufferedReader reader = new BufferedReader(
 				new FileReader(new File(configFile)))) {
 			return repository.dynamicRoutingTDFromJson(reader.lines().collect(Collectors.joining()));
@@ -63,10 +63,5 @@ public class ConfigService {
 			return null;
 		}
 	}
-
-//	private DynamicRoutingTD dynamicRoutingTDFromJson(String json) throws JsonMappingException, JsonProcessingException {
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		DynamicRoutingTD dynamicRoutingTD = objectMapper.readValue(json, DynamicRoutingTD.class);
-//		return dynamicRoutingTD;
-//	}
+	
 }
