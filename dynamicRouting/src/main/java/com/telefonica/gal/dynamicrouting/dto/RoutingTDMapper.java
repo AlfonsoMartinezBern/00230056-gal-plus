@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting.dto;
+package com.telefonica.gal.dynamicrouting.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,10 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepository;
-import com.telefonica.gal.dinamicrouting.model.Endpoint;
-import com.telefonica.gal.dinamicrouting.model.Flow;
-import com.telefonica.gal.dinamicrouting.model.Route;
+import com.telefonica.gal.dynamicrouting.model.DynamicRoutingTDRepository;
+import com.telefonica.gal.dynamicrouting.model.Endpoint;
+import com.telefonica.gal.dynamicrouting.model.Flow;
+import com.telefonica.gal.dynamicrouting.model.Route;
 
 @Component
 public class RoutingTDMapper {

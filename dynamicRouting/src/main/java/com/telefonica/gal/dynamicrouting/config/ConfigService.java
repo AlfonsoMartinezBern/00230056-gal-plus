@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting.config;
+package com.telefonica.gal.dynamicrouting.config;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.telefonica.gal.dinamicrouting.dto.RoutingTDMapper;
-import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepository;
-import com.telefonica.gal.dinamicrouting.model.DynamicRoutingTDRepositoryMapper;
+import com.telefonica.gal.dynamicrouting.dto.RoutingTDMapper;
+import com.telefonica.gal.dynamicrouting.model.DynamicRoutingTDRepository;
+import com.telefonica.gal.dynamicrouting.model.DynamicRoutingTDRepositoryMapper;
 
 @Component
 public class ConfigService {

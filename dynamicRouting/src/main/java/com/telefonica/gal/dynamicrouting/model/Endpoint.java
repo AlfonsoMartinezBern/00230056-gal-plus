@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting.model;
+package com.telefonica.gal.dynamicrouting.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

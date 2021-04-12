@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting;
+package com.telefonica.gal.dynamicrouting;
 
 import java.io.IOException;
 

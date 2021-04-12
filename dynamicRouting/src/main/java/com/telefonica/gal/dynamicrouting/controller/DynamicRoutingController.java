@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting.controller;
+package com.telefonica.gal.dynamicrouting.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.telefonica.gal.dinamicrouting.config.ConfigService;
-import com.telefonica.gal.dinamicrouting.dto.MessageResponse;
-import com.telefonica.gal.dinamicrouting.dto.RoutingTDInfo;
-import com.telefonica.gal.dinamicrouting.dto.RoutingTDKey;
-import com.telefonica.gal.dinamicrouting.dto.RoutingTableTD;
+import com.telefonica.gal.dynamicrouting.config.ConfigService;
+import com.telefonica.gal.dynamicrouting.dto.MessageResponse;
+import com.telefonica.gal.dynamicrouting.dto.RoutingTDInfo;
+import com.telefonica.gal.dynamicrouting.dto.RoutingTDKey;
+import com.telefonica.gal.dynamicrouting.dto.RoutingTableTD;
 
 
 @RestController

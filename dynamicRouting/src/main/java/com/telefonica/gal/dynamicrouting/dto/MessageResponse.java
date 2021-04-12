@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting.dto;
+package com.telefonica.gal.dynamicrouting.dto;
 
 public class MessageResponse {
 	

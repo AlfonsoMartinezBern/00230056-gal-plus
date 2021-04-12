@@ -1,11 +1,11 @@
-package com.telefonica.gal.dinamicrouting.dto;
+package com.telefonica.gal.dynamicrouting.dto;
 
 import java.util.HashMap;
 
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 
-import com.telefonica.gal.dinamicrouting.utils.Formatter;
+import com.telefonica.gal.dynamicrouting.utils.Formatter;
 
 @Component
 public class RoutingTableTD {

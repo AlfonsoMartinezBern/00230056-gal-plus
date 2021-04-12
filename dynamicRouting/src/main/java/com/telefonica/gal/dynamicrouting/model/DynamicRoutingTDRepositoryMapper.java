@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting.model;
+package com.telefonica.gal.dynamicrouting.model;
 
 import org.springframework.stereotype.Component;
 

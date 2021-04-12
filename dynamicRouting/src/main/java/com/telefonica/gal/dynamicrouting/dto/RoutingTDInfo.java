@@ -1,11 +1,11 @@
-package com.telefonica.gal.dinamicrouting.dto;
+package com.telefonica.gal.dynamicrouting.dto;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.telefonica.gal.dinamicrouting.model.Endpoint;
-import com.telefonica.gal.dinamicrouting.model.Flow;
+import com.telefonica.gal.dynamicrouting.model.Endpoint;
+import com.telefonica.gal.dynamicrouting.model.Flow;
 
 @JsonInclude(Include.NON_NULL)
 public class RoutingTDInfo extends MessageResponse{

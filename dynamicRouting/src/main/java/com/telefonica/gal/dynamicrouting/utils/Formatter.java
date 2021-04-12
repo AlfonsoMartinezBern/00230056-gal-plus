@@ -1,4 +1,4 @@
-package com.telefonica.gal.dinamicrouting.utils;
+package com.telefonica.gal.dynamicrouting.utils;
 
 
 
