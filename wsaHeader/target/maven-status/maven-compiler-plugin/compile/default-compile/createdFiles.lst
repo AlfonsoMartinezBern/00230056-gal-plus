@@ -1,0 +1,11 @@
+com/telefonica/gal/header/wsa/model/RelatesToType.class
+com/telefonica/gal/header/wsa/model/package-info.class
+com/telefonica/gal/header/wsa/model/AttributedQNameType.class
+com/telefonica/gal/header/wsa/model/AttributedURIType.class
+com/telefonica/gal/header/wsa/model/EndpointReferenceType.class
+com/telefonica/gal/header/wsa/model/ReferenceParametersType.class
+com/telefonica/gal/header/wsa/WSAHeader.class
+com/telefonica/gal/header/wsa/model/AttributedUnsignedLongType.class
+com/telefonica/gal/header/wsa/model/ProblemActionType.class
+com/telefonica/gal/header/wsa/model/ObjectFactory.class
+com/telefonica/gal/header/wsa/model/MetadataType.class
