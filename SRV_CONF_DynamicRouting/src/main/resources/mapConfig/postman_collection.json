@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "1d60e1de-8a7b-4eba-8f22-4a67a3211271",
+		"name": "GAL+",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DynamicRouting",
+			"item": [
+				{
+					"name": "Cargar Configuración",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/conf/charge",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"conf",
+								"charge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceID\": \"OTT\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/conf/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"conf",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Flow",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceID\": \"OTT\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/conf/getflow",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"conf",
+								"getflow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Target Endpoint",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceID\": \"OTT\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/conf/gettargetendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"conf",
+								"gettargetendpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Endpoints por ID de Servicio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/conf/getEndpoint/OTT",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"conf",
+								"getEndpoint",
+								"OTT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar ID de Servicio por Operacion TD",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/conf/getService/CreateUser",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"conf",
+								"getService",
+								"CreateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Configuración",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/conf/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"conf",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
