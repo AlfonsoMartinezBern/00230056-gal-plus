@@ -8,9 +8,9 @@
 		<version>2.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.telefonica.gal</groupId>
+	<groupId>com.telefonica.gal.bu</groupId>
 	<artifactId>SRV_BU_RegistrationService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>SRV_BU_RegistrationService</name>
 	<description>POC BU</description>
 	<properties>
