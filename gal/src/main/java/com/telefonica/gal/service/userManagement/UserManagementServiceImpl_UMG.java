@@ -1,0 +1,81 @@
+package com.telefonica.gal.service.userManagement;
+
+import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
+import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
+import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
+import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
+import com.telefonica.gal.header.wsa.WSAHeader;
+import com.telefonica.gal.transform.CreateUserRequestMapper_UMG;
+import com.telefonica.gal.transform.CreateUserResponseMapper_UMG;
+import com.telefonica.gal.ws.userManagement.WsITDregistrationService_UMG;
+import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
+import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
+import org.datacontract.schemas._2004._07.gvp_gal.ResultDataContractOfstring;
+import org.datacontract.schemas._2004._07.gvp_gal.UserDataContract;
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.context.MessageContext;
+
+import java.util.List;
+import java.util.Optional;
+
+public class UserManagementServiceImpl_UMG implements UserManagementService_UMG{
+    private final static String CreateUser = "CreateUser";
+
+    private final static CreateUserRequestMapper_UMG CREATE_USER_REQUEST_MAPPER_UMG =
+            Mappers.getMapper(CreateUserRequestMapper_UMG.class);
+
+    private final static CreateUserResponseMapper_UMG CREATE_USER_RESPONSE_MAPPER_UMG =
+            Mappers.getMapper(CreateUserResponseMapper_UMG.class);
+
+    private final WsITDregistrationService_UMG wsITDregistrationService;
+
+    @Autowired
+    DynamicRoutingTDClient dynamicRoutingTD;
+
+    public UserManagementServiceImpl_UMG(WsITDregistrationService_UMG wsITDregistrationService) {
+        this.wsITDregistrationService = wsITDregistrationService;
+    }
+
+    @Override
+    public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser, MessageContext context ) throws Exception {
+        WSAHeader wsaHeader = new WSAHeader(context);
+
+        CreateUserResponse response = new CreateUserResponse();
+
+        if (wsaHeader.getAction().contains("IPTV")) {
+            isPresentEmail(createUser.getUserCreation().getEmail());
+        }
+
+
+        RoutingTDKey tdKey = new RoutingTDKey(wsaHeader.getAction(), CreateUser, wsaHeader.getFrom());
+
+        RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
+
+        System.out.println(routingTDInfo);
+
+        List<Endpoint> endpointList = routingTDInfo.getEndpoints();
+
+        String url = endpointList.get(0).getTargetEndpoint();
+        int instanceId = endpointList.get(0).getInstanceID();
+        int platformId = endpointList.get(0).getPlatformID();
+
+        UserDataContract userDataContract = new UserDataContract();
+        userDataContract = CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper(createUser.getUserCreation());
+
+        ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
+
+        wsITDregistrationService.setURL(url);
+        resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract.getServiceId(),userDataContract);
+
+        response = CREATE_USER_RESPONSE_MAPPER_UMG.createUserResponseMapper(resultDataContractOfstring);
+
+        return response;
+    }
+
+
+    private void isPresentEmail(final String email) {
+        Optional<String> emailIptv = Optional.ofNullable(email);
+        emailIptv.orElseThrow(NumberFormatException::new); // TODO Si no existe el campo email, Llamada al servicio de errores
+    }
+}
