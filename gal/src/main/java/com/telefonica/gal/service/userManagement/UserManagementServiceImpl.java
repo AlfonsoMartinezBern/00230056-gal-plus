@@ -6,8 +6,11 @@ import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.header.wsa.WSAHeader;
 import com.telefonica.gal.transform.CreateUserRequestMapper;
+import com.telefonica.gal.transform.CreateUserRequestMapper_UMG;
 import com.telefonica.gal.transform.CreateUserResponseMapper;
+import com.telefonica.gal.transform.CreateUserResponseMapper_UMG;
 import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
+import com.telefonica.gal.ws.userManagement.WsITDregistrationService_UMG;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
@@ -24,6 +27,12 @@ import java.util.Optional;
 public class UserManagementServiceImpl implements UserManagementService {
 	private final static String CreateUser = "CreateUser";
 
+	private final static CreateUserRequestMapper_UMG CREATE_USER_REQUEST_MAPPER_UMG =
+			Mappers.getMapper(CreateUserRequestMapper_UMG.class);
+
+	private final static CreateUserResponseMapper_UMG CREATE_USER_RESPONSE_MAPPER_UMG =
+			Mappers.getMapper(CreateUserResponseMapper_UMG.class);
+
 	private final static CreateUserRequestMapper CREATE_USER_REQUEST_MAPPER =
 			Mappers.getMapper(CreateUserRequestMapper.class);
 
@@ -31,13 +40,15 @@ public class UserManagementServiceImpl implements UserManagementService {
 			Mappers.getMapper(CreateUserResponseMapper.class);
 
     private final WsITDregistrationService wsITDregistrationService;
+	private final WsITDregistrationService_UMG wsITDregistrationService_umg;
     
     @Autowired
     DynamicRoutingTDClient dynamicRoutingTD;
 
-    public UserManagementServiceImpl(WsITDregistrationService wsITDregistrationService) {
+    public UserManagementServiceImpl(WsITDregistrationService wsITDregistrationService, WsITDregistrationService_UMG wsITDregistrationService_umg) {
         this.wsITDregistrationService = wsITDregistrationService;
-    }
+		this.wsITDregistrationService_umg = wsITDregistrationService_umg;
+	}
 
     @Override
     public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser,MessageContext context ) throws Exception {
@@ -75,6 +86,41 @@ public class UserManagementServiceImpl implements UserManagementService {
         return response;
     }
 
+	@Override
+	public CreateUserResponse callWsUserManagementCreateUser_UMG(CreateUser createUser, MessageContext context ) throws Exception {
+		WSAHeader wsaHeader = new WSAHeader(context);
+
+		CreateUserResponse response = new CreateUserResponse();
+
+		if (wsaHeader.getAction().contains("IPTV")) {
+			isPresentEmail(createUser.getUserCreation().getEmail());
+		}
+
+
+		RoutingTDKey tdKey = new RoutingTDKey(wsaHeader.getAction(), CreateUser, wsaHeader.getFrom());
+
+		RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
+
+		System.out.println(routingTDInfo);
+
+		List<Endpoint> endpointList = routingTDInfo.getEndpoints();
+
+		String url = endpointList.get(0).getTargetEndpoint();
+		int instanceId = endpointList.get(0).getInstanceID();
+		int platformId = endpointList.get(0).getPlatformID();
+
+		org.datacontract.schemas._2004._07.gvp_gal.UserDataContract userDataContract = new org.datacontract.schemas._2004._07.gvp_gal.UserDataContract();
+		userDataContract = CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper(createUser.getUserCreation());
+
+		org.datacontract.schemas._2004._07.gvp_gal.ResultDataContractOfstring resultDataContractOfstring = new org.datacontract.schemas._2004._07.gvp_gal.ResultDataContractOfstring();
+
+		wsITDregistrationService_umg.setURL(url);
+		resultDataContractOfstring = wsITDregistrationService_umg.createUser(instanceId, platformId, userDataContract.getServiceId(),userDataContract);
+
+		response = CREATE_USER_RESPONSE_MAPPER_UMG.createUserResponseMapper(resultDataContractOfstring);
+
+		return response;
+	}
 
 	private void isPresentEmail(final String email) {
 		Optional<String> emailIptv = Optional.ofNullable(email);

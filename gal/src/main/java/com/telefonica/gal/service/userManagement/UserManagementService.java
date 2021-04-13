@@ -7,4 +7,5 @@ import org.springframework.ws.context.MessageContext;
 public interface UserManagementService {
 
 	CreateUserResponse callWsUserManagementCreateUser(CreateUser createUserRequest, MessageContext context) throws Exception;
+	CreateUserResponse callWsUserManagementCreateUser_UMG(CreateUser createUserRequest, MessageContext context) throws Exception;
 }
