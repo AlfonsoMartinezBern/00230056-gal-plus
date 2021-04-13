@@ -136,6 +136,8 @@
 										<extraarg>jaxws21</extraarg>
 										<extraarg>-exsh</extraarg>
 										<extraarg>true</extraarg>
+										<!--<extraarg>-d</extraarg>
+										<extraarg>umg</extraarg>-->
 									</extraargs>
 								</wsdlOption>
 							</wsdlOptions>
