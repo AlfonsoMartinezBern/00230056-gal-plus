@@ -20,7 +20,7 @@ public interface CreateUserRequestMapper_UMG {
     @Mapping(target = "EWallet", ignore = true)
     @Mapping(target = "platformId", ignore = true)
     @Mapping(target = "products", ignore = true)
-    @Mapping(target = "serviceType", ignore = true)
+    //@Mapping(target = "serviceType", ignore = true) // ***** No aplica para UMG
     @Mapping(target = "videoServiceAdditionalInfo", ignore = true)
     UserDataContract userDataMapper(UserCreationType userCreationType);
 }
