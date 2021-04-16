@@ -48,8 +48,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 		if (wsaHeader.getAction().contains("IPTV")) {
 			isPresentEmail(createUser.getUserCreation().getEmail());
 		}
-		
-		
+
     	RoutingTDKey tdKey = new RoutingTDKey(wsaHeader.getAction(), CreateUser, wsaHeader.getFrom());
 
 		RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
@@ -64,6 +63,10 @@ public class UserManagementServiceImpl implements UserManagementService {
 
         UserDataContract userDataContract = new UserDataContract();
         userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
+
+        //Inicio pruebas factoria para probar
+		/*FactoryRoutingUserManagement factoryRoutingUserManagement = new FactoryRoutingUserManagement();*/
+		//fin prueba factoria
 
 		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
 
