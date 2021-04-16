@@ -1,0 +1,165 @@
+<xs:schema elementFormDefault="qualified" targetNamespace="GVP.GAL" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="GVP.GAL">
+  <xs:import schemaLocation="TD_RegistrationService_1.xsd" namespace="http://www.telefonica.com/ServiceId"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2.xsd" namespace="http://www.example.org/variables"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3_4_5_6.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+  <xs:element name="CreateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q1:ServiceIdType" xmlns:q1="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="user" nillable="true" type="q2:UserDataContract" xmlns:q2="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="deviceIdsType">
+    <xs:sequence>
+      <xs:element name="deviceId" nillable="true" type="q3:ArrayOfstring" xmlns:q3="http://www.example.org/variables">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="deviceIdsType" nillable="true" type="tns:deviceIdsType"/>
+  <xs:element name="CreateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateUserResult" nillable="true" type="q4:ResultDataContractOfstring" xmlns:q4="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q5:ServiceIdType" xmlns:q5="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="user" nillable="true" type="q6:UserDataContract" xmlns:q6="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ModifyUserResult" nillable="true" type="q7:ResultDataContractOfboolean" xmlns:q7="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q8:ServiceIdType" xmlns:q8="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteUserResult" nillable="true" type="q9:ResultDataContractOfboolean" xmlns:q9="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q10:ServiceIdType" xmlns:q10="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="user" nillable="true" type="q11:UserDataContract" xmlns:q11="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EnableUserResult" nillable="true" type="q12:ResultDataContractOfboolean" xmlns:q12="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisableUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q13:ServiceIdType" xmlns:q13="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisableUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DisableUserResult" nillable="true" type="q14:ResultDataContractOfboolean" xmlns:q14="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="RemoveDevicesFromAccountRequestBody">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+      <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+      <xs:element minOccurs="0" name="serviceId" type="q15:ServiceIdType" xmlns:q15="http://www.telefonica.com/ServiceId"/>
+      <xs:element minOccurs="0" name="accountId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="deviceIds" nillable="true" type="tns:deviceIdsType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveDevicesFromAccountRequestBody" nillable="true" type="tns:RemoveDevicesFromAccountRequestBody"/>
+  <xs:element name="RemoveDevicesFromAccount" nillable="true" type="tns:RemoveDevicesFromAccountRequestBody"/>
+  <xs:complexType name="RemoveDevicesFromAccountResponseBody">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RemoveDevicesFromAccountResult" nillable="true" type="q16:ResultDataContractOfboolean" xmlns:q16="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveDevicesFromAccountResponseBody" nillable="true" type="tns:RemoveDevicesFromAccountResponseBody"/>
+  <xs:element name="RemoveDevicesFromAccountResponse" nillable="true" type="tns:RemoveDevicesFromAccountResponseBody"/>
+  <xs:element name="RegisterDevices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q17:ServiceIdType" xmlns:q17="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="deviceInfoList" nillable="true" type="q18:DeviceInfoListType" xmlns:q18="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterDevicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterDevicesResult" nillable="true" type="q19:ResultDataContractOfboolean" xmlns:q19="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDevices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q20:ServiceIdType" xmlns:q20="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="deviceInfoList" nillable="true" type="q21:DeviceInfoListType" xmlns:q21="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDevicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveDevicesResult" nillable="true" type="q22:ResultDataContractOfboolean" xmlns:q22="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

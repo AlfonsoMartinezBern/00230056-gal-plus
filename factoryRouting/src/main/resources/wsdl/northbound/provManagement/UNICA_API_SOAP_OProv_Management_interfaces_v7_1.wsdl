@@ -1,0 +1,333 @@
+<!-- Release Date: January 20, 2012 --><wsdl:definitions targetNamespace="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/interfaces" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/interfaces" xmlns:uct="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1"  xmlns:ucf="http://www.telefonica.com/wsdl/UNICA/SOAP/common/v1/faults" xmlns:ns1="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/local" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+	<wsdl:import namespace="http://www.telefonica.com/wsdl/UNICA/SOAP/common/v1/faults" location="UNICA_API_SOAP_common_faults_v1_1.wsdl"/>
+	<wsdl:import namespace="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/local" location="UNICA_API_SOAP_OProv_Management_v7_1.xsd"/>
+	<wsdl:types>
+		
+	</wsdl:types>
+	<wsdl:message name="GetAllUsersRequest">
+		<wsdl:part name="parameters" element="ns1:getAllUsers"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllUsersResponse">
+		<wsdl:part name="parameters" element="ns1:getAllUsersResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateUserRequest">
+		<wsdl:part name="parameters" element="ns1:createUser"/>
+	</wsdl:message>
+	<wsdl:message name="CreateUserResponse">
+		<wsdl:part name="parameters" element="ns1:createUserResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ConfirmUserRequest">
+		<wsdl:part name="parameters" element="ns1:confirmUser"/>
+	</wsdl:message>
+	<wsdl:message name="ConfirmUserResponse"/>
+
+	<wsdl:message name="UpdateUserRequest">
+		<wsdl:part name="parameters" element="ns1:updateUser"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateUserResponse"/>
+
+	<wsdl:message name="GetUserDetailsRequest">
+		<wsdl:part name="parameters" element="ns1:getUserDetails"/>
+	</wsdl:message>
+	<wsdl:message name="GetUserDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:getUserDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteUserRequest">
+		<wsdl:part name="parameters" element="ns1:deleteUser"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteUserResponse"/>
+
+
+
+
+
+	<wsdl:message name="GetAllAppProvidersRequest">
+		<wsdl:part name="parameters" element="ns1:getAllAppProviders"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllAppProvidersResponse">
+		<wsdl:part name="parameters" element="ns1:getAllAppProvidersResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateAppProviderRequest">
+		<wsdl:part name="parameters" element="ns1:createAppProvider"/>
+	</wsdl:message>
+	<wsdl:message name="CreateAppProviderResponse"/>
+
+	<wsdl:message name="UpdateAppProviderRequest">
+		<wsdl:part name="parameters" element="ns1:updateAppProvider"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateAppProviderResponse"/>
+
+	<wsdl:message name="GetAppProviderDetailsRequest">
+		<wsdl:part name="parameters" element="ns1:getAppProviderDetails"/>
+	</wsdl:message>
+	<wsdl:message name="GetAppProviderDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:getAppProviderDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteAppProviderRequest">
+		<wsdl:part name="parameters" element="ns1:deleteAppProvider"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteAppProviderResponse"/>
+
+	<wsdl:message name="SetAppProviderTrustabilityRequest">
+		<wsdl:part name="parameters" element="ns1:setAppProviderTrustability"/>
+	</wsdl:message>
+	<wsdl:message name="SetAppProviderTrustabilityResponse"/>
+
+
+	<wsdl:message name="GetAllApplicationsRequest">
+		<wsdl:part name="parameters" element="ns1:getAllApplications"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllApplicationsResponse">
+		<wsdl:part name="parameters" element="ns1:getAllApplicationsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="CreateApplicationRequest">
+		<wsdl:part name="parameters" element="ns1:createApplication"/>
+	</wsdl:message>
+	<wsdl:message name="CreateApplicationResponse">
+		<wsdl:part name="parameters" element="ns1:createApplicationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateApplicationRequest">
+		<wsdl:part name="parameters" element="ns1:updateApplication"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateApplicationResponse">
+		<wsdl:part name="parameters" element="ns1:updateApplicationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetApplicationDetailsRequest">
+		<wsdl:part name="parameters" element="ns1:getApplicationDetails"/>
+	</wsdl:message>
+	<wsdl:message name="GetApplicationDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:getApplicationDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteApplicationRequest">
+		<wsdl:part name="parameters" element="ns1:deleteApplication"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteApplicationResponse"/>
+
+	<wsdl:message name="GetAllAssetsRequest">
+		<wsdl:part name="parameters" element="ns1:getAllAssets"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllAssetsResponse">
+		<wsdl:part name="parameters" element="ns1:getAllAssetsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetAssetDetailsRequest">
+		<wsdl:part name="parameters" element="ns1:getAssetDetails"/>
+	</wsdl:message>
+	<wsdl:message name="GetAssetDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:getAssetDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllAPIsRequest">
+		<wsdl:part name="parameters" element="ns1:getAllAPIs"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllAPIsResponse">
+		<wsdl:part name="parameters" element="ns1:getAllAPIsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetAPIDetailsRequest">
+		<wsdl:part name="parameters" element="ns1:getAPIDetails"/>
+	</wsdl:message>
+	<wsdl:message name="GetAPIDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:getAPIDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllOBsRequest">
+		<wsdl:part name="parameters" element="ns1:getAllOBs"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllOBsResponse">
+		<wsdl:part name="parameters" element="ns1:getAllOBsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetOBDetailsRequest">
+		<wsdl:part name="parameters" element="ns1:getOBDetails"/>
+	</wsdl:message>
+	<wsdl:message name="GetOBDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:getOBDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllServicesRequest">
+		<wsdl:part name="parameters" element="ns1:getAllServices"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllServicesResponse">
+		<wsdl:part name="parameters" element="ns1:getAllServicesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetServiceDetailsRequest">
+		<wsdl:part name="parameters" element="ns1:getServiceDetails"/>
+	</wsdl:message>
+	<wsdl:message name="GetServiceDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:getServiceDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetApplicableSLAsRequest">
+		<wsdl:part name="parameters" element="ns1:getApplicableSLAs"/>
+	</wsdl:message>
+	<wsdl:message name="GetApplicableSLAsResponse">
+		<wsdl:part name="parameters" element="ns1:getApplicableSLAsResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="UserManagerPort">
+		<wsdl:operation name="getAllUsers">
+			<wsdl:input message="tns:GetAllUsersRequest"/>
+			<wsdl:output message="tns:GetAllUsersResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="createUser">
+			<wsdl:input message="tns:CreateUserRequest"/>
+			<wsdl:output message="tns:CreateUserResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="confirmUser">
+			<wsdl:input message="tns:ConfirmUserRequest"/>
+			<wsdl:output message="tns:ConfirmUserResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateUser">
+			<wsdl:input message="tns:UpdateUserRequest"/>
+			<wsdl:output message="tns:UpdateUserResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getUserDetails">
+			<wsdl:input message="tns:GetUserDetailsRequest"/>
+			<wsdl:output message="tns:GetUserDetailsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteUser">
+			<wsdl:input message="tns:DeleteUserRequest"/>
+			<wsdl:output message="tns:DeleteUserResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+
+	</wsdl:portType>
+	<wsdl:portType name="AppProviderManagerPort">
+		<wsdl:operation name="getAllAppProviders">
+			<wsdl:input message="tns:GetAllAppProvidersRequest"/>
+			<wsdl:output message="tns:GetAllAppProvidersResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="createAppProvider">
+			<wsdl:input message="tns:CreateAppProviderRequest"/>
+			<wsdl:output message="tns:CreateAppProviderResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateAppProvider">
+			<wsdl:input message="tns:UpdateAppProviderRequest"/>
+			<wsdl:output message="tns:UpdateAppProviderResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getAppProviderDetails">
+			<wsdl:input message="tns:GetAppProviderDetailsRequest"/>
+			<wsdl:output message="tns:GetAppProviderDetailsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteAppProvider">
+			<wsdl:input message="tns:DeleteAppProviderRequest"/>
+			<wsdl:output message="tns:DeleteAppProviderResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="setAppProviderTrustability">
+			<wsdl:input message="tns:SetAppProviderTrustabilityRequest"/>
+			<wsdl:output message="tns:SetAppProviderTrustabilityResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="AppManagerPort">
+		<wsdl:operation name="getAllApplications">
+			<wsdl:input message="tns:GetAllApplicationsRequest"/>
+			<wsdl:output message="tns:GetAllApplicationsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="createApplication">
+			<wsdl:input message="tns:CreateApplicationRequest"/>
+			<wsdl:output message="tns:CreateApplicationResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateApplication">
+			<wsdl:input message="tns:UpdateApplicationRequest"/>
+			<wsdl:output message="tns:UpdateApplicationResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getApplicationDetails">
+			<wsdl:input message="tns:GetApplicationDetailsRequest"/>
+			<wsdl:output message="tns:GetApplicationDetailsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteApplication">
+			<wsdl:input message="tns:DeleteApplicationRequest"/>
+			<wsdl:output message="tns:DeleteApplicationResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="AssetManagerPort">
+		<wsdl:operation name="getAllAssets">
+			<wsdl:input message="tns:GetAllAssetsRequest"/>
+			<wsdl:output message="tns:GetAllAssetsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getAssetDetails">
+			<wsdl:input message="tns:GetAssetDetailsRequest"/>
+			<wsdl:output message="tns:GetAssetDetailsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="APIManagerPort">
+		<wsdl:operation name="getAllAPIs">
+			<wsdl:input message="tns:GetAllAPIsRequest"/>
+			<wsdl:output message="tns:GetAllAPIsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getAPIDetails">
+			<wsdl:input message="tns:GetAPIDetailsRequest"/>
+			<wsdl:output message="tns:GetAPIDetailsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="OBManagerPort">
+		<wsdl:operation name="getAllOBs">
+			<wsdl:input message="tns:GetAllOBsRequest"/>
+			<wsdl:output message="tns:GetAllOBsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getOBDetails">
+			<wsdl:input message="tns:GetOBDetailsRequest"/>
+			<wsdl:output message="tns:GetOBDetailsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="ServiceManagerPort">
+		<wsdl:operation name="getAllServices">
+			<wsdl:input message="tns:GetAllServicesRequest"/>
+			<wsdl:output message="tns:GetAllServicesResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+		<wsdl:operation name="getServiceDetails">
+			<wsdl:input message="tns:GetServiceDetailsRequest"/>
+			<wsdl:output message="tns:GetServiceDetailsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="SLAManagerPort">
+		<wsdl:operation name="getApplicableSLAs">
+			<wsdl:input message="tns:GetApplicableSLAsRequest"/>
+			<wsdl:output message="tns:GetApplicableSLAsResponse"/>
+			<wsdl:fault name="ClientException" message="ucf:ClientException"/>
+			<wsdl:fault name="ServerException" message="ucf:ServerException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>
