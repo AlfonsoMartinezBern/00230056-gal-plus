@@ -58,6 +58,7 @@ public class WsGvp<T> implements InvokeWs {
         System.out.println("Operacion CreateUser de GVP");
 
         UserDataContract userDataContract = new UserDataContract();
+        userDataContract = (UserDataContract) user;
 
         wsITDregistrationFactoryService.setURL(url);
         ResultDataContractOfstring response = wsITDregistrationFactoryService.createUser(
