@@ -88,7 +88,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
 
 		wsITDregistrationService.setURL(url);
-		resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract);
+		userDataContract = createUser.getUserCreation().getEmail() == null ? CREATE_USER_REQUEST_MAPPER.userDataMapper_2(createUser.getUserCreation()) : CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
 
 		return CREATE_USER_RESPONSE_MAPPER.createUserResponseMapper(resultDataContractOfstring);
 	}
@@ -101,7 +101,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 		int platformId = endpointList.get(0).getPlatformID();
 
 		org.datacontract.schemas._2004._07.gvp_gal.UserDataContract userDataContract = new org.datacontract.schemas._2004._07.gvp_gal.UserDataContract();
-		userDataContract = CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper(createUser.getUserCreation());
+		userDataContract = createUser.getUserCreation().getEmail() == null ? CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper_2(createUser.getUserCreation()) : CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper(createUser.getUserCreation());
 		userDataContract.setServiceId(serviceID);
 
 		org.datacontract.schemas._2004._07.gvp_gal.ResultDataContractOfstring resultDataContractOfstring = new org.datacontract.schemas._2004._07.gvp_gal.ResultDataContractOfstring();
