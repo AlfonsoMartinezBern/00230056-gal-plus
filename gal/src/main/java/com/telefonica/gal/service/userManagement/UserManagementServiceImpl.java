@@ -1,5 +1,6 @@
 package com.telefonica.gal.service.userManagement;
 
+import com.telefonica.gal.factory.FactoryRouting;
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
@@ -8,6 +9,7 @@ import com.telefonica.gal.header.wsa.WSAHeader;
 import com.telefonica.gal.transform.CreateUserRequestMapper;
 import com.telefonica.gal.transform.CreateUserResponseMapper;
 import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
+import com.telefonica.gal.wsRouting.InvokeWs;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
@@ -42,6 +44,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Override
     public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser,MessageContext context ) throws Exception {
     	WSAHeader wsaHeader = new WSAHeader(context);
+		FactoryRouting factoryRouting = new FactoryRouting();
     	
     	CreateUserResponse response = new CreateUserResponse();
 
@@ -65,7 +68,10 @@ public class UserManagementServiceImpl implements UserManagementService {
         userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
 
         //Inicio pruebas factoria para probar
-		/*FactoryRoutingUserManagement factoryRoutingUserManagement = new FactoryRoutingUserManagement();*/
+		InvokeWs wsGvp = factoryRouting.getInvokeWs("GVP",CreateUser, instanceId, platformId, url,
+				userDataContract);
+		wsGvp.invoke();
+
 		//fin prueba factoria
 
 		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
