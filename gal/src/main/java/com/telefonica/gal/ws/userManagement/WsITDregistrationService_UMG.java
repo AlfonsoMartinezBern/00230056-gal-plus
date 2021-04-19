@@ -11,6 +11,7 @@ import org.datacontract.schemas._2004._07.gvp_gal.UserDataContract;
 import org.springframework.stereotype.Service;
 import org.tempuri.TDRegistrationService;
 
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -31,7 +32,7 @@ public class WsITDregistrationService_UMG implements ITDRegistrationService {
     @Override
     public ResultDataContractOfstring createUser(Integer instanceId, Integer platformId, ServiceIdType serviceId, UserDataContract user) {
 
-        TDRegistrationService registrationSoapService = new TDRegistrationService(getWdslUrl());
+	    TDRegistrationService registrationSoapService = new TDRegistrationService(getWdslUrl());
         ITDRegistrationService itdRegistrationService = registrationSoapService.getBasicHttpBindingITDRegistrationService();
         ResultDataContractOfstring result = itdRegistrationService.createUser(instanceId,platformId,user.getServiceId(),user);
 
