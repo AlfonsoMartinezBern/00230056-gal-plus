@@ -1,13 +1,25 @@
 package com.telefonica.gal.wsRouting.wsGvp;
 
+import com.telefonica.gal.mapper.gvp.CreateUserRequestMapper;
+import com.telefonica.gal.mapper.gvp.CreateUserResponseMapper;
 import com.telefonica.gal.wsRouting.InvokeWs;
+import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
+import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
 import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
+import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WsGvp<T> implements InvokeWs {
+public class WsGvp<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsGvp.class);
+
+    private final static CreateUserRequestMapper CREATE_USER_REQUEST_MAPPER = Mappers.getMapper(
+            CreateUserRequestMapper.class);
+
+    private final static CreateUserResponseMapper CREATE_USER_RESPONSE_MAPPER = Mappers.getMapper(
+            CreateUserResponseMapper.class);
+
     private final WsITDregistrationFactoryService wsITDregistrationFactoryService = new WsITDregistrationFactoryService();
 
     private int instanceId;
@@ -27,6 +39,10 @@ public class WsGvp<T> implements InvokeWs {
 
     public T getResponse() {
         return response;
+    }
+
+    public void setResponse(T response) {
+        this.response = response;
     }
 
     @Override
@@ -53,22 +69,22 @@ public class WsGvp<T> implements InvokeWs {
            default:
                break;
        }
-
-        return null;
+        return response;
     }
 
     private T invokeCreateUser(int instanceId, int platformId, T user) {
         LOGGER.info("Operacion CreateUser de GVP");
         System.out.println("Operacion CreateUser de GVP");
 
-        UserDataContract userDataContract = new UserDataContract();
-        userDataContract = (UserDataContract) user;
+        UserDataContract userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) user);
 
         wsITDregistrationFactoryService.setURL(url);
-        ResultDataContractOfstring response = wsITDregistrationFactoryService.createUser(
+        ResultDataContractOfstring responseWs = wsITDregistrationFactoryService.createUser(
                 instanceId, platformId, userDataContract);
 
-        return (T) response;
+        CreateUserResponse createUserResponse = CREATE_USER_RESPONSE_MAPPER.createUserResponseMapper(responseWs);
+
+        return (T) createUserResponse;
     }
 
     private T invokeDeleteUser(int instanceId, int platformId, String uniqueId, String newUniqueId, String reason) {
