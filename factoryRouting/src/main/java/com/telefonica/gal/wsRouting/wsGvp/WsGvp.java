@@ -25,8 +25,12 @@ public class WsGvp<T> implements InvokeWs {
         this.url = url;
     }
 
+    public T getResponse() {
+        return response;
+    }
+
     @Override
-    public Object invoke() {
+    public T invoke() {
         System.out.println("### Invocar Ws GVP ###");
        LOGGER.info("### Invocar Ws GVP ###");
 
@@ -67,23 +71,20 @@ public class WsGvp<T> implements InvokeWs {
         return (T) response;
     }
 
-
     private T invokeDeleteUser(int instanceId, int platformId, String uniqueId, String newUniqueId, String reason) {
         return null;
     }
-
 
     private T invokeEnableUser(int instanceId, int platformId, Object user) {
         return null;
     }
 
-
     private T invokeDisableUser(int instanceId, int platformId, String uniqueId, String newUniqueId, String reason) {
         return null;
     }
 
-
     private T invokeModifyUser(int instanceId, int platformId, Object user) {
         return null;
     }
+
 }

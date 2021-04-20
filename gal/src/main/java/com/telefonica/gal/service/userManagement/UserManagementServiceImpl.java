@@ -10,6 +10,7 @@ import com.telefonica.gal.transform.CreateUserRequestMapper;
 import com.telefonica.gal.transform.CreateUserResponseMapper;
 import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
 import com.telefonica.gal.wsRouting.InvokeWs;
+import com.telefonica.gal.wsRouting.wsGvp.WsGvp;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
@@ -43,8 +44,8 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     @Override
     public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser,MessageContext context ) throws Exception {
+    	FactoryRouting factoryRouting = new FactoryRouting();
     	WSAHeader wsaHeader = new WSAHeader(context);
-		FactoryRouting factoryRouting = new FactoryRouting();
     	
     	CreateUserResponse response = new CreateUserResponse();
 
@@ -67,15 +68,14 @@ public class UserManagementServiceImpl implements UserManagementService {
         UserDataContract userDataContract = new UserDataContract();
         userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
 
-        //Inicio pruebas factoria para probar
+        //******Inicio pruebas factoria para probar
+
 		InvokeWs wsGvp = factoryRouting.getInvokeWs("GVP",CreateUser, instanceId, platformId, url,
 				userDataContract);
-		wsGvp.invoke();
 
-		//fin prueba factoria
+		//******fin prueba factoria
 
 		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
-
         wsITDregistrationService.setURL(url);
 		resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract);
 
@@ -89,4 +89,5 @@ public class UserManagementServiceImpl implements UserManagementService {
 		Optional<String> emailIptv = Optional.ofNullable(email);
 		emailIptv.orElseThrow(NumberFormatException::new); // TODO Si no existe el campo email, Llamada al servicio de errores
 	}
+
 }
