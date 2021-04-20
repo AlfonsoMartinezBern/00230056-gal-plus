@@ -1,20 +1,17 @@
 package com.telefonica.gal.service.userManagement;
 
-import com.telefonica.gal.factory.FactoryRouting;
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
+import com.telefonica.gal.factory.FactoryRouting;
 import com.telefonica.gal.header.wsa.WSAHeader;
 import com.telefonica.gal.transform.CreateUserRequestMapper;
 import com.telefonica.gal.transform.CreateUserResponseMapper;
 import com.telefonica.gal.ws.userManagement.WsITDregistrationService;
 import com.telefonica.gal.wsRouting.InvokeWs;
-import com.telefonica.gal.wsRouting.wsGvp.WsGvp;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
-import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
-import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,22 +61,10 @@ public class UserManagementServiceImpl implements UserManagementService {
 		String url = endpointList.get(0).getTargetEndpoint();
 		int instanceId = endpointList.get(0).getInstanceID();
 		int platformId = endpointList.get(0).getPlatformID();
+		String endpointType = endpointList.get(0).getEndpointType();
 
-        UserDataContract userDataContract = new UserDataContract();
-        userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
-
-        //******Inicio pruebas factoria para probar
-
-		InvokeWs wsGvp = factoryRouting.getInvokeWs("GVP",CreateUser, instanceId, platformId, url,
-				userDataContract);
-
-		//******fin prueba factoria
-
-		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
-        wsITDregistrationService.setURL(url);
-		resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract);
-
-		response = CREATE_USER_RESPONSE_MAPPER.createUserResponseMapper(resultDataContractOfstring);
+		InvokeWs invokeWs = factoryRouting.getInvokeWs(endpointType, CreateUser, instanceId, platformId, url, createUser);
+		response = (CreateUserResponse) invokeWs.invoke();
 
         return response;
     }
