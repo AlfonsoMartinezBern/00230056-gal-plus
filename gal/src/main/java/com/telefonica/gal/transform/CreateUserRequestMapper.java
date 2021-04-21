@@ -10,7 +10,7 @@ public interface CreateUserRequestMapper {
 
     @Mapping(source = "userCreationType.userNickName.alias", target = "uniqueId")
     @Mapping(source = "userCreationType.email", target = "email")
-    @Mapping(source = "userCreationType.userPassword", target = "customFields")
+    @Mapping(target = "customFields", ignore = true)
     @Mapping(target = "userId", ignore = true)
     @Mapping(target = "firstName", ignore = true)
     @Mapping(target = "lastName", ignore = true)
@@ -26,7 +26,6 @@ public interface CreateUserRequestMapper {
     @Mapping(source = "userCreationType.userNickName.alias", target = "uniqueId")
     @Mapping(source = "userCreationType.userPassword", target = "customFields")
     @Mapping(target = "email", ignore = true)
-    @Mapping(target = "serviceId", ignore = true)
     @Mapping(target = "userId", ignore = true)
     @Mapping(target = "firstName", ignore = true)
     @Mapping(target = "lastName", ignore = true)
@@ -35,7 +34,8 @@ public interface CreateUserRequestMapper {
     @Mapping(target = "EWallet", ignore = true)
     @Mapping(target = "platformId", ignore = true)
     @Mapping(target = "products", ignore = true)
-    @Mapping(target = "videoServiceAdditionalInfo", ignore = true)
+    @Mapping(target = "serviceType", ignore = true)
+    @Mapping(target = "videoServiceInfo", ignore = true)
     UserDataContract userDataMapper_2(UserCreationType userCreationType);
 
 }

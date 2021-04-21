@@ -82,13 +82,13 @@ public class UserManagementServiceImpl implements UserManagementService {
 		int platformId = endpointList.get(0).getPlatformID();
 
 		UserDataContract userDataContract = new UserDataContract();
-		userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
+		userDataContract = createUser.getUserCreation().getEmail() == null ? CREATE_USER_REQUEST_MAPPER.userDataMapper_2(createUser.getUserCreation()) : CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
 		userDataContract.setServiceType(serviceID);
 
 		ResultDataContractOfstring resultDataContractOfstring = new ResultDataContractOfstring();
 
 		wsITDregistrationService.setURL(url);
-		userDataContract = createUser.getUserCreation().getEmail() == null ? CREATE_USER_REQUEST_MAPPER.userDataMapper_2(createUser.getUserCreation()) : CREATE_USER_REQUEST_MAPPER.userDataMapper(createUser.getUserCreation());
+		resultDataContractOfstring = wsITDregistrationService.createUser(instanceId, platformId, userDataContract);
 
 		return CREATE_USER_RESPONSE_MAPPER.createUserResponseMapper(resultDataContractOfstring);
 	}
