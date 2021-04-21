@@ -62,4 +62,12 @@ public class ObjectFactory {
         return new JAXBElement<ResultDataContractOfstring>(_UserCreation_ResultDataContract_QNAME, ResultDataContractOfstring.class,
                 value);
     }
+
+    //***UMG
+    @XmlElementDecl(namespace = "http://schemas.datacontract.org/2004/07/GVP.GAL.Model", name = "CustomFields")
+    public JAXBElement<org.datacontract.schemas._2004._07.gvp_gal.ArrayOfUserCustomFieldDataContract> passwordUMG(String value) {
+        return new JAXBElement(new QName("http://schemas.datacontract.org/2004/07/GVP.GAL.Model","CustomFields"),
+                String.class, value);
+    }
+
 }

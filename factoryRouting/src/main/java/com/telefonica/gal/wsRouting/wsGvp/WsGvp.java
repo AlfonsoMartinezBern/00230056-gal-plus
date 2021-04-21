@@ -6,6 +6,7 @@ import com.telefonica.gal.wsRouting.InvokeWs;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
+import com.telefonica.gal.wsdl.southbound.gvp.ServiceIdType;
 import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
@@ -28,13 +29,15 @@ public class WsGvp<T> implements InvokeWs<T> {
     private String url;
     private T user;
     private T response;
+    private T serviceID;
 
-    public WsGvp(int instanceId, int platformId, String operationId, String url, T user) {
+    public WsGvp(int instanceId, int platformId, String operationId, String url, T user, T serviceID) {
         this.instanceId = instanceId;
         this.platformId = platformId;
         this.operationId = operationId;
         this.user = user;
         this.url = url;
+        this.serviceID = serviceID;
     }
 
     public T getResponse() {
@@ -52,7 +55,7 @@ public class WsGvp<T> implements InvokeWs<T> {
 
        switch (operationId) {
            case "CreateUser":
-               response = invokeCreateUser(instanceId, platformId, user);
+               response = invokeCreateUser(instanceId, platformId, user, serviceID);
                break;
            case "DeleteUser":
                //invokeDeleteUser(instanceId, platformId, uniqueId, newUniqueId, reason);
@@ -72,11 +75,15 @@ public class WsGvp<T> implements InvokeWs<T> {
         return response;
     }
 
-    private T invokeCreateUser(int instanceId, int platformId, T user) {
+    private T invokeCreateUser(int instanceId, int platformId, T createUser, T serviceID) {
         LOGGER.info("Operacion CreateUser de GVP");
         System.out.println("Operacion CreateUser de GVP");
 
-        UserDataContract userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) user);
+        UserDataContract userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) createUser);
+        userDataContract = ((CreateUser) createUser).getUserCreation().getEmail() == null ?
+                CREATE_USER_REQUEST_MAPPER.userDataMapper_2(((CreateUser) createUser)) :
+                CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) createUser);
+        userDataContract.setServiceType((ServiceIdType) serviceID);
 
         wsITDregistrationFactoryService.setURL(url);
         ResultDataContractOfstring responseWs = wsITDregistrationFactoryService.createUser(
