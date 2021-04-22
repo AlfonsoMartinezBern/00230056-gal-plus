@@ -130,7 +130,7 @@
 								</wsdlOption>
 								<wsdlOption>
 									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
-									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation>
+									<wsdlLocation>classpath:wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdlLocation>
 									<extraargs>
 										<extraarg>-fe</extraarg>
 										<extraarg>jaxws21</extraarg>

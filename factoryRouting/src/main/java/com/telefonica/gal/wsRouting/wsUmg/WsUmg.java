@@ -23,8 +23,8 @@ public class WsUmg<T> implements InvokeWs<T> {
 
     private final WsITDregistrationFactoryUMG wsITDregistrationFactoryUMG = new WsITDregistrationFactoryUMG();
 
-    private int instanceId;
-    private int platformId;
+    private Integer instanceId;
+    private Integer platformId;
     private String operationId;
     private String url;
     private T user;
@@ -89,7 +89,7 @@ public class WsUmg<T> implements InvokeWs<T> {
 
         wsITDregistrationFactoryUMG.setURL(url);
         ResultDataContractOfstring responseWsUmg = wsITDregistrationFactoryUMG.createUser(
-                instanceId, platformId, userDataContract.getServiceId(), userDataContract);
+                instanceId, platformId, (ServiceIdType) serviceID, userDataContract);
 
         CreateUserResponse createUserResponse = CREATE_USER_RESPONSE_MAPPER_UMG.createUserResponseMapper(responseWsUmg);
 

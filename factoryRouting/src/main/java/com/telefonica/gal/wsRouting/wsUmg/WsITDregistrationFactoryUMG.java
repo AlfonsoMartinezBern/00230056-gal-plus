@@ -32,7 +32,8 @@ public class WsITDregistrationFactoryUMG implements ITDRegistrationService {
     public ResultDataContractOfstring createUser(Integer instanceId, Integer platformId, ServiceIdType serviceId, UserDataContract user) {
         TDRegistrationService registrationSoapService = new TDRegistrationService(getWdslUrl());
         ITDRegistrationService itdRegistrationService = registrationSoapService.getBasicHttpBindingITDRegistrationService();
-        ResultDataContractOfstring result = itdRegistrationService.createUser(instanceId, platformId, user.getServiceId(), user);
+        ResultDataContractOfstring result = itdRegistrationService.createUser(instanceId, platformId, serviceId, user);
+        System.out.println("######## Después de invocar el método de la interfaz ########");
 
         return result;
     }

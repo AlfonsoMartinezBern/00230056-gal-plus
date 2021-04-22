@@ -32,7 +32,7 @@ public class WsITDregistrationFactoryService implements ITDRegistrationService {
     public ResultDataContractOfstring createUser(int instanceId, int platformId, UserDataContract user) {
         RegistrationSoapService registrationSoapService = new RegistrationSoapService(getWdslUrl());
         ITDRegistrationService itdRegistrationService = registrationSoapService.getBasicHttpBindingITDRegistrationService();
-        ResultDataContractOfstring result = itdRegistrationService.createUser(instanceId,platformId,user);
+        ResultDataContractOfstring result = itdRegistrationService.createUser(instanceId, platformId, user);
 
         return result;
     }
