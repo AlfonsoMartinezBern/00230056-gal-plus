@@ -21,6 +21,7 @@ public class RoutingTableTD {
 	}
 	
 	public RoutingTDInfo search(RoutingTDKey key) {
+		String prueba = key.toString();
 		RoutingTDInfo response = routingTable.get(key.toString());
 		//System.out.println("RESPONSE:"+response);
 		return response==null || response.getEndpoints().isEmpty()? new RoutingTDInfo(null, null):response;
