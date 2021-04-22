@@ -93,7 +93,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 	private ServiceIdType getServiceId_UMG(String to){
     	if (to.contains("OTT") && to.contains("IPTV")){
-			return ServiceIdType.fromValue("OTT and IPTV ");
+			return ServiceIdType.fromValue("OTT and IPTV");
 		} else if (to.contains("IPTV")) {
 			return ServiceIdType.fromValue("IPTV");
 		} else if (to.contains("OTT")) {
@@ -104,7 +104,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 	private com.telefonica.gal.wsdl.southbound.gvp.ServiceIdType getServiceId_GVP(String to){
 		if (to.contains("OTT") && to.contains("IPTV")){
-			return com.telefonica.gal.wsdl.southbound.gvp.ServiceIdType.fromValue("OTT and IPTV ");
+			return com.telefonica.gal.wsdl.southbound.gvp.ServiceIdType.fromValue("OTTandIPTV");
 		} else if (to.contains("IPTV")) {
 			return com.telefonica.gal.wsdl.southbound.gvp.ServiceIdType.fromValue("IPTV");
 		} else if (to.contains("OTT")) {
