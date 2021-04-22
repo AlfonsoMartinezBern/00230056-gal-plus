@@ -17,6 +17,8 @@ public class FactoryRouting<T> {
                 return new WsGvp(instanceId, platformId, operationId, url, user, serviceID);
             case WsUtils.UMG:
                 return new WsUmg(instanceId, platformId, operationId, url, user, serviceID);
+            case WsUtils.BU:
+                return null; //Invocar al WsBu
         }
         return null;
     }
