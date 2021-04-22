@@ -1,0 +1,443 @@
+<!-- Release Date: January 20, 2012 --><wsdl:definitions targetNamespace="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/services" xmlns:ns="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/interfaces">
+    <wsdl:import namespace="http://www.telefonica.com/wsdl/UNICA/SOAP/OProv_Management/v7/interfaces" location="UNICA_API_SOAP_OProv_Management_interfaces_v7_1.wsdl"/>
+    <wsdl:binding name="UserManagerSOAPBinding" type="ns:UserManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllUsers">
+            <soap:operation soapAction="urn:getAllUsers"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createUser">
+            <soap:operation soapAction="urn:createUser"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="confirmUser">
+            <soap:operation soapAction="urn:confirmUser"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateUser">
+            <soap:operation soapAction="urn:updateUser"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getUserDetails">
+            <soap:operation soapAction="urn:getUserDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteUser">
+            <soap:operation soapAction="urn:deleteUser"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="AppProviderManagerSOAPBinding" type="ns:AppProviderManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllAppProviders">
+            <soap:operation soapAction="urn:getAllAppProviders"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createAppProvider">
+            <soap:operation soapAction="urn:createAppProvider"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateAppProvider">
+            <soap:operation soapAction="urn:updateAppProvider"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAppProviderDetails">
+            <soap:operation soapAction="urn:getAppProviderDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAppProvider">
+            <soap:operation soapAction="urn:deleteAppProvider"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="setAppProviderTrustability">
+            <soap:operation soapAction="urn:setAppProviderTrustability"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>        
+    </wsdl:binding>
+    <wsdl:binding name="AppManagerSOAPBinding" type="ns:AppManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllApplications">
+            <soap:operation soapAction="urn:getAllApplications"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createApplication">
+            <soap:operation soapAction="urn:createApplication"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateApplication">
+            <soap:operation soapAction="urn:updateApplication"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getApplicationDetails">
+            <soap:operation soapAction="urn:getApplicationDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteApplication">
+            <soap:operation soapAction="urn:deleteApplication"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="AssetManagerSOAPBinding" type="ns:AssetManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllAssets">
+            <soap:operation soapAction="urn:getAllAssets"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAssetDetails">
+            <soap:operation soapAction="urn:getAssetDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="APIManagerSOAPBinding" type="ns:APIManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllAPIs">
+            <soap:operation soapAction="urn:getAllAPIs"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAPIDetails">
+            <soap:operation soapAction="urn:getAPIDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="OBManagerSOAPBinding" type="ns:OBManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllOBs">
+            <soap:operation soapAction="urn:getAllOBs"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getOBDetails">
+            <soap:operation soapAction="urn:getOBDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ServiceManagerSOAPBinding" type="ns:ServiceManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllServices">
+            <soap:operation soapAction="urn:getAllServices"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getServiceDetails">
+            <soap:operation soapAction="urn:getServiceDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SLAManagerSOAPBinding" type="ns:SLAManagerPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getApplicableSLAs">
+            <soap:operation soapAction="urn:getApplicableSLAs"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ClientException">
+                <soap:fault name="ClientException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="ServerException">
+                <soap:fault name="ServerException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OProvManagementService">
+        <wsdl:port name="UserManager" binding="tns:UserManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/UserManager"/>
+        </wsdl:port>
+        <wsdl:port name="AppProviderManager" binding="tns:AppProviderManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/AppProviderManager"/>
+        </wsdl:port>
+        <wsdl:port name="AppManager" binding="tns:AppManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/AppManager"/>
+        </wsdl:port>
+        <wsdl:port name="AssetManager" binding="tns:AssetManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/AssetManager"/>
+        </wsdl:port>
+        <wsdl:port name="APIManager" binding="tns:APIManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/APIManager"/>
+        </wsdl:port>
+        <wsdl:port name="OBManager" binding="tns:OBManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/OBManager"/>
+        </wsdl:port>
+        <wsdl:port name="ServiceManager" binding="tns:ServiceManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/ServiceManager"/>
+        </wsdl:port>
+        <wsdl:port name="SLAManager" binding="tns:SLAManagerSOAPBinding">
+            <soap:address location="http://localhost/UNICA_SDP/OProv_Management/SLAManager"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

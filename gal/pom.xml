@@ -56,7 +56,6 @@
 			<artifactId>cxf-rt-bindings-soap</artifactId>
 			<version>3.3.5</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>rt</artifactId>
@@ -84,6 +83,11 @@
 		<dependency>
 			<groupId>com.telefonica.gal.client</groupId>
 			<artifactId>client-DynamicRoutingTD</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>factoryRouting</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
@@ -128,7 +132,7 @@
 										<extraarg>com.telefonica.gal.wsdl.southbound.gvp</extraarg>
 									</extraargs>
 								</wsdlOption>
-								<wsdlOption>
+								<!--<wsdlOption>
 									<wsdl>${project.basedir}/src/main/resources/wsdl/southbound/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</wsdl>
 									<wsdlLocation>classpath:wsdl/TD_RegistrationService_1.wsdl</wsdlLocation>
 									<extraargs>
@@ -136,10 +140,10 @@
 										<extraarg>jaxws21</extraarg>
 										<extraarg>-exsh</extraarg>
 										<extraarg>true</extraarg>
-										<!--<extraarg>-d</extraarg>
-										<extraarg>umg</extraarg>-->
+										&lt;!&ndash;<extraarg>-d</extraarg>
+										<extraarg>umg</extraarg>&ndash;&gt;
 									</extraargs>
-								</wsdlOption>
+								</wsdlOption>-->
 							</wsdlOptions>
 						</configuration>
 						<goals>

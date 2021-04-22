@@ -1,0 +1,95 @@
+<!-- Release Date: October 13, 2011 --><wsdl:definitions targetNamespace="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/services" xmlns:ns="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/interfaces">
+	
+	<wsdl:import namespace="http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/interfaces" location="UNICA_API_SOAP_IAM_IdentityManagement_interfaces_v2_2.wsdl"/>
+		<wsdl:binding name="IdentityManagementSOAPBinding" type="ns:IdentityManagementPort">
+			<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+	
+			<wsdl:operation name="authenticateUser">
+				<soap:operation soapAction="urn:authenticateUser"/>
+				<wsdl:input>
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="ClientException">
+					<soap:fault name="ClientException" use="literal"/>
+				</wsdl:fault>
+				<wsdl:fault name="ServerException">
+					<soap:fault name="ServerException" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+		
+			<wsdl:operation name="changePassword">
+				<soap:operation soapAction="urn:changePassword"/>
+				<wsdl:input>
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="ClientException">
+					<soap:fault name="ClientException" use="literal"/>
+				</wsdl:fault>
+				<wsdl:fault name="ServerException">
+					<soap:fault name="ServerException" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			
+			<wsdl:operation name="rememberPassword">
+				<soap:operation soapAction="urn:rememberPassword"/>
+				<wsdl:input>
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="ClientException">
+					<soap:fault name="ClientException" use="literal"/>
+				</wsdl:fault>
+				<wsdl:fault name="ServerException">
+					<soap:fault name="ServerException" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			
+			<wsdl:operation name="isCustomer">
+				<soap:operation soapAction="urn:isCustomer"/>
+				<wsdl:input>
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="ClientException">
+					<soap:fault name="ClientException" use="literal"/>
+				</wsdl:fault>
+				<wsdl:fault name="ServerException">
+					<soap:fault name="ServerException" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			
+			<wsdl:operation name="rememberUser">
+				<soap:operation soapAction="urn:rememberUser"/>
+				<wsdl:input>
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="ClientException">
+					<soap:fault name="ClientException" use="literal"/>
+				</wsdl:fault>
+				<wsdl:fault name="ServerException">
+					<soap:fault name="ServerException" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			
+	</wsdl:binding>
+	
+	<wsdl:service name="IAM_IdentityManagementService">
+		<wsdl:port name="IdentityManagement" binding="tns:IdentityManagementSOAPBinding">
+			<soap:address location="http://localhost/UNICA_SDP/IAM_IdentityManagement/IdentityManagement"/>
+		</wsdl:port>
+	</wsdl:service>
+		
+</wsdl:definitions>
