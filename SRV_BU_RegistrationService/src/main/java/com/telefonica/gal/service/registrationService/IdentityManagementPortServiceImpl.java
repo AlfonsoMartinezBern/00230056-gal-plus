@@ -1,44 +1,35 @@
 package com.telefonica.gal.service.registrationService;
 
 import com.telefonica.gal.header.wsa.WSAHeader;
-import com.telefonica.gal.ws.registrationService.WsIdentityManagementPortService;
-import com.telefonica.gal.wsdl.northbound.provManagement.AuthenticateUser;
+import com.telefonica.gal.wsdl.southbound.registration.GetAccountForDevice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.context.MessageContext;
+import com.telefonica.gal.factory.FactoryRouting;
 
 @Service
 public class IdentityManagementPortServiceImpl implements IdentityManagementPortService {
-    //private final static String AuthenticateUser = "AuthenticateUser";
 
-    // MAPPERS: private final static CreateUserRequestMapper_UMG CREATE_USER_REQUEST_MAPPER_UMG =
-    // Mappers.getMapper(CreateUserRequestMapper_UMG.class);
+    private final static String AuthenticateUser = "AuthenticateUser";
+    private final static String GVP = "GVP.GAL";
+    private final static String UMG = "UMG";
 
-    private final WsIdentityManagementPortService wsIdentityManagementPortService;
+    // @Autowired
+    // DynamicRoutingBUClient dynamicRoutingBU;
 
-    public IdentityManagementPortServiceImpl(WsIdentityManagementPortService wsIdentityManagementPortService) {
-        this.wsIdentityManagementPortService = wsIdentityManagementPortService;
-    }
+    @Autowired
+    FactoryRouting factoryRouting;
 
     @Override
-    public void callWsAuthenticateUser( AuthenticateUser authenticateUser, MessageContext context ) throws Exception {
+    public void callWsAuthenticateUser(GetAccountForDevice getAccountForDevice, MessageContext context) throws Exception {
         WSAHeader wsaHeader = new WSAHeader(context);
 
-        /* UserIdType user;
-        String password;
-        Long userRole;
-        ExtensionType additionalCredentials;
-        Holder<UserIdType> userId;
-        Holder<Boolean> pendingVerification;
-        Holder<String> verificationMeans;*/
-
         // TODO DynamicRoutingBU
+        // RoutingBUKey buKey = new RoutingBUKey(AuthenticateUser, getAccountForDevice.getInstanceId(), getAccountForDevice.getPlatformId());
+        // RoutingBUInfo routingBUInfo = DynamicRoutingBU(buKey)
 
-        //Mapper Request
-        //Llamada BUService
-
-        //Mapper Response
-
-        //wsIdentityManagementPortService.setURL(url);
-        wsIdentityManagementPortService.authenticateUser(user, password, userRole, additionalCredentials, userId, pendingVerification, verificationMeans);
+        // TODO InvokeWs
+        // InvokeWs invokeWs = factoryRouting.getInvokeWs(routingBUInfo, GetAccountForDevice);
+        // invokeWs.invoke();
     }
 }

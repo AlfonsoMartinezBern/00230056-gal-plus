@@ -25,13 +25,13 @@ import java.util.Map;
 @EnableWs
 @Configuration
 public class WsRegistrationServiceConfig extends WsConfigurerAdapter {
-    @Value("${webservice.registrationService.targetNamespace}")
+    @Value("${webservice.identityManagement.targetNamespace}")
     private String targetNamespace;
 
-    @Value("${webservice.registrationService.xsd}")
+    @Value("${webservice.identityManagement.xsd}")
     private String pathXsd;
 
-    @Value("${webservice.registrationService.uri}")
+    @Value("${webservice.identityManagement.uri}")
     private String uri;
 
     @Bean
@@ -44,10 +44,10 @@ public class WsRegistrationServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
-    @Bean(name = "userManagement")
+    @Bean(name = "identityManagement")
     public DefaultWsdl11Definition userManagement() throws Exception {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("userManagementPort");
+        wsdl11Definition.setPortTypeName("identityManagementPort");
         wsdl11Definition.setLocationUri(uri);
         wsdl11Definition.setTargetNamespace(targetNamespace);
         wsdl11Definition.setSchemaCollection(userManagementSchema());
