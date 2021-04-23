@@ -63,7 +63,6 @@ public class UserManagementServiceImpl implements UserManagementService {
 		String url = endpointList.get(0).getTargetEndpoint();
 		int instanceId = endpointList.get(0).getInstanceID();
 		int platformId = endpointList.get(0).getPlatformID();
-
 		//Invoke Factory
 		InvokeWs invokeWs = factoryRouting.getInvokeWs(GVP, CreateUser, instanceId, platformId, url, createUser, serviceID);
 		createUserResponse = (CreateUserResponse) invokeWs.invoke();
