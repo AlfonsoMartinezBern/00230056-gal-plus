@@ -1,7 +1,6 @@
 package com.telefonica.gal.api;
 
 import com.telefonica.gal.service.registrationService.IdentityManagementPortService;
-import com.telefonica.gal.wsdl.northbound.provManagement.AuthenticateUser;
 import com.telefonica.gal.wsdl.southbound.registration.GetAccountForDevice;
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
