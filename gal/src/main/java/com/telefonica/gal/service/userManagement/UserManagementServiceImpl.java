@@ -38,12 +38,12 @@ public class UserManagementServiceImpl implements UserManagementService {
     	WSAHeader wsaHeader = new WSAHeader(context);
     	
     	CreateUserResponse response = new CreateUserResponse();
-
-		if (wsaHeader.getAction().contains("IPTV")) {
+		String serviceId = wsaHeader.getTo().contains("IPTV")?"IPTV":"OTT";
+		if (serviceId.contains("IPTV")) {
 			isPresentEmail(createUser.getUserCreation().getEmail());
 		}
 
-    	RoutingTDKey tdKey = new RoutingTDKey(wsaHeader.getAction(), CreateUser, wsaHeader.getFrom());
+    	RoutingTDKey tdKey = new RoutingTDKey(serviceId, CreateUser, wsaHeader.getFrom());
 
 		RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
 
