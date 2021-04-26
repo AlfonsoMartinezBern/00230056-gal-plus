@@ -1,0 +1,16 @@
+<!-- Release Date: October, 13 2011 --><!-- This XSD defines the extension information for IAM Identity Management API to be included within --><xsd:schema targetNamespace="http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement_Extensions/v1/" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement_Extensions/v1/" xmlns:uct="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1">
+	<xsd:import namespace="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1" schemaLocation="UNICA_API_SOAP_common_types_v1_1.xsd"/>
+	
+	<xsd:element name="deviceAdditionalCredentials">    
+		<xsd:annotation>
+			<xsd:documentation> To be included as additionalCredentials element of authenticateUser primitive of IAM Identity Management API when needed </xsd:documentation>
+		</xsd:annotation>		
+		<xsd:complexType>
+        	<xsd:sequence>
+				<xsd:element name="deviceMacAddress" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="deviceGUID" type="xsd:string" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>    
+
+</xsd:schema>

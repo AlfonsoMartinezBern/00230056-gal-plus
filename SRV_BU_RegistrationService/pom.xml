@@ -34,7 +34,51 @@
 			<artifactId>rt</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-security</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.10.6</version>
+            <scope>compile</scope>
+        </dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.4.2.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>wsaHeader</artifactId>
+			<version>1.0.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>factoryRouting</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -63,7 +107,7 @@
 										<extraarg>-exsh</extraarg>
 										<extraarg>true</extraarg>
 										<extraarg>-p</extraarg>
-										<extraarg>com.telefonica.gal.wsdl.southbound.registrationservice</extraarg>
+										<extraarg>com.telefonica.gal.wsdl.southbound.registration</extraarg>
 									</extraargs>
 								</wsdlOption>
 								<wsdlOption>
