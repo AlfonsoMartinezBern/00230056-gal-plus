@@ -1,6 +1,5 @@
 package com.telefonica.gal.mapper.registrationBU;
 
-import com.telefonica.gal.wsdl.northbound.provManagement.AuthenticateUser;
 import com.telefonica.gal.wsdl.southbound.registrationservice.GetAccountForDevice;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
