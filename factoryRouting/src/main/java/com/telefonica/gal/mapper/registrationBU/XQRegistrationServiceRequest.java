@@ -10,10 +10,9 @@ public interface XQRegistrationServiceRequest {
     @Mapping(target = "user.ipAddress.ipv4", source = "getAccountForDevice.IP")
     @Mapping(target = "password", expression = "java(getPassword(getAccountForDevice))")
     @Mapping(target = "userRole", ignore = true)
-    @Mapping(target = "additionalCredentials", ignore = true) // TODO falta mapper con clase propia
-   /* @Mapping(source = "getAccountForDevice.mac", target = "additionalCredentials.")
-    @Mapping(source = "getAccountForDevice.guid", target = "additionalCredentials.")*/
-    AuthenticateUser getAccountForDeviceToAuthenticateUser(GetAccountForDevice getAccountForDevice);
+    @Mapping(source = "getAccountForDevice.MAC", target = "deviceAdditionalCredentials.deviceMacAddress")
+    @Mapping(source = "getAccountForDevice.GUID", target = "deviceAdditionalCredentials.deviceGUID")
+    AuthenticateUserExtends getAccountForDeviceToAuthenticateUser(GetAccountForDevice getAccountForDevice);
 
    default String getPassword(final GetAccountForDevice getAccountForDevice) {
        String password = "";
