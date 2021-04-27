@@ -4,12 +4,12 @@ import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
-import com.telefonica.gal.factory.FactoryRouting;
+import com.telefonica.gal.factory.FactoryTD;
 import com.telefonica.gal.header.wsa.WSAHeader;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
-import com.telefonica.gal.wsdl.southbound.gvp.ServiceIdType;
+import com.telefonica.serviceid.ServiceIdType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.context.MessageContext;
@@ -28,7 +28,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     DynamicRoutingTDClient dynamicRoutingTD;
 
     @Autowired
-	FactoryRouting factoryRouting;
+	FactoryTD factoryTD;
 
     public UserManagementServiceImpl() {
 	}
@@ -64,7 +64,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 		int instanceId = endpointList.get(0).getInstanceID();
 		int platformId = endpointList.get(0).getPlatformID();
 		//Invoke Factory
-		InvokeWs invokeWs = factoryRouting.getInvokeWs(GVP, CreateUser, instanceId, platformId, url, createUser, serviceID);
+		InvokeWs invokeWs = factoryTD.getInvokeWs(GVP, CreateUser, instanceId, platformId, url, createUser, serviceID);
 		createUserResponse = (CreateUserResponse) invokeWs.invoke();
 
 		return createUserResponse;
@@ -79,7 +79,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 		int platformId = endpointList.get(0).getPlatformID();
 
 		//Invoke Factory
-		InvokeWs invokeWs = factoryRouting.getInvokeWs(UMG, CreateUser, instanceId, platformId, url, createUser, serviceID);
+		InvokeWs invokeWs = factoryTD.getInvokeWs(UMG, CreateUser, instanceId, platformId, url, createUser, serviceID);
 		createUserResponse = (CreateUserResponse) invokeWs.invoke();
 
 		return createUserResponse;
