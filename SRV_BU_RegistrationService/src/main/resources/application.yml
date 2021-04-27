@@ -2,22 +2,10 @@ server:
  port: 8889
 
 webservice:
- registrationService:
-  uri: "/ws"
-  targetNamespace: "http://www.telefonica.com/BU_RegistrationService/Import"
-  xsd: "GetAccountForDevice.xsd"
- identityManagement_common:
-  uri: "/ws"
-  targetNamespace: "http://www.telefonica.com/schemas/UNICA/SOAP/common/v1"
-  xsd: "UNICA_API_SOAP_common_types_v1_1.xsd"
  identityManagement:
   uri: "/ws"
-  targetNamespace: "http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement/v2/"
-  xsd: "UNICA_API_SOAP_IAM_IdentityManagement_types_v2_2.xsd"
- identityManagement_Extensions:
-  uri: "/ws"
-  targetNamespace: "http://www.telefonica.com/schemas/UNICA/SOAP/IAM_IdentityManagement_Extensions/v1/"
-  xsd: "UNICA_API_SOAP_IAM_IdentityManagement_Extensions_v1_0.xsd"
+  targetNamespace: "http://www.telefonica.com/BU_RegistrationService/Import"
+  xsd: "wsdl/southbound/BU_RegistrationService/GetAccountForDevice.xsd"
  
 dynamicRouting:
   uri:

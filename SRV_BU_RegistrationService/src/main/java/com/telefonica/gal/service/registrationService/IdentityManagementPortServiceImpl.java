@@ -1,11 +1,12 @@
 package com.telefonica.gal.service.registrationService;
 
+import com.telefonica.gal.factory.FactoryBU;
 import com.telefonica.gal.header.wsa.WSAHeader;
+import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.wsdl.southbound.registration.GetAccountForDevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.context.MessageContext;
-import com.telefonica.gal.factory.FactoryRouting;
 
 @Service
 public class IdentityManagementPortServiceImpl implements IdentityManagementPortService {
@@ -18,7 +19,7 @@ public class IdentityManagementPortServiceImpl implements IdentityManagementPort
     // DynamicRoutingBUClient dynamicRoutingBU;
 
     @Autowired
-    FactoryRouting factoryRouting;
+    FactoryBU factoryRouting;
 
     @Override
     public void callWsAuthenticateUser(GetAccountForDevice getAccountForDevice, MessageContext context) throws Exception {
@@ -29,7 +30,7 @@ public class IdentityManagementPortServiceImpl implements IdentityManagementPort
         // RoutingBUInfo routingBUInfo = DynamicRoutingBU(buKey)
 
         // TODO InvokeWs
-        // InvokeWs invokeWs = factoryRouting.getInvokeWs(routingBUInfo, GetAccountForDevice);
-        // invokeWs.invoke();
+        InvokeWs invokeWs = factoryRouting.getInvokeWs(getAccountForDevice);
+        invokeWs.invoke();
     }
 }

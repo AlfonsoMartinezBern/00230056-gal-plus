@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @Endpoint
 public class ApiRegistrationServiceImpl implements ApiRegistrationService {
 
-    public static final String NAMESPACE = "http://www.telefonica.com/wsdl/UNICA/SOAP/IAM_IdentityManagement/v2/interfaces";
+    public static final String NAMESPACE = "http://www.telefonica.com/BU_RegistrationService/";
 
     private final IdentityManagementPortService identityManagementPortService;
 

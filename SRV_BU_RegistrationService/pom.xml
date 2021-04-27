@@ -97,6 +97,11 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>UNICA_BU_OProv_Management_Routing</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 	</dependencies>
 

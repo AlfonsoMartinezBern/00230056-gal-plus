@@ -29,8 +29,14 @@ public class WsRegistrationBU<T> implements InvokeWs {
     }
 
     @Override
-    public T invoke() throws ServerException, ClientException {
-        response = invokeAuthenticateUser(getAccountForDevice);
+    public T invoke() {
+        try {
+            response = invokeAuthenticateUser(getAccountForDevice);
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
         return response;
     }
 
