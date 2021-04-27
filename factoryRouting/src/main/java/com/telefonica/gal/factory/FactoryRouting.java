@@ -1,10 +1,9 @@
 package com.telefonica.gal.factory;
 
+import com.telefonica.gal.interfaceWs.InvokeWs;
+import com.telefonica.gal.interfaceWs.wsGvp.WsGvp;
+import com.telefonica.gal.interfaceWs.wsUmg.WsUmg;
 import com.telefonica.gal.utils.WsUtils;
-import com.telefonica.gal.wsRouting.InvokeWs;
-import com.telefonica.gal.wsRouting.wsGvp.WsGvp;
-import com.telefonica.gal.wsRouting.wsRegistrationBU.WsRegistrationBU;
-import com.telefonica.gal.wsRouting.wsUmg.WsUmg;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +18,7 @@ public class FactoryRouting<T> {
             case WsUtils.UMG:
                 return new WsUmg(instanceId, platformId, operationId, url, user, serviceID);
             case WsUtils.BU:
-                return new WsRegistrationBU(user);
+                //return new WsRegistrationBU(user);
         }
         return null;
     }
