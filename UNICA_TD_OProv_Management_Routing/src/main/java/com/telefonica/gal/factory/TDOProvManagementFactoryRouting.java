@@ -7,18 +7,14 @@ import com.telefonica.gal.utils.WsUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FactoryRouting<T> {
+public class TDOProvManagementFactoryRouting<T> {
 
-    public InvokeWs getInvokeWs(String endPoint, String operationId, int instanceId, int platformId, String url,
-                                T user, T serviceID) {
-
+    public InvokeWs<T> getInvokeWs(String endPoint, String operationId, int instanceId, int platformId, String url, T user, T serviceID) {
         switch (endPoint) {
             case WsUtils.GVP:
                 return new WsGvp(instanceId, platformId, operationId, url, user, serviceID);
             case WsUtils.UMG:
                 return new WsUmg(instanceId, platformId, operationId, url, user, serviceID);
-            case WsUtils.BU:
-                //return new WsRegistrationBU(user);
         }
         return null;
     }
