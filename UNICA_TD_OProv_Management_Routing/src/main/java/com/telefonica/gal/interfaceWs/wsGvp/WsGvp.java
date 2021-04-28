@@ -1,5 +1,6 @@
 package com.telefonica.gal.interfaceWs.wsGvp;
 
+import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.gvp.CreateUserRequestMapper;
@@ -29,20 +30,20 @@ public class WsGvp<T> implements InvokeWs<T> {
     private final WsITDregistrationFactoryService wsITDregistrationFactoryService = new WsITDregistrationFactoryService();
 
     @Autowired
-    RoutingTDInfo routingTD;
+    Endpoint endpointTD;
 
     private int instanceId;
     private int platformId;
     private String operationId;
     private String url;
-    private T routingTDInfo;
+    private T endPoint;
     private T request;
     private T response;
     private T serviceID;
     private Map<T,T> hashMap;
 
-    public WsGvp(T routingTDInfo, T request, Map<T, T> hashMap) {
-        this.routingTDInfo = routingTDInfo;
+    public WsGvp(T endPoint, T request, Map<T, T> hashMap) {
+        this.endPoint = endPoint;
         this.request = request;
         this.hashMap = hashMap;
     }
@@ -61,7 +62,7 @@ public class WsGvp<T> implements InvokeWs<T> {
 
        switch (operationId) {
            case "CreateUser":
-               response = invokeCreateUser(routingTDInfo, request, hashMap);
+               response = invokeCreateUser(endPoint, request, hashMap);
                break;
            case "DeleteUser":
                //invokeDeleteUser(instanceId, platformId, uniqueId, newUniqueId, reason);
@@ -82,12 +83,12 @@ public class WsGvp<T> implements InvokeWs<T> {
     }
 
     private T invokeCreateUser(T routingTDInfo, T request, Map<T, T> map) {
-        routingTD = (RoutingTDInfo) routingTDInfo;
+        endpointTD = (Endpoint) routingTDInfo;
         serviceID = map.get("ServiceId");
 
-        url = routingTD.getEndpoints().get(0).getTargetEndpoint();
-        instanceId = routingTD.getEndpoints().get(0).getInstanceID();
-        platformId = routingTD.getEndpoints().get(0).getPlatformID();
+        url = endpointTD.getTargetEndpoint();
+        instanceId = endpointTD.getInstanceID();
+        platformId = endpointTD.getPlatformID();
 
         UserDataContract userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) request);
         userDataContract = ((CreateUser) request).getUserCreation().getEmail() == null ?
