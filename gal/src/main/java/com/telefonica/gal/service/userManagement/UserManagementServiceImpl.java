@@ -1,7 +1,6 @@
 package com.telefonica.gal.service.userManagement;
 
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
-import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.factory.FactoryTD;
@@ -14,7 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.context.MessageContext;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -36,9 +36,10 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Override
     public CreateUserResponse callWsUserManagementCreateUser(CreateUser createUser,MessageContext context ) throws Exception {
     	WSAHeader wsaHeader = new WSAHeader(context);
-    	
-    	CreateUserResponse response = new CreateUserResponse();
+    	CreateUserResponse createUserResponse = new CreateUserResponse();
+
 		String serviceId = wsaHeader.getTo().contains("IPTV")?"IPTV":"OTT";
+
 		if (serviceId.contains("IPTV")) {
 			isPresentEmail(createUser.getUserCreation().getEmail());
 		}
@@ -46,44 +47,28 @@ public class UserManagementServiceImpl implements UserManagementService {
     	RoutingTDKey tdKey = new RoutingTDKey(serviceId, CreateUser, wsaHeader.getFrom());
 
 		RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
+		Object serviceIdType = new Object();
 
 		switch (routingTDInfo.getEndpoints().get(0).getEndpointType()) {
 			case GVP:
-				return callWsUserManagementCreateUser_GVP(routingTDInfo, createUser, getServiceId_GVP(wsaHeader.getTo()));
+				serviceIdType = getServiceId_GVP(wsaHeader.getTo());
+				 break;
 			case UMG:
-				return callWsUserManagementCreateUser_UMG(routingTDInfo, createUser, getServiceId_UMG(wsaHeader.getTo()));
+				serviceIdType = getServiceId_UMG(wsaHeader.getTo());
+				 break;
+			default:
 		}
 
-        return response;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ServiceId", serviceIdType);
+		map.put("Operation", CreateUser);
+
+		//Invoke Factory
+		InvokeWs invokeWs = factoryTD.getInvokeWs(routingTDInfo, createUser, map);
+		createUserResponse = (CreateUserResponse) invokeWs.invoke();
+
+		return createUserResponse;
     }
-	private CreateUserResponse callWsUserManagementCreateUser_GVP(RoutingTDInfo routingTDInfo, CreateUser createUser, com.telefonica.gal.wsdl.southbound.gvp.ServiceIdType serviceID) throws Exception {
-    	CreateUserResponse createUserResponse = new CreateUserResponse();
-		List<Endpoint> endpointList = routingTDInfo.getEndpoints();
-
-		String url = endpointList.get(0).getTargetEndpoint();
-		int instanceId = endpointList.get(0).getInstanceID();
-		int platformId = endpointList.get(0).getPlatformID();
-		//Invoke Factory
-		InvokeWs invokeWs = factoryTD.getInvokeWs(GVP, CreateUser, instanceId, platformId, url, createUser, serviceID);
-		createUserResponse = (CreateUserResponse) invokeWs.invoke();
-
-		return createUserResponse;
-	}
-
-	private CreateUserResponse callWsUserManagementCreateUser_UMG(RoutingTDInfo routingTDInfo, CreateUser createUser, ServiceIdType serviceID) throws Exception {
-    	CreateUserResponse createUserResponse = new CreateUserResponse();
-		List<Endpoint> endpointList = routingTDInfo.getEndpoints();
-
-		String url = endpointList.get(0).getTargetEndpoint();
-		int instanceId = endpointList.get(0).getInstanceID();
-		int platformId = endpointList.get(0).getPlatformID();
-
-		//Invoke Factory
-		InvokeWs invokeWs = factoryTD.getInvokeWs(UMG, CreateUser, instanceId, platformId, url, createUser, serviceID);
-		createUserResponse = (CreateUserResponse) invokeWs.invoke();
-
-		return createUserResponse;
-	}
 
 	private void isPresentEmail(final String email) {
 		Optional<String> emailIptv = Optional.ofNullable(email);

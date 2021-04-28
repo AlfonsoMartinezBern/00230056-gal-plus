@@ -86,6 +86,13 @@
 			<artifactId>factoryRouting</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.telefonica.gal.client</groupId>
+			<artifactId>client-DynamicRoutingTD</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

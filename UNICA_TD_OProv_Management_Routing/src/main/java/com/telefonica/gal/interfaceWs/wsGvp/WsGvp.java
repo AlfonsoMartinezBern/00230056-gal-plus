@@ -1,8 +1,9 @@
 package com.telefonica.gal.interfaceWs.wsGvp;
 
+import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
+import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.gvp.CreateUserRequestMapper;
 import com.telefonica.gal.mapper.gvp.CreateUserResponseMapper;
-import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.gal.wsdl.southbound.gvp.ResultDataContractOfstring;
@@ -11,6 +12,10 @@ import com.telefonica.gal.wsdl.southbound.gvp.UserDataContract;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class WsGvp<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsGvp.class);
@@ -23,21 +28,23 @@ public class WsGvp<T> implements InvokeWs<T> {
 
     private final WsITDregistrationFactoryService wsITDregistrationFactoryService = new WsITDregistrationFactoryService();
 
+    @Autowired
+    RoutingTDInfo routingTD;
+
     private int instanceId;
     private int platformId;
     private String operationId;
     private String url;
-    private T user;
+    private T routingTDInfo;
+    private T request;
     private T response;
     private T serviceID;
+    private Map<T,T> hashMap;
 
-    public WsGvp(int instanceId, int platformId, String operationId, String url, T user, T serviceID) {
-        this.instanceId = instanceId;
-        this.platformId = platformId;
-        this.operationId = operationId;
-        this.user = user;
-        this.url = url;
-        this.serviceID = serviceID;
+    public WsGvp(T routingTDInfo, T request, Map<T, T> hashMap) {
+        this.routingTDInfo = routingTDInfo;
+        this.request = request;
+        this.hashMap = hashMap;
     }
 
     public T getResponse() {
@@ -50,12 +57,11 @@ public class WsGvp<T> implements InvokeWs<T> {
 
     @Override
     public T invoke() {
-        System.out.println("### Invocar Ws GVP ###");
-       LOGGER.info("### Invocar Ws GVP ###");
+        operationId = hashMap.get("Operation").toString();
 
        switch (operationId) {
            case "CreateUser":
-               response = invokeCreateUser(instanceId, platformId, user, serviceID);
+               response = invokeCreateUser(routingTDInfo, request, hashMap);
                break;
            case "DeleteUser":
                //invokeDeleteUser(instanceId, platformId, uniqueId, newUniqueId, reason);
@@ -75,14 +81,18 @@ public class WsGvp<T> implements InvokeWs<T> {
         return response;
     }
 
-    private T invokeCreateUser(int instanceId, int platformId, T createUser, T serviceID) {
-        LOGGER.info("Operacion CreateUser de GVP");
-        System.out.println("Operacion CreateUser de GVP");
+    private T invokeCreateUser(T routingTDInfo, T request, Map<T, T> map) {
+        routingTD = (RoutingTDInfo) routingTDInfo;
+        serviceID = map.get("ServiceId");
 
-        UserDataContract userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) createUser);
-        userDataContract = ((CreateUser) createUser).getUserCreation().getEmail() == null ?
-                CREATE_USER_REQUEST_MAPPER.userDataMapper_2(((CreateUser) createUser)) :
-                CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) createUser);
+        url = routingTD.getEndpoints().get(0).getTargetEndpoint();
+        instanceId = routingTD.getEndpoints().get(0).getInstanceID();
+        platformId = routingTD.getEndpoints().get(0).getPlatformID();
+
+        UserDataContract userDataContract = CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) request);
+        userDataContract = ((CreateUser) request).getUserCreation().getEmail() == null ?
+                CREATE_USER_REQUEST_MAPPER.userDataMapper_2(((CreateUser) request)) :
+                CREATE_USER_REQUEST_MAPPER.userDataMapper((CreateUser) request);
         userDataContract.setServiceType((ServiceIdType) serviceID);
 
         wsITDregistrationFactoryService.setURL(url);

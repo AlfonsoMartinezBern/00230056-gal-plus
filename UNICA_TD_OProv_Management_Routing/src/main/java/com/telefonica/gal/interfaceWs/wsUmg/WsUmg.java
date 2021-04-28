@@ -1,5 +1,6 @@
 package com.telefonica.gal.interfaceWs.wsUmg;
 
+import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.mapper.umg.CreateUserRequestMapper_UMG;
 import com.telefonica.gal.mapper.umg.CreateUserResponseMapper_UMG;
 import com.telefonica.gal.interfaceWs.InvokeWs;
@@ -11,6 +12,9 @@ import org.datacontract.schemas._2004._07.gvp_gal.UserDataContract;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Map;
 
 public class WsUmg<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsUmg.class);
@@ -23,13 +27,24 @@ public class WsUmg<T> implements InvokeWs<T> {
 
     private final WsITDregistrationFactoryUMG wsITDregistrationFactoryUMG = new WsITDregistrationFactoryUMG();
 
+    @Autowired
+    RoutingTDInfo routingTD;
+
     private Integer instanceId;
     private Integer platformId;
     private String operationId;
     private String url;
-    private T user;
+    private T routingTDInfo;
+    private T request;
     private T response;
     private T serviceID;
+    private Map<T,T> hashMap;
+
+    public WsUmg(T routingTDInfo, T request, Map<T, T> hashMap ) {
+        this.routingTDInfo = routingTDInfo;
+        this.request = request;
+        this.hashMap = hashMap;
+    }
 
     public T getResponse() {
         return response;
@@ -41,11 +56,11 @@ public class WsUmg<T> implements InvokeWs<T> {
 
     @Override
     public T invoke() {
-        System.out.println("### Invocar Ws UMG ###");
+        operationId = hashMap.get("Operation").toString();
 
         switch (operationId) {
             case "CreateUser":
-                response = invokeCreateUser(instanceId, platformId, user, serviceID);
+                response = invokeCreateUser(routingTDInfo, request, hashMap);
                 break;
             case "DeleteUser":
                 //invokeDeleteUser(instanceId, platformId, uniqueId, newUniqueId, reason);
@@ -65,26 +80,22 @@ public class WsUmg<T> implements InvokeWs<T> {
         return response;
     }
 
-    public WsUmg(int instanceId, int platformId, String operationId, String url, T user, T serviceID) {
-        this.instanceId = instanceId;
-        this.platformId = platformId;
-        this.operationId = operationId;
-        this.user = user;
-        this.url = url;
-        this.serviceID = serviceID;
-    }
-
     private T invokeRegisterDevices(Integer instanceId, Integer platformId, T serviceId, String uniqueId, T deviceInfoList) {
         return null;
     }
 
-    private T invokeCreateUser(Integer instanceId, Integer platformId, T createUser, T serviceID) {
-        System.out.println("Operacion CreateUser de UMG");
+    private T invokeCreateUser(T routingTDInfo, T request, Map<T, T> map) {
+        routingTD = (RoutingTDInfo) routingTDInfo;
+        serviceID = map.get("ServiceId");
+
+        url = routingTD.getEndpoints().get(0).getTargetEndpoint();
+        instanceId = routingTD.getEndpoints().get(0).getInstanceID();
+        platformId = routingTD.getEndpoints().get(0).getPlatformID();
         UserDataContract userDataContract = new UserDataContract();
 
-        userDataContract = ((CreateUser) createUser).getUserCreation().getEmail() == null ?
-                CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper_2(((CreateUser) createUser)) :
-                CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper((CreateUser) createUser);
+        userDataContract = ((CreateUser) request).getUserCreation().getEmail() == null ?
+                CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper_2(((CreateUser) request)) :
+                CREATE_USER_REQUEST_MAPPER_UMG.userDataMapper((CreateUser) request);
         userDataContract.setServiceId((ServiceIdType) serviceID);
 
         wsITDregistrationFactoryUMG.setURL(url);
