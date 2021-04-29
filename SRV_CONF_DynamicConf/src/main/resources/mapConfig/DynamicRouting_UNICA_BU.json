@@ -8,7 +8,7 @@
     "platformID": 1,
     "operationType": "CreateUser",
     "endpoints": [{
-    "id": "03",
+    "id": "01",
     "uri": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
 	"targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
 	"wssUser": "gvp_app",
@@ -16,7 +16,7 @@
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "GVP.GAL"
     }],
-     "flows": [{"step":1,"endpointID":"03","type":"source","active":true,"synchronous":true}]
+     "flows": [{"step":1,"endpointID":"01","type":"source","active":true,"synchronous":true}]
   },
   {
     "instanceID": 1,
@@ -30,8 +30,16 @@
 	"wssPassword": "gvp_123456",
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "GVP.GAL"
+    },{
+    "id": "02",
+    "uri": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+	"targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+	"wssUser": "gvp_app",
+	"wssPassword": "gvp_123456",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "GVP.GAL"
     }],
-     "flows": [{"step":1,"endpointID":"03","type":"source","active":true}]
+     "flows": [{"step":1,"endpointID":"03","type":"source","active":true},{"step":1,"endpointID":"02","type":"replica","active":false}]
   }
 ]
 }

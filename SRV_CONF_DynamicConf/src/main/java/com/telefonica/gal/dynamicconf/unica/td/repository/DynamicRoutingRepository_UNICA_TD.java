@@ -18,8 +18,8 @@ public class DynamicRoutingRepository_UNICA_TD extends DynamicConfigRepository<D
 
 	@Override
 	public boolean isValid() {
-		return true;
-//		return DynamicRoutingRepository_UNICA_TD_Routes_Validator.isValid(getCre);
+
+		return DynamicRoutingRepository_UNICA_TD_Routes_Validator.isValid(getRepository().getRoutes());
 	}
 
 

@@ -14,13 +14,12 @@ public class DynamicRoutingRepository_UNICA_BU extends DynamicConfigRepository<D
 
 	public DynamicRoutingRepository_UNICA_BU() {
 		super(new DynamicRoutingJSON_UNICA_BU());
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public boolean isValid() {
-		// TODO Auto-generated method stub
-		return true;
+		return DynamicRoutingRepository_UNICA_BU_Validator.isValid(getRepository().getRoutes());
+	
 	}
 
 	@Override

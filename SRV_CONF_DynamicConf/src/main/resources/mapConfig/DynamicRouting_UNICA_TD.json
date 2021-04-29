@@ -22,7 +22,7 @@
     "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
     "endpointType": "GVP.GAL"
     }],
-     "flows": [{"step":1,"endpointID":"03","type":"source","active":false},{"step":2,"endpointID":"02","type":"replica","active":true}]
+     "flows": [{"step":1,"endpointID":"03","type":"source","active":false,"synchronous":false},{"step":2,"endpointID":"02","type":"replica","active":true}]
   },
   {
     "serviceID": "OTT",
@@ -51,56 +51,7 @@
     "alterFlow": "SERIE_SEASON_TO_MOVIE",
     "endpointType": "UMG"
     }],
-     "flows":[]
-  },
-  {
-    "serviceID": "OTT",
-    "operationTD": "CreateUser",
-	"uri": "http://telefonica.com/OB1/BSS/SIMULATOR/OProv_Management",
-    "endpoints": [{
-    "id": "01",
-    "instanceID": 2,
-    "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService5",
-    "alterFlow": "SERIE_SEASON_TO_MOVIE",
-    "endpointType": "UMG"
-  }],
-   "flows":[]
-  },
-  {
-    "serviceID": "OTT",
-    "operationTD": "CreateUser",
-    "uri": "http://telefonica.com/OB2/BSS/MULTIPLE/TEST",
-    "endpoints": [{
-    "id": "01",
-    "instanceID": 2,
-    "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService6",
-    "alterFlow": "SERIE_SEASON_TO_MOVIE",
-    "endpointType": "GVP.GAL"
-    },
-    {
-    "id": "02",
-    "instanceID": 2,
-    "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService7",
-    "alterFlow": "SERIE_SEASON_TO_MOVIE",
-    "endpointType": "UMG"
-    }],
-     "flows": [{"step":1,"endpointID":"01","type":"source","active":true},{"step":2,"endpointID":"02","type":"replica","active":true}]
-  },
-  {
-    "serviceID": "OTT",
-    "operationTD": "CreateUser",
-    "uri": "http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERROR",
-    "endpoints": [{
-    "instanceID": 2,
-    "platformID": 2,
-    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService8",
-    "alterFlow": "SERIE_SEASON_TO_MOVIE",
-    "endpointType": "GVP.GAL"
-    }],
-     "flows": []
+    "flows":[]
   }
 ]
 }

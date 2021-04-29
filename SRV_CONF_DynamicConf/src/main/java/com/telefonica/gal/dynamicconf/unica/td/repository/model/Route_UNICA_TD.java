@@ -55,6 +55,9 @@ public class Route_UNICA_TD {
 	
 	@JsonIgnore
 	public boolean isFlowForRoute() {
+		if(this.flows==null) {
+			return true;
+		}
 		for (Flow flow : this.flows) {
 			if (flow.isActive() && !this.existRouteID(flow.getEndpointID())) {
 				return false;
