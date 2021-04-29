@@ -1,0 +1,4 @@
+dynamicConfig:
+  unica:
+    bu:
+      uri: http://localhost:8081/dynamicConfig/unica/bu

@@ -1,0 +1,20 @@
+{ 
+"version":"0.0.1",
+"info":"created 2021-03-22",
+"routes":
+[
+  {
+    "serviceID": "Test006",
+    "operationTD": "testAllJsonRequiredParameters_failIdOnEndpoint",
+    "uri": "http://telefonica.com/test006",
+    "endpoints": [{
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://10.0.2.2:9999/video-simulator-web/TD_RegistrationService3",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "GVP.GAL"
+    }],
+    "flows":[{"step":1,"endpointID":"01","type":"source","active":true}]
+  }
+]
+}

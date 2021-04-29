@@ -1,0 +1,1099 @@
+{
+	"info": {
+		"_postman_id": "40cf94e3-2df9-4afa-9af3-ada8a911c83b",
+		"name": "GAL+",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DynamicConfig",
+			"item": [
+				{
+					"name": "UNICA_TD_Routing",
+					"item": [
+						{
+							"name": "Charge ConfigurationFile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/charge",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"charge"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "isValid Configuración",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/isValidConfigFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"isValidConfigFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getInfo ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/getInfo",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"getInfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "showFile ConfigurationFile Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/showFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"showFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serviceID\": \"IPTV\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERRORx",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERRORx"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UNICA_BU_Routing",
+					"item": [
+						{
+							"name": "Charge ConfigurationFile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/charge",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"charge"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "isValid Configuración",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/isValidConfigFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"isValidConfigFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getInfo ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/getInfo",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"getInfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "showFile ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/showFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"showFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/search?instanceID=1&platformID=1&operationType=CreateUser",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"search"
+									],
+									"query": [
+										{
+											"key": "instanceID",
+											"value": "1"
+										},
+										{
+											"key": "platformID",
+											"value": "1"
+										},
+										{
+											"key": "operationType",
+											"value": "CreateUser"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/search?instanceID=1&platformID=2&operationType=http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"search"
+									],
+									"query": [
+										{
+											"key": "instanceID",
+											"value": "1"
+										},
+										{
+											"key": "platformID",
+											"value": "2"
+										},
+										{
+											"key": "operationType",
+											"value": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serviceID\": \"IPTV\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERROR",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERROR"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UNICA_TD_Credentials",
+					"item": [
+						{
+							"name": "Charge ConfigurationFile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/wsse/charge",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"wsse",
+										"charge"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "isValid Configuración",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/wsse/isValidConfigFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"wsse",
+										"isValidConfigFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getInfo ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/wsse/getInfo",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"wsse",
+										"getInfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "showFile ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/wsse/showFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"wsse",
+										"showFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/wsse/search",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"wsse",
+										"search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dinamicRoutingTD/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dinamicRoutingTD",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serviceID\": \"IPTV\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dinamicRoutingTD/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERROR",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dinamicRoutingTD",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERROR"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UNICA_BU_Error",
+					"item": [
+						{
+							"name": "Charge ConfigurationFile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/error/charge",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"error",
+										"charge"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "isValid Configuración",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/error/isValidConfigFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"error",
+										"isValidConfigFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getInfo ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/error/getInfo",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"error",
+										"getInfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "showFile ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/bu/error/showFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"bu",
+										"error",
+										"showFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/error/search?short_description=InvalidUpdateOTTDataCombination&interfaceType=null",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"error",
+										"search"
+									],
+									"query": [
+										{
+											"key": "short_description",
+											"value": "InvalidUpdateOTTDataCombination"
+										},
+										{
+											"key": "interfaceType",
+											"value": "null"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dinamicRoutingTD/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dinamicRoutingTD",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Test1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serviceID\": \"IPTV\",\r\n    \"operationTD\": \"CreateUser\",\r\n    \"uri\": \"http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dinamicRoutingTD/search?serviceID=OTT&operationTD=CreateUser&uri=http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERROR",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dinamicRoutingTD",
+										"search"
+									],
+									"query": [
+										{
+											"key": "serviceID",
+											"value": "OTT"
+										},
+										{
+											"key": "operationTD",
+											"value": "CreateUser"
+										},
+										{
+											"key": "uri",
+											"value": "http://telefonica.com/OB2/BSS/MULTIPLE/TEST_ERROR"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UNICA_TD_Error",
+					"item": [
+						{
+							"name": "Charge ConfigurationFile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/error/charge",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"error",
+										"charge"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "isValid Configuración",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/error/isValidConfigFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"error",
+										"isValidConfigFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getInfo ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/wsse/getInfo",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"wsse",
+										"getInfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "showFile ConfigurationFile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/error/showFile",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"error",
+										"showFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/error/search?short_description=InvalidUpdateOTTDataCombination&interfaceType=GVP.GAL",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"error",
+										"search"
+									],
+									"query": [
+										{
+											"key": "short_description",
+											"value": "InvalidUpdateOTTDataCombination"
+										},
+										{
+											"key": "interfaceType",
+											"value": "GVP.GAL"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar fault",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/dynamicConfig/unica/td/error/search?short_description=InvalidUpdateOTTDataCombination&interfaceType=NOT_EXIST",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"dynamicConfig",
+										"unica",
+										"td",
+										"error",
+										"search"
+									],
+									"query": [
+										{
+											"key": "short_description",
+											"value": "InvalidUpdateOTTDataCombination"
+										},
+										{
+											"key": "interfaceType",
+											"value": "NOT_EXIST"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

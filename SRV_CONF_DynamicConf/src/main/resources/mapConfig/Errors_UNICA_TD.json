@@ -1,0 +1,52 @@
+{
+	"version": "0.0.1",
+	"info": "Error UNICA TD created 2021-04-26",
+	"errors": [
+		{
+			"short_description": "InvalidUpdateOTTDataCombination",
+			"interfaceType": "UMG",
+			"errorInfo": {
+				"error_code": "00",
+				"long_description": "Invalid Update OTT Data Combination",
+				"message": "Provided data does not comply with service logic (OTT + user info)",
+				"severity": "2",
+				"solution": "If Service is OTT do not send user info",
+				"validation": "TRUE",
+				"source": "EXTERNAL",
+				"exception_id": "SVC-1001",
+				"exception_desc": "Invalid Parameter: %1"
+			}
+		},
+		{
+			"short_description": "InvalidUpdateOTTDataCombination",
+			"interfaceType": "GVP.GAL",
+			"errorInfo": {
+				"error_code": "00",	
+				"long_description": "Invalid Update OTT Data Combination",
+				"message": "Provided data does not comply with service logic (OTT + user info)",
+				"severity": "2",
+				"solution": "If Service is OTT do not send user info",
+				"validation": "TRUE",
+				"source": "EXTERNAL",
+				"exception_id": "SVC-1001",
+				"exception_desc": "Invalid Parameter: %1"
+			}
+			}
+			,
+		{
+			"short_description": "ProductAlreadyInCancelling",
+			"errorInfo": {
+				"error_code": "400",
+				"long_description": "Product Already In Cancelling",
+				"message": "ProductAlreadyInCancelling",
+				"severity": "1",
+				"solution": "Verify product status or product id",
+				"validation": "FALSE",
+				"source": "EXTERNAL",
+				"exception_id": "SVC-1",
+				"exception_desc": "Generic Client Error: %1"
+			}
+			}
+			]
+	
+}

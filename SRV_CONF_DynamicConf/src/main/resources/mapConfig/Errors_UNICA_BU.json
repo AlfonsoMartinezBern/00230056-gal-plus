@@ -1,0 +1,36 @@
+{
+	"version": "0.0.1",
+	"info": "Error UNICA BU created 2021-04-26",
+	"errors": [
+		{
+			"short_description": "Serviceunavailable",
+			"interfaceType":"",
+			"errorInfo": {
+				"error_code": "0",
+				"long_description": "Invalid Target Configuration",
+				"message": " ",
+				"severity": "3",
+				"solution": "Verify GAL Target Configuration File for bipolar routing",
+				"validation": "FALSE",
+				"source": "INTERNAL",
+				"exception_id": "SVR-005",
+				"exception_desc": "Generic Server Error"
+			}
+		},
+		{
+			"short_description": "InvalidUpdateOTTDataCombination",
+			"errorInfo": {
+				"error_code": "00",
+				"long_description": "Invalid Update OTT Data Combination",
+				"message": "Provided data does not comply with service logic (OTT + user info)",
+				"severity": "2",
+				"solution": "If Service is OTT do not send user info",
+				"validation": "TRUE",
+				"source": "EXTERNAL",
+				"exception_id": "SVC-1001",
+				"exception_desc": "Invalid Parameter: %1"
+			}
+			}
+			]
+	
+}
