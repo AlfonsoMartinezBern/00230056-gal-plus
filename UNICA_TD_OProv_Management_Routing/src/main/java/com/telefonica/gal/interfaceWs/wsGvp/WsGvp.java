@@ -1,7 +1,6 @@
 package com.telefonica.gal.interfaceWs.wsGvp;
 
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.gvp.CreateUserRequestMapper;
 import com.telefonica.gal.mapper.gvp.CreateUserResponseMapper;
@@ -15,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class WsGvp<T> implements InvokeWs<T> {
@@ -82,9 +80,9 @@ public class WsGvp<T> implements InvokeWs<T> {
         return response;
     }
 
-    private T invokeCreateUser(T routingTDInfo, T request, Map<T, T> map) {
-        endpointTD = (Endpoint) routingTDInfo;
-        serviceID = map.get("ServiceId");
+    private T invokeCreateUser(T endPoint, T request, Map<T, T> map) {
+        endpointTD = (Endpoint) endPoint;
+        serviceID = map.get("ServiceIdGVP");
 
         url = endpointTD.getTargetEndpoint();
         instanceId = endpointTD.getInstanceID();

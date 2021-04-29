@@ -1,10 +1,9 @@
 package com.telefonica.gal.interfaceWs.wsUmg;
 
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
+import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.umg.CreateUserRequestMapper_UMG;
 import com.telefonica.gal.mapper.umg.CreateUserResponseMapper_UMG;
-import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.serviceid.ServiceIdType;
@@ -41,10 +40,11 @@ public class WsUmg<T> implements InvokeWs<T> {
     private T serviceID;
     private Map<T,T> hashMap;
 
-    public WsUmg(T endPoint, T request, Map<T, T> hashMap ) {
+    public WsUmg(T endPoint, T request, Map<T, T> hashMap) {
         this.endPoint = endPoint;
         this.request = request;
         this.hashMap = hashMap;
+
     }
 
     public T getResponse() {
@@ -85,9 +85,9 @@ public class WsUmg<T> implements InvokeWs<T> {
         return null;
     }
 
-    private T invokeCreateUser(T routingTDInfo, T request, Map<T, T> map) {
-        endpointTD = (Endpoint) routingTDInfo;
-        serviceID = map.get("ServiceId");
+    private T invokeCreateUser(T endPoint, T request, Map<T, T> map) {
+        endpointTD = (Endpoint) endPoint;
+        serviceID = map.get("ServiceIdUMG");
 
         url = endpointTD.getTargetEndpoint();
         instanceId = endpointTD.getInstanceID();
