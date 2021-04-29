@@ -1,0 +1,37 @@
+{ 
+"version":"0.0.1",
+"info":"created 2021-03-22",
+"routes":
+[
+  {
+    "instanceID": 1,
+    "platformID": 1,
+    "operationType": "CreateUser",
+    "endpoints": [{
+    "id": "03",
+    "uri": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+	"targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+	"wssUser": "gvp_app",
+	"wssPassword": "gvp_123456",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "GVP.GAL"
+    }],
+     "flows": [{"step":1,"endpointID":"03","type":"source","active":true,"synchronous":true}]
+  },
+  {
+    "instanceID": 1,
+    "platformID": 2,
+    "operationType": "CreateUser",
+    "endpoints": [{
+    "id": "03",
+    "uri": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+	"targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+	"wssUser": "gvp_app",
+	"wssPassword": "gvp_123456",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "GVP.GAL"
+    }],
+     "flows": [{"step":1,"endpointID":"03","type":"source","active":true}]
+  }
+]
+}
