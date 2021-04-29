@@ -1,6 +1,7 @@
 package com.telefonica.gal.service.userManagement;
 
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
+import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.factory.FactoryTD;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ws.context.MessageContext;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -47,25 +49,25 @@ public class UserManagementServiceImpl implements UserManagementService {
     	RoutingTDKey tdKey = new RoutingTDKey(serviceId, CreateUser, wsaHeader.getFrom());
 
 		RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
-		Object serviceIdType = new Object();
-
-		switch (routingTDInfo.getEndpoints().get(0).getEndpointType()) {
-			case GVP:
-				serviceIdType = getServiceId_GVP(wsaHeader.getTo());
-				 break;
-			case UMG:
-				serviceIdType = getServiceId_UMG(wsaHeader.getTo());
-				 break;
-			default:
-		}
-
+		Object serviceIdTypeGVP = new Object();
+		Object serviceIdTypeUMG = new Object();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ServiceId", serviceIdType);
 		map.put("Operation", CreateUser);
-
+		for (Endpoint endpoint: routingTDInfo.getEndpoints()){
+			switch (endpoint.getEndpointType()) {
+				case GVP:
+					serviceIdTypeGVP = getServiceId_GVP(wsaHeader.getTo());
+					map.putIfAbsent("ServiceIdGVP", serviceIdTypeGVP);
+					break;
+				case UMG:
+					serviceIdTypeUMG = getServiceId_UMG(wsaHeader.getTo());
+					map.putIfAbsent("ServiceIdUMG", serviceIdTypeUMG);
+					break;
+				default:
+			}
+		}
 		//Invoke Factory
-		InvokeWs invokeWs = factoryTD.getInvokeWs(routingTDInfo, createUser, map);
-		createUserResponse = (CreateUserResponse) invokeWs.invoke();
+		createUserResponse = factoryTD.invokeWs(routingTDInfo, createUser, map);
 
 		return createUserResponse;
     }
