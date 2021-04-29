@@ -55,6 +55,15 @@ public class DynamicConf_Facade<T> implements DynamicConf{
 			return new MessageResponse("KO", "The configFile for "+configService.getDynRoutType()+" at "+configService.getConfigFile() +" was not uploaded");
 
 	}
+	
+	protected void charge() {
+		if(!isCharged) {
+			configService.chargeConf();
+			isCharged = true;
+		}
+		
+	}
+	
 
 	@GetMapping("/getInfo")
 	public MessageResponse isValidConfigFile() {

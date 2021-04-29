@@ -29,6 +29,8 @@ public class DynamicRouting_UNICA_TD_Facade extends DynamicConf_Facade {
 	public RoutingInfo_UNICA_TD getJSON(@RequestParam String serviceID, @RequestParam String operationTD,
 			@RequestParam String uri) {
 	
+		charge();
+		
 		RoutingKey_UNICA_TD key = new RoutingKey_UNICA_TD(serviceID, operationTD, uri);
 		RoutingInfo_UNICA_TD routingInfo = (RoutingInfo_UNICA_TD) getRoutingTable().search(key);
 		if(routingInfo==null) {

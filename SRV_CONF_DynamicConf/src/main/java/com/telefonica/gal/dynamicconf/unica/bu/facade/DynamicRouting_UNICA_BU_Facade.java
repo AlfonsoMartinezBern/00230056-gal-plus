@@ -29,7 +29,9 @@ public class DynamicRouting_UNICA_BU_Facade extends DynamicConf_Facade {
 	@GetMapping("/search")
 	public RoutingInfo_UNICA_BU getJSON(@RequestParam String instanceID, @RequestParam String platformID,
 			@RequestParam String operationType) {
-	
+		
+		charge();
+		
 		RoutingKey_UNICA_BU key = new RoutingKey_UNICA_BU(instanceID, platformID, operationType);
 		RoutingInfo_UNICA_BU routingInfo =  (RoutingInfo_UNICA_BU) getRoutingTable().search(key);
 		

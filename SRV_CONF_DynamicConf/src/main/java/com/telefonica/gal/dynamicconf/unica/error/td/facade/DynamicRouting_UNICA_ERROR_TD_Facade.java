@@ -30,6 +30,8 @@ public class DynamicRouting_UNICA_ERROR_TD_Facade extends DynamicConf_Facade {
 	@GetMapping("/search")
 	public ConfigInfo_UNICA_ERROR_TD getJSON(@RequestParam String short_description, @RequestParam String interfaceType) {
 	
+		charge();
+		
 		ConfigKey_UNICA_ERROR_TD key = new ConfigKey_UNICA_ERROR_TD(short_description, interfaceType);
 		ConfigInfo_UNICA_ERROR_TD routingInfo =  (ConfigInfo_UNICA_ERROR_TD) getRoutingTable().search(key);
 		
