@@ -1,23 +1,23 @@
 package com.telefonica.gal.service.userManagement;
 
-import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTDClient;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ws.context.MessageContext;
+
+import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTD;
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.factory.FactoryTD;
 import com.telefonica.gal.header.wsa.WSAHeader;
-import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUser;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
 import com.telefonica.serviceid.ServiceIdType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.ws.context.MessageContext;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
@@ -27,7 +27,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 	private final static String UNKNOWN = "Unknown";
 
     @Autowired
-    DynamicRoutingTDClient dynamicRoutingTD;
+    DynamicRoutingTD dynamicRoutingTD;
 
     @Autowired
 	FactoryTD factoryTD;
@@ -49,11 +49,15 @@ public class UserManagementServiceImpl implements UserManagementService {
     	RoutingTDKey tdKey = new RoutingTDKey(serviceId, CreateUser, wsaHeader.getFrom());
 
 		RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
+		
 		Object serviceIdTypeGVP = new Object();
 		Object serviceIdTypeUMG = new Object();
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("Operation", CreateUser);
+		
 		for (Endpoint endpoint: routingTDInfo.getEndpoints()){
+			System.out.println(endpoint);
 			switch (endpoint.getEndpointType()) {
 				case GVP:
 					serviceIdTypeGVP = getServiceId_GVP(wsaHeader.getTo());
@@ -67,6 +71,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 			}
 		}
 		//Invoke Factory
+		System.out.println("invocando a la factoria");
 		createUserResponse = factoryTD.invokeWs(routingTDInfo, createUser, map);
 
 		return createUserResponse;

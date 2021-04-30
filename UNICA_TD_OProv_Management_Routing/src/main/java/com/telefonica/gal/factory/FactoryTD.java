@@ -1,5 +1,13 @@
 package com.telefonica.gal.factory;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Component;
+
 import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.dynamicrouting.td.msg.Flow;
 import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
@@ -7,41 +15,50 @@ import com.telefonica.gal.interfaceWs.wsGvp.WsGvp;
 import com.telefonica.gal.interfaceWs.wsUmg.WsUmg;
 import com.telefonica.gal.utils.WsUtils;
 import com.telefonica.gal.wsdl.northbound.provManagement.CreateUserResponse;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 
 @Component
 public class FactoryTD<T> {
 
-    public CreateUserResponse invokeWs(T routingTD, T request, Map<String, Object> hashMap) {
-        CreateUserResponse response = new CreateUserResponse();
-        List<ResponseGal> createUserResponseList = new ArrayList<ResponseGal>();
+	public CreateUserResponse invokeWs(T routingTD, T request, Map<String, Object> hashMap) {
+		CreateUserResponse response = new CreateUserResponse();
 
-        List<ResponseGal> invokeWsList = getInvokeWs(routingTD, request, hashMap);
+		List<InvokeWsFactory> invokeWsList = getInvokeWs(routingTD, request, hashMap);
 
-        for (ResponseGal invokeWs : invokeWsList) {
-            if (invokeWs.getType().equals("source")) {
-                return (CreateUserResponse) invokeWs.getCreateUserResponse().invoke();
-            }
-        }
-        return null;
-    }
+		if (invokeWsList.size() == 1) {
+			return (CreateUserResponse) invokeWsList.get(0).getInvokeWs().invoke();
+		}
 
+		for (InvokeWsFactory invokeWs : invokeWsList) {
+			if (!invokeWs.isSynchronous() && invokeWs.getType().equals("source")) {
+				AsyncFactory asyncFactory = new AsyncFactory(invokeWsList);
+				asyncFactory.start();
+				return (CreateUserResponse) invokeWs.getInvokeWs().invoke();
+			}
 
-    private List<ResponseGal> getInvokeWs(T routingTD, T request, Map<String, Object> hashMap) {
+			if (invokeWs.getType().equals("source")) {
+				response = (CreateUserResponse) invokeWs.getInvokeWs().invoke();
+			} else {
+				invokeWs.getInvokeWs().invoke();
+			}
+
+		}
+		return response;
+	}
+
+	private List<InvokeWsFactory> getInvokeWs(T routingTD, T request, Map<String, Object> hashMap) {
 
         RoutingTDInfo routingTDInfo = new RoutingTDInfo();
         routingTDInfo = (RoutingTDInfo) routingTD;
 
-        //Listado resposse
-        List<ResponseGal> response = new ArrayList<>();
+        List<InvokeWsFactory> response = new ArrayList<>();
         List<Flow> flowList = routingTDInfo.getFlows();
 
+        if(flowList == null || flowList.size()==1) {
+        	Endpoint endpoint = (routingTDInfo.getEndpoints().get(0));
+            response.add(invokeFactoryNoFlow(request, hashMap, endpoint));
+            return response;
+        }
+        
         Collections.sort(flowList, new Comparator<Flow>() {
             @Override
             public int compare(Flow flow1, Flow flow2) {
@@ -50,60 +67,30 @@ public class FactoryTD<T> {
         });
 
         for (Flow flow: flowList) {
-
                 Endpoint endpoint = (routingTDInfo.getEndpointById(flow.getEndpointID()));
-
-                if (endpoint.getEndpointType().equals(WsUtils.GVP)){
-                    //response.add(new ResponseGal() new WsGvp(endpoint, request, hashMap));
-                    response.add(new ResponseGal(new WsGvp(endpoint, request, hashMap), flow.getType()));
-                } else
-                if (endpoint.getEndpointType().equals(WsUtils.UMG)) {
-                    response.add(new ResponseGal(new WsUmg(endpoint,request,hashMap), flow.getType()));
-                }
-
+                response.add(invokeFactoryWithFlow(request, hashMap, flow, endpoint));
 
         }
-
-
-
-        /*for(Flow flow : routingTD.getFlows()) {
-            if(!flow.getType().equals("source")) {
-                invokeEndPoints(routingTD.getEndpointById(flow.getEndpointID()));
-            }
-        }*/
-
-        /*List<DestinationType> endPointIdList = getEndpointID(flowList);
-
-        for(DestinationType destinationType: endPointIdList) {
-            for (Endpoint endpoint: routingTDInfo.getEndpoints()) {
-                if(endpoint.getId().equals(destinationType.getEndpointID())) {
-                    if (endpoint.getEndpointType().equals(WsUtils.GVP)){
-                        response.add((InvokeWs) new WsGvp(endpoint, request, hashMap, destinationType.getDestinationType()));
-                    } else
-                    if (endpoint.getEndpointType().equals(WsUtils.UMG)) {
-                        response.add((InvokeWs) new WsUmg(endpoint, request, hashMap, destinationType.getDestinationType()));
-                    }
-
-                }
-            }
-        }*/
 
         return response;
     }
 
-    private List<DestinationType> getEndpointID(final List<Flow> flowList) {
-        List<DestinationType> destinationTypeList = new ArrayList<>();
-        DestinationType destinationType;
+	private InvokeWsFactory invokeFactoryNoFlow(T request, Map<String, Object> hashMap, Endpoint endpoint) {
+		return invokeFactory(request,hashMap,endpoint,"source",true);
+	}
 
-        for(Flow flow : flowList) {
-            destinationType = new DestinationType();
-            destinationType.setDestinationType(flow.getType());
-            destinationType.setEndpointID(flow.getEndpointID());
-            destinationTypeList.add(destinationType);
-
-        }
-        return destinationTypeList;
-    }
-
+	private InvokeWsFactory invokeFactoryWithFlow(T request, Map<String, Object> hashMap, Flow flow, Endpoint endpoint) {
+		return invokeFactory(request,hashMap,endpoint,flow.getType(),flow.isSynchronous());
+	}
+	
+	
+	private InvokeWsFactory invokeFactory(T request, Map<String, Object> hashMap, Endpoint endpoint,String flowType,boolean flowSynchronous) {
+		if (endpoint.getEndpointType().equals(WsUtils.GVP)) {
+			return new InvokeWsFactory(new WsGvp(endpoint, request, hashMap), flowType, flowSynchronous);
+		} else if (endpoint.getEndpointType().equals(WsUtils.UMG)) {
+			return new InvokeWsFactory(new WsUmg(endpoint, request, hashMap), flowType, flowSynchronous);
+		}
+		return null;
+	}
 
 }

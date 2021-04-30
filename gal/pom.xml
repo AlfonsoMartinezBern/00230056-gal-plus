@@ -80,9 +80,14 @@
 			<artifactId>wsaHeader</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.telefonica.gal.client</groupId> -->
+<!-- 			<artifactId>client-DynamicRoutingTD</artifactId> -->
+<!-- 			<version>1.0.0</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>com.telefonica.gal.client</groupId>
-			<artifactId>client-DynamicRoutingTD</artifactId>
+			<artifactId>CLR_UNICA_TD_DynR</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>

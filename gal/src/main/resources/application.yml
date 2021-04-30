@@ -13,4 +13,4 @@ webservice:
    xsd: "wsdl/northbound/provManagement/UNICA_API_SOAP_OProv_Management_v7_1.xsd"
  
 dynamicRouting:
-  uri: http://localhost:8081/dinamicRoutingTD  
+  uri: http://localhost:8081/dynamicConfig/unica/td

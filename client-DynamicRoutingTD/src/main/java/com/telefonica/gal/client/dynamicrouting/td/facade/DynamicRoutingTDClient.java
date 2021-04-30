@@ -21,7 +21,7 @@ public class DynamicRoutingTDClient implements DynamicRoutingTD {
 				+ "&uri=" + tdKey.getUri();
 
 		RestTemplate plantilla = new RestTemplate();
-
+		System.out.println(dynamicRoutingURL);
 		return plantilla.getForObject(dynamicRoutingURL, RoutingTDInfo.class);
 
 	}

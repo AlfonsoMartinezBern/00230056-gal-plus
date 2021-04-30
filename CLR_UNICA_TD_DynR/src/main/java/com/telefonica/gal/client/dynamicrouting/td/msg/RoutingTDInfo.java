@@ -28,4 +28,14 @@ public class RoutingTDInfo extends MessageResponse{
 		
 		return "RoutingTDInfo(result="+ this.getResult()+", message=" + this.getMessage() + ", flows="+ flows +", endpoints="+ endpoints+")";
 	}
+	
+
+	public Endpoint getEndpointById(String id) {
+		for(Endpoint endpoint: endpoints) {
+			if(endpoint.getId().equals(id)) {
+				return endpoint;
+			}
+		}
+		return null;
+	}
 }

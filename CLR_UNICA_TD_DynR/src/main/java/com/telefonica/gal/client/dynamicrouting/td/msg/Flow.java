@@ -13,6 +13,7 @@ public class Flow{
     private String endpointID;
     private String type;
     private boolean active;
+    private boolean synchronous;
 
     
 }

@@ -8,4 +8,4 @@ webservice:
   xsd: "wsdl/southbound/BU_RegistrationService/GetAccountForDevice.xsd"
  
 dynamicRouting:
-  uri:
+  uri: http://localhost:8081/dynamicConfig/unica/bu
