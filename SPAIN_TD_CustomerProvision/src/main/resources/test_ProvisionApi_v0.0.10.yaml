@@ -222,13 +222,15 @@ paths:
         description: User Products to be updated
         content:
           application/json:
-            schema:
-              allOf:
-              - type: object
-                properties:
-                  serviceType:
-                    $ref: '#/components/schemas/ServiceType'
-              - $ref: '#/components/schemas/UserProducts'
+            schema: 
+                $ref: '#/components/schemas/UserProductsUpdate'
+             # allOf: 
+             # - $ref: '#/components/schemas/UserProducts'
+             # - type: object
+             #   properties:
+             #     serviceType:
+             #       $ref: '#/components/schemas/ServiceType'
+              
       responses:
         "200":
           $ref: "#/components/responses/200-Response"
@@ -405,6 +407,15 @@ components:
           description: List of Vouchers.
           items:
             $ref: '#/components/schemas/Product'
+
+    UserProductsUpdate:
+      type: object
+      allOf: 
+        - type: object
+          properties:
+            serviceType:
+              $ref: '#/components/schemas/ServiceType'
+        - $ref: '#/components/schemas/UserProducts'
 
     UserProductsResponse:
       type: object
@@ -766,3 +777,4 @@ components:
       type: apiKey
       name: X-API-Key
       in: header
+
