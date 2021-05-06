@@ -20,9 +20,16 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
@@ -58,6 +65,22 @@
 			<version>0.2.1</version>
 		</dependency>
 
+		<!--Dependencia de Apache CXF-->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-codegen-plugin</artifactId>
+			<version>3.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf.xjc-utils</groupId>
+			<artifactId>cxf-xjc-runtime</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-bindings-soap</artifactId>
+			<version>3.3.5</version>
+		</dependency>
 
 	</dependencies>
 
@@ -97,6 +120,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -115,6 +139,76 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!--Plugin CXF XSD TO JAVA-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<executions>
+					<execution>
+						<id>xjcRequest</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<packageName>com.telefonica.gal.customerProvision.request</packageName>
+							<sources>
+								<source>${project.basedir}/src/main/resources/xsd/request/CustomerProvision_request.xsd</source>
+							</sources>
+							<outputDirectory>${project.build.directory}/generated-sources/customerProvisionRequest/src/main/java</outputDirectory>
+							<clearOutputDir>false</clearOutputDir>
+						</configuration>
+
+					</execution>
+					<execution>
+						<id>xjcResponse</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<packageName>com.telefonica.gal.customerProvision.response</packageName>
+							<sources>
+								<source>${project.basedir}/src/main/resources/xsd/response/CustomerProvision_response.xsd</source>
+							</sources>
+							<outputDirectory>${project.build.directory}/generated-sources/customerProvisionResponse/src/main/java</outputDirectory>
+							<clearOutputDir>false</clearOutputDir>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!--<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-xjc-plugin</artifactId>
+				<version>3.2.3</version>
+				<configuration>
+					<extensions>
+						<extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:3.2.3</extension>
+					</extensions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-xsd-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>xsdtojava</goal>
+						</goals>
+						<configuration>
+							<sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+							<xsdOptions>
+								<xsdOption>
+									<xsd>${project.basedir}/src/main/resources/xsd/CustomerProvision_request.xsd</xsd>
+									<packagename>com.telefonica.gal.CustomerProvision.request</packagename>
+								</xsdOption>
+								<xsdOption>
+									<xsd>${project.basedir}/src/main/resources/xsd/CustomerProvision_response.xsd</xsd>
+									<packagename>com.telefonica.gal.CustomerProvision.response</packagename>
+								</xsdOption>
+							</xsdOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>-->
 		</plugins>
 	</build>
 

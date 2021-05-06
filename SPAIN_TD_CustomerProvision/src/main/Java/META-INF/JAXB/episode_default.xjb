@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
+Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2021.05.05 a las 10:04:08 PM CEST 
+
+  -->
+  <jaxb:bindings scd="x-schema::">
+    <jaxb:schemaBindings map="false">
+      <jaxb:package name="com.telefonica.gal.CustomerProvision.request"/>
+    </jaxb:schemaBindings>
+    <jaxb:bindings scd="LIST_STB_IPS">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.LISTSTBIPS"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="LIST_TV_SERVICES">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.LISTTVSERVICES"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="TV_SERVICE">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.TVSERVICE"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="LIST_VOD_SERVICES">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.LISTVODSERVICES"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="VOD_SERVICE">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.VODSERVICE"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="LIST_OPERATOR_BONUS">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.LISTOPERATORBONUS"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="OPERATOR_BONUS">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.OPERATORBONUS"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="SUBSCRIBER_LINE">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.SUBSCRIBERLINE"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="OTT_SERVICE_DATA">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.OTTSERVICEDATA"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="CUSTOMER">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.CUSTOMER"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="CUSTOMERS">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.CUSTOMERS"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="CUSTOMER_PROVISION_REQUEST">
+      <jaxb:class ref="com.telefonica.gal.CustomerProvision.request.CUSTOMERPROVISIONREQUEST"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="~operationType">
+      <jaxb:typesafeEnumClass ref="com.telefonica.gal.CustomerProvision.request.OperationType"/>
+    </jaxb:bindings>
+  </jaxb:bindings>
+</jaxb:bindings>
+

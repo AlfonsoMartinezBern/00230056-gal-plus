@@ -206,43 +206,44 @@ paths:
           $ref: "#/components/responses/409-Response"
         "500":
           $ref: "#/components/responses/500-Response"
-    put:
-      tags:
-      - User Products Management
-      summary: Adds/removes products to the account (Subscriptions, Movies, PPV or
-        Vouchers)
-      description: This operation allows to change Products of the user from OSS/BSS
-        systems
-      operationId: userProductsManagement
-      parameters:
-      - $ref: '#/components/parameters/X-Request-ID'
-      - $ref: '#/components/parameters/instanceId'
-      - $ref: '#/components/parameters/uniqueId'
-      requestBody:
-        description: User Products to be updated
-        content:
-          application/json:
-            schema: 
-              allOf: 
-              - type: object
-                properties:
-                  serviceType:
-                    $ref: '#/components/schemas/ServiceType'
-              - $ref: '#/components/schemas/UserProducts'
-      responses:
-        "200":
-          $ref: "#/components/responses/200-Response"
-        "400":
-          $ref: "#/components/responses/400-Response"
-        #"401":
-        #  $ref: "#/components/responses/401-Response"
-        "404":
-          $ref: "#/components/responses/404-Response"
-        "409":
-          $ref: "#/components/responses/409-Response"
-        "500":
-          $ref: "#/components/responses/500-Response"
-      x-codegen-request-body-name: products
+#SE COMENTA METODO PUT POR PROBLEMAS CON EL ALLOF
+#    put:
+#      tags:
+#      - User Products Management
+#      summary: Adds/removes products to the account (Subscriptions, Movies, PPV or
+#        Vouchers)
+#      description: This operation allows to change Products of the user from OSS/BSS
+#        systems
+#      operationId: userProductsManagement
+#      parameters:
+#      - $ref: '#/components/parameters/X-Request-ID'
+#      - $ref: '#/components/parameters/instanceId'
+#      - $ref: '#/components/parameters/uniqueId'
+#      requestBody:
+#        description: User Products to be updated
+#        content:
+#          application/json:
+#            schema:
+#              allOf:
+#              - type: object
+#                properties:
+#                  serviceType:
+#                    $ref: '#/components/schemas/ServiceType'
+#              - $ref: '#/components/schemas/UserProducts'
+#      responses:
+#        "200":
+#          $ref: "#/components/responses/200-Response"
+#        "400":
+#          $ref: "#/components/responses/400-Response"
+#        #"401":
+#        #  $ref: "#/components/responses/401-Response"
+#        "404":
+#          $ref: "#/components/responses/404-Response"
+#        "409":
+#          $ref: "#/components/responses/409-Response"
+#        "500":
+#          $ref: "#/components/responses/500-Response"
+#      x-codegen-request-body-name: products
   /instances/{instanceId}/users/{uniqueId}/devices:
     get:
       tags:

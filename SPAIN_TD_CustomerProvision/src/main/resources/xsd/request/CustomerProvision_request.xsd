@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+   <xs:element name="OPERATION_ID">
+      <xs:annotation>
+         <xs:documentation>Identificador unico de la operacion a realizar.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="11"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="OPERATION_TYPE">
+      <xs:annotation>
+         <xs:documentation>Tipo de operacion a realizar: 'ON'(alta) | 'OFF'(baja) | 'MOD'(modificacion) </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="ON"/>
+            <xs:enumeration value="OFF"/>
+            <xs:enumeration value="MOD"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="USER_ID">
+      <xs:annotation>
+         <xs:documentation> Numero administrativo o identificador unico de usuario en la plataforma MiViewTV </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="NEW_USER_ID">
+      <xs:annotation>
+         <xs:documentation>Nuevo identificador de cliente. Si este dato no está vacío durante una operación de modificacion, significa que se quiere cambiar el ID de cliente</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="GEOGRAFIC_AREA">
+      <xs:annotation>
+         <xs:documentation>Ambito Geografico en el que esta situado el cliente.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxExclusive value="999999999"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="USER_TYPE">
+      <xs:annotation>
+         <xs:documentation>Tipo de usuario: 'RESIDENTIAL' | 'BUSINESS' </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="RESIDENTIAL"/>
+            <xs:enumeration value="BUSINESS"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="SERVICE_TYPE">
+      <xs:annotation>
+         <xs:documentation>Tipo de servicio dependiente de que el usuario tenga acceso a Internet o no. </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="ADDRESSING">
+      <xs:annotation>
+         <xs:documentation>Tipo de direccionamiento del cliente: 'STATIC_IP' | 'STATIC_IP_NAT' | 'DYNAMIC_IP'. Por defecto 'STATIC_IP' </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="STATIC_IP"/>
+            <xs:enumeration value="STATIC_IP_NAT"/>
+            <xs:enumeration value="DYNAMIC_IP"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="MAX_NUM_STBS">
+      <xs:annotation>
+         <xs:documentation>Número maximo de STBs que puede tener un usuario. Obligatorio para usuarios 'STATIC_IP_NAT' o 'DYNAMIC_IP'.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxExclusive value="99"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="LIST_STB_IPS">
+      <xs:annotation>
+         <xs:documentation> Lista de IPs de descodificadores del usuario. </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="STB_IP" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="STB_IP">
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="LIST_TV_SERVICES">
+      <xs:annotation>
+         <xs:documentation>Lista de Codigos de los Paquetes de canales de TV asociados al usuario.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="TV_SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="TV_SERVICE">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="TV_SERVICE_ID"/>
+            <xs:element name="TV_SERVICE_OPER" type="operationType" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="TV_SERVICE_ID">
+		<xs:annotation>
+			<xs:documentation> Codigo comercial de paquete de canal de TV </xs:documentation>
+		</xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+
+   <xs:element name="LIST_VOD_SERVICES">
+      <xs:annotation>
+         <xs:documentation>Lista de las Suscripciones (de Contenido bajo demanda) asociados al usuario.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="VOD_SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VOD_SERVICE">
+		<xs:annotation>
+			<xs:documentation> Codigo comercial de suscripcion CbD </xs:documentation>
+		</xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="VOD_SERVICE_ID"/>
+            <xs:element name="VOD_SERVICE_OPER" type="operationType" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VOD_SERVICE_ID">
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="POP">
+      <xs:annotation>
+         <xs:documentation> Area de acceso, ASL (area de servicios locales), CSL (Centro de Servicios Locales) o PoP (Point of Presence) del usuario. </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxExclusive value="999999999"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="TV_HD">
+      <xs:annotation>
+         <xs:documentation>Indicador de Television de Alta Definicion: '0' (without HDTv, default value), '1' (with HdTv) </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="LINE_QUALITY">
+      <xs:annotation>
+         <xs:documentation>Calidad de línea: '0' (SD), '1' (HD), '4' (UHD) </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="4"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="LIST_OPERATOR_BONUS">
+      <xs:annotation>
+         <xs:documentation>Lista de Codigos de Bonos de Operador asociados al usuario.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="OPERATOR_BONUS" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="OPERATOR_BONUS">
+      <xs:complexType>
+         <xs:simpleContent>
+            <xs:extension base="operatorBonusType">
+               <xs:attribute name="operation" type="operationType" use="optional"/>
+            </xs:extension>
+         </xs:simpleContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:simpleType name="operatorBonusType">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="operationType">
+      <xs:annotation>
+         <xs:documentation> 'ON' | 'OFF' | 'KEEP' </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="ON"/>
+         <xs:enumeration value="OFF"/>
+         <xs:enumeration value="KEEP"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:element name="LIMIT_VOD_PURCHASES">
+      <xs:annotation>
+         <xs:documentation>Limite de compras de contenidos CbD que puede realizar el cliente por mes (Opcional). Valor '-1' sin limite.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-1"/>
+            <xs:maxExclusive value="999"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="LIMIT_PPV_PURCHASES">
+       <xs:annotation>
+         <xs:documentation>Limite de compras de eventeos PPV que puede realizar el cliente por mes (opcional). Valor '-1' sin limite.</xs:documentation>
+      </xs:annotation>
+     <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-1"/>
+            <xs:maxExclusive value="999"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="LIMIT_USER_BONUS_PURCHASES">
+      <xs:annotation>
+         <xs:documentation>Limite de compras de Bonos de usuario que puede realizar el cliente por mes (opcional). Valor '-1' sin limite.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-1"/>
+            <xs:maxExclusive value="999"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="SUBSCRIBER_LINE">
+      <xs:annotation>
+         <xs:documentation>Información del ancho de banda asociado al cliente, tráfico de subida y de bajada.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="UPSTREAM"/>
+            <xs:element ref="DOWNSTREAM"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="UPSTREAM">
+      <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxExclusive value="999999999"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+   <xs:element name="DOWNSTREAM">
+      <xs:simpleType>
+         <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxExclusive value="999999999"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="OTT_SERVICE_DATA">
+      <xs:annotation>
+         <xs:documentation>OTT—specific configuration.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="MOBILITY_MODE"/>
+            <xs:element ref="SERVICE_USER"/>
+            <xs:element ref="SERVICE_PASSWORD"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="MOBILITY_MODE">
+      <xs:annotation>
+         <xs:documentation>Mobility mode for the OTT service: '0' (no mobility allowed) | '1' (mobility allowed) | '2' (roaming allowed) </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+   <xs:element name="SERVICE_USER">
+      <xs:annotation>
+         <xs:documentation> OTT service user. This value shall be provided only in case when digest authentication in mode 'OTT2' is required </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+   <xs:element name="SERVICE_PASSWORD">
+      <xs:annotation>
+         <xs:documentation> OTT service password. This value shall be provided only in case when digest authentication in mode 'OTT2' is required </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+
+   <!-- ==================================================== -->
+   <xs:element name="CUSTOMER">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="OPERATION_ID"/>
+            <xs:element ref="OPERATION_TYPE"/>
+            <xs:element ref="USER_ID"/>
+            <xs:element ref="NEW_USER_ID" minOccurs="0"/>
+            <xs:element ref="GEOGRAFIC_AREA"/>
+            <xs:element ref="USER_TYPE"/>
+            <xs:element ref="SERVICE_TYPE"/>
+            <xs:element ref="ADDRESSING" minOccurs="0"/>
+            <xs:element ref="MAX_NUM_STBS" minOccurs="0"/>
+            <xs:element ref="LIST_STB_IPS"/>
+            <xs:element ref="LIST_TV_SERVICES"/>
+            <xs:element ref="LIST_VOD_SERVICES"/>
+            <xs:element ref="POP"/>
+            <xs:element ref="TV_HD" minOccurs="0"/>
+            <xs:element ref="LINE_QUALITY" minOccurs="0"/>
+            <xs:element ref="LIST_OPERATOR_BONUS" minOccurs="0"/>
+            <xs:element ref="LIMIT_VOD_PURCHASES" minOccurs="0"/>
+            <xs:element ref="LIMIT_PPV_PURCHASES" minOccurs="0"/>
+            <xs:element ref="LIMIT_USER_BONUS_PURCHASES" minOccurs="0"/>
+            <xs:element ref="SUBSCRIBER_LINE"/>
+            <xs:element ref="OTT_SERVICE_DATA" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <!-- ==================================================== -->
+   <xs:element name="CUSTOMERS">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="CUSTOMER" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <!-- ==================================================== -->
+   <xs:element name="CUSTOMER_PROVISION_REQUEST">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="CUSTOMERS"/>
+         </xs:sequence>
+         <xs:attribute name="version" use="optional">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="8"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
