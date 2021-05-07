@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Service
-public class WsITDregistrationFactoryService implements ITDRegistrationService {
+public class    WsITDregistrationFactoryService implements ITDRegistrationService {
     private String url;
 
     public void setURL(String url) {
