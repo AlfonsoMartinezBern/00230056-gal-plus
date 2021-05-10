@@ -20,9 +20,9 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0</version>
 		</dependency>
 
 		<dependency>
@@ -102,7 +102,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/ProvisionApi_v0.0.10.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/test_ProvisionApi_v0.0.10.yaml</inputSpec>
 							<modelPackage>com.telefonica.gal.provisionApi.model</modelPackage>
 							<apiPackage>com.telefonica.gal.provisionApi.api</apiPackage>
 							<generatorName>spring</generatorName>
@@ -140,7 +140,7 @@
 				</executions>
 			</plugin>
 
-			<!--Plugin CXF XSD TO JAVA-->
+			<!--Plugin XSD TO JAVA-->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
@@ -177,38 +177,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-xjc-plugin</artifactId>
-				<version>3.2.3</version>
-				<configuration>
-					<extensions>
-						<extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:3.2.3</extension>
-					</extensions>
-				</configuration>
-				<executions>
-					<execution>
-						<id>generate-xsd-sources</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>xsdtojava</goal>
-						</goals>
-						<configuration>
-							<sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
-							<xsdOptions>
-								<xsdOption>
-									<xsd>${project.basedir}/src/main/resources/xsd/CustomerProvision_request.xsd</xsd>
-									<packagename>com.telefonica.gal.CustomerProvision.request</packagename>
-								</xsdOption>
-								<xsdOption>
-									<xsd>${project.basedir}/src/main/resources/xsd/CustomerProvision_response.xsd</xsd>
-									<packagename>com.telefonica.gal.CustomerProvision.response</packagename>
-								</xsdOption>
-							</xsdOptions>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>-->
 		</plugins>
 	</build>
 
