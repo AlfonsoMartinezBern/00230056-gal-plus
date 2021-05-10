@@ -1,5 +1,7 @@
 package com.telefonica.gal.SPAIN_TD_CustomerProvision.configuration;
 
+import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -8,6 +10,9 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 @Configuration
 public class CustomerProvisionConfig {
+
+    @Value("${customerProvision.xsd}")
+    private String xsdPath;
 
     @Bean
     public MarshallingHttpMessageConverter marshallingHttpMessageConverter()
@@ -24,9 +29,10 @@ public class CustomerProvisionConfig {
     public Jaxb2Marshaller jaxb2Marshaller()
     {
         Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
-        jaxb2Marshaller.setSchemas(new ClassPathResource("CustomerProvision_request.xsd"));
+        jaxb2Marshaller.setSchemas(new ClassPathResource(xsdPath));
         //jaxb2Marshaller.setValidationEventHandler();
-        //jaxb2Marshaller.setClassesToBeBound(Import.class);
+        jaxb2Marshaller.setClassesToBeBound(CUSTOMERPROVISIONREQUEST.class);
+        //jaxb2Marshaller.setPackagesToScan();
         return jaxb2Marshaller;
     }
 

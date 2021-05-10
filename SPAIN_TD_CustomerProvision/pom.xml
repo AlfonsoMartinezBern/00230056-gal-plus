@@ -82,6 +82,18 @@
 			<version>3.3.5</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>SPAIN_TD_CustomerProvision_Routing</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
