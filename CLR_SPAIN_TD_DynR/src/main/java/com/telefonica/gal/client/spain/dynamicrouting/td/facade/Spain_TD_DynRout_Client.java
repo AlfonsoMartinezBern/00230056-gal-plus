@@ -1,17 +1,20 @@
-package com.telefonica.gal.client.dynamicrouting.td.facade;
+package com.telefonica.gal.client.spain.dynamicrouting.td.facade;
 
-import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
-import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class Spain_TD_DynRout_Client implements SpainDynamicRoutingTD {
+public class Spain_TD_DynRout_Client implements ISpainDynamicRoutingTD {
 
-    //@Value("${dynamicRouting.uri}")
+/*    @Value("${dynamicRouting.uri}")
+    private String URISpain;*/
+
     private String URI = "http://localhost:8081/dynamicConfig/spain/td";
 
+    @Override
     public RoutingTDInfo search(RoutingTDKey tdkey) {
         String dynamicRoutingURL =
                 URI
@@ -21,4 +24,5 @@ public class Spain_TD_DynRout_Client implements SpainDynamicRoutingTD {
 
         return plantilla.getForObject(dynamicRoutingURL, RoutingTDInfo.class);
     }
+
 }

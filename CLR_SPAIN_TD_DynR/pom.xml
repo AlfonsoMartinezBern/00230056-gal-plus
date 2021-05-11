@@ -8,7 +8,7 @@
 		<version>2.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.telefonica.gal</groupId>
+	<groupId>com.telefonica.gal.spain</groupId>
 	<artifactId>CLR_SPAIN_TD_DynR</artifactId>
 	<version>1.0.0</version>
 	<name>CLR_SPAIN_TD_DynR</name>
@@ -28,11 +28,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
 	</dependencies>
 
 </project>

@@ -8,6 +8,7 @@ public class DynamicConfigJSON_DTO{
 	protected String version;
 	protected String info;
 
+
 	public String getVersion() {
 		return version;
 	}
@@ -23,4 +24,5 @@ public class DynamicConfigJSON_DTO{
 	public void setInfo(String info) {
 		this.info = info;
 	}
+
 }

@@ -83,7 +83,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.telefonica.gal</groupId>
+			<groupId>com.telefonica.gal.spain</groupId>
 			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
 			<version>1.0.0</version>
 		</dependency>

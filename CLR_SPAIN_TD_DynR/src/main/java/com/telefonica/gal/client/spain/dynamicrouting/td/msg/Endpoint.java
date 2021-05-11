@@ -1,4 +1,4 @@
-package com.telefonica.gal.client.dynamicrouting.td.msg;
+package com.telefonica.gal.client.spain.dynamicrouting.td.msg;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

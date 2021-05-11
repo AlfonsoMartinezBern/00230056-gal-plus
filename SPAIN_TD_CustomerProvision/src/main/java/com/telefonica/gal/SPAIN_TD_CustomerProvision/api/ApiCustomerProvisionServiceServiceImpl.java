@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/customerProvision")
+@RequestMapping(path = "/customerProvision")
 public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvisionService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ApiCustomerProvisionServiceServiceImpl.class.getName());
 
@@ -26,8 +26,8 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
     }
 
     @Override
-    @PostMapping(value="/createUser")
-    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvision(final @RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
+    @PostMapping(value = "/createUser")
+    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
         LOGGER.info("Customer request =========== ");
         customerProvisionService.customersProvision(customerprovisionrequest);
         return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(

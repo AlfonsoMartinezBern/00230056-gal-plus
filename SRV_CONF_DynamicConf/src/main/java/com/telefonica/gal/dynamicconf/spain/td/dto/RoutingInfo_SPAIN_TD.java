@@ -20,7 +20,7 @@ public class RoutingInfo_SPAIN_TD extends MessageResponse {
         return flows;
     }
 
-    public RoutingInfo_SPAIN_TD(String result, String message, List<Endpoint_SPAIN_TD> endpoints, List<Flow> flows) {
+    public RoutingInfo_SPAIN_TD(List<Endpoint_SPAIN_TD> endpoints, List<Flow> flows) {
         super(endpoints==null?"KO":"OK", endpoints==null?"No Data Found":null);
         this.endpoints = endpoints;
         this.flows = flows!=null && flows.size()>0?flows:null;

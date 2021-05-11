@@ -15,7 +15,7 @@
     "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
     "endpointType": "TOP"
     }],
-     "flows": [{"step":1,"endpointID":"03","type":"source","active":false, "transformation": false},{"step":2,"endpointID":"02","type":"replica","active":true, "transformation": false}]
+     "flows": [{"step":1,"endpointID":"03","type":"source","active":false },{"step":2,"endpointID":"02","type":"replica","active":true}]
   }
 ]
 }

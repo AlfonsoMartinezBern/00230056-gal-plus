@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Endpoint_SPAIN_TD {
     private String id;
     private String endpointType;
+    private String targetEndpoint;
 
     public String getId() {
         return id;
@@ -21,6 +22,14 @@ public class Endpoint_SPAIN_TD {
 
     public void setEndpointType(String endpointType) {
         this.endpointType = endpointType;
+    }
+
+    public String getTargetEndpoint() {
+        return targetEndpoint;
+    }
+
+    public void setTargetEndpoint(String targetEndpoint) {
+        this.targetEndpoint = targetEndpoint;
     }
 
     public boolean existId(String id) {

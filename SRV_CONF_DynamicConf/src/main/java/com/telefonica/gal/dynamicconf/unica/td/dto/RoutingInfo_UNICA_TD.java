@@ -1,12 +1,12 @@
 package com.telefonica.gal.dynamicconf.unica.td.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.telefonica.gal.dynamicconf.generic.dto.MessageResponse;
 import com.telefonica.gal.dynamicconf.repository.model.Flow;
 import com.telefonica.gal.dynamicconf.unica.td.repository.model.Endpoint_UNICA_TD;
+
+import java.util.List;
 
 
 @JsonInclude(Include.NON_NULL)

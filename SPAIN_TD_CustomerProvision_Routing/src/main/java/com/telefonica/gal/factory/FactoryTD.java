@@ -1,23 +1,17 @@
 package com.telefonica.gal.factory;
 
-import com.telefonica.gal.client.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.client.dynamicrouting.td.msg.Flow;
-import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
 import com.telefonica.gal.provisionApi.model.User;
 import org.json.JSONObject;
-import org.json.XML;
 import org.mapstruct.factory.Mappers;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.*;
 
 public class FactoryTD<T> {

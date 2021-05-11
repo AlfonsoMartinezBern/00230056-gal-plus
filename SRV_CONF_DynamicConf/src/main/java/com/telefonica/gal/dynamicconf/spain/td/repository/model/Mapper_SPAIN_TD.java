@@ -6,13 +6,14 @@ import com.telefonica.gal.dynamicconf.repository.model.Flow;
 import com.telefonica.gal.dynamicconf.spain.td.controller.RoutingTable_SPAIN_TD;
 import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingInfo_SPAIN_TD;
 import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingKey_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.unica.td.repository.model.Route_UNICA_TD;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Mapper_SPAIN_TD implements ConfigMapper {
 
     @Autowired
@@ -25,7 +26,7 @@ public class Mapper_SPAIN_TD implements ConfigMapper {
         }
 
         for (Object object :  repository.getMaps()) {
-            Route_UNICA_TD route = (Route_UNICA_TD) object;
+            Route_SPAIN_TD route = (Route_SPAIN_TD) object;
             routingTable.add(parseToRoutingTDKey(route), parseToRoutingTDInfo(route));
         }
         routingTable.setConfigFileVersion(repository.getVersion());

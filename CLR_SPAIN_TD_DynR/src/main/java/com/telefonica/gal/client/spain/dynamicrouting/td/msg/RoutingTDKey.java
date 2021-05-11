@@ -1,15 +1,11 @@
-package com.telefonica.gal.client.dynamicrouting.td.msg;
+package com.telefonica.gal.client.spain.dynamicrouting.td.msg;
 
 public class RoutingTDKey {
-	
-	//private String serviceID;
+
 	private String operationTD;
-	//private String uri;
-	
-	public RoutingTDKey(String serviceID, String operationTD, String uri) {
-		//this.serviceID = serviceID;
+
+	public RoutingTDKey(String operationTD) {
 		this.operationTD = operationTD;
-		//this.uri = uri;
 	}
 
 	public String getOperationTD() {

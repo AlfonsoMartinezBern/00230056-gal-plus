@@ -1,4 +1,4 @@
-package com.telefonica.gal.client.dynamicrouting.td.msg;
+package com.telefonica.gal.client.spain.dynamicrouting.td.msg;
 
 import java.util.List;
 
