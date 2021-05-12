@@ -6,6 +6,7 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
+import com.telefonica.gal.factory.FactoryTD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,13 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
     private ISpainDynamicRoutingTD dynamicRoutingTD;
 
-    @Autowired
-    public CustomerProvisionServiceImpl(ISpainDynamicRoutingTD dynamicRoutingTD) {
-        this.dynamicRoutingTD = dynamicRoutingTD;
-    }
+    private FactoryTD factoryTD;
 
-    /* @Autowired
-    FactoryTD factoryTD;*/
+    @Autowired
+    public CustomerProvisionServiceImpl(ISpainDynamicRoutingTD dynamicRoutingTD, FactoryTD factoryTD) {
+        this.dynamicRoutingTD = dynamicRoutingTD;
+        this.factoryTD = factoryTD;
+    }
 
     @Override
     public CUSTOMERPROVISIONRESPONSE customersProvision(CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
@@ -36,7 +37,7 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
         RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
 
         //Invocar a la factory
-        //response = factoryTD.invokeMiViewService(customerprovisionrequest);
+        response = factoryTD.invokeMiViewService(customerprovisionrequest);
 
         return response;
     }

@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "com.telefonica.gal.client.spain" , "com.telefonica.gal.SPAIN_TD_CustomerProvision" })
+@ComponentScan(basePackages = { "com.telefonica.gal.client.spain" , "com.telefonica.gal.SPAIN_TD_CustomerProvision" ,
+								"com.telefonica.gal"})
 
 public class SpainTdCustomerProvisionApplication {
 
