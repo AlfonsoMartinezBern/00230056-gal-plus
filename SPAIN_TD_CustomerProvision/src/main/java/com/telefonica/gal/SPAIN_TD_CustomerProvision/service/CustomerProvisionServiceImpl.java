@@ -37,7 +37,7 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
         RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
 
         //Invocar a la factory
-        response = factoryTD.invokeMiViewService(customerprovisionrequest);
+        //response = factoryTD.invokeMiViewService(customerprovisionrequest);
 
         return response;
     }
