@@ -34,6 +34,7 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
         String operationTD = customerprovisionrequest.getCUSTOMERS().getCUSTOMER().get(0).getOPERATIONTYPE();
         //Invocar al dynamicRoutingTD para conocer la el endPoint que vamos a invocar
         RoutingTDKey tdKey = new RoutingTDKey(operationTD);
+
         RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(tdKey);
 
         //Invocar a la factory

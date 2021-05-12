@@ -5,6 +5,7 @@ import com.telefonica.gal.dynamicconf.spain.td.config.ConfigService_SPAIN_TD;
 import com.telefonica.gal.dynamicconf.spain.td.controller.RoutingTable_SPAIN_TD;
 import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingInfo_SPAIN_TD;
 import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingKey_SPAIN_TD;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dynamicConfig/spain/td")
 public class DynamicRouting_SPAIN_TD_Facade extends DynamicConf_Facade {
 
+    @Autowired
     public DynamicRouting_SPAIN_TD_Facade(ConfigService_SPAIN_TD configService, RoutingTable_SPAIN_TD routingTable) {
         super(configService, routingTable);
     }

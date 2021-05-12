@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Endpoint{
     private String id;
     private String endpointType;
+    private String targetEndpoint;
 
     public String getId() {
         return id;
@@ -16,7 +17,6 @@ public class Endpoint{
         this.id = id;
     }
 
-
     public String getEndpointType() {
         return endpointType;
     }
@@ -25,8 +25,25 @@ public class Endpoint{
         this.endpointType = endpointType;
     }
 
-    public Endpoint(String id, String endpointType) {
-        this.id = id;
-        this.endpointType = endpointType;
+    public String getTargetEndpoint() {
+        return targetEndpoint;
     }
+
+    public void setTargetEndpoint(String targetEndpoint) {
+        this.targetEndpoint = targetEndpoint;
+    }
+
+    public boolean existId(String id) {
+        return this.id.equals(id);
+
+    }
+
+   /* @Override
+    public String toString() {
+        return "Endpoint{" +
+                "id='" + id + '\'' +
+                ", endpointType='" + endpointType + '\'' +
+                ", targetEndpoint='" + targetEndpoint + '\'' +
+                '}';
+    }*/
 }

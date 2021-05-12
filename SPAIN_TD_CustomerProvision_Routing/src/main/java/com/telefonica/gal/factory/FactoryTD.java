@@ -1,6 +1,5 @@
 package com.telefonica.gal.factory;
 
-import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTD;
 import com.telefonica.gal.customerProvision.request.*;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
@@ -9,6 +8,7 @@ import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.SystemEnvironmentOrigin;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,15 +27,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
-@Controller
-@RequestMapping("/prueba")
+@Component
 public class FactoryTD<T> {
 
     private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
             CustomerProvisionRequestMapper.class);
 
-    @Autowired
-    DynamicRoutingTD dynamicRouting;
+/*    @Autowired
+    DynamicRoutingTD dynamicRouting;*/
 
     @PostMapping("/prueba")
     public void prueba() throws IOException, ParserConfigurationException, SAXException {

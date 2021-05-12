@@ -94,10 +94,9 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.telefonica.gal.client</groupId>
-			<artifactId>CLR_UNICA_TD_DynR</artifactId>
+			<groupId>com.telefonica.gal.spain</groupId>
+			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
 			<version>1.0.0</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.telefonica.gal</groupId>
