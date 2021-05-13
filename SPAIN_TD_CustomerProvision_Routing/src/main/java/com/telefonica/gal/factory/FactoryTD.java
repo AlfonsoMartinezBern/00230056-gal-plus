@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTD;
+import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDInfo;
+import com.telefonica.gal.client.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.customerProvision.request.*;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
@@ -38,14 +40,14 @@ import java.util.*;
 @Component
 public class FactoryTD<T> {
 
-    private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
-            CustomerProvisionRequestMapper.class);
+    @Autowired
+    InvokeRESTFactory invokeRESTFactory;
 
     @Autowired
     DynamicRoutingTD dynamicRouting;
 
     @PostMapping("/prueba")
-    public void prueba() throws IOException, ParserConfigurationException, SAXException {
+    public CUSTOMERPROVISIONRESPONSE prueba() throws IOException, ParserConfigurationException, SAXException {
         String uri = "localhost:1234/CustomerProvision/miview";
         CUSTOMER customer = new CUSTOMER();
         customer.setUSERID("1");
@@ -74,131 +76,28 @@ public class FactoryTD<T> {
         request.setVersion("1.0.0");
 
         HashMap<String, Object> map = new HashMap<>();
-
+        CUSTOMERPROVISIONRESPONSE res = invokeRESTService("TOP+", request, map);
+        return res;
         // CUSTOMERPROVISIONRESPONSE res = invokeRESTService("MiViewTv", request, map);
-        CUSTOMERPROVISIONRESPONSE res0 = invokeRESTService("TOP+", request, map);
     }
 
-    public CUSTOMERPROVISIONRESPONSE invokeRESTService(String routingTD, CUSTOMERPROVISIONREQUEST request, Map<String, Object> hashMap) {
+    public CUSTOMERPROVISIONRESPONSE invokeRESTService(T routingTD, T request, Map<String, Object> hashMap) {
         // TODO DynamicRoutingTD
-        switch (routingTD) {
+        RoutingTDInfo info = getRoutingTDInfo((RoutingTDKey) routingTD);
+        switch ("") {
             case "TOP+":
-                return invokeTOPService3("http://localhost:1234/customerprovision/top", (CUSTOMERPROVISIONREQUEST) request);
+                return invokeRESTFactory.invokeTOPService("http://localhost:1234/customerprovision/top", (CUSTOMERPROVISIONREQUEST) request);
             case "MiViewTv":
-                return invokeMiViewService("http://localhost:1234/customerprovision/miview", (CUSTOMERPROVISIONREQUEST) request);
+                return invokeRESTFactory.invokeMiViewService("http://localhost:1234/customerprovision/miview", (CUSTOMERPROVISIONREQUEST) request);
             default:
                 return null; // TODO devolver ERROR
         }
-
     }
 
-    public CUSTOMERPROVISIONRESPONSE invokeTOPService(String url, CUSTOMERPROVISIONREQUEST request) {
-        try {
-            ArrayList<User> users = new ArrayList<>();
-            HttpURLConnection conexion = (HttpURLConnection) new URL(url).openConnection();
-            conexion.setRequestMethod("POST");
-            for (CUSTOMER customer : request.getCUSTOMERS().getCUSTOMER()) {
-                conexion.setRequestProperty("user", CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer).toString().replaceAll("\n", " "));
-            }
-            conexion.connect();
-
-            //Almacenamos la respuesta
-            InputSource resultado = new InputSource(conexion.getInputStream());
-
-            //convertimos la respuesta que viene en binario a un archivo xml
-            Document xmlDoc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(resultado);
-            conexion.disconnect();
-
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null; // TODO return ERROR;
-        }
-    }
-
-    public CUSTOMERPROVISIONRESPONSE invokeMiViewService(String path, CUSTOMERPROVISIONREQUEST request) {
-        try {
-            URL url = new URL(path); // TODO recuperar del routingTDInfo
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-
-            ArrayList<User> users = new ArrayList<>();
-
-            for (CUSTOMER customer : request.getCUSTOMERS().getCUSTOMER()) {
-                connection.setRequestProperty("user", customer.toString());
-            }
-
-            Map<String, List<String>> headers = connection.getHeaderFields();
-            CUSTOMERPROVISIONRESPONSE results = new CUSTOMERPROVISIONRESPONSE();
-
-            InputStream stream = connection.getInputStream();
-            String response = new Scanner(stream).next(); //TODO trasnformar response a CUSTOMERPROVISIONRESPONSE
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // TODO return ERROR;
-        }
+    private RoutingTDInfo getRoutingTDInfo(RoutingTDKey key){
+        RoutingTDInfo info = new RoutingTDInfo();
 
         return null;
-
-    }
-
-    public CUSTOMERPROVISIONRESPONSE invokeTOPService2(String url, CUSTOMERPROVISIONREQUEST request) {
-        try {
-            ArrayList<User> users = new ArrayList<>();
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-            connection.setRequestMethod("POST");
-
-            for (CUSTOMER customer : request.getCUSTOMERS().getCUSTOMER()) {
-                String prueba = new JSONObject(CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer)
-                        .toString().replaceAll("\n", ",").replace("class User {,", "{")
-                        .replace(",}", "}")).toString().replaceAll("\"", "").replace("{", "").replace("}", "");
-                connection.setRequestProperty("user", prueba);
-            }
-
-            connection.connect();
-            Object object = connection.getContent();
-
-            InputStreamReader inStream = new InputStreamReader(connection.getInputStream(), "utf-8");
-            BufferedReader br = new BufferedReader(inStream);
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-
-            while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-
-            connection.getOutputStream();
-            connection.disconnect();
-
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null; // TODO return ERROR;
-        }
-    }
-
-    public CUSTOMERPROVISIONRESPONSE invokeTOPService3(String url, CUSTOMERPROVISIONREQUEST request) {
-        RestTemplate restTemplate = new RestTemplate();
-        CUSTOMERPROVISIONRESPONSE result = new CUSTOMERPROVISIONRESPONSE();
-        try {
-            for (CUSTOMER customer : request.getCUSTOMERS().getCUSTOMER()) {
-                HttpEntity<String> entityRequest = new HttpEntity<>(new JSONObject(CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer)
-                        .toString().replaceAll("\n", ",").replace("class User {,", "{")
-                        .replace(",}", "}")).toString().replaceAll("\"", "")
-                        .replace("{", "").replace("}", ""));
-                /*ResponseEntity<com.telefonica.gal.customerProvision.response.CUSTOMER> response = restTemplate
-                        .getForEntity(url, com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
-                ResponseEntity<com.telefonica.gal.customerProvision.response.CUSTOMER> response = restTemplate
-                        .exchange(url, HttpMethod.POST,
-                                entityRequest,
-                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);
-                result.getCUSTOMERS().getCUSTOMER().add(response.getBody());
-            }
-            return result;
-        } catch (Exception e){
-            e.printStackTrace();
-            return result;
-        }
     }
 
     // public JSONObject mapperXMLtoJSON(String xml) {return XML.toJSONObject(xml);}
