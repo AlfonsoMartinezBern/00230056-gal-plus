@@ -94,10 +94,9 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.telefonica.gal.client</groupId>
-			<artifactId>CLR_UNICA_TD_DynR</artifactId>
+			<groupId>com.telefonica.gal.spain</groupId>
+			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
 			<version>1.0.0</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.telefonica.gal</groupId>
@@ -111,6 +110,16 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
 		</dependency>
+		<dependency>
+			<artifactId>mapstruct-jdk8</artifactId>
+			<groupId>org.mapstruct</groupId>
+			<version>1.3.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
 
 	</dependencies>
 
@@ -119,6 +128,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--<version>2.4.5</version>-->
+				<configuration>
+					<classifier>exec</classifier>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.openapitools</groupId>

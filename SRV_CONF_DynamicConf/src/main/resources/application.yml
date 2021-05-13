@@ -20,10 +20,10 @@ configFile:
    bu:
      path: src/main/resources/mapConfig/
      name: Errors_UNICA_BU.json   
-  spain:
-   td:
-    path: src/main/resources/mapConfig/
-    name: DynamicRouting_SPAIN_TD.json
-   bu:
-    path: src/main/resources/mapConfig/
-    name: DynamicRouting_SPAIN_BU.json
+ spain:
+  td:
+   path: /home/gatby/telefonica/00230056-gal-plus/SRV_CONF_DynamicConf/src/main/resources/mapConfig/
+   name: DynamicRouting_SPAIN_TD.json
+  bu:
+   path: src/main/resources/mapConfig/
+   name: DynamicRouting_SPAIN_BU.json

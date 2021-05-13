@@ -1,16 +1,13 @@
 package com.telefonica.gal.dynamicconf.unica.td.repository;
 
+import com.telefonica.gal.dynamicconf.repository.model.Flow;
+import com.telefonica.gal.dynamicconf.unica.td.repository.model.Endpoint_UNICA_TD;
+import com.telefonica.gal.dynamicconf.unica.td.repository.model.Route_UNICA_TD;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.telefonica.gal.dynamicconf.repository.model.Flow;
-import com.telefonica.gal.dynamicconf.unica.bu.repository.model.Route_UNICA_BU;
-import com.telefonica.gal.dynamicconf.unica.td.repository.model.Endpoint_UNICA_TD;
-import com.telefonica.gal.dynamicconf.unica.td.repository.model.Route_UNICA_TD;
 
 public class DynamicRoutingRepository_UNICA_TD_Routes_Validator {
 

@@ -1,0 +1,2 @@
+customerProvision:
+  xsd: "xsd/request/CustomerProvision_request.xsd"

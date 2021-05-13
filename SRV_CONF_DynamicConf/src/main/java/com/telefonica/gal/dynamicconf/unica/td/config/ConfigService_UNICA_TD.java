@@ -1,13 +1,12 @@
 package com.telefonica.gal.dynamicconf.unica.td.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 import com.telefonica.gal.dynamicconf.config.ConfigService;
 import com.telefonica.gal.dynamicconf.facade.DynamicConfType;
 import com.telefonica.gal.dynamicconf.unica.td.repository.DynamicRoutingRepository_UNICA_TD;
 import com.telefonica.gal.dynamicconf.unica.td.repository.model.Mapper_UNICA_TD;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ConfigService_UNICA_TD extends ConfigService{

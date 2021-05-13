@@ -1,12 +1,11 @@
 package com.telefonica.gal.dynamicconf.unica.td.repository;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
 import com.telefonica.gal.dynamicconf.repository.DynamicConfigRepository;
 import com.telefonica.gal.dynamicconf.repository.DynamicConfigRoutes_DTO;
 import com.telefonica.gal.dynamicconf.unica.td.repository.model.Route_UNICA_TD;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class DynamicRoutingRepository_UNICA_TD extends DynamicConfigRepository<DynamicConfigRoutes_DTO,Route_UNICA_TD> {

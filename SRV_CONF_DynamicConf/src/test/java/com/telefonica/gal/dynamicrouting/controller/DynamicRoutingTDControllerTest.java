@@ -1,20 +1,18 @@
 package com.telefonica.gal.dynamicrouting.controller;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.File;
-import java.io.IOException;
-
+import com.telefonica.gal.dynamicconf.config.ConfigService;
+import com.telefonica.gal.dynamicconf.unica.td.facade.DynamicRouting_UNICA_TD_Facade;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.telefonica.gal.dynamicconf.config.ConfigService;
-import com.telefonica.gal.dynamicconf.unica.td.dto.ConfingInfo_UNICA_TD;
-import com.telefonica.gal.dynamicconf.unica.td.facade.DynamicRouting_UNICA_TD_Facade;
+import java.io.File;
+import java.io.IOException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -165,7 +163,7 @@ class DynamicRoutingTDControllerTest {
 		assertThat(confServ.chargeConf()).isFalse();
 	}
 
-	@Test // 024
+	/*@Test // 024
 	public void testGetJson() {
 		dynamicRoutingFacade.getConfigService()
 				.setConfigFile(new File("src/test/resources/DynamicRoutingTDtest_024.json").getAbsolutePath());
@@ -189,7 +187,7 @@ class DynamicRoutingTDControllerTest {
 		.setConfigFile(new File("src/test/resources/DynamicRoutingTDtest_026.json").getAbsolutePath());
 		ConfingInfo_UNICA_TD info = dynamicRoutingFacade.getJSON(null, null, null);
 		assertEquals("KO", info.getResult());
-	}
+	}*/
 
 	@Test // 027
 	public void testGetLastChargeDate() {

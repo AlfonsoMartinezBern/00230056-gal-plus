@@ -9,32 +9,35 @@ import org.mapstruct.Mapping;
 @Mapper(uses = ObjectFactory.class)
 public interface CustomerProvisionRequestMapper {
 
-    @Mapping(source = "userid", target = "uniqueId")
-    @Mapping(defaultValue = "IPTV", target = "serviceType")
-    @Mapping(source = "usertype", target = "commercialOffer")
-    @Mapping(source = "geograficarea", target = "geographicArea")
-    @Mapping(source = "pop", target = "serverCode")
-    @Mapping(source = "servicetype", target = "application")
-    @Mapping(target = "addressing", expression = "java(checkAddressing(addressing))")
-    @Mapping(source = "liststbips.stbip", target = "stbIps")
-    @Mapping(source = "maxnumstbs", target = "maxDevices")
-    @Mapping(target = "tvHd", expression = "java(checkTvHD(tvhd))")
-    @Mapping(source = "linequality", target = "lineQuality")
-    @Mapping(source = "limitvodpurchases", target = "limitVodPurchases")
-    @Mapping(source = "limitppvpurchases", target = "limitPPVPurchases")
-    @Mapping(source = "limituserbonuspurchases", target = "limitUserBonusPurchases")
-    @Mapping(source = "subscriberline.upstream", target = "subscriberLineUpstream")
-    @Mapping(source = "subscriberline.downstream", target = "subscriberLineDOwnstream")
+    @Mapping(source = "USERID", target = "uniqueId")
+    @Mapping(constant = "IPTV", target = "serviceType")
+    @Mapping(source = "USERTYPE", target = "commercialOffer")
+    @Mapping(source = "GEOGRAFICAREA", target = "geographicArea")
+    @Mapping(source = "POP", target = "serverCode")
+    @Mapping(source = "SERVICETYPE", target = "application")
+    @Mapping(target = "addressing", expression = "java(checkAddressing(customer))")
+    @Mapping(source = "LISTSTBIPS.STBIP", target = "stbIps")
+    @Mapping(source = "MAXNUMSTBS", target = "maxDevices")
+    @Mapping(target = "tvHd", expression = "java(checkTvHD(customer))")
+    @Mapping(source = "LINEQUALITY", target = "lineQuality")
+    @Mapping(source = "LIMITVODPURCHASES", target = "limitVodPurchases")
+    @Mapping(source = "LIMITPPVPURCHASES", target = "limitPPVPurchases")
+    @Mapping(source = "LIMITUSERBONUSPURCHASES", target = "limitUserBonusPurchases")
+    @Mapping(source = "SUBSCRIBERLINE.UPSTREAM", target = "subscriberLineUpstream")
+    @Mapping(source = "SUBSCRIBERLINE.DOWNSTREAM", target = "subscriberLineDOwnstream")
+    //TODO Products
     User customerDataMapper(CUSTOMER customer);
 
-    default String checkAddressing(String addressing){
+    default String checkAddressing(CUSTOMER customer){
+        String addressing = customer.getADDRESSING();
         if (addressing.isEmpty() || addressing.equals("") && addressing == "" ){
             return "STATIC_IP";
         }
         return addressing;
     }
 
-    default Integer checkTvHD(String tvhd){
+    default Integer checkTvHD(CUSTOMER customer){
+        String tvhd = customer.getTVHD();
         if (!tvhd.isEmpty() && !tvhd.equals("") && tvhd != ""){
             return Integer.valueOf(tvhd);
         }

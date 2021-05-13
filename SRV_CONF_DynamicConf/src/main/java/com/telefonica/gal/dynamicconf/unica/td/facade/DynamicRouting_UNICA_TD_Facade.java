@@ -1,19 +1,15 @@
 package com.telefonica.gal.dynamicconf.unica.td.facade;
 
+import com.telefonica.gal.dynamicconf.facade.DynamicConf_Facade;
+import com.telefonica.gal.dynamicconf.unica.td.config.ConfigService_UNICA_TD;
+import com.telefonica.gal.dynamicconf.unica.td.controller.RoutingTable_UNICA_TD;
+import com.telefonica.gal.dynamicconf.unica.td.dto.RoutingInfo_UNICA_TD;
+import com.telefonica.gal.dynamicconf.unica.td.dto.RoutingKey_UNICA_TD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.telefonica.gal.dynamicconf.facade.DynamicConfType;
-import com.telefonica.gal.dynamicconf.facade.DynamicConf_Facade;
-import com.telefonica.gal.dynamicconf.generic.dto.ConfigTableGeneric;
-import com.telefonica.gal.dynamicconf.unica.td.config.ConfigService_UNICA_TD;
-import com.telefonica.gal.dynamicconf.unica.td.controller.RoutingTable_UNICA_TD;
-import com.telefonica.gal.dynamicconf.unica.td.dto.RoutingInfo_UNICA_TD;
-import com.telefonica.gal.dynamicconf.unica.td.dto.RoutingKey_UNICA_TD;
-import com.telefonica.gal.dynamicconf.unica.td.repository.model.Route_UNICA_TD;
 
 @RestController
 @RequestMapping("/dynamicConfig/unica/td")

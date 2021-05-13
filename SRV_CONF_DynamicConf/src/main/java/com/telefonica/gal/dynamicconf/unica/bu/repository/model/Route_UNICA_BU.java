@@ -1,15 +1,9 @@
 package com.telefonica.gal.dynamicconf.unica.bu.repository.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telefonica.gal.dynamicconf.repository.model.Flow;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
+import java.util.List;
 
 public class Route_UNICA_BU {
 
@@ -18,6 +12,46 @@ public class Route_UNICA_BU {
 	private String operationType;
 	private List<Endpoint_UNICA_BU> endpoints;
 	private List<Flow> flows;
+
+	public String getInstanceID() {
+		return instanceID;
+	}
+
+	public void setInstanceID(String instanceID) {
+		this.instanceID = instanceID;
+	}
+
+	public String getPlatformID() {
+		return platformID;
+	}
+
+	public void setPlatformID(String platformID) {
+		this.platformID = platformID;
+	}
+
+	public String getOperationType() {
+		return operationType;
+	}
+
+	public void setOperationType(String operationType) {
+		this.operationType = operationType;
+	}
+
+	public List<Endpoint_UNICA_BU> getEndpoints() {
+		return endpoints;
+	}
+
+	public void setEndpoints(List<Endpoint_UNICA_BU> endpoints) {
+		this.endpoints = endpoints;
+	}
+
+	public List<Flow> getFlows() {
+		return flows;
+	}
+
+	public void setFlows(List<Flow> flows) {
+		this.flows = flows;
+	}
 
 	@JsonIgnore
 	public boolean isFlowForRoute() {
@@ -29,8 +63,6 @@ public class Route_UNICA_BU {
 
 		return true;
 	}
-	
-	
 
 	@JsonIgnore
 	private boolean existRouteID(String endpointID) {

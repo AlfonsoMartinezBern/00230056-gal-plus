@@ -1,18 +1,14 @@
 package com.telefonica.gal.dynamicconf.facade;
 
 
+import com.telefonica.gal.dynamicconf.config.ConfigService;
+import com.telefonica.gal.dynamicconf.generic.dto.ConfTable;
+import com.telefonica.gal.dynamicconf.generic.dto.MessageResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import com.telefonica.gal.dynamicconf.config.ConfigService;
-import com.telefonica.gal.dynamicconf.generic.dto.MessageResponse;
-import com.telefonica.gal.dynamicconf.generic.dto.ConfTable;
-import com.telefonica.gal.dynamicconf.repository.DynamicConfigJSON_DTO;
-
 
 public class DynamicConf_Facade<T> implements DynamicConf{
-
-	
 
 	private ConfigService configService;
 
@@ -27,7 +23,6 @@ public class DynamicConf_Facade<T> implements DynamicConf{
 		
 	}
 
-	
 	public ConfigService getConfigService() {
 		return configService;
 	}
@@ -63,7 +58,6 @@ public class DynamicConf_Facade<T> implements DynamicConf{
 		}
 		
 	}
-	
 
 	@GetMapping("/getInfo")
 	public MessageResponse isValidConfigFile() {
