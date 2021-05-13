@@ -1,5 +1,8 @@
 package com.telefonica.gal.factory;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telefonica.gal.client.dynamicrouting.td.facade.DynamicRoutingTD;
 import com.telefonica.gal.customerProvision.request.*;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
@@ -9,9 +12,15 @@ import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.SystemEnvironmentOrigin;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -19,16 +28,14 @@ import org.xml.sax.SAXException;
 import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
 @Controller
 @RequestMapping("/prueba")
+@Component
 public class FactoryTD<T> {
 
     private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
@@ -48,7 +55,7 @@ public class FactoryTD<T> {
         customer.setPOP(1);
         customer.setADDRESSING("1");
         LISTSTBIPS liststbips = new LISTSTBIPS();
-        liststbips.getSTBIP().add("STBIP");
+        //liststbips.getSTBIP().add("STBIP");
         customer.setLISTSTBIPS(liststbips);
         customer.setMAXNUMSTBS(2);
         customer.setTVHD("1");
@@ -68,7 +75,7 @@ public class FactoryTD<T> {
 
         HashMap<String, Object> map = new HashMap<>();
 
-        CUSTOMERPROVISIONRESPONSE res = invokeRESTService("MiViewTv", request, map);
+        // CUSTOMERPROVISIONRESPONSE res = invokeRESTService("MiViewTv", request, map);
         CUSTOMERPROVISIONRESPONSE res0 = invokeRESTService("TOP+", request, map);
     }
 
@@ -76,9 +83,9 @@ public class FactoryTD<T> {
         // TODO DynamicRoutingTD
         switch (routingTD) {
             case "TOP+":
-                return invokeTOPService2("http://localhost:1234/CustomerProvision/top", (CUSTOMERPROVISIONREQUEST) request);
+                return invokeTOPService3("http://localhost:1234/customerprovision/top", (CUSTOMERPROVISIONREQUEST) request);
             case "MiViewTv":
-                return invokeMiViewService("http://localhost:1234/CustomerProvision/miview", (CUSTOMERPROVISIONREQUEST) request);
+                return invokeMiViewService("http://localhost:1234/customerprovision/miview", (CUSTOMERPROVISIONREQUEST) request);
             default:
                 return null; // TODO devolver ERROR
         }
@@ -138,33 +145,59 @@ public class FactoryTD<T> {
     public CUSTOMERPROVISIONRESPONSE invokeTOPService2(String url, CUSTOMERPROVISIONREQUEST request) {
         try {
             ArrayList<User> users = new ArrayList<>();
-            HttpURLConnection conexion = (HttpURLConnection) new URL(url).openConnection();
-            conexion.setRequestMethod("POST");
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setRequestMethod("POST");
+
             for (CUSTOMER customer : request.getCUSTOMERS().getCUSTOMER()) {
-                conexion.setRequestProperty("user", CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer).toString().replaceAll("\n", " "));
+                String prueba = new JSONObject(CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer)
+                        .toString().replaceAll("\n", ",").replace("class User {,", "{")
+                        .replace(",}", "}")).toString().replaceAll("\"", "").replace("{", "").replace("}", "");
+                connection.setRequestProperty("user", prueba);
             }
-            conexion.connect();
 
-            conexion.getResponseMessage();
+            connection.connect();
+            Object object = connection.getContent();
 
-            InputStreamReader inStream = new InputStreamReader(conexion.getInputStream(), "utf-8");
-
+            InputStreamReader inStream = new InputStreamReader(connection.getInputStream(), "utf-8");
             BufferedReader br = new BufferedReader(inStream);
-
             StringBuilder sb = new StringBuilder();
             String line = null;
+
             while ((line = br.readLine()) != null) {
                 sb.append(line + "\n");
             }
 
-            conexion.getOutputStream();
-
-            conexion.disconnect();
+            connection.getOutputStream();
+            connection.disconnect();
 
             return null;
         } catch (Exception e) {
             e.printStackTrace();
             return null; // TODO return ERROR;
+        }
+    }
+
+    public CUSTOMERPROVISIONRESPONSE invokeTOPService3(String url, CUSTOMERPROVISIONREQUEST request) {
+        RestTemplate restTemplate = new RestTemplate();
+        CUSTOMERPROVISIONRESPONSE result = new CUSTOMERPROVISIONRESPONSE();
+        try {
+            for (CUSTOMER customer : request.getCUSTOMERS().getCUSTOMER()) {
+                HttpEntity<String> entityRequest = new HttpEntity<>(new JSONObject(CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer)
+                        .toString().replaceAll("\n", ",").replace("class User {,", "{")
+                        .replace(",}", "}")).toString().replaceAll("\"", "")
+                        .replace("{", "").replace("}", ""));
+                /*ResponseEntity<com.telefonica.gal.customerProvision.response.CUSTOMER> response = restTemplate
+                        .getForEntity(url, com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
+                ResponseEntity<com.telefonica.gal.customerProvision.response.CUSTOMER> response = restTemplate
+                        .exchange(url, HttpMethod.POST,
+                                entityRequest,
+                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                result.getCUSTOMERS().getCUSTOMER().add(response.getBody());
+            }
+            return result;
+        } catch (Exception e){
+            e.printStackTrace();
+            return result;
         }
     }
 
