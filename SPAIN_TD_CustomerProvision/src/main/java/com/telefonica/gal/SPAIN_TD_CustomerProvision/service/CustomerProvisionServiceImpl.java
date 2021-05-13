@@ -50,7 +50,7 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
                 LOGGER.info("=== FLOW: " + flow);
             }
             //Invocar a FactoryTD
-            //response = factoryTD.invokeMiViewService(customerprovisionrequest);
+            //response = factoryTD.invokeSapinService(routingTDInfo, request);
 
         }
 

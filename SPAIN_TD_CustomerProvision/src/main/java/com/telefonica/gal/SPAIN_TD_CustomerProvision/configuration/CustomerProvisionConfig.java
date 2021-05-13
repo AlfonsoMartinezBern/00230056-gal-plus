@@ -15,8 +15,7 @@ public class CustomerProvisionConfig {
     private String xsdPath;
 
     @Bean
-    public MarshallingHttpMessageConverter marshallingHttpMessageConverter()
-    {
+    public MarshallingHttpMessageConverter marshallingHttpMessageConverter() throws Exception {
         MarshallingHttpMessageConverter marshallingHttpMessageConverter = new MarshallingHttpMessageConverter();
 
         marshallingHttpMessageConverter.setMarshaller(jaxb2Marshaller());
@@ -26,14 +25,19 @@ public class CustomerProvisionConfig {
     }
 
     @Bean
-    public Jaxb2Marshaller jaxb2Marshaller()
-    {
-        Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
-        jaxb2Marshaller.setSchemas(new ClassPathResource(xsdPath));
-        //jaxb2Marshaller.setValidationEventHandler();
-        jaxb2Marshaller.setClassesToBeBound(CUSTOMERPROVISIONREQUEST.class);
-        //jaxb2Marshaller.setPackagesToScan();
-        return jaxb2Marshaller;
+    public Jaxb2Marshaller jaxb2Marshaller() throws Exception {
+        try {
+            Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+            jaxb2Marshaller.setSchemas(new ClassPathResource(xsdPath));
+            //jaxb2Marshaller.setValidationEventHandler();
+            jaxb2Marshaller.setClassesToBeBound(CUSTOMERPROVISIONREQUEST.class);
+            //jaxb2Marshaller.setPackagesToScan();
+            jaxb2Marshaller.afterPropertiesSet();
+            return jaxb2Marshaller;
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+
     }
 
 }
