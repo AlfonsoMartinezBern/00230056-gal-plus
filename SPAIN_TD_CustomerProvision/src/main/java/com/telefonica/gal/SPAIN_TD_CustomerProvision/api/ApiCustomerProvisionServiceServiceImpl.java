@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +27,27 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
     }
 
     @Override
-    @PostMapping(value = "/createUser")
+    @PostMapping(value = "/createUser", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
-        LOGGER.info("Customer request =========== ");
+        LOGGER.info("Customer request CreateUser=========== ");
+        customerProvisionService.customersProvision(customerprovisionrequest);
+        return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
+                customerprovisionrequest), HttpStatus.OK);
+    }
+
+    @Override
+    @PostMapping(value = "/modifyUser", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvisionMod(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
+        LOGGER.info("Customer request ModifyUser=========== ");
+        customerProvisionService.customersProvision(customerprovisionrequest);
+        return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
+                customerprovisionrequest), HttpStatus.OK);
+    }
+
+    @Override
+    @PostMapping(value = "/deleteUser", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvisionOff(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
+        LOGGER.info("Customer request DeleteUser=========== ");
         customerProvisionService.customersProvision(customerprovisionrequest);
         return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
                 customerprovisionrequest), HttpStatus.OK);

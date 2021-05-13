@@ -7,12 +7,12 @@
     "operationTD": "ON",
     "endpoints": [{
     "id": "03",
-    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+    "targetEndpoint": "http://<API server>:<API server port>/CDB_CustomerProvision_XML.php",
     "endpointType": "MiView"
     },
     {
     "id": "02",
-    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
+    "targetEndpoint": "http://<API server>:<API server port>/CDB_CustomerProvision_XML.php",
     "endpointType": "TOP"
     }],
      "flows": [{"step":1,"endpointID":"03","type":"source","active":true },{"step":2,"endpointID":"02","type":"replica","active":true}]
