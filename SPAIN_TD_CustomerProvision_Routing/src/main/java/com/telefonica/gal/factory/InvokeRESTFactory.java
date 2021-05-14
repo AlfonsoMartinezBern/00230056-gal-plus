@@ -6,8 +6,10 @@ import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Component
 public class InvokeRESTFactory {
 
     private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(

@@ -9,6 +9,7 @@ import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
+import com.telefonica.gal.factory.FactoryTD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
     private ISpainDynamicRoutingTD dynamicRoutingTD;
 
-    //private FactoryTD factoryTD;
+    private FactoryTD factoryTD;
 
     @Autowired
-    public CustomerProvisionServiceImpl(ISpainDynamicRoutingTD dynamicRoutingTD) {
+    public CustomerProvisionServiceImpl(ISpainDynamicRoutingTD dynamicRoutingTD, FactoryTD factoryTD) {
         this.dynamicRoutingTD = dynamicRoutingTD;
-        //this.factoryTD = factoryTD;
+        this.factoryTD = factoryTD;
     }
 
     @Override
@@ -37,6 +38,8 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;
+
+
         for (CUSTOMER customer: request.getCUSTOMERS().getCUSTOMER()) {
             routingTDInfo = new RoutingTDInfo();
             tdKey = new RoutingTDKey(customer.getOPERATIONTYPE());

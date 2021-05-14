@@ -95,11 +95,11 @@
 			<version>1.0.0</version>
 		</dependency>
 
-		<!--<dependency>
+		<dependency>
 			<groupId>com.telefonica.gal</groupId>
 			<artifactId>SPAIN_TD_CustomerProvision_Routing</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>-->
+		</dependency>
 
 	</dependencies>
 
