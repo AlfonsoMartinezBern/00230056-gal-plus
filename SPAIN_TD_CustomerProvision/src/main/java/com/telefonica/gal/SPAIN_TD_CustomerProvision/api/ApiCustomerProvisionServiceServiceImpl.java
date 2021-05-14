@@ -29,11 +29,17 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
 
     @Override
     @PostMapping(value = "/createUser", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
-        LOGGER.info("Customer request CreateUser=========== ");
-        customerProvisionService.customersProvision(customerprovisionrequest);
-        return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
-                customerprovisionrequest), HttpStatus.OK);
+    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) throws Exception{
+        try {
+            LOGGER.info("Customer request CreateUser=========== ");
+            customerProvisionService.customersProvision(customerprovisionrequest);
+            return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
+                    customerprovisionrequest), HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
 
     }
 
