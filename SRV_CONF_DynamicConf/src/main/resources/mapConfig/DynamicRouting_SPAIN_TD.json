@@ -4,18 +4,23 @@
 "routes":
 [
   {
-    "operationTD": "ON",
+    "operationTD": "CustomerProvision",
     "endpoints": [{
     "id": "03",
+    "instanceID": 2,
+    "platformID": 2,
     "targetEndpoint": "http://<API server>:<API server port>/CDB_CustomerProvision_XML.php",
     "endpointType": "MiView"
     },
     {
     "id": "02",
-    "targetEndpoint": "http://<API server>:<API server port>/CDB_CustomerProvision_XML.php",
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://<API server>:<API server port>/",
     "endpointType": "TOP"
     }],
      "flows": [{"step":1,"endpointID":"03","type":"source","active":true },{"step":2,"endpointID":"02","type":"replica","active":true}]
   }
+
 ]
 }

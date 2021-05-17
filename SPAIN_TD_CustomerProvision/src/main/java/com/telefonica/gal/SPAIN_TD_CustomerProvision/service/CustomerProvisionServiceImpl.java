@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerProvisionServiceImpl implements CustomerProvisionService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerProvisionServiceImpl.class.getName());
+    private static final String CustomerProvision = "CustomerProvision";
 
     private ISpainDynamicRoutingTD dynamicRoutingTD;
 
@@ -39,22 +40,28 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;
 
+        routingTDInfo = new RoutingTDInfo();
+        tdKey = new RoutingTDKey(CustomerProvision);
+        routingTDInfo = dynamicRoutingTD.search(tdKey);
 
-        for (CUSTOMER customer: request.getCUSTOMERS().getCUSTOMER()) {
+        //factoryTD.invokeSapinService(routingTDInfo, request);
+
+
+        /*for (CUSTOMER customer: request.getCUSTOMERS().getCUSTOMER()) {
             routingTDInfo = new RoutingTDInfo();
             tdKey = new RoutingTDKey(customer.getOPERATIONTYPE());
             routingTDInfo = dynamicRoutingTD.search(tdKey);
             //TODO validar que el Dynamic de Spain va bien
-            for(Endpoint endpoint : routingTDInfo.getEndpoints()) {
+            *//*for(Endpoint endpoint : routingTDInfo.getEndpoints()) {
                 LOGGER.info("=== Target: " + endpoint.getTargetEndpoint());
             }
             for(Flow flow : routingTDInfo.getFlows()) {
                 LOGGER.info("=== FLOW: " + flow);
-            }
-            //Invocar a FactoryTD
-            //response = factoryTD.invokeSapinService(routingTDInfo, request);
+            }*//*
 
-        }
+            //factoryTD.invokeSapinService(routingTDInfo, request);
+
+        }*/
 
         return response;
     }

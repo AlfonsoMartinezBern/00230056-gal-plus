@@ -8,6 +8,8 @@ public class Endpoint{
     private String id;
     private String endpointType;
     private String targetEndpoint;
+    private int instanceID;
+    private int platformID;
 
     public String getId() {
         return id;
@@ -33,17 +35,24 @@ public class Endpoint{
         this.targetEndpoint = targetEndpoint;
     }
 
+    public int getInstanceID() {
+        return instanceID;
+    }
+
+    public void setInstanceID(int instanceID) {
+        this.instanceID = instanceID;
+    }
+
+    public int getPlatformID() {
+        return platformID;
+    }
+
+    public void setPlatformID(int platformID) {
+        this.platformID = platformID;
+    }
+
     public boolean existId(String id) {
         return this.id.equals(id);
 
     }
-
-   /* @Override
-    public String toString() {
-        return "Endpoint{" +
-                "id='" + id + '\'' +
-                ", endpointType='" + endpointType + '\'' +
-                ", targetEndpoint='" + targetEndpoint + '\'' +
-                '}';
-    }*/
 }

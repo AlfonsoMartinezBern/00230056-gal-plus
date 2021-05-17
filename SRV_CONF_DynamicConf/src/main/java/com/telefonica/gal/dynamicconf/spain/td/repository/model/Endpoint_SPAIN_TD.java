@@ -7,6 +7,8 @@ public class Endpoint_SPAIN_TD {
     private String id;
     private String endpointType;
     private String targetEndpoint;
+    private int instanceID;
+    private int platformID;
 
     public String getId() {
         return id;
@@ -30,6 +32,22 @@ public class Endpoint_SPAIN_TD {
 
     public void setTargetEndpoint(String targetEndpoint) {
         this.targetEndpoint = targetEndpoint;
+    }
+
+    public int getInstanceID() {
+        return instanceID;
+    }
+
+    public void setInstanceID(int instanceID) {
+        this.instanceID = instanceID;
+    }
+
+    public int getPlatformID() {
+        return platformID;
+    }
+
+    public void setPlatformID(int platformID) {
+        this.platformID = platformID;
     }
 
     public boolean existId(String id) {
