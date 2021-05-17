@@ -1,87 +1,90 @@
 package com.telefonica.gal.factory;
 
-import com.telefonica.gal.customerProvision.request.CUSTOMER;
-import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
-import com.telefonica.gal.customerProvision.request.CUSTOMERS;
-import com.telefonica.gal.customerProvision.request.LISTSTBIPS;
-import com.telefonica.gal.customerProvision.request.SUBSCRIBERLINE;
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Flow;
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.telefonica.gal.interfaceWs.topplus.WsTopPlus;
+import com.telefonica.gal.interfaceWs.wsMiView.WsMiViewTv;
+import com.telefonica.gal.utils.WsUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-@Controller
-@RequestMapping("/prueba")
 @Component
 public class FactoryTD<T> {
 
-    @Autowired
-    InvokeRESTFactory invokeRESTFactory;
+    public CUSTOMERPROVISIONRESPONSE invokeWs(T routingTD, T request, Map<String, Object> hashMap) {
+        CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
 
-    /*@Autowired
-    DynamicRoutingTD dynamicRouting;*/
+        List<InvokeWsFactory> invokeWsList = getInvokeWs(routingTD, request, hashMap);
 
-    @PostMapping("/prueba")
-    public CUSTOMERPROVISIONRESPONSE prueba() throws IOException, ParserConfigurationException, SAXException {
-        String uri = "localhost:1234/CustomerProvision/miview";
-        CUSTOMER customer = new CUSTOMER();
-        customer.setUSERID("1");
-        customer.setSERVICETYPE("1");
-        customer.setUSERTYPE("1");
-        customer.setGEOGRAFICAREA(1);
-        customer.setPOP(1);
-        customer.setADDRESSING("1");
-        LISTSTBIPS liststbips = new LISTSTBIPS();
-        //liststbips.getSTBIP().add("STBIP");
-        customer.setLISTSTBIPS(liststbips);
-        customer.setMAXNUMSTBS(2);
-        customer.setTVHD("1");
-        customer.setLINEQUALITY("1");
-        customer.setLIMITPPVPURCHASES(3);
-        customer.setLIMITVODPURCHASES(4);
-        customer.setLIMITUSERBONUSPURCHASES(2);
-        SUBSCRIBERLINE subscriberline = new SUBSCRIBERLINE();
-        subscriberline.setDOWNSTREAM(1);
-        subscriberline.setUPSTREAM(2);
-        customer.setSUBSCRIBERLINE(subscriberline);
-        CUSTOMERS customers = new CUSTOMERS();
-        customers.getCUSTOMER().add(customer);
-        CUSTOMERPROVISIONREQUEST request = new CUSTOMERPROVISIONREQUEST();
-        request.setCUSTOMERS(customers);
-        request.setVersion("1.0.0");
-
-        HashMap<String, Object> map = new HashMap<>();
-        //CUSTOMERPROVISIONRESPONSE res = invokeRESTService("TOP+", request, map);
-        return null;
-        // CUSTOMERPROVISIONRESPONSE res = invokeRESTService("MiViewTv", request, map);
-    }
-
-    public CUSTOMERPROVISIONRESPONSE invokeRESTService(T routingTD, T request, Map<String, Object> hashMap) {
-        // TODO DynamicRoutingTD
-        //RoutingTDInfo info = getRoutingTDInfo((RoutingTDKey) routingTD);
-        switch ("") {
-            case "TOP+":
-                return invokeRESTFactory.invokeTOPService("http://localhost:1234/customerprovision/top", (CUSTOMERPROVISIONREQUEST) request);
-            case "MiViewTv":
-                return invokeRESTFactory.invokeMiViewService("http://localhost:1234/customerprovision/miview", (CUSTOMERPROVISIONREQUEST) request);
-            default:
-                return null; // TODO devolver ERROR
+        if (invokeWsList.size() == 1) {
+            return (CUSTOMERPROVISIONRESPONSE) invokeWsList.get(0).getInvokeWs().invoke();
         }
+
+        for (InvokeWsFactory invokeWs : invokeWsList) {
+            if (!invokeWs.isSynchronous() && invokeWs.getType().equals("source")) {
+                AsyncFactory asyncFactory = new AsyncFactory(invokeWsList);
+                asyncFactory.start();
+                return (CUSTOMERPROVISIONRESPONSE) invokeWs.getInvokeWs().invoke();
+            }
+
+            if (invokeWs.getType().equals("source")) {
+                response = (CUSTOMERPROVISIONRESPONSE) invokeWs.getInvokeWs().invoke();
+            } else {
+                invokeWs.getInvokeWs().invoke();
+            }
+
+        }
+        return response;
     }
 
-    /*private RoutingTDInfo getRoutingTDInfo(RoutingTDKey key){
-        RoutingTDInfo info = new RoutingTDInfo();
+    private List<InvokeWsFactory> getInvokeWs(T routingTD, T request, Map<String, Object> hashMap) {
 
+        RoutingTDInfo routingTDInfo = new RoutingTDInfo();
+        routingTDInfo = (RoutingTDInfo) routingTD;
+
+        List<InvokeWsFactory> response = new ArrayList<>();
+        List<Flow> flowList = routingTDInfo.getFlows();
+
+        if(flowList == null || flowList.size()==1) {
+            Endpoint endpoint = (routingTDInfo.getEndpoints().get(0));
+            response.add(invokeFactoryNoFlow(request, hashMap, endpoint));
+            return response;
+        }
+
+        Collections.sort(flowList, new Comparator<Flow>() {
+            @Override
+            public int compare(Flow flow1, Flow flow2) {
+                return Integer.compare(flow1.getStep(), flow2.getStep());
+            }
+        });
+
+        for (Flow flow: flowList) {
+            Endpoint endpoint = (routingTDInfo.getEndpointById(flow.getEndpointID()));
+            response.add(invokeFactoryWithFlow(request, hashMap, flow, endpoint));
+
+        }
+
+        return response;
+    }
+
+    private InvokeWsFactory invokeFactoryNoFlow(T request, Map<String, Object> hashMap, Endpoint endpoint) {
+        return invokeFactory(request,hashMap,endpoint,"source",true);
+    }
+
+    private InvokeWsFactory invokeFactoryWithFlow(T request, Map<String, Object> hashMap, Flow flow, Endpoint endpoint) {
+        return invokeFactory(request,hashMap,endpoint,flow.getType(),flow.isSynchronous());
+    }
+
+    private InvokeWsFactory invokeFactory(T request, Map<String, Object> hashMap, Endpoint endpoint,String flowType,boolean flowSynchronous) {
+        if (endpoint.getEndpointType().equals("MIVIEWTV")) {
+            return new InvokeWsFactory(new WsMiViewTv(endpoint, request), flowType, flowSynchronous);
+        } else if (endpoint.getEndpointType().equals("TOP+")) {
+            return new InvokeWsFactory(new WsTopPlus(endpoint, request), flowType, flowSynchronous);
+        }
         return null;
-    }*/
+    }
 
-    // public JSONObject mapperXMLtoJSON(String xml) {return XML.toJSONObject(xml);}
 }
