@@ -5,8 +5,8 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Flow;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
-import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
+import com.telefonica.gal.customerProvision.response.CUSTOMER;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.factory.FactoryTD;
@@ -35,6 +35,7 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
         CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
         CUSTOMERS customers = new CUSTOMERS();
+
         response.setCUSTOMERS(customers);
 
         RoutingTDKey tdKey;
@@ -44,24 +45,8 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
         tdKey = new RoutingTDKey(CustomerProvision);
         routingTDInfo = dynamicRoutingTD.search(tdKey);
 
-        //factoryTD.invokeSapinService(routingTDInfo, request);
+        //response = factoryTD.invokeSapinService(routingTDInfo, request);
 
-
-        /*for (CUSTOMER customer: request.getCUSTOMERS().getCUSTOMER()) {
-            routingTDInfo = new RoutingTDInfo();
-            tdKey = new RoutingTDKey(customer.getOPERATIONTYPE());
-            routingTDInfo = dynamicRoutingTD.search(tdKey);
-            //TODO validar que el Dynamic de Spain va bien
-            *//*for(Endpoint endpoint : routingTDInfo.getEndpoints()) {
-                LOGGER.info("=== Target: " + endpoint.getTargetEndpoint());
-            }
-            for(Flow flow : routingTDInfo.getFlows()) {
-                LOGGER.info("=== FLOW: " + flow);
-            }*//*
-
-            //factoryTD.invokeSapinService(routingTDInfo, request);
-
-        }*/
 
         return response;
     }

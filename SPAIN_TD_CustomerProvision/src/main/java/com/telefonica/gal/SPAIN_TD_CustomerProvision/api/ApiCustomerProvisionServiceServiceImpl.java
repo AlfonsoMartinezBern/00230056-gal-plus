@@ -28,7 +28,7 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
     }
 
     @Override
-    @PostMapping(value = "/createUser", produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) throws Exception{
         try {
             LOGGER.info("Customer request CreateUser=========== ");
@@ -41,24 +41,6 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
         }
 
 
-    }
-
-    @Override
-    @PostMapping(value = "/modifyUser", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvisionMod(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
-        LOGGER.info("Customer request ModifyUser=========== ");
-        customerProvisionService.customersProvision(customerprovisionrequest);
-        return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
-                customerprovisionrequest), HttpStatus.OK);
-    }
-
-    @Override
-    @PostMapping(value = "/deleteUser", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvisionOff(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) {
-        LOGGER.info("Customer request DeleteUser=========== ");
-        customerProvisionService.customersProvision(customerprovisionrequest);
-        return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
-                customerprovisionrequest), HttpStatus.OK);
     }
 
 }
