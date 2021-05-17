@@ -1,14 +1,16 @@
 package com.telefonica.gal.mapper;
 
-import com.telefonica.gal.customerProvision.request.*;
+import com.telefonica.gal.customerProvision.request.CUSTOMER;
+import com.telefonica.gal.customerProvision.request.LISTTVSERVICES;
+import com.telefonica.gal.customerProvision.request.LISTVODSERVICES;
+import com.telefonica.gal.customerProvision.request.ObjectFactory;
+import com.telefonica.gal.customerProvision.request.TVSERVICE;
+import com.telefonica.gal.customerProvision.request.VODSERVICE;
 import com.telefonica.gal.provisionApi.model.Product;
 import com.telefonica.gal.provisionApi.model.User;
 import com.telefonica.gal.provisionApi.model.UserProducts;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mapper(uses = ObjectFactory.class)
 public interface CustomerProvisionRequestMapper {

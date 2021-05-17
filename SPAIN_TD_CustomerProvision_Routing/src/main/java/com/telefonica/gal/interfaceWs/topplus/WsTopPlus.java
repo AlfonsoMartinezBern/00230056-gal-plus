@@ -48,14 +48,25 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
                         result.getCUSTOMERS().getCUSTOMER().add(restTemplate
-                                .postForEntity(endpointTD.getTargetEndpoint(), new HttpEntity<>(CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer))
+                                .postForEntity(endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID()
+                                        + "/users", new HttpEntity<>(CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer))
                                         , com.telefonica.gal.customerProvision.response.CUSTOMER.class).getBody());
                     case "OFF":
-                        restTemplate.delete(url, new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                        restTemplate.delete(endpointTD.getTargetEndpoint() + "/instances/" +
+                                endpointTD.getInstanceID() + "/users/{uniqueId}", new HttpEntity<>(customer),
+                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);
                     case "MOD":
-                        restTemplate.put(url, new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);
-                    case "Traslado":
-                        restTemplate.put(url, new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                        restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
+                                endpointTD.getInstanceID() + "/users/{uniqueId}", new HttpEntity<>(customer),
+                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                    case "N":
+                        restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
+                                endpointTD.getInstanceID() + "/users/{uniqueId}/move/start",
+                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                    case "D":
+                        restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
+                                        endpointTD.getInstanceID() + "/users/{uniqueId}/move/end",
+                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);
                     default:
                 }
             }

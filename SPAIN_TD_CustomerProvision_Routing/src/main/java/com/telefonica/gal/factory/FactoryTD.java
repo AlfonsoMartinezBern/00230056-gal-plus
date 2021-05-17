@@ -79,9 +79,9 @@ public class FactoryTD<T> {
     }
 
     private InvokeWsFactory invokeFactory(T request, Map<String, Object> hashMap, Endpoint endpoint,String flowType,boolean flowSynchronous) {
-        if (endpoint.getEndpointType().equals(WsUtils.MIVIEWTV)) {
+        if (endpoint.getEndpointType().equals("MIVIEWTV")) {
             return new InvokeWsFactory(new WsMiViewTv(endpoint, request), flowType, flowSynchronous);
-        } else if (endpoint.getEndpointType().equals(WsUtils.TOPPLUS)) {
+        } else if (endpoint.getEndpointType().equals("TOP+")) {
             return new InvokeWsFactory(new WsTopPlus(endpoint, request), flowType, flowSynchronous);
         }
         return null;
