@@ -4,6 +4,7 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRou
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
+import com.telefonica.gal.customerProvision.response.CUSTOMER;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.factory.FactoryTD;
@@ -33,9 +34,8 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
     public CUSTOMERPROVISIONRESPONSE customersProvision(CUSTOMERPROVISIONREQUEST request) {
 
         CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
-        CUSTOMERS customers = new CUSTOMERS();
 
-        response.setCUSTOMERS(customers);
+        //response.setCUSTOMERS(customers);
 
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;

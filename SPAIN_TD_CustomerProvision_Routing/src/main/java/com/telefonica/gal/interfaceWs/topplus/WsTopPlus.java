@@ -4,6 +4,7 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
+import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
 import com.telefonica.gal.mapper.CustomerProvisionResponseMapper;
@@ -13,16 +14,12 @@ import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Optional;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
 
@@ -55,6 +52,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private final String EVENT_TRASLADO = " /instances/{instanceId}/users/{uniqueId}/move/{action}";
 
     private CUSTOMERPROVISIONRESPONSE result = new CUSTOMERPROVISIONRESPONSE();
+    private CUSTOMERS customers = new CUSTOMERS();
     private com.telefonica.gal.customerProvision.response.CUSTOMER customerReponse =
             new com.telefonica.gal.customerProvision.response.CUSTOMER();
     private User requestON = new User();
@@ -82,32 +80,26 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         endpointTD = (Endpoint) endPoint;
         try {
             for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
+                LOGGER.info("*********** Invocación TOP+ ******************");
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
                         requestON = new User();
                         requestON = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
 
-                        LOGGER.info("URL Alta de usuario: " + URL);
-
-                        LOGGER.info("Request CreateUser TOP+  ======> " + requestON);
-
-                        /*ResponseEntity<Result> resultTop = restTemplate.postForEntity(URL, requestON, Result.class,
-                                getPathParams(endpointTD.getInstanceID(), Optional.empty()));*/
+                        LOGGER.info("URL TOP+ Alta de usuario: " + URL);
 
                         ResponseEntity<Result> resultTop = restTemplate.postForEntity(URL, requestON, Result.class);
 
-                        LOGGER.info("Respuesta CreateUser TOP+  ======> " + resultTop);
-
                         customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
 
-                        LOGGER.info("Respuesta Transformada   ======> " + customerReponse);
 
-                        LOGGER.info("============> Alta de usuario OK. " );
+                        LOGGER.info("============> Alta de usuario TOP: OK. " );
 
-                        return (T) result;
+                        //Respuesta
+                        customers.getCUSTOMER().add(customerReponse);
+
                     case "OFF":
-                        //URL = endpointTD.getTargetEndpoint() + EVENT_OFF;
                         requestOFF = new User();
                         requestOFF = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
 
@@ -115,16 +107,10 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("URL Baja de usuario:: " + URL);
 
-                        LOGGER.info("Request DeleteUser TOP+  ======> " + requestOFF);
-
                         restTemplate.delete(URL, Result.class);
 
-                        LOGGER.info("============> Baja de usuario OK. " );
+                        LOGGER.info("============> Baja de usuario TOP: OK. " );
 
-                        return (T) result;
-                        /*restTemplate.delete(endpointTD.getTargetEndpoint() + "/instances/" +
-                                endpointTD.getInstanceID() + "/users/{uniqueId}", new HttpEntity<>(customer),
-                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
                     case "MOD":
                         requestMOD = new User();
                         requestMOD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
@@ -132,17 +118,10 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
                         LOGGER.info("URL Modificación de usuario:: " + URL);
 
-
-
                         restTemplate.put(URL, requestMOD);
 
-                        LOGGER.info("============> Modificación de usuario OK. " );
+                        LOGGER.info("============> Modificación de usuario TOP: OK. " );
 
-                        return (T) result;
-
-                        /*restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
-                                endpointTD.getInstanceID() + "/users/{uniqueId}", new HttpEntity<>(customer),
-                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
                     case "N":
                         requestN = new User();
                         requestN = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
@@ -155,10 +134,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("============> Traslado OPERATION_TYPE = N de usuario OK. " );
 
-                        return (T) result;
-                        /*restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
-                                endpointTD.getInstanceID() + "/users/{uniqueId}/move/start",
-                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
+
                     case "D":
                         requestD = new User();
                         requestD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
@@ -170,13 +146,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("============> Translado OPERATION_TYPE = D de usuario OK. " );
 
-                        return (T) result;
-                       /* restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
-                                        endpointTD.getInstanceID() + "/users/{uniqueId}/move/end",
-                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
                     default:
                 }
             }
+            result.setCUSTOMERS(customers);
+
             return (T) result;
         } catch (Exception e) {
             e.printStackTrace();
