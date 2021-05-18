@@ -1,12 +1,9 @@
 package com.telefonica.gal.SPAIN_TD_CustomerProvision.service;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRoutingTD;
-import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Flow;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
-import com.telefonica.gal.customerProvision.response.CUSTOMER;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.factory.FactoryTD;
@@ -14,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class CustomerProvisionServiceImpl implements CustomerProvisionService {
@@ -40,12 +39,13 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;
+        Map<String, Object> haspMap = null;
 
         routingTDInfo = new RoutingTDInfo();
         tdKey = new RoutingTDKey(CustomerProvision);
         routingTDInfo = dynamicRoutingTD.search(tdKey);
 
-        //response = factoryTD.invokeSapinService(routingTDInfo, request);
+        response = factoryTD.invokeWs(routingTDInfo, request, haspMap);
 
 
         return response;

@@ -6,15 +6,33 @@ import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
+import com.telefonica.gal.mapper.CustomerProvisionResponseMapper;
+import com.telefonica.gal.provisionApi.model.Result;
+import com.telefonica.gal.provisionApi.model.User;
 import org.mapstruct.factory.Mappers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Optional;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
+
     private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
             CustomerProvisionRequestMapper.class);
+
+    private final static CustomerProvisionResponseMapper CUSTOMER_PROVISION_RESPONSE_MAPPER = Mappers.getMapper(
+            CustomerProvisionResponseMapper.class);
 
     @Autowired
     CUSTOMERPROVISIONREQUEST customerRequest;
@@ -28,8 +46,27 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private String url;
     private T endPoint;
     private T request;
-    private T response;
     private T serviceID;
+    private String URL;
+    // Endpoint
+    private final String EVENT_ON = "/instances/{instanceID}/users";
+    private final String EVENT_MOD = " /instances/{instanceId}/users/{uniqueId}";
+    private final String EVENT_OFF = "/instances/{instanceId}/users/{uniqueId}";
+    private final String EVENT_TRASLADO = " /instances/{instanceId}/users/{uniqueId}/move/{action}";
+
+    private CUSTOMERPROVISIONRESPONSE result = new CUSTOMERPROVISIONRESPONSE();
+    private com.telefonica.gal.customerProvision.response.CUSTOMER customerReponse =
+            new com.telefonica.gal.customerProvision.response.CUSTOMER();
+    private User requestON = new User();
+    private User requestOFF = new User();
+    private User requestMOD = new User();
+    private User requestN = new User();
+    private User requestD = new User();
+
+    //PRUEBAS
+    RestTemplate restTemplate = new RestTemplate();
+    MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+
 
     public WsTopPlus(T endPoint, T request) {
         this.endPoint = endPoint;
@@ -38,35 +75,105 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     @Override
     public T invoke() {
-        RestTemplate restTemplate = new RestTemplate();
-        CUSTOMERPROVISIONRESPONSE result = new CUSTOMERPROVISIONRESPONSE();
-        result.setCUSTOMERS(new com.telefonica.gal.customerProvision.response.CUSTOMERS());
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
+        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+
         customerRequest = (CUSTOMERPROVISIONREQUEST) request;
         endpointTD = (Endpoint) endPoint;
         try {
             for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
-                        result.getCUSTOMERS().getCUSTOMER().add(restTemplate
-                                .postForEntity(endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID()
-                                        + "/users", new HttpEntity<>(CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer))
-                                        , com.telefonica.gal.customerProvision.response.CUSTOMER.class).getBody());
+                        requestON = new User();
+                        requestON = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
+                        URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
+
+                        LOGGER.info("URL Alta de usuario: " + URL);
+
+                        LOGGER.info("Request CreateUser TOP+  ======> " + requestON);
+
+                        /*ResponseEntity<Result> resultTop = restTemplate.postForEntity(URL, requestON, Result.class,
+                                getPathParams(endpointTD.getInstanceID(), Optional.empty()));*/
+
+                        ResponseEntity<Result> resultTop = restTemplate.postForEntity(URL, requestON, Result.class);
+
+                        LOGGER.info("Respuesta CreateUser TOP+  ======> " + resultTop);
+
+                        customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
+
+                        LOGGER.info("Respuesta Transformada   ======> " + customerReponse);
+
+                        LOGGER.info("============> Alta de usuario OK. " );
+
+                        return (T) result;
                     case "OFF":
-                        restTemplate.delete(endpointTD.getTargetEndpoint() + "/instances/" +
+                        //URL = endpointTD.getTargetEndpoint() + EVENT_OFF;
+                        requestOFF = new User();
+                        requestOFF = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
+
+                        URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestOFF.getUniqueId();
+
+                        LOGGER.info("URL Baja de usuario:: " + URL);
+
+                        LOGGER.info("Request DeleteUser TOP+  ======> " + requestOFF);
+
+                        restTemplate.delete(URL, Result.class);
+
+                        LOGGER.info("============> Baja de usuario OK. " );
+
+                        return (T) result;
+                        /*restTemplate.delete(endpointTD.getTargetEndpoint() + "/instances/" +
                                 endpointTD.getInstanceID() + "/users/{uniqueId}", new HttpEntity<>(customer),
-                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
                     case "MOD":
-                        restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
+                        requestMOD = new User();
+                        requestMOD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
+
+                        URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
+                        LOGGER.info("URL Modificación de usuario:: " + URL);
+
+
+
+                        restTemplate.put(URL, requestMOD);
+
+                        LOGGER.info("============> Modificación de usuario OK. " );
+
+                        return (T) result;
+
+                        /*restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
                                 endpointTD.getInstanceID() + "/users/{uniqueId}", new HttpEntity<>(customer),
-                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                                com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
                     case "N":
-                        restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
+                        requestN = new User();
+                        requestN = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
+
+                        URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestN.getUniqueId() +"/move/start";
+
+                        LOGGER.info("URL traslado OPERATION_TYPE = N de usuario:: " + URL);
+
+                        restTemplate.put(URL, requestN);
+
+                        LOGGER.info("============> Traslado OPERATION_TYPE = N de usuario OK. " );
+
+                        return (T) result;
+                        /*restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
                                 endpointTD.getInstanceID() + "/users/{uniqueId}/move/start",
-                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
                     case "D":
-                        restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
+                        requestD = new User();
+                        requestD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
+
+                        URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/"+ requestD.getUniqueId() +"/move/end";
+                        LOGGER.info("URL traslado OPERATION_TYPE = D de usuario: " + URL);
+
+                        restTemplate.put(URL, requestD);
+
+                        LOGGER.info("============> Translado OPERATION_TYPE = D de usuario OK. " );
+
+                        return (T) result;
+                       /* restTemplate.put(endpointTD.getTargetEndpoint() + "/instances/" +
                                         endpointTD.getInstanceID() + "/users/{uniqueId}/move/end",
-                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);
+                                new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class);*/
                     default:
                 }
             }
@@ -76,4 +183,30 @@ public class WsTopPlus<T> implements InvokeWs<T> {
             return (T) result;
         }
     }
+
+   /* private HashMap<String, Integer> getPathParams(int instanceId, Optional<String> optinalParameter) {
+        try {
+            HashMap<String, Integer> queryParams = new HashMap<>();
+            queryParams.put("instanceId", instanceId);
+            //optinalParameter.ifPresent((uniqueId) -> queryParams.put("uniqueId", (T) String.valueOf(uniqueId)));
+            LOGGER.info(" ==== > getPathParams");
+            return queryParams;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    private HashMap<String, String> getPathParamsTraslado(int instanceId, Optional<String> paramsUniqueId,
+                                                          Optional<String> paramsAction) {
+        try {
+            HashMap<String, String> queryParams = new HashMap<>();
+            queryParams.put("instanceId", String.valueOf(instanceId));
+            paramsUniqueId.ifPresent((uniqueId) -> queryParams.put("uniqueId", uniqueId));
+            paramsAction.ifPresent((action) -> queryParams.put("action", action));
+            LOGGER.info(" ==== > getPathParams");
+            return queryParams;
+        } catch (Exception e) {
+            throw e;
+        }
+    }*/
 }

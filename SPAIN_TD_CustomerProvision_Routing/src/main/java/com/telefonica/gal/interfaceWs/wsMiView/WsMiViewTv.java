@@ -41,10 +41,11 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         customerRequest = (CUSTOMERPROVISIONREQUEST) request;
         endpointTD = (Endpoint) endPoint;
         try {
-            for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
+            /*for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
+                url= "https://6e8314e8-78d3-4e90-8f83-ae4a7b519b6b.mock.pstmn.io/CDB_CustomerProvision_XML.php";
                 result.getCUSTOMERS().getCUSTOMER().add(restTemplate
                         .postForEntity(url, new HttpEntity<>(customer), com.telefonica.gal.customerProvision.response.CUSTOMER.class).getBody());
-            }
+            }*/
             return (T) result;
         } catch (Exception e) {
             e.printStackTrace();

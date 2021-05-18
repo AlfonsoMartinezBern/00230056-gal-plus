@@ -4,6 +4,7 @@ import com.telefonica.gal.customerProvision.response.CUSTOMER;
 import com.telefonica.gal.provisionApi.model.Result;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.http.ResponseEntity;
 
 @Mapper
 public interface CustomerProvisionResponseMapper {
