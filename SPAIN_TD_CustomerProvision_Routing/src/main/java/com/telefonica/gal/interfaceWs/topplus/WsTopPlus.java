@@ -80,7 +80,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         endpointTD = (Endpoint) endPoint;
         try {
             for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
-                LOGGER.info("*********** Invocación TOP+ ******************");
+
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
                         requestON = new User();
@@ -98,6 +98,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
+                        break;
 
                     case "OFF":
                         requestOFF = new User();
@@ -110,6 +111,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.delete(URL, Result.class);
 
                         LOGGER.info("============> Baja de usuario TOP: OK. " );
+                        break;
 
                     case "MOD":
                         requestMOD = new User();
@@ -121,6 +123,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.put(URL, requestMOD);
 
                         LOGGER.info("============> Modificación de usuario TOP: OK. " );
+                        break;
 
                     case "N":
                         requestN = new User();
@@ -133,6 +136,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.put(URL, requestN);
 
                         LOGGER.info("============> Traslado OPERATION_TYPE = N de usuario OK. " );
+                        break;
 
 
                     case "D":
@@ -145,8 +149,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.put(URL, requestD);
 
                         LOGGER.info("============> Translado OPERATION_TYPE = D de usuario OK. " );
+                        break;
 
                     default:
+                        LOGGER.info("============> Unknown. " );
+                        break;
                 }
             }
             result.setCUSTOMERS(customers);
