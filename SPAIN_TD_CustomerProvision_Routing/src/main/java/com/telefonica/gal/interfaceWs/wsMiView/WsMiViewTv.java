@@ -63,7 +63,7 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         customerRequest = (CUSTOMERPROVISIONREQUEST) request;
         endpointTD = (Endpoint) endPoint;
         try {
-            for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
+            /*for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
 
                 url= "https://6e8314e8-78d3-4e90-8f83-ae4a7b519b6b.mock.pstmn.io/CDB_CustomerProvision_XML.php";
 
@@ -77,8 +77,19 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
                 //Respuesta
                 customers.getCUSTOMER().add(resultMiView.getBody());
 
-            }
-            result.setCUSTOMERS(customers);
+            }*/
+            url= "https://6e8314e8-78d3-4e90-8f83-ae4a7b519b6b.mock.pstmn.io/CDB_CustomerProvision_XML.php";
+
+            LOGGER.info("URL MiView Alta de usuario: " + url);
+            LOGGER.info("URL original MiView ====> http://172.26.31.80:9082/CDB_CustomerProvision_XML.php" );
+
+            ResponseEntity<CUSTOMERPROVISIONRESPONSE> resultMiView = restTemplate.postForEntity(
+                    url, customerRequest, CUSTOMERPROVISIONRESPONSE.class);
+
+            LOGGER.info("==== MiView: " + customerRequest.getCUSTOMERS().getCUSTOMER().get(0).getOPERATIONTYPE() + "  OK." );
+
+            //Respuesta
+            result = resultMiView.getBody();
 
             return (T) result;
 

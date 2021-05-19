@@ -19,7 +19,7 @@
     "targetEndpoint": "https://6e8314e8-78d3-4e90-8f83-ae4a7b519b6b.mock.pstmn.io",
     "endpointType": "TOP+"
     }],
-     "flows": [{"step":1,"endpointID":"03","type":"source","active":true },{"step":2,"endpointID":"02","type":"replica","active":true}]
+     "flows": [{"step":1,"endpointID":"02","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"03","type":"replica","active":true, "synchronous":true}]
   }
 
 ]

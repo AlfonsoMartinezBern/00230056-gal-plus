@@ -88,11 +88,13 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
 
                         LOGGER.info("URL TOP+ Alta de usuario: " + URL);
+                        LOGGER.info("URL Original" + EVENT_ON);
 
                         ResponseEntity<Result> resultTop = restTemplate.postForEntity(URL, requestON, Result.class);
 
                         customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
 
+                        LOGGER.info("Request ON TOP ========> " + customerReponse );
 
                         LOGGER.info("============> Alta de usuario TOP: OK. " );
 
@@ -107,6 +109,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestOFF.getUniqueId();
 
                         LOGGER.info("URL Baja de usuario:: " + URL);
+                        LOGGER.info("URL Original" + EVENT_OFF);
+                        LOGGER.info("Request OFF TOP ========> " + requestOFF );
 
                         restTemplate.delete(URL, Result.class);
 
@@ -119,6 +123,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
                         LOGGER.info("URL Modificación de usuario:: " + URL);
+                        LOGGER.info("URL Original" + EVENT_MOD);
+                        LOGGER.info("Request MOD TOP ========> " + requestMOD );
 
                         restTemplate.put(URL, requestMOD);
 
@@ -132,6 +138,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestN.getUniqueId() +"/move/start";
 
                         LOGGER.info("URL traslado OPERATION_TYPE = N de usuario:: " + URL);
+                        LOGGER.info("URL Original" + EVENT_TRASLADO);
+                        LOGGER.info("Request N TOP ========> " + requestN );
 
                         restTemplate.put(URL, requestN);
 
@@ -145,6 +153,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/"+ requestD.getUniqueId() +"/move/end";
                         LOGGER.info("URL traslado OPERATION_TYPE = D de usuario: " + URL);
+                        LOGGER.info("URL Original" + EVENT_TRASLADO);
+                        LOGGER.info("Request D TOP ========> " + requestD );
 
                         restTemplate.put(URL, requestD);
 
