@@ -8,6 +8,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+import javax.xml.bind.UnmarshalException;
+
 @Configuration
 public class CustomerProvisionConfig {
 
@@ -15,17 +17,24 @@ public class CustomerProvisionConfig {
     private String xsdPath;
 
     @Bean
-    public MarshallingHttpMessageConverter marshallingHttpMessageConverter() throws Exception {
+    public MarshallingHttpMessageConverter marshallingHttpMessageConverter() throws UnmarshalException {
         MarshallingHttpMessageConverter marshallingHttpMessageConverter = new MarshallingHttpMessageConverter();
 
-        marshallingHttpMessageConverter.setMarshaller(jaxb2Marshaller());
-        marshallingHttpMessageConverter.setUnmarshaller(jaxb2Marshaller());
+        try{
+            marshallingHttpMessageConverter.setMarshaller(jaxb2Marshaller());
+            marshallingHttpMessageConverter.setUnmarshaller(jaxb2Marshaller());
+
+        } catch (UnmarshalException unmarshalException) {
+            System.out.println("UnmarshalException ------>" + unmarshalException.getMessage());
+            throw new UnmarshalException(unmarshalException);
+
+        }
 
         return marshallingHttpMessageConverter;
     }
 
     @Bean
-    public Jaxb2Marshaller jaxb2Marshaller() throws Exception {
+    public Jaxb2Marshaller jaxb2Marshaller() throws UnmarshalException {
         try {
             Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
             jaxb2Marshaller.setSchemas(new ClassPathResource(xsdPath));
@@ -34,10 +43,15 @@ public class CustomerProvisionConfig {
             //jaxb2Marshaller.setPackagesToScan();
             jaxb2Marshaller.afterPropertiesSet();
             return jaxb2Marshaller;
+        } catch (UnmarshalException e) {
+            System.out.println("UnmarshalException ---->" + e.getMessage());
+            throw new UnmarshalException(e);
         } catch (Exception e) {
-            throw new Exception(e);
+            System.out.println("Exception ---->" + e.getMessage());
+            e.printStackTrace();
         }
 
+        return null;
     }
 
 }

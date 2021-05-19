@@ -37,6 +37,7 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
                     customerprovisionrequest), HttpStatus.OK);
 
         } catch (Exception e) {
+            LOGGER.info("Exception:  " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 

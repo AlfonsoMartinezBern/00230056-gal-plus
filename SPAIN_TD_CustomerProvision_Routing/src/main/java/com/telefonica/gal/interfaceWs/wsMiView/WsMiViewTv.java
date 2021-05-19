@@ -62,26 +62,11 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         result.setCUSTOMERS(new com.telefonica.gal.customerProvision.response.CUSTOMERS());
         customerRequest = (CUSTOMERPROVISIONREQUEST) request;
         endpointTD = (Endpoint) endPoint;
+        url = endpointTD.getTargetEndpoint();
         try {
-            /*for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
 
-                url= "https://6e8314e8-78d3-4e90-8f83-ae4a7b519b6b.mock.pstmn.io/CDB_CustomerProvision_XML.php";
-
-                LOGGER.info("URL MiView Alta de usuario: " + url);
-
-                ResponseEntity<com.telefonica.gal.customerProvision.response.CUSTOMER> resultMiView = restTemplate.postForEntity(
-                        url, customer, com.telefonica.gal.customerProvision.response.CUSTOMER.class);
-
-                LOGGER.info("==== MiView: " + customer.getOPERATIONTYPE() + "  OK." );
-
-                //Respuesta
-                customers.getCUSTOMER().add(resultMiView.getBody());
-
-            }*/
-            url= "https://6e8314e8-78d3-4e90-8f83-ae4a7b519b6b.mock.pstmn.io/CDB_CustomerProvision_XML.php";
-
-            LOGGER.info("URL MiView Alta de usuario: " + url);
-            LOGGER.info("URL original MiView ====> http://172.26.31.80:9082/CDB_CustomerProvision_XML.php" );
+            LOGGER.info("PETICION MiView-> " + customerRequest);
+            LOGGER.info("URL MiView --->" + url);
 
             ResponseEntity<CUSTOMERPROVISIONRESPONSE> resultMiView = restTemplate.postForEntity(
                     url, customerRequest, CUSTOMERPROVISIONRESPONSE.class);
@@ -90,6 +75,8 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
 
             //Respuesta
             result = resultMiView.getBody();
+
+            LOGGER.info("RESPUESTA MiVIew -> " + customerRequest);
 
             return (T) result;
 

@@ -6,13 +6,20 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.interfaceWs.topplus.WsTopPlus;
 import com.telefonica.gal.interfaceWs.wsMiView.WsMiViewTv;
-import com.telefonica.gal.utils.WsUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class FactoryTD<T> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FactoryTD.class.getName());
 
     public CUSTOMERPROVISIONRESPONSE invokeWs(T routingTD, T request, Map<String, Object> hashMap) {
         CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
