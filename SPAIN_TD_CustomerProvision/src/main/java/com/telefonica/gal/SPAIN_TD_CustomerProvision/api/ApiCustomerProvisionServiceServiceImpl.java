@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.xml.sax.SAXParseException;
 
 @RestController
 @RequestMapping(path = "/customerProvision")
@@ -29,10 +28,9 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
 
     @Override
     @PostMapping(produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> customersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) throws Exception{
+    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> apiCustomersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) throws Exception{
         try {
             LOGGER.info("Customer request CreateUser=========== ");
-            customerProvisionService.customersProvision(customerprovisionrequest);
             return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
                     customerprovisionrequest), HttpStatus.OK);
 

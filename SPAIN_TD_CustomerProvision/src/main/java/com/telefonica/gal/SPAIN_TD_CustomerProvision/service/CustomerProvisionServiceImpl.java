@@ -4,9 +4,7 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRou
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
-import com.telefonica.gal.customerProvision.response.CUSTOMER;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
-import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.factory.FactoryTD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -19,6 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 import java.util.Arrays;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
@@ -64,6 +67,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     //PRUEBAS
     RestTemplate restTemplate = new RestTemplate();
     MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+    StringWriter sw = new StringWriter();
 
 
     public WsTopPlus(T endPoint, T request) {
@@ -79,8 +83,14 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         customerRequest = (CUSTOMERPROVISIONREQUEST) request;
         endpointTD = (Endpoint) endPoint;
         try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMERPROVISIONREQUEST.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            String xmlString;
+
             for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
-                LOGGER.info("PETICION TOP    -------> " + customer.getOPERATIONTYPE());
+                jaxbMarshaller.marshal(customer, sw);
+                xmlString = sw.toString();
+                LOGGER.info("==== REQUEST TOP -------> " + xmlString + "\n" );
 
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
@@ -89,6 +99,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
 
                         LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("METODO REST: postForEntity   ");
                         LOGGER.info("URL Original ------->  " + EVENT_ON);
 
                         LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
@@ -111,6 +122,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestOFF.getUniqueId();
 
                         LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("METODO REST: PUT   ");
                         LOGGER.info("URL Original ------->" + EVENT_OFF);
 
                         LOGGER.info("TRANSFORMACION PETICION DELETE TOP ========> " + requestOFF );
@@ -126,6 +138,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
 
                         LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("METODO REST: PUT   ");
                         LOGGER.info("URL Original ------->" + EVENT_MOD);
 
                         LOGGER.info("TRANSFORMACION PETICION MODIFICACION TOP ========>" + requestMOD );
@@ -141,6 +154,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestN.getUniqueId() +"/move/start";
 
                         LOGGER.info("URL TOP+     --->  " + URL);
+                        LOGGER.info("METODO REST: PUT   ");
                         LOGGER.info("URL Original ------->" + EVENT_TRASLADO);
 
                         LOGGER.info("TRANSFORMACION PETICION TRASLADO N TOP ========>  " + requestN );
@@ -157,6 +171,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/"+ requestD.getUniqueId() +"/move/end";
 
                         LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("METODO REST: PUT   ");
                         LOGGER.info("URL Original ------->" + EVENT_TRASLADO);
 
                         LOGGER.info("TRANSFORMACION PETICION TRASLADO D TOP ========>  " + requestD );

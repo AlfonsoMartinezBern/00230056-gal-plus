@@ -6,4 +6,3 @@ logging:
     file: "%d %-5level [%thread] %logger : %msg%n"
   level:
     root: info
-

@@ -9,14 +9,14 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://90669835-eaa8-403c-921b-983785171f5e.mock.pstmn.io/CDB_CustomerProvision_XML.php",
+    "targetEndpoint": "https://a184d455-02ba-4bfd-99de-58eac6c33048.mock.pstmn.io/CDB_CustomerProvision_XML.php",
     "endpointType": "MIVIEWTV"
     },
     {
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://6e8314e8-78d3-4e90-8f83-ae4a7b519b6b.mock.pstmn.io",
+    "targetEndpoint": "https://a246c012-02b6-4e83-a4c1-97f9e41cc51a.mock.pstmn.io",
     "endpointType": "TOP+"
     }],
      "flows": [{"step":1,"endpointID":"01","type":"source","active":true, "synchronous":false },{"step":2,"endpointID":"02","type":"replica","active":true, "synchronous":false}]

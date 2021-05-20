@@ -15,6 +15,9 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,7 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
     List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
     Jaxb2RootElementHttpMessageConverter jaxbMessageConverter = new Jaxb2RootElementHttpMessageConverter();
     List<MediaType> mediaTypes = new ArrayList<MediaType>();
+    StringWriter sw = new StringWriter();
 
     RestTemplate restTemplate = new RestTemplate();
 
@@ -63,14 +67,17 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         endpointTD = (Endpoint) endPoint;
         url = endpointTD.getTargetEndpoint();
         try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMERPROVISIONREQUEST.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-            LOGGER.info("PETICION MIVIEW -------> " + customerRequest.getCUSTOMERS().getCUSTOMER().get(0).getOPERATIONTYPE());
-            LOGGER.info("URL MiView --->" + url);
+            jaxbMarshaller.marshal(customerRequest, sw);
+            String xmlString = sw.toString();
+            LOGGER.info("==== REQUEST MIVIEW -------> " + xmlString + "\n");
+            LOGGER.info("URL MiView ---> " + url);
+            LOGGER.info("==== OPEARTION MiView ----->: " + customerRequest.getCUSTOMERS().getCUSTOMER().get(0).getOPERATIONTYPE());
 
             ResponseEntity<CUSTOMERPROVISIONRESPONSE> resultMiView = restTemplate.postForEntity(
                     url, customerRequest, CUSTOMERPROVISIONRESPONSE.class);
-
-            LOGGER.info("==== MiView: " + customerRequest.getCUSTOMERS().getCUSTOMER().get(0).getOPERATIONTYPE() + "  OK." );
 
             //Respuesta
             result = resultMiView.getBody();
