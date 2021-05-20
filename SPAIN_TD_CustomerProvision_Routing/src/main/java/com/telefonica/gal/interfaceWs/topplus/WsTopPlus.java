@@ -80,24 +80,24 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         endpointTD = (Endpoint) endPoint;
         try {
             for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
-                LOGGER.info("PETICION TOP -------> " + customer );
+                LOGGER.info("PETICION TOP    -------> " + customer.getOPERATIONTYPE());
 
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
                         requestON = new User();
                         requestON = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
-                        LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
-
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
 
-                        LOGGER.info("URL TOP+ Alta de usuario: " + URL);
-                        LOGGER.info("URL Original" + EVENT_ON);
+                        LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("URL Original ------->  " + EVENT_ON);
+
+                        LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
+
 
                         ResponseEntity<Result> resultTop = restTemplate.postForEntity(URL, requestON, Result.class);
 
                         customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
 
-                        LOGGER.info("TRANSFORMAVION RESPONSE TOP ========> " + customerReponse );
 
                         LOGGER.info("============> Alta de usuario TOP: OK. " );
 
@@ -108,12 +108,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "OFF":
                         requestOFF = new User();
                         requestOFF = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
-                        LOGGER.info("TRANSFORMACION PETICION DELETE TOP ========> " + requestOFF );
-
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestOFF.getUniqueId();
 
-                        LOGGER.info("URL Baja de usuario:: " + URL);
-                        LOGGER.info("URL Original" + EVENT_OFF);
+                        LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("URL Original ------->" + EVENT_OFF);
+
+                        LOGGER.info("TRANSFORMACION PETICION DELETE TOP ========> " + requestOFF );
 
                         restTemplate.delete(URL, Result.class);
 
@@ -123,12 +123,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "MOD":
                         requestMOD = new User();
                         requestMOD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
-                        LOGGER.info("TRANSFORMACION PETICION MODIFICACION TOP ========>" + requestMOD );
-
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
-                        LOGGER.info("URL Modificación de usuario:: " + URL);
-                        LOGGER.info("URL Original" + EVENT_MOD);
 
+                        LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("URL Original ------->" + EVENT_MOD);
+
+                        LOGGER.info("TRANSFORMACION PETICION MODIFICACION TOP ========>" + requestMOD );
 
                         restTemplate.put(URL, requestMOD);
 
@@ -138,13 +138,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "N":
                         requestN = new User();
                         requestN = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
-                        LOGGER.info("TRANSFORMACION PETICION TRASLADO N TOP ========>  " + requestN );
-
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestN.getUniqueId() +"/move/start";
 
-                        LOGGER.info("URL traslado OPERATION_TYPE = N de usuario:: " + URL);
-                        LOGGER.info("URL Original" + EVENT_TRASLADO);
+                        LOGGER.info("URL TOP+     --->  " + URL);
+                        LOGGER.info("URL Original ------->" + EVENT_TRASLADO);
 
+                        LOGGER.info("TRANSFORMACION PETICION TRASLADO N TOP ========>  " + requestN );
 
                         restTemplate.put(URL, requestN);
 
@@ -155,12 +154,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "D":
                         requestD = new User();
                         requestD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer);
-                        LOGGER.info("TRANSFORMACION PETICION TRASLADO D TOP ========>  " + requestD );
-
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/"+ requestD.getUniqueId() +"/move/end";
-                        LOGGER.info("URL traslado OPERATION_TYPE = D de usuario: " + URL);
-                        LOGGER.info("URL Original" + EVENT_TRASLADO);
 
+                        LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("URL Original ------->" + EVENT_TRASLADO);
+
+                        LOGGER.info("TRANSFORMACION PETICION TRASLADO D TOP ========>  " + requestD );
 
                         restTemplate.put(URL, requestD);
 

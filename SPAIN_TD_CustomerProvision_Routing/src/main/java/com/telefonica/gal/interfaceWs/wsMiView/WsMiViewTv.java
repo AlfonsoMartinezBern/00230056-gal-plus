@@ -1,7 +1,6 @@
 package com.telefonica.gal.interfaceWs.wsMiView;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
@@ -65,7 +64,7 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         url = endpointTD.getTargetEndpoint();
         try {
 
-            LOGGER.info("PETICION MiView-> " + customerRequest);
+            LOGGER.info("PETICION MIVIEW -------> " + customerRequest.getCUSTOMERS().getCUSTOMER().get(0).getOPERATIONTYPE());
             LOGGER.info("URL MiView --->" + url);
 
             ResponseEntity<CUSTOMERPROVISIONRESPONSE> resultMiView = restTemplate.postForEntity(
