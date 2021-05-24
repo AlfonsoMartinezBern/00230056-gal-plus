@@ -1,5 +1,5 @@
 interface:
   customerProvision: "CustomerProvision"
 customerProvision:
-  xsd: "xsd/request/CustomerProvision_request.xsd"
+  xsd: "xsd/request/CustomerProvision_request_v2.xsd"
 

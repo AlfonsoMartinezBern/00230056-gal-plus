@@ -8,7 +8,7 @@ import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
 import com.telefonica.gal.mapper.CustomerProvisionResponseMapper;
-import com.telefonica.gal.provisionApi.model.Result;
+import com.telefonica.gal.provisionApi.model.ResultOK;
 import com.telefonica.gal.provisionApi.model.User;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
@@ -105,7 +105,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
 
 
-                        ResponseEntity<Result> resultTop = restTemplate.postForEntity(URL, requestON, Result.class);
+                        ResponseEntity<ResultOK> resultTop = restTemplate.postForEntity(URL, requestON, ResultOK.class);
 
                         customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
 
@@ -127,7 +127,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("TRANSFORMACION PETICION DELETE TOP ========> " + requestOFF );
 
-                        restTemplate.delete(URL, Result.class);
+                        restTemplate.delete(URL, ResultOK.class);
 
                         LOGGER.info("============> Baja de usuario TOP: OK. " );
                         break;

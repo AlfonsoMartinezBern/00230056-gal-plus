@@ -121,7 +121,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/test_ProvisionApi_v0.0.10.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/ProvisionApi_v0.0.16.yaml</inputSpec>
 							<modelPackage>com.telefonica.gal.provisionApi.model</modelPackage>
 							<apiPackage>com.telefonica.gal.provisionApi.api</apiPackage>
 							<generatorName>spring</generatorName>
@@ -173,7 +173,7 @@
 						<configuration>
 							<packageName>com.telefonica.gal.customerProvision.request</packageName>
 							<sources>
-								<source>${project.basedir}/src/main/resources/xsd/request/CustomerProvision_request.xsd</source>
+								<source>${project.basedir}/src/main/resources/xsd/request/CustomerProvision_request_v2.xsd</source>
 							</sources>
 							<outputDirectory>${project.build.directory}/generated-sources/customerProvisionRequest/src/main/java</outputDirectory>
 							<clearOutputDir>false</clearOutputDir>

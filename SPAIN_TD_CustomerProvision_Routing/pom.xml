@@ -132,6 +132,13 @@
 			<optional>true</optional>
 		</dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <version>2.5.0</version>
+            <scope>test</scope>
+        </dependency>
+
 	</dependencies>
 
 	<build>
@@ -156,7 +163,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/test_ProvisionApi_v0.0.10.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/ProvisionApi_v0.0.16.yaml</inputSpec>
 							<modelPackage>com.telefonica.gal.provisionApi.model</modelPackage>
 							<apiPackage>com.telefonica.gal.provisionApi.api</apiPackage>
 							<generatorName>spring</generatorName>
@@ -209,7 +216,7 @@
 							<packageName>com.telefonica.gal.customerProvision.request</packageName>
 							<sources>
 								<source>
-									${project.basedir}/src/main/resources/xsd/request/CustomerProvision_request.xsd
+									${project.basedir}/src/main/resources/xsd/request/CustomerProvision_request_v2.xsd
 								</source>
 							</sources>
 							<outputDirectory>
@@ -238,6 +245,11 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
 			</plugin>
 
 		</plugins>
