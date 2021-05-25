@@ -1,2 +1,6 @@
 server:
   port: 8100
+interface:
+  consolidationService: "ServicesConsolidation"
+servicesConsolidation:
+  xsd: "xsd/request/ServicesConsolidation_request.xsd"

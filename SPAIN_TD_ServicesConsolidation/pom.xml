@@ -82,6 +82,13 @@
 			<version>3.3.5</version>
 		</dependency>
 
+		<!--Cliente configuracion enrutamiento-->
+		<dependency>
+			<groupId>com.telefonica.gal.spain</groupId>
+			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
