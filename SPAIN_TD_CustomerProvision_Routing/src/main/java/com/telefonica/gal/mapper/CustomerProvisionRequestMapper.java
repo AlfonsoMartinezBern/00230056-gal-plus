@@ -1,5 +1,6 @@
 package com.telefonica.gal.mapper;
 
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.LISTTVSERVICES;
 import com.telefonica.gal.customerProvision.request.LISTVODSERVICES;
@@ -19,25 +20,26 @@ import java.util.List;
 @Mapper(uses = ObjectFactory.class)
 public interface CustomerProvisionRequestMapper {
 
-    @Mapping(source = "USERID", target = "uniqueId")
+    @Mapping(source = "cUSTOMER.USERID", target = "uniqueId")
     @Mapping(constant = "IPTV", target = "serviceType")
-    @Mapping(source = "USERTYPE", target = "commercialOffer")
-    @Mapping(source = "SERVICETYPE", target = "application")
+    @Mapping(source = "cUSTOMER.USERTYPE", target = "commercialOffer")
+    @Mapping(source = "cUSTOMER.SERVICETYPE", target = "application")
+    @Mapping(source = "endpoint.platformID", target = "platformId")
     @Mapping(target = "addressing", expression = "java(checkAddressing(cUSTOMER))")
-    @Mapping(source = "LISTSTBIPS.STBIP", target = "stbIps")
-    @Mapping(source = "MAXNUMSTBS", target = "maxDevices")
+    @Mapping(source = "cUSTOMER.LISTSTBIPS.STBIP", target = "stbIps")
+    @Mapping(source = "cUSTOMER.MAXNUMSTBS", target = "maxDevices")
     @Mapping(target = "tvHd", expression = "java(checkTvHD(cUSTOMER))")
-    @Mapping(source = "LINEQUALITY" , target = "lineQuality")
-    @Mapping(source = "LIMITVODPURCHASES", target = "limitVodPurchases")
-    @Mapping(source = "LIMITPPVPURCHASES", target = "limitPPVPurchases")
-    @Mapping(source = "LIMITUSERBONUSPURCHASES", target = "limitUserBonusPurchases")
-    @Mapping(source = "SUBSCRIBERLINE.UPSTREAM", target = "subscriberLineUpstream")
-    @Mapping(source = "SUBSCRIBERLINE.DOWNSTREAM", target = "subscriberLineDownstream")
-    @Mapping(source = "GEOGRAFICAREA" , target = "userVideoServiceInfo.geographicArea")
-    @Mapping(source = "POP" , target = "userVideoServiceInfo.serverCodeList")
+    @Mapping(source = "cUSTOMER.LINEQUALITY" , target = "lineQuality")
+    @Mapping(source = "cUSTOMER.LIMITVODPURCHASES", target = "limitVodPurchases")
+    @Mapping(source = "cUSTOMER.LIMITPPVPURCHASES", target = "limitPPVPurchases")
+    @Mapping(source = "cUSTOMER.LIMITUSERBONUSPURCHASES", target = "limitUserBonusPurchases")
+    @Mapping(source = "cUSTOMER.SUBSCRIBERLINE.UPSTREAM", target = "subscriberLineUpstream")
+    @Mapping(source = "cUSTOMER.SUBSCRIBERLINE.DOWNSTREAM", target = "subscriberLineDownstream")
+    @Mapping(source = "cUSTOMER.GEOGRAFICAREA" , target = "userVideoServiceInfo.geographicArea")
+    @Mapping(source = "cUSTOMER.POP" , target = "userVideoServiceInfo.serverCodeList")
     @Mapping(constant = "SNAPSHOT", target = "products.productsMode")
     @Mapping(target = "products.subscriptionsList", expression = "java(getSuscriptionsList(cUSTOMER))")
-    User customerDataMapper(CUSTOMER cUSTOMER);
+    User customerDataMapper(CUSTOMER cUSTOMER, Endpoint endpoint);
 
     default String checkAddressing(CUSTOMER cUSTOMER) {
         String addressing = cUSTOMER.getADDRESSING();
