@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+   <xs:element name="OPERATION_ID">
+      <xs:annotation>
+         <xs:documentation>Identificador unico de la operacion a realizar.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="11"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="USER_ID">
+      <xs:annotation>
+         <xs:documentation> Numero administrativo o identificador unico de usuario en la plataforma MyViewTV </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:element name="LIST_TV_SERVICES">
+      <xs:annotation>
+         <xs:documentation>Lista de Codigos de los Paquetes de canales de TV asociados al usuario.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="TV_SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="TV_SERVICE">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="TV_SERVICE_ID"/>
+            <xs:element name="TV_SERVICE_OPER" type="operationType" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="TV_SERVICE_ID">
+		<xs:annotation>
+			<xs:documentation> Codigo comercial de paquete de canal de TV </xs:documentation>
+		</xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+
+   <xs:element name="LIST_VOD_SERVICES">
+      <xs:annotation>
+         <xs:documentation>Lista de las Suscripciones (de Contenido bajo demanda) asociados al usuario.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="VOD_SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VOD_SERVICE">
+		<xs:annotation>
+			<xs:documentation> Codigo comercial de suscripcion CbD </xs:documentation>
+		</xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="VOD_SERVICE_ID"/>
+            <xs:element name="VOD_SERVICE_OPER" type="operationType" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VOD_SERVICE_ID">
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:element>
+
+   <xs:simpleType name="operationType">
+      <xs:annotation>
+         <xs:documentation> 'ON' | 'OFF' | 'KEEP' </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="ON"/>
+         <xs:enumeration value="OFF"/>
+         <xs:enumeration value="KEEP"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <!-- ==================================================== -->
+   <xs:element name="CUSTOMER">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="OPERATION_ID"/>
+            <xs:element ref="USER_ID"/>
+            <xs:element ref="LIST_TV_SERVICES"/>
+            <xs:element ref="LIST_VOD_SERVICES"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <!-- ==================================================== -->
+   <xs:element name="CUSTOMERS">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="CUSTOMER" maxOccurs="unbounded"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <!-- ==================================================== -->
+   <xs:element name="SERVICES_CONSOLIDATION_REQUEST">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="CUSTOMERS"/>
+         </xs:sequence>
+         <xs:attribute name="version" use="optional">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="8"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
