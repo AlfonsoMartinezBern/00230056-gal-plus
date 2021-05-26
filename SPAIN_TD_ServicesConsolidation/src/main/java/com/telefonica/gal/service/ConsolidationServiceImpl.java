@@ -3,13 +3,17 @@ package com.telefonica.gal.service;
 import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRoutingTD;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
+import com.telefonica.gal.factory.FactoryTD;
 import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
+import com.telefonica.gal.servicesConsolidation.response.CUSTOMER;
+import com.telefonica.gal.servicesConsolidation.response.CUSTOMERS;
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.Map;
 
 @Service
@@ -19,9 +23,13 @@ public class ConsolidationServiceImpl implements ConsolidationService {
 
     ISpainDynamicRoutingTD dynamicRoutingTD;
 
+    FactoryTD factoryTD;
+
+
     @Autowired
-    public ConsolidationServiceImpl(final ISpainDynamicRoutingTD dynamicRoutingTD) {
+    public ConsolidationServiceImpl(final ISpainDynamicRoutingTD dynamicRoutingTD, final FactoryTD factoryTD) {
         this.dynamicRoutingTD = dynamicRoutingTD;
+        this.factoryTD = factoryTD;
 
     }
 
@@ -38,6 +46,7 @@ public class ConsolidationServiceImpl implements ConsolidationService {
         routingTDInfo = dynamicRoutingTD.search(tdKey);
 
         //Invocar al Factory
+        servicesconsolidationresponse = factoryTD.invokeWs(routingTDInfo, request, haspMap);
 
         return servicesconsolidationresponse;
     }
