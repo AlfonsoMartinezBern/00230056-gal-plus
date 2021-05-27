@@ -1,6 +1,7 @@
 package com.telefonica.gal.interfaceWs;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
+import com.telefonica.gal.exception.HttpErrors;
 import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
 import org.slf4j.Logger;
@@ -48,6 +49,7 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         messageConverters.add(jaxbMessageConverter);
 
         restTemplate.setMessageConverters(messageConverters);
+        restTemplate.setErrorHandler(new HttpErrors());
 
         SERVICESCONSOLIDATIONRESPONSE result = new SERVICESCONSOLIDATIONRESPONSE();
         result.setCUSTOMERS(new com.telefonica.gal.servicesConsolidation.response.CUSTOMERS());
