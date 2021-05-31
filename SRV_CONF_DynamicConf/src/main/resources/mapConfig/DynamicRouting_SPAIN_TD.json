@@ -35,7 +35,7 @@
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://18e61dc0-e5bd-4fb8-a864-75f20fa03937.mock.pstmn.io",
+    "targetEndpoint": "https://9aef3477-074b-4ce3-9f76-6b26a4a22c5b.mock.pstmn.io",
     "endpointType": "TOP+"
     }],
      "flows": [{"step":1,"endpointID":"01","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"02","type":"replica","active":true, "synchronous":true}]
