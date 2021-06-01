@@ -2,6 +2,7 @@ package com.telefonica.gal.utils;
 
 public enum Utils {
     ServicesConsolidation("ServicesConsolidation");
+
     private String operation;
 
 

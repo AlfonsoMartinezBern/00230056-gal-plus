@@ -1,14 +1,19 @@
 package com.telefonica.gal.interfaceWs;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
+import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.exception.HttpErrors;
 import com.telefonica.gal.mapper.ServicesConsolidationRequestMapper;
 import com.telefonica.gal.provisionApi.model.Error;
 import com.telefonica.gal.provisionApi.model.User;
+import com.telefonica.gal.response.IResponseWs;
 import com.telefonica.gal.servicesConsolidation.request.CUSTOMER;
 import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
 import com.telefonica.gal.servicesConsolidation.response.CUSTOMERS;
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
+import com.telefonica.gal.utils.Utils;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -31,6 +35,8 @@ import java.util.Arrays;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
+
+    private static final String codeOperation = "PUT";
 
     private final static ServicesConsolidationRequestMapper SERVICES_CONSOLIDATION_REQUEST_MAPPER = Mappers.getMapper(
             ServicesConsolidationRequestMapper.class);
@@ -53,7 +59,16 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private Endpoint endpointTD;
 
     @Autowired
+    private ErrorInfo errorInfo;
+
+    @Autowired
     private User user;
+
+    @Autowired
+    private ISpainTDError iSpainTDError;
+
+/*    @Autowired
+    private IResponseWs iResponseWs;*/
 
     public WsTopPlus(T endPoint, T request) {
         this.endPoint = endPoint;
@@ -126,13 +141,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                             requestEntity,
                             Object.class);
 
-            if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-                customerResponse.setRESULTCODE(BigInteger.ZERO);
-                customerResponse.setDESCRIPTION(HttpStatus.OK.toString());
-            } else {
-                customerResponse.setRESULTCODE(BigInteger.valueOf(responseEntity.getStatusCode().value()));
-                customerResponse.setDESCRIPTION("KO");
-            }
+            customerResponse = responseInfo(responseEntity, Utils.ServicesConsolidation.getOperation(), codeOperation);
 
             return customerResponse;
 
@@ -141,4 +150,21 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         }
 
     }
+
+    public com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseInfo(ResponseEntity<Object> objectResponseEntity, String codeInterface, String codeOperation) {
+        com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseCustomer = new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
+        ErrorKey errorKey = new ErrorKey(Utils.ServicesConsolidation.getOperation(),
+                objectResponseEntity.getStatusCode().toString(),
+                codeInterface,
+                codeOperation);
+
+        ErrorInfo errorInfo= iSpainTDError.search(errorKey);
+
+        responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
+        responseCustomer.setDESCRIPTION(errorInfo.getErrorDescription());
+
+
+        return responseCustomer;
+    }
+
 }
