@@ -2,23 +2,31 @@ package com.telefonica.gal.client.spain.td.error.msg;
 
 public class ErrorKey {
 	
-	private String operation;
+	private String operationApi;
+	private String serviceApi;
 	
 	private String errorCode;
 	private String errorCodeInterface;
 	private String errorCodeOperation;
 	
 
-	public ErrorKey(String operation, String errorCode, String errorCodeInterface, String errorCodeOperation) {
+
+	public ErrorKey(String operationApi, String serviceApi, String errorCode, String errorCodeInterface,
+			String errorCodeOperation) {
 		super();
-		this.operation = operation;
+		this.operationApi = operationApi;
+		this.serviceApi = serviceApi;
 		this.errorCode = errorCode;
 		this.errorCodeInterface = errorCodeInterface;
 		this.errorCodeOperation = errorCodeOperation;
 	}
 
-	public String getOperation() {
-		return operation;
+	public String getOperationApi() {
+		return operationApi;
+	}
+
+	public String getServiceApi() {
+		return serviceApi;
 	}
 
 	public String getErrorCode() {
@@ -36,7 +44,8 @@ public class ErrorKey {
 	@Override
 	public String toString() {
 		return "ErrorKey{" +
-				"operation='" + operation + '\'' +
+				"operationApi='" + operationApi + '\'' +
+				"serviceApi='" + serviceApi + '\'' +
 				"errorCode='" + errorCode + '\'' +
 				"errorCodeInterface='" + errorCodeInterface + '\'' +
 				"errorCodeOperation='" + errorCodeOperation + '\'' +
