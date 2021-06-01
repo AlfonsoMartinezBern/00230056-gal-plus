@@ -24,7 +24,7 @@ public interface ServicesConsolidationRequestMapper {
     @Mapping(constant = "INCREMENTAL", target = "products.productsMode")
     @Mapping(target = "products.subscriptionsList", expression = "java(getSuscriptionsList(cUSTOMER))")
     @Mapping(source = "USERID", target = "uniqueId")
-    User rervicesConsolidationMapper(CUSTOMER cUSTOMER);
+    User servicesConsolidationMapper(CUSTOMER cUSTOMER);
 
     default List<Subscription> getSuscriptionsList(CUSTOMER customer) {
         LISTTVSERVICES listtvservices = customer.getLISTTVSERVICES();

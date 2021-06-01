@@ -8,12 +8,11 @@ import com.telefonica.gal.exception.HttpErrors;
 import com.telefonica.gal.mapper.ServicesConsolidationRequestMapper;
 import com.telefonica.gal.provisionApi.model.Error;
 import com.telefonica.gal.provisionApi.model.User;
-import com.telefonica.gal.response.IResponseWs;
 import com.telefonica.gal.servicesConsolidation.request.CUSTOMER;
 import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
 import com.telefonica.gal.servicesConsolidation.response.CUSTOMERS;
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
-import com.telefonica.gal.utils.Utils;
+import com.telefonica.gal.utils.ServicesConsolidationEnum;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +35,6 @@ import java.util.Arrays;
 public class WsTopPlus<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
 
-    private static final String codeOperation = "PUT";
-
     private final static ServicesConsolidationRequestMapper SERVICES_CONSOLIDATION_REQUEST_MAPPER = Mappers.getMapper(
             ServicesConsolidationRequestMapper.class);
 
@@ -58,17 +55,16 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     @Autowired
     private Endpoint endpointTD;
 
-    @Autowired
+
     private ErrorInfo errorInfo;
+
+    private ErrorKey errorKey;
 
     @Autowired
     private User user;
 
     @Autowired
     private ISpainTDError iSpainTDError;
-
-/*    @Autowired
-    private IResponseWs iResponseWs;*/
 
     public WsTopPlus(T endPoint, T request) {
         this.endPoint = endPoint;
@@ -93,7 +89,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 jaxbMarshaller.marshal(customer, sw);
                 xmlString = sw.toString();
                 LOGGER.info("==== REQUEST TOP -------> " + xmlString + "\n" );
-                user = SERVICES_CONSOLIDATION_REQUEST_MAPPER.rervicesConsolidationMapper(customer);
+                user = SERVICES_CONSOLIDATION_REQUEST_MAPPER.servicesConsolidationMapper(customer);
                 URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" +
                         user.getUniqueId() +"/products";
 
@@ -121,6 +117,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     private com.telefonica.gal.servicesConsolidation.response.CUSTOMER invokeTop(final String url, final CUSTOMER customerXml,
                                                                                  final User userJson) {
+            String codeOperation = customerXml.getLISTTVSERVICES().getTVSERVICE().get(0).getTVSERVICEOPER().toString();
 
             com.telefonica.gal.servicesConsolidation.response.CUSTOMER customerResponse =
                     new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
@@ -141,7 +138,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                             requestEntity,
                             Object.class);
 
-            customerResponse = responseInfo(responseEntity, Utils.ServicesConsolidation.getOperation(), codeOperation);
+            customerResponse = responseInfo(responseEntity, codeOperation);
 
             return customerResponse;
 
@@ -151,18 +148,19 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     }
 
-    public com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseInfo(ResponseEntity<Object> objectResponseEntity, String codeInterface, String codeOperation) {
+    public com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseInfo(ResponseEntity<Object> objectResponseEntity,
+                                                                                   String operation) {
         com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseCustomer = new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
-        ErrorKey errorKey = new ErrorKey(Utils.ServicesConsolidation.getOperation(),
-                objectResponseEntity.getStatusCode().toString(),
-                codeInterface,
-                codeOperation);
+        /*errorKey = new ErrorKey(ServicesConsolidationEnum.OPERATION_API.getDesc(),
+                                         ServicesConsolidationEnum.SERVICE_API.getDesc(),
+                                         objectResponseEntity.getStatusCode().toString(),
+                                         ServicesConsolidationEnum.CODE_INTERFACE.getDesc(),
+                                         operation);*/
+        errorKey = new ErrorKey();
 
         ErrorInfo errorInfo= iSpainTDError.search(errorKey);
-
         responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
         responseCustomer.setDESCRIPTION(errorInfo.getErrorDescription());
-
 
         return responseCustomer;
     }

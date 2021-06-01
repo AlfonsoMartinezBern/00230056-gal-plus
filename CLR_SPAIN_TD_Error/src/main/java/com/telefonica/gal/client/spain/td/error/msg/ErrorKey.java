@@ -13,12 +13,16 @@ public class ErrorKey {
 
 	public ErrorKey(String operationApi, String serviceApi, String errorCode, String errorCodeInterface,
 			String errorCodeOperation) {
-		super();
+		//super();
 		this.operationApi = operationApi;
 		this.serviceApi = serviceApi;
 		this.errorCode = errorCode;
 		this.errorCodeInterface = errorCodeInterface;
 		this.errorCodeOperation = errorCodeOperation;
+	}
+
+	public ErrorKey() {
+
 	}
 
 	public String getOperationApi() {

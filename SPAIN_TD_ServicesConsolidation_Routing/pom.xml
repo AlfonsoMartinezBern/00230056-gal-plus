@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.telefonica.gal</groupId>
-	<artifactId>SPAIN_TD_ServicesConsolidation_Routing</artifactId>
+		<artifactId>SPAIN_TD_ServicesConsolidation_Routing</artifactId>
 	<version>1.0.0</version>
 	<name>SPAIN_TD_ServicesConsolidation_Routing</name>
 	<description>Demo project for Spring Boot</description>
@@ -212,6 +212,10 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
 			</plugin>
 
 		</plugins>

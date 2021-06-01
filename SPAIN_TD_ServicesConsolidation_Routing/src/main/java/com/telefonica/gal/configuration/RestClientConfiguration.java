@@ -1,18 +1,9 @@
 package com.telefonica.gal.configuration;
 
-import com.telefonica.gal.exception.HttpErrors;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
-
-@Configuration
+//@Configuration
 public class RestClientConfiguration {
 
-    @Bean(name="ServicesConsolidationRestTemplate")
+    /*@Bean(name="ServicesConsolidationRestTemplate")
     public RestTemplate graphModRestTemplate() {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
         RestTemplate restTemplate = new RestTemplate();
@@ -23,5 +14,5 @@ public class RestClientConfiguration {
         restTemplate.setErrorHandler(new HttpErrors());
 
         return restTemplate;
-    }
+    }*/
 }
