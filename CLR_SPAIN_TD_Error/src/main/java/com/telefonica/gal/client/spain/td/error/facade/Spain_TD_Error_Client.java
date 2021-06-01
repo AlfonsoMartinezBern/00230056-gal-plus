@@ -15,7 +15,8 @@ public class Spain_TD_Error_Client implements ISpainTDError {
     public ErrorInfo search(ErrorKey errorKey) {
         String errorURL =
                 URI
-                        + "/search?operation=" + errorKey.getOperation() +
+                        + "/search?operationApi=" + errorKey.getOperationApi() +
+                        "/search?serviceApi=" + errorKey.getServiceApi() +
                         "&errorCode=" + errorKey.getErrorCode() +
                         "&errorCodeInterface=" + errorKey.getErrorCodeInterface() +
                         "&errorCodeOperation=" + errorKey.getErrorCodeOperation();
@@ -32,10 +33,11 @@ public class Spain_TD_Error_Client implements ISpainTDError {
     
     private ErrorInfo mockSearch(ErrorKey errorKey) {
     	
-    	return new ErrorInfo(errorKey.getErrorCode(),"Descripcion del error para: " +errorKey.getErrorCodeOperation()+
-    			" errorCode=" + errorKey.getErrorCode() +
+    	return new ErrorInfo(errorKey.getErrorCode(),"Descripcion del error para: " +errorKey.getErrorCode()+
+    			" errorCodeOperation=" + errorKey.getErrorCodeOperation() +
                 " errorCodeInterface=" + errorKey.getErrorCodeInterface() +
-                " errorCodeOperation=" + errorKey.getErrorCodeOperation());
+                " serviceApi=" + errorKey.getServiceApi() +
+                " operationApi=" + errorKey.getOperationApi());
     }
 
 }
