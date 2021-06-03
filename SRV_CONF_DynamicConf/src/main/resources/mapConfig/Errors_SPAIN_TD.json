@@ -3,8 +3,7 @@
 	"info": "Error SPAIN TD created 2021-05-26",
 	"errors": [
 		{
-			"operationApi": "UserProductsManagement",
-			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			
 			"errorCode": "409001",
 			"errorCodeInterface": "ServicesConsolidation",
 			"errorCodeOperation": "Consolidation",
@@ -14,8 +13,7 @@
 			}
 			},
 			{
-			"operationApi": "UserProductsManagement",
-			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			
 			"errorCode": "503000",
 			"errorCodeInterface": "ServicesConsolidation",
 			"errorCodeOperation": "Consolidation",
@@ -25,8 +23,7 @@
 			}
 			},
 			{
-			"operationApi": "UserProductsManagement",
-			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			
 			"errorCode": "409001",
 			"errorCodeInterface": "ServicesConsolidation",
 			"errorCodeOperation": "Consolidation",
@@ -36,8 +33,7 @@
 			}
 			},
 			{
-			"operationApi": "UserProductsManagement",
-			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			
 			"errorCode": "400006",
 			"errorCodeInterface": "ServicesConsolidation",
 			"errorCodeOperation": "Consolidation",
