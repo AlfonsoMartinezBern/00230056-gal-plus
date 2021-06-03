@@ -241,7 +241,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         }
     }
 
-    public  com.telefonica.gal.customerProvision.response.CUSTOMER responseInfoError(ResponseEntity<ResultOK> objectResponseEntity,
+    private com.telefonica.gal.customerProvision.response.CUSTOMER responseInfoError(ResponseEntity<ResultOK> objectResponseEntity,
                                                                                      String operation) {
         com.telefonica.gal.customerProvision.response.CUSTOMER responseCustomer = new com.telefonica.gal.customerProvision.response.CUSTOMER();
         errorKey = new ErrorKey(CustomerProvisionEnum.OPERATION_API.getDesc(),
@@ -250,7 +250,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 CustomerProvisionEnum.CODE_INTERFACE.getDesc(),
                 operation);
 
-        errorInfo= iSpainTDError.search(errorKey);
+
+        errorInfo = iSpainTDError.search(errorKey);
         responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
         responseCustomer.setDESCRIPTION(errorInfo.getErrorDescription());
 

@@ -57,7 +57,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     @Autowired
     private Endpoint endpointTD;
 
-
+    @Autowired
     private ErrorInfo errorInfo;
 
     private ErrorKey errorKey;
@@ -165,7 +165,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                                          ServicesConsolidationEnum.CODE_INTERFACE.getDesc(),
                                          operation);
 
-        ErrorInfo errorInfo= iSpainTDError.search(errorKey);
+        errorInfo= iSpainTDError.search(errorKey);
         responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
         responseCustomer.setDESCRIPTION(errorInfo.getErrorDescription());
 
