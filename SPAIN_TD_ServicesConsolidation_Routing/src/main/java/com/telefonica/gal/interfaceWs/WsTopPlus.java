@@ -35,6 +35,8 @@ import java.util.Arrays;
 public class WsTopPlus<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
 
+    private static final Integer ResponseCodeOK = 200;
+
     private final static ServicesConsolidationRequestMapper SERVICES_CONSOLIDATION_REQUEST_MAPPER = Mappers.getMapper(
             ServicesConsolidationRequestMapper.class);
 
@@ -138,7 +140,13 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                             requestEntity,
                             Object.class);
 
-            customerResponse = responseInfo(responseEntity, codeOperation);
+            if(responseEntity.getStatusCode().value() == ResponseCodeOK) {
+                customerResponse.setRESULTCODE(BigInteger.ZERO);
+                customerResponse.setDESCRIPTION("Operación exitosa");
+            } else {
+                customerResponse = responseInfo(responseEntity, "ON");
+            }
+            //
 
             return customerResponse;
 

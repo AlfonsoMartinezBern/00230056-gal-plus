@@ -1,19 +1,18 @@
 package com.telefonica.gal.utils;
 
-public enum ServicesConsolidationEnum {
+public enum CustomerProvisionEnum {
+    OPERATION_API(0, "UserProvision"),
 
-    OPERATION_API(0, "UserProductsManagement"),
+    SERVICE_API(1, "SPAIN_TD_CustomerProvision"),
 
-    SERVICE_API(1, "SPAIN_TD_ServicesConsolidation"),
-
-    CODE_INTERFACE(2, "ServicesConsolidation");
+    CODE_INTERFACE(2, "CustomerProvision");
 
     private Integer value;
 
     private String desc;
 
 
-    private ServicesConsolidationEnum(Integer value, String desc) {
+    private CustomerProvisionEnum(Integer value, String desc) {
         this.value = value;
         this.desc = desc;
     }

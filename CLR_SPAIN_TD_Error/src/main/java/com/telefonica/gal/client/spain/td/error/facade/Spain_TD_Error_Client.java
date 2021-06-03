@@ -9,8 +9,8 @@ import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 
 @Service
 public class Spain_TD_Error_Client implements ISpainTDError {
-    @Value("${error.uri}")
-    private String URI;
+    //@Value("${error.uri}")
+    private String URI = "http://localhost:8082/dynamicConfig/spain/td/error";
 
     public ErrorInfo search(ErrorKey errorKey) {
         String errorURL =

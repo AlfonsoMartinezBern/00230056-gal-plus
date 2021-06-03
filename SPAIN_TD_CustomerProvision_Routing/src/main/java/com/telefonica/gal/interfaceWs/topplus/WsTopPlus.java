@@ -1,15 +1,20 @@
 package com.telefonica.gal.interfaceWs.topplus;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
+import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
+import com.telefonica.gal.exception.HttpErrorsCustomerProvision;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
 import com.telefonica.gal.mapper.CustomerProvisionResponseMapper;
 import com.telefonica.gal.provisionApi.model.ResultOK;
 import com.telefonica.gal.provisionApi.model.User;
+import com.telefonica.gal.utils.CustomerProvisionEnum;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +27,14 @@ import org.springframework.web.client.RestTemplate;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
+
+    private static final Integer ResponseCodeOK = 200;
 
     private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
             CustomerProvisionRequestMapper.class);
@@ -39,6 +47,14 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     @Autowired
     Endpoint endpointTD;
+
+    @Autowired
+    private ISpainTDError iSpainTDError;
+
+    @Autowired
+    private ErrorInfo errorInfo;
+
+    private ErrorKey errorKey;
 
     private int instanceId;
     private int platformId;
@@ -81,6 +97,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     public T invoke() {
         mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+        restTemplate.setErrorHandler(new HttpErrorsCustomerProvision());
 
         customerRequest = (CUSTOMERPROVISIONREQUEST) request;
         endpointTD = (Endpoint) endPoint;
@@ -107,11 +124,16 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
 
-
+                        //Todo validar si la respuesta es exitosa o error
                         ResponseEntity<ResultOK> resultTop = restTemplate.postForEntity(URL, requestON, ResultOK.class);
 
-                        customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
-
+                        if(resultTop.getStatusCode().value() == ResponseCodeOK) {
+                            customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
+                            customerReponse.setRESULTCODE(BigInteger.ZERO);
+                            customerReponse.setDESCRIPTION("Operación exitosa");
+                        } else {
+                            customerReponse = responseInfoError(resultTop, customer.getOPERATIONTYPE());
+                        }
 
                         LOGGER.info("============> Alta de usuario TOP: OK. " );
 
@@ -128,8 +150,13 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         LOGGER.info("URL Original ------->" + EVENT_OFF);
 
                         restTemplate.delete(URL, ResultOK.class);
-
                         LOGGER.info("============> Baja de usuario TOP: OK. " );
+
+                        customerReponse.setRESULTCODE(BigInteger.ZERO);
+                        customerReponse.setDESCRIPTION("Operación exitosa");
+
+                        //Respuesta
+                        customers.getCUSTOMER().add(customerReponse);
                         break;
 
                     case "MOD":
@@ -146,6 +173,13 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.put(URL, requestMOD);
 
                         LOGGER.info("============> Modificación de usuario TOP: OK. " );
+
+                        customerReponse.setRESULTCODE(BigInteger.ZERO);
+                        customerReponse.setDESCRIPTION("Operación exitosa");
+
+                        //Respuesta
+                        customers.getCUSTOMER().add(customerReponse);
+
                         break;
 
                     case "N":
@@ -162,6 +196,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.put(URL, requestN);
 
                         LOGGER.info("============> Traslado OPERATION_TYPE = " + customer.getOPERATIONTYPE() + " de usuario OK. " );
+
+                        customerReponse.setRESULTCODE(BigInteger.ZERO);
+                        customerReponse.setDESCRIPTION("Operación exitosa");
+
+                        //Respuesta
+                        customers.getCUSTOMER().add(customerReponse);
                         break;
 
 
@@ -179,6 +219,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.put(URL, requestD);
 
                         LOGGER.info("============> Traslado OPERATION_TYPE = " + customer.getOPERATIONTYPE() + " de usuario OK. " );
+
+                        customerReponse.setRESULTCODE(BigInteger.ZERO);
+                        customerReponse.setDESCRIPTION("Operación exitosa");
+
+                        //Respuesta
+                        customers.getCUSTOMER().add(customerReponse);
                         break;
 
                     default:
@@ -195,29 +241,19 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         }
     }
 
-   /* private HashMap<String, Integer> getPathParams(int instanceId, Optional<String> optinalParameter) {
-        try {
-            HashMap<String, Integer> queryParams = new HashMap<>();
-            queryParams.put("instanceId", instanceId);
-            //optinalParameter.ifPresent((uniqueId) -> queryParams.put("uniqueId", (T) String.valueOf(uniqueId)));
-            LOGGER.info(" ==== > getPathParams");
-            return queryParams;
-        } catch (Exception e) {
-            throw e;
-        }
-    }
+    public  com.telefonica.gal.customerProvision.response.CUSTOMER responseInfoError(ResponseEntity<ResultOK> objectResponseEntity,
+                                                                                     String operation) {
+        com.telefonica.gal.customerProvision.response.CUSTOMER responseCustomer = new com.telefonica.gal.customerProvision.response.CUSTOMER();
+        errorKey = new ErrorKey(CustomerProvisionEnum.OPERATION_API.getDesc(),
+                CustomerProvisionEnum.SERVICE_API.getDesc(),
+                objectResponseEntity.getStatusCode().toString(),
+                CustomerProvisionEnum.CODE_INTERFACE.getDesc(),
+                operation);
 
-    private HashMap<String, String> getPathParamsTraslado(int instanceId, Optional<String> paramsUniqueId,
-                                                          Optional<String> paramsAction) {
-        try {
-            HashMap<String, String> queryParams = new HashMap<>();
-            queryParams.put("instanceId", String.valueOf(instanceId));
-            paramsUniqueId.ifPresent((uniqueId) -> queryParams.put("uniqueId", uniqueId));
-            paramsAction.ifPresent((action) -> queryParams.put("action", action));
-            LOGGER.info(" ==== > getPathParams");
-            return queryParams;
-        } catch (Exception e) {
-            throw e;
-        }
-    }*/
+        errorInfo= iSpainTDError.search(errorKey);
+        responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
+        responseCustomer.setDESCRIPTION(errorInfo.getErrorDescription());
+
+        return responseCustomer;
+    }
 }

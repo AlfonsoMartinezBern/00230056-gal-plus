@@ -6,7 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.telefonica.gal.client.spain" , "com.telefonica.gal.SPAIN_TD_CustomerProvision" ,
-								"com.telefonica.gal"})
+								"com.telefonica.gal", "com.telefonica.gal.client.spain.td",
+								"com.telefonica.gal.client.spain.td.error.facade"})
 
 public class SpainTdCustomerProvisionApplication {
 

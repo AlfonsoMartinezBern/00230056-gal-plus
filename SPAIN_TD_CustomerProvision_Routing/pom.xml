@@ -103,11 +103,18 @@
 			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.telefonica.gal</groupId>
 			<artifactId>factoryRouting</artifactId>
 			<version>1.0.0</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.telefonica.gal.spain.td</groupId>
+			<artifactId>CLR_SPAIN_TD_Error</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>

@@ -33,8 +33,6 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
         CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
 
-        //response.setCUSTOMERS(customers);
-
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;
         Map<String, Object> haspMap = null;
