@@ -16,9 +16,7 @@ public class Spain_TD_Error_Client implements ISpainTDError {
     public ErrorResponse search(ErrorKey errorKey) {
         String errorURL =
                 URI
-                        + "/search?errorCode=" + errorKey.getErrorCode() +
-                        "&errorCodeInterface=" + errorKey.getErrorCodeInterface() +
-                        "&errorCodeOperation=" + errorKey.getErrorCodeOperation();
+                        + "/search?errorCode=" + errorKey.getErrorCode();
 
         RestTemplate plantilla = new RestTemplate();
 

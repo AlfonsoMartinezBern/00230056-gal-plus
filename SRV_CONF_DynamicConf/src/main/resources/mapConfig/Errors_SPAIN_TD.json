@@ -5,8 +5,6 @@
 		{
 			
 			"errorCode": "409 CONFLICT",
-			"errorCodeInterface": "TOP+",
-			"errorCodeOperation": "Consolidation",
 			"errorInfo": {
 				"errorCode": "26",
 				"errorDescription": "Operación nula"
@@ -15,8 +13,6 @@
 			{
 			
 			"errorCode": "503000",
-			"errorCodeInterface": "ServicesConsolidation",
-			"errorCodeOperation": "Consolidation",
 			"errorInfo": {
 				"errorCode": "1",
 				"errorDescription": "Fallo de comunicación con la Base de Datos"
@@ -25,8 +21,6 @@
 			{
 			
 			"errorCode": "409001",
-			"errorCodeInterface": "ServicesConsolidation",
-			"errorCodeOperation": "Consolidation",
 			"errorInfo": {
 				"errorCode": "26",
 				"errorDescription": "Operación nula"
@@ -35,8 +29,6 @@
 			{
 			
 			"errorCode": "400006",
-			"errorCodeInterface": "ServicesConsolidation",
-			"errorCodeOperation": "Consolidation",
 			"errorInfo": {
 				"errorCode": "26",
 				"errorDescription": "Operación nula"

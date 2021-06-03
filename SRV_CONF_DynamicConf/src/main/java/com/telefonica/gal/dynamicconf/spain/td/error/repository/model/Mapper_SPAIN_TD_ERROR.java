@@ -33,7 +33,7 @@ public class Mapper_SPAIN_TD_ERROR implements ConfigMapper {
 	}
 	
 	private ConfigKey_SPAIN_TD_ERROR parseToRoutingTDKey(Error_SPAIN_TD_ERROR error) {
-		return new ConfigKey_SPAIN_TD_ERROR(error.getErrorCode(),error.getErrorCodeInterface(),error.getErrorCodeOperation());
+		return new ConfigKey_SPAIN_TD_ERROR(error.getErrorCode());
 	}
 
 	public ConfigInfo_SPAIN_TD_ERROR parseToRoutingTDInfo(Error_SPAIN_TD_ERROR error) {

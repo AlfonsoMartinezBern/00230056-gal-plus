@@ -23,11 +23,11 @@ public class DynamicRouting_SPAIN_TD_ERROR_Facade extends DynamicConf_Facade {
 	}
 
 	@GetMapping("/search")
-	public ConfigInfo_SPAIN_TD_ERROR getJSON(@RequestParam String errorCode, @RequestParam String errorCodeInterface, @RequestParam String errorCodeOperation) {
+	public ConfigInfo_SPAIN_TD_ERROR getJSON(@RequestParam String errorCode) {
 	
 		charge();
 		
-		ConfigKey_SPAIN_TD_ERROR key = new ConfigKey_SPAIN_TD_ERROR(errorCode, errorCodeInterface, errorCodeOperation);
+		ConfigKey_SPAIN_TD_ERROR key = new ConfigKey_SPAIN_TD_ERROR(errorCode);
 		ConfigInfo_SPAIN_TD_ERROR routingInfo =  (ConfigInfo_SPAIN_TD_ERROR) getRoutingTable().search(key);
 		
 		if(routingInfo==null) {

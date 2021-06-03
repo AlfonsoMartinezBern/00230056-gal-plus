@@ -5,18 +5,14 @@ public class ConfigKey_SPAIN_TD_ERROR {
 
 	
 	private String errorCode;
-	private String errorCodeInterface;
-	private String errorCodeOperation;
 	
 
 
-	public ConfigKey_SPAIN_TD_ERROR( String errorCode, String errorCodeInterface,
-			String errorCodeOperation) {
+	public ConfigKey_SPAIN_TD_ERROR( String errorCode) {
 		super();
 	
 		this.errorCode = errorCode;
-		this.errorCodeInterface = errorCodeInterface;
-		this.errorCodeOperation = errorCodeOperation;
+	
 	}
 
 
@@ -25,20 +21,13 @@ public class ConfigKey_SPAIN_TD_ERROR {
 		return errorCode;
 	}
 
-	public String getErrorCodeInterface() {
-		return errorCodeInterface;
-	}
 
-	public String getErrorCodeOperation() {
-		return errorCodeOperation;
-	}
 
 	@Override
 	public String toString() {
 		return "ErrorKey{" +
 				"errorCode='" + errorCode + '\'' +
-				"errorCodeInterface='" + errorCodeInterface + '\'' +
-				"errorCodeOperation='" + errorCodeOperation + '\'' +
+				
 				"}";
 	}
 
