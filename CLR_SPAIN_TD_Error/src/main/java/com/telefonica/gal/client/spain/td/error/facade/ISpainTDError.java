@@ -1,8 +1,8 @@
 package com.telefonica.gal.client.spain.td.error.facade;
 
-import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 
 public interface ISpainTDError {
-    ErrorInfo search(ErrorKey tdkey);
+    ErrorResponse search(ErrorKey tdkey);
 }
