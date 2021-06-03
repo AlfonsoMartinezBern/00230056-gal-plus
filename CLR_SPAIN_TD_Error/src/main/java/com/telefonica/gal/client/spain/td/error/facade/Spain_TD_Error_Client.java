@@ -16,9 +16,7 @@ public class Spain_TD_Error_Client implements ISpainTDError {
     public ErrorResponse search(ErrorKey errorKey) {
         String errorURL =
                 URI
-                        + "/search?operationApi=" + errorKey.getOperationApi() +
-                        "&serviceApi=" + errorKey.getServiceApi() +
-                        "&errorCode=" + errorKey.getErrorCode() +
+                        + "/search?errorCode=" + errorKey.getErrorCode() +
                         "&errorCodeInterface=" + errorKey.getErrorCodeInterface() +
                         "&errorCodeOperation=" + errorKey.getErrorCodeOperation();
 

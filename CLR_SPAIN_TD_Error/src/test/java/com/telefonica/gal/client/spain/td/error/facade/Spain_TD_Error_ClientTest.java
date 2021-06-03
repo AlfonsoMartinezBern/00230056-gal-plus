@@ -22,7 +22,7 @@ class Spain_TD_Error_ClientTest {
 			"UserProductsManagement;SPAIN_TD_ServicesConsolidation;409001;ServicesConsolidation;Consolidation;OK",
 			}, delimiter = ';')
 	void testDynamicRouting_Integration(String operationApi, String serviceApi, String errorCode, String errorCodeInterface, String errorCodeOperation, String result) {
-		 ErrorResponse response = spain_CLR.search(new ErrorKey(operationApi, serviceApi, errorCode, errorCodeInterface, errorCodeOperation));
+		 ErrorResponse response = spain_CLR.search(new ErrorKey( errorCode, errorCodeInterface, errorCodeOperation));
 		 System.out.println( response.getErrorInfo().getErrorCode());
 		assertEquals(result, response.getResult());
 	}
