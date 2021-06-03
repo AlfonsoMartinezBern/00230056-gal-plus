@@ -3,14 +3,47 @@
 	"info": "Error SPAIN TD created 2021-05-26",
 	"errors": [
 		{
-			"operationApi": "MiView",
-			"serviceApi": "UMG",
-			"errorCode": "MiView",
-			"errorCodeInterface": "UMG",
-			"errorCodeOperation": "MiView",
+			"operationApi": "UserProductsManagement",
+			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			"errorCode": "409001",
+			"errorCodeInterface": "ServicesConsolidation",
+			"errorCodeOperation": "Consolidation",
+			"errorInfo": {
+				"errorCode": "26",
+				"errorDescription": "Operación nula"
+			}
+			},
+			{
+			"operationApi": "UserProductsManagement",
+			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			"errorCode": "503000",
+			"errorCodeInterface": "ServicesConsolidation",
+			"errorCodeOperation": "Consolidation",
 			"errorInfo": {
 				"errorCode": "1",
 				"errorDescription": "Fallo de comunicación con la Base de Datos"
+			}
+			},
+			{
+			"operationApi": "UserProductsManagement",
+			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			"errorCode": "409001",
+			"errorCodeInterface": "ServicesConsolidation",
+			"errorCodeOperation": "Consolidation",
+			"errorInfo": {
+				"errorCode": "26",
+				"errorDescription": "Operación nula"
+			}
+			},
+			{
+			"operationApi": "UserProductsManagement",
+			"serviceApi": "SPAIN_TD_ServicesConsolidation",
+			"errorCode": "400006",
+			"errorCodeInterface": "ServicesConsolidation",
+			"errorCodeOperation": "Consolidation",
+			"errorInfo": {
+				"errorCode": "26",
+				"errorDescription": "Operación nula"
 			}
 			}
 			]

@@ -1,13 +1,10 @@
 package com.telefonica.gal.client.spain.td.error.msg;
 
-public class ErrorInfo extends MessageResponse{
-	String errorCode;
-	String errorDescription;
+public class ErrorInfo {
 	
-	public ErrorInfo(String errorCode, String errorDescription) {
-		this.errorCode= errorCode;
-		this.errorDescription = errorDescription;
-	}
+	private String errorCode;
+	private String errorDescription;
+	
 	public String getErrorCode() {
 		return errorCode;
 	}
@@ -21,6 +18,14 @@ public class ErrorInfo extends MessageResponse{
 		this.errorDescription = errorDescription;
 	}
 	
-	
+//	@Override
+//	public String toString() {
+//		return "MessageResponse{" +
+//				"errorCode='" + this.getErrorCode() + '\'' +
+//				", errorDescription='" + this.getErrorDescription() + '\'' +
+//				", result='" + this.getResult() + '\'' +
+//				", message='" + this.getMessage() + '\'' +
+//				'}';
+//	}
 	
 }
