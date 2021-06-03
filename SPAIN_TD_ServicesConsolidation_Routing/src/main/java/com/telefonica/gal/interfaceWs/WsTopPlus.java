@@ -5,6 +5,7 @@ import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
 import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 import com.telefonica.gal.exception.HttpErrors;
 import com.telefonica.gal.mapper.ServicesConsolidationRequestMapper;
 import com.telefonica.gal.provisionApi.model.Error;
@@ -58,7 +59,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     @Autowired
     private Endpoint endpointTD;
 
-    private ErrorInfo errorInfo;
+    private ErrorResponse errorResponse;
 
     private ErrorKey errorKey;
 
@@ -158,17 +159,15 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     public com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseInfo(ResponseEntity<Object> objectResponseEntity,
                                                                                    String operation) {
         com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseCustomer = new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
-        errorKey = new ErrorKey(ServicesConsolidationEnum.OPERATION_API.getDesc(),
-                                         ServicesConsolidationEnum.SERVICE_API.getDesc(),
-                                         objectResponseEntity.getStatusCode().toString(),
-                                         ServicesConsolidationEnum.CODE_INTERFACE.getDesc(),
-                                         operation);
+        errorKey = new ErrorKey(objectResponseEntity.getStatusCode().toString(),
+                                ServicesConsolidationEnum.CODE_INTERFACE.getDesc(),
+                                operation);
 
         iSpainTDError = new Spain_TD_Error_Client();
 
-        errorInfo= iSpainTDError.search(errorKey);
-        responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
-        responseCustomer.setDESCRIPTION(errorInfo.getErrorDescription());
+        errorResponse= iSpainTDError.search(errorKey);
+        responseCustomer.setRESULTCODE(new BigInteger(errorResponse.getErrorInfo().getErrorCode()));
+        responseCustomer.setDESCRIPTION(errorResponse.getErrorInfo().getErrorDescription());
 
         return responseCustomer;
     }

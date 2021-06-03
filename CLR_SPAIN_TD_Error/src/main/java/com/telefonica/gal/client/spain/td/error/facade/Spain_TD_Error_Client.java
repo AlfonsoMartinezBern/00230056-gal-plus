@@ -1,5 +1,6 @@
 package com.telefonica.gal.client.spain.td.error.facade;
 
+import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +13,7 @@ public class Spain_TD_Error_Client implements ISpainTDError {
     //@Value("${error.uri}")
     private String URI = "http://localhost:8081/dynamicConfig/spain/td/error";
 
-    public ErrorInfo search(ErrorKey errorKey) {
+    public ErrorResponse search(ErrorKey errorKey) {
         String errorURL =
                 URI
                         + "/search?operationApi=" + errorKey.getOperationApi() +
@@ -23,7 +24,7 @@ public class Spain_TD_Error_Client implements ISpainTDError {
 
         RestTemplate plantilla = new RestTemplate();
 
-        return plantilla.getForObject(errorURL, ErrorInfo.class);
+        return plantilla.getForObject(errorURL, ErrorResponse.class);
         
 //        return mockSearch(errorKey);
     }

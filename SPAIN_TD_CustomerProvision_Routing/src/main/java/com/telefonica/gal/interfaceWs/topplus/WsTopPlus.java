@@ -4,6 +4,7 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
@@ -52,7 +53,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private ISpainTDError iSpainTDError;
 
     @Autowired
-    private ErrorInfo errorInfo;
+    private ErrorResponse errorResponse;
 
     private ErrorKey errorKey;
 
@@ -132,7 +133,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                             customerReponse.setRESULTCODE(BigInteger.ZERO);
                             customerReponse.setDESCRIPTION("Operación exitosa");
                         } else {
-                            customerReponse = responseInfoError(resultTop, customer.getOPERATIONTYPE());
+                            customerReponse = responseInfoError(resultTop, "Consolidation");
                         }
 
                         LOGGER.info("============> Alta de usuario TOP: OK. " );
@@ -244,16 +245,14 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private com.telefonica.gal.customerProvision.response.CUSTOMER responseInfoError(ResponseEntity<ResultOK> objectResponseEntity,
                                                                                      String operation) {
         com.telefonica.gal.customerProvision.response.CUSTOMER responseCustomer = new com.telefonica.gal.customerProvision.response.CUSTOMER();
-        errorKey = new ErrorKey(CustomerProvisionEnum.OPERATION_API.getDesc(),
-                CustomerProvisionEnum.SERVICE_API.getDesc(),
-                objectResponseEntity.getStatusCode().toString(),
+        errorKey = new ErrorKey(objectResponseEntity.getStatusCode().toString(),
                 CustomerProvisionEnum.CODE_INTERFACE.getDesc(),
                 operation);
 
 
-        errorInfo = iSpainTDError.search(errorKey);
-        responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
-        responseCustomer.setDESCRIPTION(errorInfo.getErrorDescription());
+        errorResponse = iSpainTDError.search(errorKey);
+        responseCustomer.setRESULTCODE(new BigInteger(errorResponse.getErrorInfo().getErrorCode()));
+        responseCustomer.setDESCRIPTION(errorResponse.getErrorInfo().getErrorDescription());
 
         return responseCustomer;
     }
