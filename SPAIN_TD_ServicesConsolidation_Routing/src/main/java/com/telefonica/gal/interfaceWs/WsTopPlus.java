@@ -151,12 +151,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     public com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseInfo(ResponseEntity<Object> objectResponseEntity,
                                                                                    String operation) {
         com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseCustomer = new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
-        /*errorKey = new ErrorKey(ServicesConsolidationEnum.OPERATION_API.getDesc(),
+        errorKey = new ErrorKey(ServicesConsolidationEnum.OPERATION_API.getDesc(),
                                          ServicesConsolidationEnum.SERVICE_API.getDesc(),
                                          objectResponseEntity.getStatusCode().toString(),
                                          ServicesConsolidationEnum.CODE_INTERFACE.getDesc(),
-                                         operation);*/
-        errorKey = new ErrorKey();
+                                         operation);
 
         ErrorInfo errorInfo= iSpainTDError.search(errorKey);
         responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));
