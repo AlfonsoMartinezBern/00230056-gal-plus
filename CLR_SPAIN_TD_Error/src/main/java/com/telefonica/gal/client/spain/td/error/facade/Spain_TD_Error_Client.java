@@ -10,13 +10,13 @@ import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 @Service
 public class Spain_TD_Error_Client implements ISpainTDError {
     //@Value("${error.uri}")
-    private String URI = "http://localhost:8082/dynamicConfig/spain/td/error";
+    private String URI = "http://localhost:8081/dynamicConfig/spain/td/error";
 
     public ErrorInfo search(ErrorKey errorKey) {
         String errorURL =
                 URI
                         + "/search?operationApi=" + errorKey.getOperationApi() +
-                        "/search?serviceApi=" + errorKey.getServiceApi() +
+                        "&serviceApi=" + errorKey.getServiceApi() +
                         "&errorCode=" + errorKey.getErrorCode() +
                         "&errorCodeInterface=" + errorKey.getErrorCodeInterface() +
                         "&errorCodeOperation=" + errorKey.getErrorCodeOperation();
@@ -26,18 +26,6 @@ public class Spain_TD_Error_Client implements ISpainTDError {
         return plantilla.getForObject(errorURL, ErrorInfo.class);
         
 //        return mockSearch(errorKey);
-    }
-    
-    
-    
-    
-    private ErrorInfo mockSearch(ErrorKey errorKey) {
-    	
-    	return new ErrorInfo(errorKey.getErrorCode(),"Descripcion del error para: " +errorKey.getErrorCode()+
-    			" errorCodeOperation=" + errorKey.getErrorCodeOperation() +
-                " errorCodeInterface=" + errorKey.getErrorCodeInterface() +
-                " serviceApi=" + errorKey.getServiceApi() +
-                " operationApi=" + errorKey.getOperationApi());
     }
 
 }

@@ -2,6 +2,7 @@ package com.telefonica.gal.interfaceWs;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
+import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.exception.HttpErrors;
@@ -57,7 +58,6 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     @Autowired
     private Endpoint endpointTD;
 
-    @Autowired
     private ErrorInfo errorInfo;
 
     private ErrorKey errorKey;
@@ -65,8 +65,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     @Autowired
     private User user;
 
-    @Autowired
-    private ISpainTDError iSpainTDError;
+    private Spain_TD_Error_Client iSpainTDError;
 
     public WsTopPlus(T endPoint, T request) {
         this.endPoint = endPoint;
@@ -144,7 +143,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 customerResponse.setRESULTCODE(BigInteger.ZERO);
                 customerResponse.setDESCRIPTION("Operación exitosa");
             } else {
-                customerResponse = responseInfo(responseEntity, "ON");
+                customerResponse = responseInfo(responseEntity, "Consolidation");
             }
             //
 
@@ -164,6 +163,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                                          objectResponseEntity.getStatusCode().toString(),
                                          ServicesConsolidationEnum.CODE_INTERFACE.getDesc(),
                                          operation);
+
+        iSpainTDError = new Spain_TD_Error_Client();
 
         errorInfo= iSpainTDError.search(errorKey);
         responseCustomer.setRESULTCODE(new BigInteger(errorInfo.getErrorCode()));

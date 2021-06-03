@@ -8,9 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+
 @JsonInclude(Include.NON_NULL)
 public class ConfigInfo_SPAIN_TD_ERROR extends MessageResponse{
 	
@@ -20,5 +18,19 @@ public class ConfigInfo_SPAIN_TD_ERROR extends MessageResponse{
 		super(errorInfo==null?"KO":"OK", errorInfo==null?"No Data Found":null);
 		this.errorInfo =  errorInfo;
 	}
-	
+
+	public ErrorSpainTDInfo getErrorInfo() {
+		return errorInfo;
+	}
+
+	public void setErrorInfo(ErrorSpainTDInfo errorInfo) {
+		this.errorInfo = errorInfo;
+	}
+
+	@Override
+	public String toString() {
+		return "ConfigInfo_SPAIN_TD_ERROR{" +
+				"errorInfo=" + errorInfo +
+				'}';
+	}
 }
