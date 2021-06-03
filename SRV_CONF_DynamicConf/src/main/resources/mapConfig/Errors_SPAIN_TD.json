@@ -4,8 +4,8 @@
 	"errors": [
 		{
 			
-			"errorCode": "409001",
-			"errorCodeInterface": "ServicesConsolidation",
+			"errorCode": "409 CONFLICT",
+			"errorCodeInterface": "TOP+",
 			"errorCodeOperation": "Consolidation",
 			"errorInfo": {
 				"errorCode": "26",

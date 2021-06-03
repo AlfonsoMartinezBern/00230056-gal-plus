@@ -2,6 +2,7 @@ package com.telefonica.gal.interfaceWs.topplus;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
+import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
@@ -49,7 +50,6 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     @Autowired
     Endpoint endpointTD;
 
-    @Autowired
     private ISpainTDError iSpainTDError;
 
     @Autowired
@@ -133,7 +133,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                             customerReponse.setRESULTCODE(BigInteger.ZERO);
                             customerReponse.setDESCRIPTION("Operación exitosa");
                         } else {
-                            customerReponse = responseInfoError(resultTop, "Consolidation");
+                            customerReponse = responseInfoError(resultTop, "ServicesConsolidation");
                         }
 
                         LOGGER.info("============> Alta de usuario TOP: OK. " );
@@ -249,6 +249,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 CustomerProvisionEnum.CODE_INTERFACE.getDesc(),
                 operation);
 
+        iSpainTDError = new Spain_TD_Error_Client();
 
         errorResponse = iSpainTDError.search(errorKey);
         responseCustomer.setRESULTCODE(new BigInteger(errorResponse.getErrorInfo().getErrorCode()));
