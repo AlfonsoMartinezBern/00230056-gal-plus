@@ -1,4 +1,4 @@
-package com.telefonica.gal.dynamicconf.spain.td.repository.model;
+package com.telefonica.gal.dynamicconf.spain.td.routing.repository.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telefonica.gal.dynamicconf.repository.model.Flow;

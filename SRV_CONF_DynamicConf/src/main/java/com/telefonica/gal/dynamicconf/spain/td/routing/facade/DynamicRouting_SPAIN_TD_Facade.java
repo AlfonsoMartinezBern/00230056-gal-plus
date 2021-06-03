@@ -1,10 +1,11 @@
-package com.telefonica.gal.dynamicconf.spain.td.facade;
+package com.telefonica.gal.dynamicconf.spain.td.routing.facade;
 
 import com.telefonica.gal.dynamicconf.facade.DynamicConf_Facade;
-import com.telefonica.gal.dynamicconf.spain.td.config.ConfigService_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.controller.RoutingTable_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingInfo_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingKey_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.config.ConfigService_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.controller.RoutingTable_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.dto.RoutingInfo_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.dto.RoutingKey_SPAIN_TD;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

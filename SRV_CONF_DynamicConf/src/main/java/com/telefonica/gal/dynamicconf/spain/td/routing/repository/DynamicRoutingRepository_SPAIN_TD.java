@@ -1,8 +1,9 @@
-package com.telefonica.gal.dynamicconf.spain.td.repository;
+package com.telefonica.gal.dynamicconf.spain.td.routing.repository;
 
 import com.telefonica.gal.dynamicconf.repository.DynamicConfigRepository;
 import com.telefonica.gal.dynamicconf.repository.DynamicConfigRoutes_DTO;
-import com.telefonica.gal.dynamicconf.spain.td.repository.model.Route_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.repository.model.Route_SPAIN_TD;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;

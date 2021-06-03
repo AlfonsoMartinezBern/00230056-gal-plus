@@ -1,4 +1,4 @@
-package com.telefonica.gal.dynamicconf.spain.td.dto;
+package com.telefonica.gal.dynamicconf.spain.td.routing.dto;
 
 public class RoutingKey_SPAIN_TD {
 

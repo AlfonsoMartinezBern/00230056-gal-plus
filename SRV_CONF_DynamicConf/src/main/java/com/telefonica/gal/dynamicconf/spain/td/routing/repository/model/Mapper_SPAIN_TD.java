@@ -1,11 +1,12 @@
-package com.telefonica.gal.dynamicconf.spain.td.repository.model;
+package com.telefonica.gal.dynamicconf.spain.td.routing.repository.model;
 
 import com.telefonica.gal.dynamicconf.repository.Repository;
 import com.telefonica.gal.dynamicconf.repository.model.ConfigMapper;
 import com.telefonica.gal.dynamicconf.repository.model.Flow;
-import com.telefonica.gal.dynamicconf.spain.td.controller.RoutingTable_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingInfo_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingKey_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.controller.RoutingTable_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.dto.RoutingInfo_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.dto.RoutingKey_SPAIN_TD;
+
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
