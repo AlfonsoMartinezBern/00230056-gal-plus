@@ -21,11 +21,11 @@ public class Spain_TD_Error_Client implements ISpainTDError {
                         "&errorCodeInterface=" + errorKey.getErrorCodeInterface() +
                         "&errorCodeOperation=" + errorKey.getErrorCodeOperation();
 
-//        RestTemplate plantilla = new RestTemplate();
-//
-//        return plantilla.getForObject(errorURL, ErrorInfo.class);
+        RestTemplate plantilla = new RestTemplate();
+
+        return plantilla.getForObject(errorURL, ErrorInfo.class);
         
-        return mockSearch(errorKey);
+//        return mockSearch(errorKey);
     }
     
     
