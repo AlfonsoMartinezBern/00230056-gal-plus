@@ -1,9 +1,10 @@
-package com.telefonica.gal.dynamicconf.spain.td.config;
+package com.telefonica.gal.dynamicconf.spain.td.routing.config;
 
 import com.telefonica.gal.dynamicconf.config.ConfigService;
 import com.telefonica.gal.dynamicconf.facade.DynamicConfType;
-import com.telefonica.gal.dynamicconf.spain.td.repository.DynamicRoutingRepository_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.repository.model.Mapper_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.repository.DynamicRoutingRepository_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.repository.model.Mapper_SPAIN_TD;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

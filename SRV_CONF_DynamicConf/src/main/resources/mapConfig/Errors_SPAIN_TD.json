@@ -1,0 +1,18 @@
+{
+	"version": "0.0.1",
+	"info": "Error SPAIN TD created 2021-05-26",
+	"errors": [
+		{
+			"operationApi": "MiView",
+			"serviceApi": "UMG",
+			"errorCode": "MiView",
+			"errorCodeInterface": "UMG",
+			"errorCodeOperation": "MiView",
+			"errorInfo": {
+				"errorCode": "1",
+				"errorDescription": "Fallo de comunicación con la Base de Datos"
+			}
+			}
+			]
+	
+}

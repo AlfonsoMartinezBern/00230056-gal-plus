@@ -1,9 +1,9 @@
-package com.telefonica.gal.dynamicconf.spain.td.dto;
+package com.telefonica.gal.dynamicconf.spain.td.routing.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.telefonica.gal.dynamicconf.generic.dto.MessageResponse;
 import com.telefonica.gal.dynamicconf.repository.model.Flow;
-import com.telefonica.gal.dynamicconf.spain.td.repository.model.Endpoint_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.repository.model.Endpoint_SPAIN_TD;
 
 import java.util.List;
 

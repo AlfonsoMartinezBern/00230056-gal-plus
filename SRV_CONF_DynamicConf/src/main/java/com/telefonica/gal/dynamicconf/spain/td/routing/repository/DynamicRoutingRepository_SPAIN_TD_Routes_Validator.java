@@ -1,8 +1,8 @@
-package com.telefonica.gal.dynamicconf.spain.td.repository;
+package com.telefonica.gal.dynamicconf.spain.td.routing.repository;
 
 import com.telefonica.gal.dynamicconf.repository.model.Flow;
-import com.telefonica.gal.dynamicconf.spain.td.repository.model.Route_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.repository.model.Endpoint_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.repository.model.Endpoint_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.repository.model.Route_SPAIN_TD;
 
 import java.util.ArrayList;
 import java.util.Comparator;

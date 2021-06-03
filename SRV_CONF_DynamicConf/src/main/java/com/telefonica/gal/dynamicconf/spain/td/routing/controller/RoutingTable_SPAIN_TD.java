@@ -1,8 +1,9 @@
-package com.telefonica.gal.dynamicconf.spain.td.controller;
+package com.telefonica.gal.dynamicconf.spain.td.routing.controller;
 
 import com.telefonica.gal.dynamicconf.generic.dto.ConfigTableGeneric;
-import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingInfo_SPAIN_TD;
-import com.telefonica.gal.dynamicconf.spain.td.dto.RoutingKey_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.dto.RoutingInfo_SPAIN_TD;
+import com.telefonica.gal.dynamicconf.spain.td.routing.dto.RoutingKey_SPAIN_TD;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
