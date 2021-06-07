@@ -35,10 +35,10 @@
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://6aebf8d1-db2f-4bf6-a03d-3440a048a194.mock.pstmn.io",
+    "targetEndpoint": "https://3a4e8cb7-1752-46dd-b129-26fd1a4b04c9.mock.pstmn.io",
     "endpointType": "TOP+"
     }],
-     "flows": [{"step":1,"endpointID":"02","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"01","type":"replica","active":true, "synchronous":true}]
+     "flows": [{"step":1,"endpointID":"01","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"02","type":"replica","active":true, "synchronous":true}]
   }
 
 ]

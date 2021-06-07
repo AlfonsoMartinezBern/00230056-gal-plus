@@ -3,7 +3,6 @@ package com.telefonica.gal.interfaceWs.topplus;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
 import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
-import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 import com.telefonica.gal.customerProvision.request.CUSTOMER;
@@ -13,10 +12,9 @@ import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.exception.HttpErrorsCustomerProvision;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
-import com.telefonica.gal.mapper.CustomerProvisionResponseMapper;
 import com.telefonica.gal.provisionApi.model.ResultOK;
 import com.telefonica.gal.provisionApi.model.User;
-import com.telefonica.gal.utils.CustomerProvisionEnum;
+import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +35,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
 
     private static final Integer ResponseCodeOK = 200;
+    private static final String  codeResponseOK = "0";
 
     private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
             CustomerProvisionRequestMapper.class);
 
-    private final static CustomerProvisionResponseMapper CUSTOMER_PROVISION_RESPONSE_MAPPER = Mappers.getMapper(
-            CustomerProvisionResponseMapper.class);
 
     @Autowired
     CUSTOMERPROVISIONREQUEST customerRequest;
@@ -112,6 +109,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 jaxbMarshaller.marshal(customer, sw);
                 xmlString = sw.toString();
                 LOGGER.info("==== REQUEST TOP -------> " + xmlString + "\n" );
+                customerReponse.setUSERID(customer.getUSERID());
+                customerReponse.setOPERATIONID(customer.getOPERATIONID());
 
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
@@ -125,15 +124,15 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
 
-                        //Todo validar si la respuesta es exitosa o error
-                        ResponseEntity<ResultOK> resultTop = restTemplate.postForEntity(URL, requestON, ResultOK.class);
+                        ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, requestON, String.class);
+
 
                         if(resultTop.getStatusCode().value() == ResponseCodeOK) {
-                            customerReponse = CUSTOMER_PROVISION_RESPONSE_MAPPER.transformationResponse(resultTop.getBody());
-                            customerReponse.setRESULTCODE(BigInteger.ZERO);
-                            customerReponse.setDESCRIPTION("Operación exitosa");
+                            customerReponse = responseInfoError(codeResponseOK);
                         } else {
-                            customerReponse = responseInfoError(resultTop, "ServicesConsolidation");
+                            JSONObject jsonObject = new JSONObject(resultTop.getBody());
+                            String codeError = jsonObject.get("statusCode").toString();
+                            customerReponse = responseInfoError(codeError);
                         }
 
                         LOGGER.info("============> Alta de usuario TOP: OK. " );
@@ -153,8 +152,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         restTemplate.delete(URL, ResultOK.class);
                         LOGGER.info("============> Baja de usuario TOP: OK. " );
 
-                        customerReponse.setRESULTCODE(BigInteger.ZERO);
-                        customerReponse.setDESCRIPTION("Operación exitosa");
+                        customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
@@ -175,8 +173,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("============> Modificación de usuario TOP: OK. " );
 
-                        customerReponse.setRESULTCODE(BigInteger.ZERO);
-                        customerReponse.setDESCRIPTION("Operación exitosa");
+                        customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
@@ -198,8 +195,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("============> Traslado OPERATION_TYPE = " + customer.getOPERATIONTYPE() + " de usuario OK. " );
 
-                        customerReponse.setRESULTCODE(BigInteger.ZERO);
-                        customerReponse.setDESCRIPTION("Operación exitosa");
+                        customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
@@ -221,8 +217,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
                         LOGGER.info("============> Traslado OPERATION_TYPE = " + customer.getOPERATIONTYPE() + " de usuario OK. " );
 
-                        customerReponse.setRESULTCODE(BigInteger.ZERO);
-                        customerReponse.setDESCRIPTION("Operación exitosa");
+                        customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
@@ -242,10 +237,9 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         }
     }
 
-    private com.telefonica.gal.customerProvision.response.CUSTOMER responseInfoError(ResponseEntity<ResultOK> objectResponseEntity,
-                                                                                     String operation) {
+    private com.telefonica.gal.customerProvision.response.CUSTOMER responseInfoError(String errorCode) {
         com.telefonica.gal.customerProvision.response.CUSTOMER responseCustomer = new com.telefonica.gal.customerProvision.response.CUSTOMER();
-        errorKey = new ErrorKey(objectResponseEntity.getStatusCode().toString());
+        errorKey = new ErrorKey(errorCode);
         iSpainTDError = new Spain_TD_Error_Client();
 
         errorResponse = iSpainTDError.search(errorKey);

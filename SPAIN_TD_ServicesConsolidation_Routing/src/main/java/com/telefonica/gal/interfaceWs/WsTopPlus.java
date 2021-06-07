@@ -1,5 +1,6 @@
 package com.telefonica.gal.interfaceWs;
 
+import com.google.gson.Gson;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
 import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
@@ -15,6 +16,7 @@ import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQ
 import com.telefonica.gal.servicesConsolidation.response.CUSTOMERS;
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
 import com.telefonica.gal.utils.ServicesConsolidationEnum;
+import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,7 @@ import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
@@ -131,22 +134,24 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
         try {
 
-            customerResponse.setUSERID(customerXml.getUSERID());
-            customerResponse.setOPERATIONID(customerXml.getOPERATIONID());
 
-            ResponseEntity<Object> responseEntity = restTemplate
+
+            ResponseEntity<String> responseEntity = restTemplate
                     .exchange(url,
                             HttpMethod.PUT,
                             requestEntity,
-                            Object.class);
+                            String.class);
 
             if(responseEntity.getStatusCode().value() == ResponseCodeOK) {
-                customerResponse.setRESULTCODE(BigInteger.ZERO);
-                customerResponse.setDESCRIPTION("Operación exitosa");
+                customerResponse = responseInfo("0");
             } else {
-                customerResponse = responseInfo(responseEntity, "Consolidation");
+                JSONObject jsonObject = new JSONObject(responseEntity.getBody());
+                String codeError = jsonObject.get("statusCode").toString();
+                customerResponse = responseInfo(codeError);
             }
-            //
+
+            customerResponse.setUSERID(customerXml.getUSERID());
+            customerResponse.setOPERATIONID(customerXml.getOPERATIONID());
 
             return customerResponse;
 
@@ -156,10 +161,9 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     }
 
-    public com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseInfo(ResponseEntity<Object> objectResponseEntity,
-                                                                                   String operation) {
+    public com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseInfo(String errorCode) {
         com.telefonica.gal.servicesConsolidation.response.CUSTOMER responseCustomer = new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
-        errorKey = new ErrorKey(objectResponseEntity.getStatusCode().toString());
+        errorKey = new ErrorKey(errorCode);
 
         iSpainTDError = new Spain_TD_Error_Client();
 

@@ -4,7 +4,7 @@
 	"errors": [
 		{
 			
-			"errorCode": "409 CONFLICT",
+			"errorCode": "409001",
 			"errorInfo": {
 				"errorCode": "26",
 				"errorDescription": "Operación nula"
@@ -20,10 +20,10 @@
 			},
 			{
 			
-			"errorCode": "409001",
+			"errorCode": "404001",
 			"errorInfo": {
-				"errorCode": "26",
-				"errorDescription": "Operación nula"
+				"errorCode": "29",
+				"errorDescription": "Dato ‘TV_SERVICE_ID’ no definido:"
 			}
 			},
 			{
