@@ -2,4 +2,9 @@ interface:
   customerProvision: "CustomerProvision"
 customerProvision:
   xsd: "xsd/request/CustomerProvision_request_v2.xsd"
-
+dynamicRouting:
+  uri: http://192.168.40.14:31659/dynamicConfig/spain/td
+error:
+  uri: http://192.168.40.14:31659/dynamicConfig/spain/td/error
+server:
+  port: 8085
