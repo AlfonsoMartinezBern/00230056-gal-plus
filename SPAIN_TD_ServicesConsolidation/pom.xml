@@ -95,6 +95,13 @@
 			<version>1.0.0</version>
 		</dependency>
 
+		<!---Cliente configuracion de errores -->
+		<dependency>
+			<groupId>com.telefonica.gal.spain.td</groupId>
+			<artifactId>CLR_SPAIN_TD_Error</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

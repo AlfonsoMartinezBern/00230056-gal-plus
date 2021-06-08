@@ -1,18 +1,8 @@
 package com.telefonica.gal.configuration;
 
-import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-
-import javax.xml.bind.UnmarshalException;
-
-@Configuration
+//@Configuration
 public class ConsolidationConfig {
-    @Value("${servicesConsolidation.xsd}")
+    /*@Value("${servicesConsolidation.xsd}")
     private String xsdPath;
 
     @Bean
@@ -51,5 +41,5 @@ public class ConsolidationConfig {
         }
 
         return null;
-    }
+    }*/
 }
