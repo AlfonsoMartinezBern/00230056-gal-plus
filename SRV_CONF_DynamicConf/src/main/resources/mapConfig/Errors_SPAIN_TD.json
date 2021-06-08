@@ -3,37 +3,43 @@
 	"info": "Error SPAIN TD created 2021-05-26",
 	"errors": [
 		{
-			
+			"errorCode": "0",
+			"errorInfo": {
+				"errorCode": "0",
+				"errorDescription": "Operación exitosa"
+			}
+		},
+		{
 			"errorCode": "409001",
 			"errorInfo": {
 				"errorCode": "26",
 				"errorDescription": "Operación nula"
 			}
-			},
-			{
+		},
+		{
 			
 			"errorCode": "503000",
 			"errorInfo": {
 				"errorCode": "1",
 				"errorDescription": "Fallo de comunicación con la Base de Datos"
 			}
-			},
-			{
+		},
+		{
 			
 			"errorCode": "404001",
 			"errorInfo": {
 				"errorCode": "29",
 				"errorDescription": "Dato ‘TV_SERVICE_ID’ no definido:"
 			}
-			},
-			{
+		},
+		{
 			
 			"errorCode": "400006",
 			"errorInfo": {
 				"errorCode": "26",
 				"errorDescription": "Operación nula"
 			}
-			}
-			]
+		}
+	]
 	
 }

@@ -109,8 +109,6 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 jaxbMarshaller.marshal(customer, sw);
                 xmlString = sw.toString();
                 LOGGER.info("==== REQUEST TOP -------> " + xmlString + "\n" );
-                customerReponse.setUSERID(customer.getUSERID());
-                customerReponse.setOPERATIONID(customer.getOPERATIONID());
 
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
@@ -227,6 +225,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         LOGGER.info("============> Unknown. " );
                         break;
                 }
+                customerReponse.setUSERID(customer.getUSERID());
+                customerReponse.setOPERATIONID(customer.getOPERATIONID());
             }
             result.setCUSTOMERS(customers);
 
