@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.telefonica.gal.spain.td</groupId>
 	<artifactId>CLR_SPAIN_TD_Error</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<name>CLR_SPAIN_TD_Error</name>
 	<description>Cliente Errores Spain TD</description>
 	<properties>

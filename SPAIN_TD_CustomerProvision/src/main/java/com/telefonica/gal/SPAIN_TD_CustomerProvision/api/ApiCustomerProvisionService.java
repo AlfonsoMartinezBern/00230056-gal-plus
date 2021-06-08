@@ -5,5 +5,5 @@ import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import org.springframework.http.ResponseEntity;
 
 public interface ApiCustomerProvisionService {
-    ResponseEntity<CUSTOMERPROVISIONRESPONSE> apiCustomersProvision(CUSTOMERPROVISIONREQUEST customerprovisionrequest) throws Exception;
+    ResponseEntity<CUSTOMERPROVISIONRESPONSE> apiCustomersProvision(String customerprovisionrequest) throws Exception;
 }

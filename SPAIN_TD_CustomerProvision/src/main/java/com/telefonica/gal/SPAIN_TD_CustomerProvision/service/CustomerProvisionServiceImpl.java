@@ -1,5 +1,6 @@
 package com.telefonica.gal.SPAIN_TD_CustomerProvision.service;
 
+import com.telefonica.gal.SPAIN_TD_CustomerProvision.validator.CustomerProvisionValidator;
 import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRoutingTD;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
@@ -22,6 +23,8 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
     private FactoryTD factoryTD;
 
+    private CustomerProvisionValidator customerProvisionValidator;
+
     @Autowired
     public CustomerProvisionServiceImpl(ISpainDynamicRoutingTD dynamicRoutingTD, FactoryTD factoryTD) {
         this.dynamicRoutingTD = dynamicRoutingTD;
@@ -32,6 +35,11 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
     public CUSTOMERPROVISIONRESPONSE customersProvision(CUSTOMERPROVISIONREQUEST request) {
 
         CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
+
+        if (customerProvisionValidator.isValid(request) != 0) {
+            System.out.println("Fallo");
+            // TODO gestionar errores
+        }
 
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;

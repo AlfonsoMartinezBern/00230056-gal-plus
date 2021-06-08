@@ -90,6 +90,18 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.telefonica.gal.spain</groupId>
 			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
 			<version>1.0.0</version>

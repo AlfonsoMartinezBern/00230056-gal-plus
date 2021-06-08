@@ -4,3 +4,7 @@ interface:
   consolidationService: "ServicesConsolidation"
 servicesConsolidation:
   xsd: "xsd/request/ServicesConsolidation_request.xsd"
+error:
+  uri: http://192.168.40.14:31659/dynamicConfig/spain/td/error
+dynamicRouting:
+  uri: http://192.168.40.14:31659/dynamicConfig/spain/td
