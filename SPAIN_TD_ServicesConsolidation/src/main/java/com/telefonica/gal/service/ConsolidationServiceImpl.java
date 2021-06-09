@@ -38,6 +38,9 @@ public class ConsolidationServiceImpl implements ConsolidationService {
     @Override
     public SERVICESCONSOLIDATIONRESPONSE consolidationPackageService(SERVICESCONSOLIDATIONREQUEST request) {
         SERVICESCONSOLIDATIONRESPONSE servicesconsolidationresponse = new SERVICESCONSOLIDATIONRESPONSE();
+
+
+
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;
         Map<String, Object> haspMap = null;

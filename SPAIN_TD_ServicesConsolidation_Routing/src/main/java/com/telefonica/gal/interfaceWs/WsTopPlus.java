@@ -1,10 +1,7 @@
 package com.telefonica.gal.interfaceWs;
 
-import com.google.gson.Gson;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
 import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
-import com.telefonica.gal.client.spain.td.error.msg.ErrorInfo;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 import com.telefonica.gal.exception.HttpErrors;
@@ -15,7 +12,6 @@ import com.telefonica.gal.servicesConsolidation.request.CUSTOMER;
 import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
 import com.telefonica.gal.servicesConsolidation.response.CUSTOMERS;
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
-import com.telefonica.gal.utils.ServicesConsolidationEnum;
 import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
@@ -35,7 +31,6 @@ import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Optional;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
