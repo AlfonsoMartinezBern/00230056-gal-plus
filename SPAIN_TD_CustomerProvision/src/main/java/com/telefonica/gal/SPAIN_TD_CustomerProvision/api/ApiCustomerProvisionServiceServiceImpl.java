@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
 
 @RestController
 @RequestMapping(path = "/customerProvision")
@@ -28,9 +29,14 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
 
     @Override
     @PostMapping(produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> apiCustomersProvision(@RequestBody CUSTOMERPROVISIONREQUEST customerprovisionrequest) throws Exception{
+    public ResponseEntity<CUSTOMERPROVISIONRESPONSE> apiCustomersProvision(@RequestParam String xml_request) throws Exception{
         try {
             LOGGER.info("Customer request CreateUser=========== ");
+
+            JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMERPROVISIONREQUEST.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            CUSTOMERPROVISIONREQUEST customerprovisionrequest = (CUSTOMERPROVISIONREQUEST) jaxbUnmarshaller.unmarshal(new StringReader(xml_request));
+
             return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
                     customerprovisionrequest), HttpStatus.OK);
 
@@ -38,7 +44,6 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
             LOGGER.info("Exception:  " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
 
     }
 
