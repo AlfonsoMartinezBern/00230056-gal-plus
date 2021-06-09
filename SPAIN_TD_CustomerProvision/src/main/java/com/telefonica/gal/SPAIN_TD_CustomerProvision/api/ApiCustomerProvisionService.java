@@ -6,4 +6,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface ApiCustomerProvisionService {
     ResponseEntity<CUSTOMERPROVISIONRESPONSE> apiCustomersProvision(String xml_request) throws Exception;
+
 }
