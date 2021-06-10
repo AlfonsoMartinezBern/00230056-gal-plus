@@ -40,23 +40,6 @@
 				"errorDescription": "Operación nula"
 			}
 		},
-
-		{
-
-			"errorCode": "GAL-200",
-			"errorInfo": {
-				"errorCode": "200",
-				"errorDescription": "Formato erróneo en el dato ‘OPERATION_ID’"
-			}
-		},
-
-		{
-			"errorCode": "GAL-201",
-			"errorInfo": {
-				"errorCode": "201",
-				"errorDescription": "Falta campo obligatorio ‘OPERATION_ID’"
-			}
-		},
 		{
 
 			"errorCode": "GAL-02",
@@ -74,6 +57,81 @@
 			}
 		},
 		{
+			"errorCode": "GAL-04",
+			"errorInfo": {
+				"errorCode": "4",
+				"errorDescription": "Formato erróneo en el dato 'OPERATION_TYPE'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-05",
+			"errorInfo": {
+				"errorCode": "5",
+				"errorDescription": "Falta campo obligatorio 'OPERATION_TYPE'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-10",
+			"errorInfo": {
+				"errorCode": "10",
+				"errorDescription": "Formato erróneo en el dato 'GEOGRAFIC_AREA'"
+			}
+		},
+		{
+			"errorCode": "GAL-11",
+			"errorInfo": {
+				"errorCode": "11",
+				"errorDescription": "Falta campo obligatorio 'GEOGRAFIC_AREA'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-13",
+			"errorInfo": {
+				"errorCode": "13",
+				"errorDescription": "Formato erróneo en el dato 'USER_TYPE'."
+			}
+		},
+		{
+			"errorCode": "GAL-14",
+			"errorInfo": {
+				"errorCode": "14",
+				"errorDescription": "Falta campo obligatorio 'USER_TYPE'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-16",
+			"errorInfo": {
+				"errorCode": "16",
+				"errorDescription": "Formato erróneo en el dato 'SERVICE_TYPE'"
+			}
+		},
+		{
+			"errorCode": "GAL-17",
+			"errorInfo": {
+				"errorCode": "17",
+				"errorDescription": "Falta campo obligatorio 'SERVICE_TYPE'."
+			}
+		},
+
+		{
+			"errorCode": "GAL-24",
+			"errorInfo": {
+				"errorCode": "24",
+				"errorDescription": "Formato erróneo en el dato 'DEVICE':"
+			}
+		},
+		{
+			"errorCode": "GAL-25",
+			"errorInfo": {
+				"errorCode": "25",
+				"errorDescription": "Falta campo obligatorio 'DEVICE'"
+			}
+		},
+		{
 
 			"errorCode": "GAL-27",
 			"errorInfo": {
@@ -87,6 +145,68 @@
 			"errorInfo": {
 				"errorCode": "28",
 				"errorDescription": "Falta campo obligatorio ‘TV_SERVICE_ID’"
+			}
+		},
+
+		{
+			"errorCode": "GAL-30",
+			"errorInfo": {
+				"errorCode": "30",
+				"errorDescription": "Formato erróneo en el dato 'SUBSCRIPTION':  "
+			}
+		},
+		{
+			"errorCode": "GAL-31",
+			"errorInfo": {
+				"errorCode": "31",
+				"errorDescription": "Falta campo obligatorio 'SUBSCRIPTION': "
+			}
+		},
+
+		{
+			"errorCode": "GAL-33",
+			"errorInfo": {
+				"errorCode": "33",
+				"errorDescription": "Formato erróneo en el dato 'POP'"
+			}
+		},
+		{
+			"errorCode": "GAL-34",
+			"errorInfo": {
+				"errorCode": "34",
+				"errorDescription": "Falta campo obligatorio 'POP'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-43",
+			"errorInfo": {
+				"errorCode": "43",
+				"errorDescription": "Falta campo obligatorio 'OPERATOR_BONUS'"
+			}
+		},
+		{
+
+			"errorCode": "GAL-46",
+			"errorInfo": {
+				"errorCode": "46",
+				"errorDescription": "Falta atributo obligatorio 'operation' en campo 'OPERATOR_BONUS'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-47",
+			"errorInfo": {
+				"errorCode": "47",
+				"errorDescription": "Formato erróneo en atributo 'operation' del campo 'OPERATOR_BONUS':"
+			}
+		},
+
+		{
+			"errorCode": "GAL-48",
+			"errorInfo": {
+				"errorCode": "48",
+				"errorDescription": "Falta atributo obligatorio 'operation' en campo 'TV_PACKAGE'."
 			}
 		},
 		{
@@ -110,22 +230,69 @@
 			"errorCode": "GAL-51",
 			"errorInfo": {
 				"errorCode": "51",
-				"errorDescription": "Formato erróneo en atributo 'operation' del campo 'SUBSCRIPTION': "
+				"errorDescription": "Formato erróneo en atributo 'operation' del campo 'SUBSCRIPTION':"
 			}
 		},
 
 		{
-			"errorCode": "GAL-30",
+			"errorCode": "GAL-75",
 			"errorInfo": {
-				"errorCode": "30",
-				"errorDescription": "Formato erróneo en el dato 'SUBSCRIPTION':  "
+				"errorCode": "75",
+				"errorDescription": "Falta campo obligatorio SUBSCRIBER_LINE_UPSTREAM"
 			}
 		},
 		{
-			"errorCode": "GAL-31",
+			"errorCode": "GAL-76",
 			"errorInfo": {
-				"errorCode": "31",
-				"errorDescription": "Falta campo obligatorio 'SUBSCRIPTION': "
+				"errorCode": "76",
+				"errorDescription": "Formato erróneo en el dato SUBSCRIBER_LINE_UPSTREAM"
+			}
+		},
+
+		{
+			"errorCode": "GAL-77",
+			"errorInfo": {
+				"errorCode": "77",
+				"errorDescription": "Falta campo obligatorio SUBSCRIBER_LINE_DOWNSTREAM"
+			}
+		},
+		{
+			"errorCode": "GAL-78",
+			"errorInfo": {
+				"errorCode": "78",
+				"errorDescription": "Formato erroneo en el dato SUBSCRIBER_LINE_DOWNSTREAM"
+			}
+		},
+
+		{
+			"errorCode": "GAL-83",
+			"errorInfo": {
+				"errorCode": "83",
+				"errorDescription": "Formato erróneo en el dato 'ADDRESSING'"
+			}
+		},
+		{
+			"errorCode": "GAL-86",
+			"errorInfo": {
+				"errorCode": "86",
+				"errorDescription": "Formato erróneo en el dato 'MAX_NUM_STBS'"
+			}
+		},
+
+		{
+
+			"errorCode": "GAL-200",
+			"errorInfo": {
+				"errorCode": "200",
+				"errorDescription": "Formato erróneo en el dato ‘OPERATION_ID’"
+			}
+		},
+
+		{
+			"errorCode": "GAL-201",
+			"errorInfo": {
+				"errorCode": "201",
+				"errorDescription": "Falta campo obligatorio ‘OPERATION_ID’"
 			}
 		}
 	]

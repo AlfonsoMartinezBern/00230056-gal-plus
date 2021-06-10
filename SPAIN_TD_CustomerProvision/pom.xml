@@ -133,7 +133,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/ProvisionApi_v0.0.16.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/ProvisionApi_v0.0.17_20210604.yaml</inputSpec>
 							<modelPackage>com.telefonica.gal.provisionApi.model</modelPackage>
 							<apiPackage>com.telefonica.gal.provisionApi.api</apiPackage>
 							<generatorName>spring</generatorName>
