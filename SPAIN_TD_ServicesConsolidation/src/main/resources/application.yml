@@ -4,14 +4,7 @@ interface:
   consolidationService: "ServicesConsolidation"
 servicesConsolidation:
   xsd: "xsd/request/ServicesConsolidation_request.xsd"
-<<<<<<< HEAD
 dynamicRouting:
   uri: "http://192.168.40.14:31659/dynamicConfig/spain/td"
 error:
   uri: "http://192.168.40.14:31659/dynamicConfig/spain/td/error"
-=======
-error:
-  uri: http://192.168.40.14:31659/dynamicConfig/spain/td/error
-dynamicRouting:
-  uri: http://192.168.40.14:31659/dynamicConfig/spain/td
->>>>>>> BUG-251
