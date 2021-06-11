@@ -129,8 +129,6 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
         try {
 
-
-
             ResponseEntity<String> responseEntity = restTemplate
                     .exchange(url,
                             HttpMethod.PUT,

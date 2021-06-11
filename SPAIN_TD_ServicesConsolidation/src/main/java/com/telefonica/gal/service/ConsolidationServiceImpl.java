@@ -5,7 +5,6 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.exception.ErrorMessage;
 import com.telefonica.gal.factory.FactoryTD;
-import com.telefonica.gal.servicesConsolidation.request.CUSTOMER;
 import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
 import com.telefonica.gal.servicesConsolidation.response.CUSTOMERS;
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
@@ -23,6 +22,8 @@ public class ConsolidationServiceImpl implements ConsolidationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConsolidationServiceImpl.class.getName());
     private static final String ServicesConsolidation = "ServicesConsolidation";
 
+    private ValidateConsolidation validateConsolidation = new ValidateConsolidation();
+
     ISpainDynamicRoutingTD dynamicRoutingTD;
 
     FactoryTD factoryTD;
@@ -37,34 +38,24 @@ public class ConsolidationServiceImpl implements ConsolidationService {
 
     @Override
     public SERVICESCONSOLIDATIONRESPONSE consolidationPackageService(SERVICESCONSOLIDATIONREQUEST request) {
-        SERVICESCONSOLIDATIONRESPONSE servicesconsolidationresponse = new SERVICESCONSOLIDATIONRESPONSE();
-
-
-
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;
         Map<String, Object> haspMap = null;
-        CUSTOMERS customers = new CUSTOMERS();
-        com.telefonica.gal.servicesConsolidation.response.CUSTOMER customerResponseError = new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
 
         try {
-            for (CUSTOMER customer : request.getCUSTOMERS().getCUSTOMER()) {
-                ValidateConsolidation.validateRequest(customer);
-
-            }
-            System.out.println("SIGO CON LA PROVISION ===== >");
+            validateConsolidation.isValid(request);
 
             routingTDInfo = new RoutingTDInfo();
             tdKey = new RoutingTDKey(ServicesConsolidation);
             routingTDInfo = dynamicRoutingTD.search(tdKey);
 
-            //Invocar al Factory
-            servicesconsolidationresponse = factoryTD.invokeWs(routingTDInfo, request, haspMap);
-
-
-            return servicesconsolidationresponse;
+            return factoryTD.invokeWs(routingTDInfo, request, haspMap);
 
         } catch (ErrorMessage errorMessage) {
+            com.telefonica.gal.servicesConsolidation.response.CUSTOMER customerResponseError = new com.telefonica.gal.servicesConsolidation.response.CUSTOMER();
+            CUSTOMERS customers = new CUSTOMERS();
+            SERVICESCONSOLIDATIONRESPONSE servicesconsolidationresponse = new SERVICESCONSOLIDATIONRESPONSE();
+
             customerResponseError.setUSERID(errorMessage.getUserid());
             customerResponseError.setOPERATIONID(errorMessage.getOperationid());
             customerResponseError.setRESULTCODE(new BigInteger(errorMessage.getCodError()));

@@ -9,14 +9,14 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://a184d455-02ba-4bfd-99de-58eac6c33048.mock.pstmn.io/CDB_CustomerProvision_XML.php",
+    "targetEndpoint": "http://localhost:8092/test/CDB_CustomerProvision_XML.php",
     "endpointType": "MIVIEWTV"
     },
     {
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://b63ba7e6-f338-4e5e-8eb2-4a1b45c29b91.mock.pstmn.io",
+    "targetEndpoint": "http://localhost:8093/test",
     "endpointType": "TOP+"
     }],
      "flows": [{"step":1,"endpointID":"02","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"01","type":"replica","active":true, "synchronous":true}]
@@ -28,14 +28,14 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://3f83343d-4341-472f-9785-8716daa827a4.mock.pstmn.io/CDB_ServicesConsolidation.php",
+    "targetEndpoint": "http://localhost:8090/test/CDB_ServicesConsolidation.php",
     "endpointType": "MIVIEWTV"
     },
     {
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "https://dd4485d6-b381-4e37-b24e-c006bbe6197a.mock.pstmn.io",
+    "targetEndpoint": "http://localhost:8091/test",
     "endpointType": "TOP+"
     }],
      "flows": [{"step":1,"endpointID":"02","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"01","type":"replica","active":true, "synchronous":true}]
