@@ -31,7 +31,8 @@ public class CustomerProvisionValidator {
         // OPERATION_TYPE
         if (customer.getOPERATIONTYPE().isEmpty() || customer.getOPERATIONTYPE().isBlank() || customer.getOPERATIONTYPE() == null)
             throw new CustomerException().getErrorInfo("GAL-05", userId, operationId);
-        if (!customer.getOPERATIONTYPE().equals("ON") && !customer.getOPERATIONTYPE().equals("MOD") && !customer.getOPERATIONTYPE().equals("OFF"))
+        if (!customer.getOPERATIONTYPE().equals("ON") && !customer.getOPERATIONTYPE().equals("MOD") && !customer.getOPERATIONTYPE().equals("OFF")
+                && !customer.getOPERATIONTYPE().equals("N") && !customer.getOPERATIONTYPE().equals("D") && !customer.getOPERATIONTYPE().equals("NN") && !customer.getOPERATIONTYPE().equals("ND"))
             throw new CustomerException().getErrorInfo("GAL-04", userId, operationId);
 
         // GEOGRAFIC_AREA
@@ -125,7 +126,8 @@ public class CustomerProvisionValidator {
                     // OPERATOR_BONUS si LIST_OPERATOR_BONUS presente
                     if (operatorbonus.getValue().isEmpty() || operatorbonus.getValue().isBlank() || operatorbonus.getValue() == null || operatorbonus == null)
                         throw new CustomerException().getErrorInfo("GAL-43", userId, operationId);
-                    // Formato erróneo throw new CustomerException().getErrorInfo("47", userId, operationId); // TODO
+                    if (operatorbonus.getValue().length() > 32)
+                        throw new CustomerException().getErrorInfo("47", userId, operationId);
 
                     // operation si LIST_OPERATOR_BONUS presente
                     if (operatorbonus.getOperation() == null)
@@ -144,8 +146,6 @@ public class CustomerProvisionValidator {
         // MAX_NUM_STBS (solo debe comprobarse el formato)
         if (customer.getMAXNUMSTBS() > 99)
             throw new CustomerException().getErrorInfo("GAL-86", userId, operationId);
-
-        throw new CustomerException().getErrorInfo("0", userId, operationId);
     }
 
 }
