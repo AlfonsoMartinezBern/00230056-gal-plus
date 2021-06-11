@@ -9,7 +9,7 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://localhost:8092/test/CDB_ServicesConsolidation.php",
+    "targetEndpoint": "http://localhost:8092/test/CDB_CustomerProvision_XML.php",
     "endpointType": "MIVIEWTV"
     },
     {
