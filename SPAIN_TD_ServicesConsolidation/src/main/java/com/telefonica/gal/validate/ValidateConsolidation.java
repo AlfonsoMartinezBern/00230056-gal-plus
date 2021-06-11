@@ -3,6 +3,7 @@ package com.telefonica.gal.validate;
 import com.telefonica.gal.exception.ConsolidationException;
 import com.telefonica.gal.exception.ErrorMessage;
 import com.telefonica.gal.servicesConsolidation.request.CUSTOMER;
+import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQUEST;
 import com.telefonica.gal.servicesConsolidation.request.TVSERVICE;
 import com.telefonica.gal.servicesConsolidation.request.VODSERVICE;
 import com.telefonica.gal.utils.ErrorCodeEnum;
@@ -11,7 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ValidateConsolidation  {
 
-    public static void validateRequest(CUSTOMER request) throws ErrorMessage {
+    public void isValid(SERVICESCONSOLIDATIONREQUEST servicesconsolidationrequest) throws ErrorMessage {
+        for (CUSTOMER customer : servicesconsolidationrequest.getCUSTOMERS().getCUSTOMER()) {
+            isValid(customer);
+        }
+    }
+
+    public static void isValid(CUSTOMER request) throws ErrorMessage {
 
         String userId = request.getUSERID();
         String operationId = request.getOPERATIONID();
