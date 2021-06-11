@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class Spain_TD_DynRout_Client implements ISpainDynamicRoutingTD {
     @Value("${local.dynamicRouting.uri}")
-    private String URI;
+    private String URI = "http://localhost:8081/dynamicConfig/spain/td";
 
     public RoutingTDInfo search(RoutingTDKey tdkey) {
         String dynamicRoutingURL =

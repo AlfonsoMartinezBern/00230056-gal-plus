@@ -38,24 +38,12 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
     @Override
     public CUSTOMERPROVISIONRESPONSE customersProvision(CUSTOMERPROVISIONREQUEST request) {
 
-        CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
         try {
             customerProvisionValidator.isValid(request);
-
-            RoutingTDKey tdKey;
-            RoutingTDInfo routingTDInfo;
-            Map<String, Object> haspMap = null;
-
-            routingTDInfo = new RoutingTDInfo();
-            tdKey = new RoutingTDKey(CustomerProvision);
-            routingTDInfo = dynamicRoutingTD.search(tdKey);
-
-            response = factoryTD.invokeWs(routingTDInfo, request, haspMap);
-
-
-            return response;
+            return factoryTD.invokeWs(dynamicRoutingTD.search(new RoutingTDKey(CustomerProvision)), request, null);
 
         } catch (ErrorMessage errorMessage) {
+            CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
             CUSTOMERS customers = new CUSTOMERS();
             CUSTOMER customerResponseError = new CUSTOMER();
 
