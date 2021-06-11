@@ -7,10 +7,5 @@ demo:
     uri: http://192.168.40.14:31659/dynamicConfig/spain/td
   error:
     uri: http://192.168.40.14:31659/dynamicConfig/spain/td/error
-local:
-  dynamicRouting:
-    uri: http://localhost:8081/dynamicConfig/spain/td
-  error:
-    uri: http://localhost:8081/dynamicConfig/spain/td/error
 server:
   port: 8085
