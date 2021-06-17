@@ -21,7 +21,7 @@ Configuration:
     File:
       name: FILE_APPENDER
       #fileName: ${log-path}/SPAIN_TD_ServicesConsolidation/ServicesConsolidation.log
-      fileName: /home/gatby/logs/SPAIN_TD_ServicesConsolidation/ServicesConsolidation.log
+      fileName: /home/desarrollo/logs/SPAIN_TD_ServicesConsolidation/ServicesConsolidation.log
       #PatternLayout:
       JSONLayout:
         compact: false
