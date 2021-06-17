@@ -40,7 +40,8 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
 
         try {
             customerProvisionValidator.isValid(request);
-            return factoryTD.invokeWs(dynamicRoutingTD.search(new RoutingTDKey(CustomerProvision)), request, null);
+            CUSTOMERPROVISIONRESPONSE custom = factoryTD.invokeWs(dynamicRoutingTD.search(new RoutingTDKey(CustomerProvision)), request, null);
+            return custom;
 
         } catch (ErrorMessage errorMessage) {
             CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
