@@ -46,7 +46,7 @@ public class CustomerProvisionValidator {
         // SERVICE_TYPE
         if (customer.getSERVICETYPE().isEmpty() || customer.getSERVICETYPE().isBlank() || customer.getSERVICETYPE() == null)
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_SERVICE_TYPE.getValue(), userId, operationId);
-        if (!customer.getSERVICETYPE().equals("DFLT1") && !customer.getSERVICETYPE().equals("DFLT2") && !customer.getSERVICETYPE().equals("OTT"))
+        if (customer.getSERVICETYPE().length() > 32)
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_SERVICE_TYPE.getValue(), userId, operationId);
 
         //STB_IP
