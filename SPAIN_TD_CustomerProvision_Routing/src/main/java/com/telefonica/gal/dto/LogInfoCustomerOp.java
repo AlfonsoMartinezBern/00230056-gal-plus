@@ -1,21 +1,20 @@
 package com.telefonica.gal.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class LogDto implements Serializable {
+public class LogInfoCustomerOp implements Serializable {
     private String logVersion = "1.0.0";
     private String idLog;
     private String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-    private LogType logType;
-    private ServiceInfoDto serviceInfo;
-    private MessageInfo messageInfo;
+    private LogTypeCustomer logType;
+    private ServiceInfoCustomer serviceInfo;
+    private MessageInfoCustomer messageInfo;
     private String request;
+    private String transformationRequest;
     private String response;
+    private String transformationResponse;
 
     public String getLogVersion() {
         return logVersion;
@@ -41,20 +40,28 @@ public class LogDto implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public LogType getLogType() {
+    public LogTypeCustomer getLogType() {
         return logType;
     }
 
-    public void setLogType(LogType logType) {
+    public void setLogType(LogTypeCustomer logType) {
         this.logType = logType;
     }
 
-    public ServiceInfoDto getServiceInfo() {
+    public ServiceInfoCustomer getServiceInfo() {
         return serviceInfo;
     }
 
-    public void setServiceInfo(ServiceInfoDto serviceInfo) {
+    public void setServiceInfo(ServiceInfoCustomer serviceInfo) {
         this.serviceInfo = serviceInfo;
+    }
+
+    public MessageInfoCustomer getMessageInfo() {
+        return messageInfo;
+    }
+
+    public void setMessageInfo(MessageInfoCustomer messageInfo) {
+        this.messageInfo = messageInfo;
     }
 
     public String getRequest() {
@@ -65,12 +72,12 @@ public class LogDto implements Serializable {
         this.request = request;
     }
 
-    public MessageInfo getMessageInfo() {
-        return messageInfo;
+    public String getTransformationRequest() {
+        return transformationRequest;
     }
 
-    public void setMessageInfo(MessageInfo messageInfo) {
-        this.messageInfo = messageInfo;
+    public void setTransformationRequest(String transformationRequest) {
+        this.transformationRequest = transformationRequest;
     }
 
     public String getResponse() {
@@ -79,5 +86,13 @@ public class LogDto implements Serializable {
 
     public void setResponse(String response) {
         this.response = response;
+    }
+
+    public String getTransformationResponse() {
+        return transformationResponse;
+    }
+
+    public void setTransformationResponse(String transformationResponse) {
+        this.transformationResponse = transformationResponse;
     }
 }

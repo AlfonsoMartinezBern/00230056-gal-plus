@@ -30,7 +30,7 @@ public class ApiConsolidationServiceImpl implements ApiConsolidationService {
     @PostMapping(produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<SERVICESCONSOLIDATIONRESPONSE> consolidationPackage(@RequestBody SERVICESCONSOLIDATIONREQUEST request) {
 
-        LOGGER.info("CONSOLIDATION SERVICE ============" + MediaType.APPLICATION_XML_VALUE);
+        LOGGER.info("CONSOLIDATION SERVICE ============" );
         return new ResponseEntity<SERVICESCONSOLIDATIONRESPONSE>(service.consolidationPackageService(request),
                 HttpStatus.OK);
     }

@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class LogInfo implements Serializable {
+public class LogInfoCustomerMiView implements Serializable {
     private String logVersion = "1.0.0";
     private String idLog;
     private String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-    private LogType logType;
-    private ServiceInfoDto serviceInfo;
-    private MessageInfo messageInfo;
+    private LogTypeCustomer logType;
+    private ServiceInfoCustomer serviceInfo;
+    private MessageInfoCustomer messageInfo;
     private String request;
     private String response;
 
@@ -38,27 +38,27 @@ public class LogInfo implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public LogType getLogType() {
+    public LogTypeCustomer getLogType() {
         return logType;
     }
 
-    public void setLogType(LogType logType) {
+    public void setLogType(LogTypeCustomer logType) {
         this.logType = logType;
     }
 
-    public ServiceInfoDto getServiceInfo() {
+    public ServiceInfoCustomer getServiceInfo() {
         return serviceInfo;
     }
 
-    public void setServiceInfo(ServiceInfoDto serviceInfo) {
+    public void setServiceInfo(ServiceInfoCustomer serviceInfo) {
         this.serviceInfo = serviceInfo;
     }
 
-    public MessageInfo getMessageInfo() {
+    public MessageInfoCustomer getMessageInfo() {
         return messageInfo;
     }
 
-    public void setMessageInfo(MessageInfo messageInfo) {
+    public void setMessageInfo(MessageInfoCustomer messageInfo) {
         this.messageInfo = messageInfo;
     }
 

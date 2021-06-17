@@ -32,6 +32,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
 import java.math.BigInteger;
@@ -96,29 +97,14 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         endpointTD = (Endpoint) endPoint;
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(SERVICESCONSOLIDATIONREQUEST.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            String xmlString;
-
             for (CUSTOMER customer : servicesconsolidationrequest.getCUSTOMERS().getCUSTOMER()) {
-                jaxbMarshaller.marshal(customer, sw);
-                xmlString = sw.toString();
-                //LOGGER.info("==== REQUEST TOP -------> " + xmlString + "\n" );
                 user = SERVICES_CONSOLIDATION_REQUEST_MAPPER.servicesConsolidationMapper(customer);
                 URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" +
                         user.getUniqueId() +"/products";
 
-                /*LOGGER.info("URL TOP+     ---> " + URL);
-                LOGGER.info("METODO REST: PUT   ");
-                LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + user );*/
-
                 customerResponse = invokeTop(URL, customer, user);
 
-                //LOGGER.info("============> Consolidación de paquetes TOP: OK. " );
-
-                //Respuesta
-                 customersResponses.getCUSTOMER().add(customerResponse);
-
+                customersResponses.getCUSTOMER().add(customerResponse);
 
             }
             response.setCUSTOMERS(customersResponses);
@@ -132,7 +118,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     }
 
     private com.telefonica.gal.servicesConsolidation.response.CUSTOMER invokeTop(final String url, final CUSTOMER customerXml,
-                                                                                 final User userJson) {
+                                                                                 final User userJson) throws JAXBException {
             String codeOperation = customerXml.getLISTTVSERVICES().getTVSERVICE().get(0).getTVSERVICEOPER().toString();
 
             com.telefonica.gal.servicesConsolidation.response.CUSTOMER customerResponse =
@@ -162,11 +148,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
             customerResponse.setUSERID(customerXml.getUSERID());
             customerResponse.setOPERATIONID(customerXml.getOPERATIONID());
 
-            generateLogs(customerXml,userJson, customerResponse,URL, String.valueOf(endpointTD.getInstanceID()));
+            generateLogs(customerXml,userJson, responseEntity.getBody(), customerResponse,URL, String.valueOf(endpointTD.getInstanceID()));
 
             return customerResponse;
 
-        } catch (HttpClientErrorException e) {
+        } catch (HttpClientErrorException | JAXBException e) {
             throw e;
         }
 
@@ -187,13 +173,22 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     private void generateLogs(final CUSTOMER request,
                               final User user,
+                              final String responseEntity,
                               final com.telefonica.gal.servicesConsolidation.response.CUSTOMER response,
                               final String url,
-                              final String instancedId) {
+                              final String instancedId) throws JAXBException {
         Map<String, String> indexKey = new HashMap<String, String>();
         logInfoOpPlus = new LogInfoOpPlus();
         messageInfo = new MessageInfo();
         serviceInfoDto = new ServiceInfoDto("SPAIN_TD_ServicesConsolidation");
+
+        //XML
+        JAXBContext jaxbContext = JAXBContext.newInstance(SERVICESCONSOLIDATIONREQUEST.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        String xmlString;
+
+        jaxbMarshaller.marshal(request, sw);
+        xmlString = sw.toString();
 
         indexKey.put("InstancedId", instancedId);
         indexKey.put("UniquedId", request.getUSERID());
@@ -205,9 +200,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         logInfoOpPlus.setIdLog(UUID.randomUUID().toString());
         logInfoOpPlus.setServiceInfo(serviceInfoDto);
         logInfoOpPlus.setMessageInfo(messageInfo);
-        logInfoOpPlus.setRequest(new ConsolidationServiceMessage(servicesconsolidationrequest).getFormattedMessage());
-        logInfoOpPlus.setTransformationRequest(new ConsolidationServiceMessage(user).getFormattedMessage());
-        logInfoOpPlus.setResponse(new ConsolidationServiceMessage(response).getFormattedMessage());
+        logInfoOpPlus.setRequest(xmlString);
+        logInfoOpPlus.setTransformationRequest(new ConsolidationServiceMessage(user).getFormattedMessage().replace("\\",""));
+        logInfoOpPlus.setResponse(responseEntity);
+        logInfoOpPlus.setTransformationResponse(new ConsolidationServiceMessage(response).getFormattedMessage().replace("\\",""));
+
         loggerWithCustomLayout.info(logInfoOpPlus);
 
     }

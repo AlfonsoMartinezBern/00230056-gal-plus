@@ -5,14 +5,14 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class ConsolidationServiceMessage implements Message {
+public class CustomerServiceMessage implements Message {
 
     private static final String TYPE = "type";
     private static final String BODY = "body";
 
     private final Object requestBody;
 
-    public ConsolidationServiceMessage(Object requestBody) {
+    public CustomerServiceMessage(Object requestBody) {
         this.requestBody = requestBody;
     }
 

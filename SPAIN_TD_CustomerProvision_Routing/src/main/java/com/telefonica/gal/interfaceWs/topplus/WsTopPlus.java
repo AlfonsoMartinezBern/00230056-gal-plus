@@ -9,15 +9,19 @@ import com.telefonica.gal.customerProvision.request.CUSTOMER;
 import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
+import com.telefonica.gal.dto.LogInfoCustomerOp;
+import com.telefonica.gal.dto.MessageInfoCustomer;
+import com.telefonica.gal.dto.ServiceInfoCustomer;
 import com.telefonica.gal.exception.HttpErrorsCustomerProvision;
 import com.telefonica.gal.interfaceWs.InvokeWs;
+import com.telefonica.gal.logs.CustomerServiceMessage;
 import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
 import com.telefonica.gal.provisionApi.model.ResultOK;
 import com.telefonica.gal.provisionApi.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,14 +29,18 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
+    private static Logger loggerCustomer = LogManager.getLogger("LOGS_CUSTOMER_OP");
 
     private static final Integer ResponseCodeOK = 200;
     private static final String  codeResponseOK = "0";
@@ -80,7 +88,10 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private User requestTraslado = new User();
     private User requestTrasladoND = new User();
 
-    //PRUEBAS
+    private LogInfoCustomerOp logInfoCustomerOp;
+    private ServiceInfoCustomer serviceInfoCustomer;
+    private MessageInfoCustomer messageInfoCustomer;
+
     RestTemplate restTemplate = new RestTemplate();
     MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
     StringWriter sw = new StringWriter();
@@ -101,14 +112,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         endpointTD = (Endpoint) endPoint;
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMERPROVISIONREQUEST.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            String xmlString;
-
             for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
-                jaxbMarshaller.marshal(customer, sw);
-                xmlString = sw.toString();
-                LOGGER.info("==== REQUEST TOP -------> " + xmlString + "\n" );
 
                 switch (customer.getOPERATIONTYPE()) {
                     case "ON":
@@ -116,14 +120,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         requestON = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
 
-                        LOGGER.info("URL TOP+     ---> " + URL);
-                        LOGGER.info("METODO REST: postForEntity   ");
-                        LOGGER.info("URL Original ------->  " + EVENT_ON);
-
-                        LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
-
                         ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, requestON, String.class);
-
 
                         if(resultTop.getStatusCode().value() == ResponseCodeOK) {
                             customerReponse = responseInfoError(codeResponseOK);
@@ -133,27 +130,24 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                             customerReponse = responseInfoError(codeError);
                         }
 
-                        LOGGER.info("============> Alta de usuario TOP: OK. " );
-
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
+                        generateLogs(customer, requestON, resultTop.getBody(), customerReponse, URL, String.valueOf(endpointTD.getInstanceID()));
+
                         break;
 
                     case "OFF":
                         String uniqueId = customer.getUSERID();
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + uniqueId;
 
-                        LOGGER.info("URL TOP+     ---> " + URL);
-                        LOGGER.info("METODO REST: DELETE   ");
-                        LOGGER.info("URL Original ------->" + EVENT_OFF);
-
                         restTemplate.delete(URL, ResultOK.class);
-                        LOGGER.info("============> Baja de usuario TOP: OK. " );
 
                         customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
+                        generateLogs(customer, requestON, null, customerReponse, URL, String.valueOf(endpointTD.getInstanceID()));
+
                         break;
 
                     case "MOD":
@@ -161,20 +155,13 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         requestMOD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
 
-                        LOGGER.info("URL TOP+     ---> " + URL);
-                        LOGGER.info("METODO REST: PUT   ");
-                        LOGGER.info("URL Original ------->" + EVENT_MOD);
-
-                        LOGGER.info("TRANSFORMACION PETICION MODIFICACION TOP ========>" + requestMOD );
-
                         restTemplate.put(URL, requestMOD);
-
-                        LOGGER.info("============> Modificación de usuario TOP: OK. " );
 
                         customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
+                        generateLogs(customer, requestON, null, customerReponse, URL, String.valueOf(endpointTD.getInstanceID()));
 
                         break;
 
@@ -183,20 +170,13 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         requestN = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestN.getUniqueId() +"/move/start";
 
-                        LOGGER.info("URL TOP+     --->  " + URL);
-                        LOGGER.info("METODO REST: PUT   ");
-                        LOGGER.info("URL Original ------->" + EVENT_TRASLADO);
-
-                        LOGGER.info("TRANSFORMACION PETICION TRASLADO N TOP ========>  " + requestN );
-
                         restTemplate.put(URL, requestN);
-
-                        LOGGER.info("============> Traslado OPERATION_TYPE = " + customer.getOPERATIONTYPE() + " de usuario OK. " );
 
                         customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
+                        generateLogs(customer, requestON, null, customerReponse, URL, String.valueOf(endpointTD.getInstanceID()));
                         break;
 
 
@@ -205,24 +185,16 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         requestD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/"+ requestD.getUniqueId() +"/move/end";
 
-                        LOGGER.info("URL TOP+     ---> " + URL);
-                        LOGGER.info("METODO REST: PUT   ");
-                        LOGGER.info("URL Original ------->" + EVENT_TRASLADO);
-
-                        LOGGER.info("TRANSFORMACION PETICION TRASLADO D TOP ========>  " + requestD );
-
                         restTemplate.put(URL, requestD);
-
-                        LOGGER.info("============> Traslado OPERATION_TYPE = " + customer.getOPERATIONTYPE() + " de usuario OK. " );
 
                         customerReponse = responseInfoError(codeResponseOK);
 
                         //Respuesta
                         customers.getCUSTOMER().add(customerReponse);
+                        generateLogs(customer, requestON, null, customerReponse, URL, String.valueOf(endpointTD.getInstanceID()));
                         break;
 
                     default:
-                        LOGGER.info("============> Unknown. " );
                         break;
                 }
                 customerReponse.setUSERID(customer.getUSERID());
@@ -247,5 +219,45 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         responseCustomer.setDESCRIPTION(errorResponse.getErrorInfo().getErrorDescription());
 
         return responseCustomer;
+    }
+
+    private void generateLogs(final CUSTOMER request,
+                              final User user,
+                              final String responseEntity,
+                              final com.telefonica.gal.customerProvision.response.CUSTOMER response,
+                              final String url,
+                              final String instancedId) throws JAXBException {
+        Map<String, String> indexKey = new HashMap<String, String>();
+        logInfoCustomerOp = new LogInfoCustomerOp();
+        messageInfoCustomer = new MessageInfoCustomer();
+        serviceInfoCustomer= new ServiceInfoCustomer("SPAIN_TD_CustomerProvision");
+
+        //XML
+        JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMER.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        String xmlString;
+
+        jaxbMarshaller.marshal(request, sw);
+        xmlString = sw.toString();
+
+        indexKey.put("InstancedId", instancedId);
+        indexKey.put("UniquedId", request.getUSERID());
+
+        messageInfoCustomer.setMessageOriginalFormat(MediaType.APPLICATION_JSON.toString());
+        messageInfoCustomer.setIndexKey(indexKey);
+        messageInfoCustomer.setUrl(url);
+
+        logInfoCustomerOp.setIdLog(UUID.randomUUID().toString());
+        logInfoCustomerOp.setServiceInfo(serviceInfoCustomer);
+        logInfoCustomerOp.setMessageInfo(messageInfoCustomer);
+        logInfoCustomerOp.setRequest(xmlString);
+        logInfoCustomerOp.setTransformationRequest(new CustomerServiceMessage(user).getFormattedMessage().replace("\\",""));
+        if (responseEntity != null) {
+            logInfoCustomerOp.setResponse(responseEntity);
+        }
+        logInfoCustomerOp.setTransformationResponse(new CustomerServiceMessage(response).getFormattedMessage().replace("\\",""));
+
+        loggerCustomer.info(logInfoCustomerOp);
+
     }
 }

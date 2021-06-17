@@ -1,15 +1,15 @@
-package com.telefonica.gal.dto;
+package com.telefonica.gal.SPAIN_TD_CustomerProvision.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class LogDto implements Serializable {
+public class LogCustomer implements Serializable {
     private String logVersion = "1.0.0";
     private String idLog;
     private String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-    private LogType logType;
-    private ServiceInfoDto serviceInfo;
+    private LogTypeCustomer logType;
+    private ServiceInfoCustomer serviceInfo;
     private String message;
 
     public String getLogVersion() {
@@ -36,19 +36,19 @@ public class LogDto implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public LogType getLogType() {
+    public LogTypeCustomer getLogType() {
         return logType;
     }
 
-    public void setLogType(LogType logType) {
+    public void setLogType(LogTypeCustomer logType) {
         this.logType = logType;
     }
 
-    public ServiceInfoDto getServiceInfo() {
+    public ServiceInfoCustomer getServiceInfo() {
         return serviceInfo;
     }
 
-    public void setServiceInfo(ServiceInfoDto serviceInfo) {
+    public void setServiceInfo(ServiceInfoCustomer serviceInfo) {
         this.serviceInfo = serviceInfo;
     }
 

@@ -1,7 +1,6 @@
 package com.telefonica.gal.interfaceWs;
 
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.dto.LogDto;
 import com.telefonica.gal.dto.LogInfo;
 import com.telefonica.gal.dto.MessageInfo;
 import com.telefonica.gal.dto.ServiceInfoDto;
@@ -120,8 +119,8 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         logInfo.setIdLog(UUID.randomUUID().toString());
         logInfo.setServiceInfo(serviceInfoDto);
         logInfo.setMessageInfo(messageInfo);
-        logInfo.setRequest(new ConsolidationServiceMessage(servicesconsolidationrequest).getFormattedMessage());
-        logInfo.setResponse(new ConsolidationServiceMessage(response).getFormattedMessage());
+        logInfo.setRequest(new ConsolidationServiceMessage(servicesconsolidationrequest).getFormattedMessage().replace("\\",""));
+        logInfo.setResponse(new ConsolidationServiceMessage(response).getFormattedMessage().replace("\\",""));
         loggerWithCustomLayout.info(logInfo);
 
     }
