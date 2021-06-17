@@ -1,0 +1,157 @@
+package com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.interfaceWs;
+
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
+import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
+import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
+import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
+import com.telefonica.gal.customerProvision.request.CUSTOMER;
+import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
+import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
+import com.telefonica.gal.customerProvision.response.CUSTOMERS;
+import com.telefonica.gal.exception.HttpErrorsCustomerProvision;
+import com.telefonica.gal.interfaceWs.InvokeWs;
+import com.telefonica.gal.mapper.CustomerProvisionRequestMapper;
+import com.telefonica.gal.provisionApi.model.ProvisionOttUser;
+import com.telefonica.gal.provisionApi.model.ResultOK;
+import com.telefonica.gal.provisionApi.model.User;
+import org.json.JSONObject;
+import org.mapstruct.factory.Mappers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
+import java.math.BigInteger;
+import java.util.Arrays;
+
+public class WsTopPlus<T> implements InvokeWs<T> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
+
+    private static final Integer ResponseCodeOK = 200;
+    private static final String  codeResponseOK = "0";
+
+    private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
+            CustomerProvisionRequestMapper.class);
+
+
+    @Autowired
+    CUSTOMERPROVISIONREQUEST customerRequest;
+
+    @Autowired
+    Endpoint endpointTD;
+
+    private ISpainTDError iSpainTDError;
+
+    @Autowired
+    private ErrorResponse errorResponse;
+
+    private ErrorKey errorKey;
+
+    private int instanceId;
+    private int platformId;
+    private String operationId;
+    private String url;
+    private T endPoint;
+    private T request;
+    private T serviceID;
+    private String URL;
+
+    // Endpoint
+    private final String CREATE_USER = "/instances/{instanceId}/users";
+
+    private CUSTOMERPROVISIONRESPONSE result = new CUSTOMERPROVISIONRESPONSE();
+    private CUSTOMERS customers = new CUSTOMERS();
+    private com.telefonica.gal.customerProvision.response.CUSTOMER customerReponse =
+            new com.telefonica.gal.customerProvision.response.CUSTOMER();
+
+    //PRUEBAS
+    RestTemplate restTemplate = new RestTemplate();
+    MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+    StringWriter sw = new StringWriter();
+
+
+    public WsTopPlus(T endPoint, T request) {
+        this.endPoint = endPoint;
+        this.request = request;
+    }
+
+    @Override
+    public T invoke() {
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
+        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+        restTemplate.setErrorHandler(new HttpErrorsCustomerProvision());
+
+        customerRequest = (CUSTOMERPROVISIONREQUEST) request;
+        endpointTD = (Endpoint) endPoint;
+
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMERPROVISIONREQUEST.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            String xmlString;
+
+
+            for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
+                jaxbMarshaller.marshal(customer, sw);
+                xmlString = sw.toString();
+                LOGGER.info("==== REQUEST TOP -------> " + xmlString + "\n" );
+                        requestON = new User();
+                        requestON = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
+                        URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
+
+                        LOGGER.info("URL TOP+     ---> " + URL);
+                        LOGGER.info("METODO REST: postForEntity   ");
+                        LOGGER.info("URL Original ------->  " + EVENT_ON);
+
+                        LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON );
+
+                        ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, requestON, String.class);
+
+
+                        if(resultTop.getStatusCode().value() == ResponseCodeOK) {
+                            customerReponse = responseInfoError(codeResponseOK);
+                        } else {
+                            JSONObject jsonObject = new JSONObject(resultTop.getBody());
+                            String codeError = jsonObject.get("statusCode").toString();
+                            customerReponse = responseInfoError(codeError);
+                        }
+
+                        LOGGER.info("============> Alta de usuario TOP: OK. " );
+
+                        //Respuesta
+                        customers.getCUSTOMER().add(customerReponse);
+                        break;
+
+
+                }
+                customerReponse.setUSERID(customer.getUSERID());
+                customerReponse.setOPERATIONID(customer.getOPERATIONID());
+            }
+            result.setCUSTOMERS(customers);
+
+            return (T) result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return (T) result;
+        }
+    }
+
+    private com.telefonica.gal.customerProvision.response.CUSTOMER responseInfoError(String errorCode) {
+        com.telefonica.gal.customerProvision.response.CUSTOMER responseCustomer = new com.telefonica.gal.customerProvision.response.CUSTOMER();
+        errorKey = new ErrorKey(errorCode);
+        iSpainTDError = new Spain_TD_Error_Client();
+
+        errorResponse = iSpainTDError.search(errorKey);
+        responseCustomer.setRESULTCODE(new BigInteger(errorResponse.getErrorInfo().getErrorCode()));
+        responseCustomer.setDESCRIPTION(errorResponse.getErrorInfo().getErrorDescription());
+
+        return responseCustomer;
+    }
+}

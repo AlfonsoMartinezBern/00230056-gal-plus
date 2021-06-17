@@ -57,3 +57,4 @@ Configuration:
       level: info
       AppenderRef:
         ref: CONSOLE_ROOT
+
