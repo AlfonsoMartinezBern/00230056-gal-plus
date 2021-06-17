@@ -1,0 +1,37 @@
+Configuration:
+        status: error
+
+        Appenders:
+                Console:
+                      - name: JSON_LAYOUT_APPENDER
+                        target: SYSTEM_OUT
+                        JSONLayout:
+                                compact: true
+                                complete: false
+                                objectMessageAsJsonObject: true
+
+                      - name: CONSOLE_ROOT
+                        target: SYSTEM_OUT
+                        PatternLayout:
+                                alwaysWriteExceptions: true
+                                pattern: "[%threadName] %-5level %logger{36} - %message{nolookups} %ex{separator(|)} %n"
+                File:
+                  - name: CustomerProvisionLogFile
+                    fileName: C:\Develop\Gal\00230056-gal-plus\SPAIN_TD_CustomerProvision\src\main\resources\logs\CustomerProvisionLogFile
+                    JSONLayout:
+                        compact: true
+                        complete: false
+                        objectMessageAsJsonObject: true
+
+        Loggers:
+                logger:
+                      - name: LOGGER_WITH_JSON_LAYOUT
+                        level: info
+                        additivity: false
+                        AppenderRef:
+                              -  ref: CustomerProvisionLogFile
+
+                Root:
+                        level: info
+                        AppenderRef:
+                              -  ref: CONSOLE_ROOT
