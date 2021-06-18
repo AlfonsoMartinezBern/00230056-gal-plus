@@ -61,12 +61,10 @@ public class ConsolidationServiceImpl implements ConsolidationService {
             SERVICESCONSOLIDATIONRESPONSE servicesconsolidationresponse = new SERVICESCONSOLIDATIONRESPONSE();
             LogDto logDto = new LogDto();
 
-            customerResponseError.setUSERID("prueba");
-
-            /*customerResponseError.setUSERID(errorMessage.getUserid());
+            customerResponseError.setUSERID(errorMessage.getUserid());
             customerResponseError.setOPERATIONID(errorMessage.getOperationid());
             customerResponseError.setRESULTCODE(new BigInteger(errorMessage.getCodError()));
-            customerResponseError.setDESCRIPTION(errorMessage.getMessage());*/
+            customerResponseError.setDESCRIPTION(errorMessage.getMessage());
 
             customers.getCUSTOMER().add(customerResponseError);
             servicesconsolidationresponse.setCUSTOMERS(customers);
