@@ -21,7 +21,7 @@ Configuration:
     File:
     - name: FILE_APPENDER
       #fileName: ${log-path}/SPAIN_TD_ServicesConsolidation/ServicesConsolidation.log
-      fileName: /home/desarrollo/logs/SPAIN_TD_ServicesConsolidation/ServicesConsolidation_MIView.log
+      fileName: ${log-path}/logs/SPAIN_TD_ServicesConsolidation/ServicesConsolidation_MIView.log
       #PatternLayout:
       JSONLayout:
         compact: false
@@ -30,7 +30,7 @@ Configuration:
         objectMessageAsJsonObject: true
         #pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n "
     - name: FILE_APPENDER_OP
-      fileName: /home/desarrollo/logs/SPAIN_TD_ServicesConsolidation/ServicesConsolidation_OP.log
+      fileName: ${log-path}/logs/SPAIN_TD_ServicesConsolidation/ServicesConsolidation_OP.log
       JSONLayout:
         compact: false
         complete: true
