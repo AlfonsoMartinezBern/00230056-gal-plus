@@ -12,7 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
 
 @RestController
 @RequestMapping(path = "/consolidationService")
@@ -28,10 +33,23 @@ public class ApiConsolidationServiceImpl implements ApiConsolidationService {
 
     @Override
     @PostMapping(produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<SERVICESCONSOLIDATIONRESPONSE> consolidationPackage(@RequestBody SERVICESCONSOLIDATIONREQUEST request) {
+    public ResponseEntity<SERVICESCONSOLIDATIONRESPONSE> consolidationPackage(@RequestParam String xml_request) {
 
         LOGGER.info("CONSOLIDATION SERVICE ============" );
-        return new ResponseEntity<SERVICESCONSOLIDATIONRESPONSE>(service.consolidationPackageService(request),
-                HttpStatus.OK);
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(SERVICESCONSOLIDATIONREQUEST.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            return new ResponseEntity<SERVICESCONSOLIDATIONRESPONSE>(service.consolidationPackageService(
+                    (SERVICESCONSOLIDATIONREQUEST) jaxbUnmarshaller.unmarshal(new StringReader(xml_request))), HttpStatus.OK);
+
+        } catch (Exception e) {
+            LOGGER.info("Exception:  " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        }
+
+
+
     }
 }
