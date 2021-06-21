@@ -113,18 +113,13 @@
 			<artifactId>CLR_SPAIN_TD_Error</artifactId>
 			<version>1.1.0</version>
 		</dependency>
-        <dependency>
-            <groupId>com.telefonica.gal</groupId>
-            <artifactId>SPAIN_TD_CDBProvision_Routing</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
 
-        <dependency>
+		<dependency>
 			<groupId>com.telefonica.gal</groupId>
 			<artifactId>SPAIN_TD_CDBProvision_Routing</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-        </dependency>
+			<scope>compile</scope>
+		</dependency>
 
 	</dependencies>
 
