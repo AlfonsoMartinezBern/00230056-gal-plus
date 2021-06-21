@@ -20,13 +20,18 @@ public class CustomerProvisionValidator {
         String operationId = customer.getOPERATIONID();
 
         // USER_ID
-        if (customer.getUSERID().isEmpty() || customer.getUSERID().isBlank() || customer.getUSERID() == null)
+        //if (customer.getUSERID().isEmpty() || customer.getUSERID().isBlank() || customer.getUSERID() == null)
+        if (customer.getUSERID() == null)
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_USER_ID.getValue() , userId, operationId);
-        if (!customer.getUSERID().matches("^\\p{ASCII}*$") || customer.getUSERID().length() > 32)
+        if (!customer.getUSERID().matches("^\\p{ASCII}*$") || customer.getUSERID().length() > 32 ||
+                customer.getUSERID().isEmpty() || customer.getUSERID().isBlank() )
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_USER_ID.getValue(), userId, operationId);
 
         // OPERATION_TYPE
-        if (customer.getOPERATIONTYPE().isEmpty() || customer.getOPERATIONTYPE().isBlank() || customer.getOPERATIONTYPE() == null)
+        //if (customer.getOPERATIONTYPE().isEmpty() || customer.getOPERATIONTYPE().isBlank() || customer.getOPERATIONTYPE() == null)
+        if (customer.getOPERATIONTYPE() == null)
+            throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_OPERATION_TYPE.getValue(), userId, operationId);
+        if (customer.getOPERATIONTYPE().isEmpty() || customer.getOPERATIONTYPE().isBlank())
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_OPERATION_TYPE.getValue(), userId, operationId);
         if (!customer.getOPERATIONTYPE().equals("ON") && !customer.getOPERATIONTYPE().equals("MOD") && !customer.getOPERATIONTYPE().equals("OFF")
                 && !customer.getOPERATIONTYPE().equals("N") && !customer.getOPERATIONTYPE().equals("D") && !customer.getOPERATIONTYPE().equals("NN") && !customer.getOPERATIONTYPE().equals("ND"))
@@ -38,39 +43,45 @@ public class CustomerProvisionValidator {
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_GEOGRAFIC_AREA.getValue(), userId, operationId);
 
         // USER_TYPE
-        if (customer.getUSERTYPE().isEmpty() || customer.getUSERTYPE().isBlank() || customer.getUSERTYPE() == null)
+        if (customer.getUSERTYPE() == null)
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_USER_TYPE.getValue(), userId, operationId);
+        if (customer.getUSERTYPE().isEmpty() || customer.getUSERTYPE().isBlank())
+            throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_USER_TYPE.getValue(), userId, operationId);
         if (!customer.getUSERTYPE().equals("RESIDENTIAL") && !customer.getUSERTYPE().equals("BUSINESS") && !customer.getUSERTYPE().equals("OTT"))
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_USER_TYPE.getValue(), userId, operationId);
 
         // SERVICE_TYPE
-        if (customer.getSERVICETYPE().isEmpty() || customer.getSERVICETYPE().isBlank() || customer.getSERVICETYPE() == null)
+        //if (customer.getSERVICETYPE().isEmpty() || customer.getSERVICETYPE().isBlank() || customer.getSERVICETYPE() == null)
+        if (customer.getSERVICETYPE() == null)
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_SERVICE_TYPE.getValue(), userId, operationId);
-        if (customer.getSERVICETYPE().length() > 32)
+        if (customer.getSERVICETYPE().length() > 32 || customer.getSERVICETYPE().isEmpty())
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_SERVICE_TYPE.getValue(), userId, operationId);
 
         //STB_IP
         for (String ip : customer.getLISTSTBIPS().getSTBIP()) {
-            if (ip.isEmpty() || ip.isBlank() || ip == null)
+            //if (ip.isEmpty() || ip.isBlank() || ip == null)
+            if (ip == null)
                 throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_DEVICE.getValue(), userId, operationId);
-            if (ip.length() > 15) throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_DEVICE.getValue(), userId, operationId);
+            if (ip.length() > 15 || ip.isEmpty()) throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_DEVICE.getValue(), userId, operationId);
         }
 
         // TV_SERVICE_ID
         if (customer.getLISTTVSERVICES() != null) {
             if (customer.getLISTTVSERVICES().getTVSERVICE() != null) {
                 for (TVSERVICE tvservice : customer.getLISTTVSERVICES().getTVSERVICE()) {
-                    String serviceID = tvservice.getTVSERVICEID();
-                    String serviceOP = tvservice.getTVSERVICEOPER().value();
-                    if (serviceID.isBlank() || serviceID.isEmpty() || serviceID == null)
+                    //String serviceID = tvservice.getTVSERVICEID();
+                    //String serviceOP = tvservice.getTVSERVICEOPER().value();
+                    if(tvservice.getTVSERVICEID() == null)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_TV_SERVICE_ID.getValue(), userId, operationId);
-                    if (!serviceID.matches("^\\p{ASCII}*$") || serviceID.length() > 32)
+                    if (tvservice.getTVSERVICEID().isBlank() || tvservice.getTVSERVICEID().isEmpty())
+                        throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_ID.getValue(), userId, operationId);
+                    if (!tvservice.getTVSERVICEID().matches("^\\p{ASCII}*$") || tvservice.getTVSERVICEID().length() > 32)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_ID.getValue(), userId, operationId);
 
                     // TV_SERVICE_OPER si TV_SERVICE_ID presente
                     if (tvservice.getTVSERVICEOPER() == null)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_TV_PACKACGE_OPERATION.getValue(), userId, operationId);
-                    if (!serviceOP.equals("ON") && !serviceOP.equals("OFF") && !serviceOP.equals("KEEP"))
+                    if (!tvservice.getTVSERVICEOPER().value().equals("ON") && !tvservice.getTVSERVICEOPER().value().equals("OFF") && !tvservice.getTVSERVICEOPER().value().equals("KEEP"))
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_OPER.getValue(), userId, operationId);
                 }
             }
@@ -97,19 +108,23 @@ public class CustomerProvisionValidator {
         if (customer.getLISTVODSERVICES() != null) {
             if (customer.getLISTVODSERVICES().getVODSERVICE() != null) {
                 for (VODSERVICE vodservice : customer.getLISTVODSERVICES().getVODSERVICE()) {
-                    String vodServiceID = vodservice.getVODSERVICEID();
-                    String vodServiceOp = vodservice.getVODSERVICEOPER().value();
+                    /*String vodServiceID = vodservice.getVODSERVICEID();
+                    String vodServiceOp = vodservice.getVODSERVICEOPER().value();*/
 
                     // VOD_SERVICE_ID, si LIST_VOD_SERVICE presente
-                    if (vodServiceID.isBlank() || vodServiceID.isEmpty() || vodServiceID == null)
+                    if (vodservice.getVODSERVICEID() == null)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_VOD_SERVICE_ID.getValue(), userId, operationId);
-                    if (!vodServiceID.matches("^\\p{ASCII}*$") || vodServiceID.length() > 32)
+                    if (vodservice.getVODSERVICEID().isBlank() || vodservice.getVODSERVICEID().isEmpty())
+                        throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_ID.getValue(), userId, operationId);
+                    if (!vodservice.getVODSERVICEID().matches("^\\p{ASCII}*$") || vodservice.getVODSERVICEID().length() > 32)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_ID.getValue(), userId, operationId);
 
                     //VOD_SERVICE_OPER si VOD_SERVICE_ID presente
-                    if (vodServiceOp.isBlank() || vodServiceOp.isEmpty() || vodServiceOp == null)
+                    if(vodservice.getVODSERVICEOPER() == null)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_TV_SERVICE_OPER.getValue(), userId, operationId);
-                    if (!vodServiceOp.equals("ON") && !vodServiceOp.equals("OFF") && !vodServiceOp.equals("KEEP"))
+                    if (vodservice.getVODSERVICEOPER().value().isBlank() || vodservice.getVODSERVICEOPER().value().isEmpty())
+                        throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);
+                    if (!vodservice.getVODSERVICEOPER().value().equals("ON") && !vodservice.getVODSERVICEOPER().value().equals("OFF") && !vodservice.getVODSERVICEOPER().value().equals("KEEP"))
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);
 
                 }
@@ -118,7 +133,7 @@ public class CustomerProvisionValidator {
         if (customer.getLISTOPERATORBONUS() != null) {
             if (customer.getLISTOPERATORBONUS().getOPERATORBONUS() != null) {
                 for (OPERATORBONUS operatorbonus : customer.getLISTOPERATORBONUS().getOPERATORBONUS()) {
-                    String operation = operatorbonus.getOperation().value();
+                    //String operation = operatorbonus.getOperation().value();
 
                     // OPERATOR_BONUS si LIST_OPERATOR_BONUS presente
                     if (operatorbonus.getValue().isEmpty() || operatorbonus.getValue().isBlank() || operatorbonus.getValue() == null || operatorbonus == null)
@@ -129,7 +144,7 @@ public class CustomerProvisionValidator {
                     // operation si LIST_OPERATOR_BONUS presente
                     if (operatorbonus.getOperation() == null)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_OPERATION_OPERATOR_BONUS.getValue(), userId, operationId);
-                    if (!operation.equals("ON") && !operation.equals("OFF") && !operation.equals("KEEP"))
+                    if (!operatorbonus.getOperation().equals("ON") && !operatorbonus.getOperation().equals("OFF") && !operatorbonus.getOperation().equals("KEEP"))
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_OPERATION_OPERATOR_BONUS.getValue(), userId, operationId);
 
                 }
