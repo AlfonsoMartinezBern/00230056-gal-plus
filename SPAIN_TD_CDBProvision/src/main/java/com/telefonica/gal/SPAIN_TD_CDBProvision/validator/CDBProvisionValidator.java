@@ -13,24 +13,24 @@ public class CDBProvisionValidator {
             throw new CustomerException().getErrorInfo("0", adminCode, null);
         // Formato clientSegmentName
 
-        if (cdbProvisionRequest.getServiceFlags() != null)
+        if (cdbProvisionRequest.getServiceFlags() == null)
             throw new CustomerException().getErrorInfo("0", adminCode, null);
 
-        if (cdbProvisionRequest.getServiceFlags().getTransactionalPurchases() != null)
+        if (cdbProvisionRequest.getServiceFlags().getTransactionalPurchases() == null)
             throw new CustomerException().getErrorInfo("0", adminCode, null);
         if (Integer.valueOf(cdbProvisionRequest.getServiceFlags().getTransactionalPurchases().toString()) != 0 && Integer.valueOf(cdbProvisionRequest.getServiceFlags().getTransactionalPurchases().toString()) != 1)
             throw new CustomerException().getErrorInfo("0", adminCode, null);
 
-        if (cdbProvisionRequest.getServiceFlags().getDownloadToGo() != null)
+        if (cdbProvisionRequest.getServiceFlags().getDownloadToGo() == null)
             throw new CustomerException().getErrorInfo("0", adminCode, null);
         if (Integer.valueOf(cdbProvisionRequest.getServiceFlags().getDownloadToGo().toString()) != 0 && Integer.valueOf(cdbProvisionRequest.getServiceFlags().getDownloadToGo().toString()) != 1)
             throw new CustomerException().getErrorInfo("0", adminCode, null);
 
-        if (cdbProvisionRequest.getDevices() != null) throw new CustomerException().getErrorInfo("0", adminCode, null);
+        if (cdbProvisionRequest.getDevices() == null) throw new CustomerException().getErrorInfo("0", adminCode, null);
 
-        if (cdbProvisionRequest.getDevices().getDevices().getMaxNumDevices() != null)
+        if (cdbProvisionRequest.getDevices().getMaxNumDevices() == null)
             throw new CustomerException().getErrorInfo("0", adminCode, null);
-        if (cdbProvisionRequest.getDevices().getDevices().getMaxNumDevices() > 99)
+        if (cdbProvisionRequest.getDevices().getMaxNumDevices() > 99)
             throw new CustomerException().getErrorInfo("0", adminCode, null);
     }
 

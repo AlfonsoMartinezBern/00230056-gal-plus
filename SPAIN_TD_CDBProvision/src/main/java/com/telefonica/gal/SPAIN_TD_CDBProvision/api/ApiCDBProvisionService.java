@@ -5,5 +5,5 @@ import com.telefonica.gal.provisionApi.model.InlineResponse200;
 import org.springframework.http.ResponseEntity;
 
 public interface ApiCDBProvisionService {
-    ResponseEntity<InlineResponse200> provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) throws Exception;
+    ResponseEntity<String> provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) throws Exception;
 }

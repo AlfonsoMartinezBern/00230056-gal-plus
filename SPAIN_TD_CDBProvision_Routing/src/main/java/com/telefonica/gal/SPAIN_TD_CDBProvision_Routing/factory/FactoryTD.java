@@ -17,24 +17,24 @@ public class FactoryTD<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FactoryTD.class.getName());
 
-    public InlineResponse200 invokeWs(T routingTD, T request, String adminCode) {
-        InlineResponse200 response = new InlineResponse200();
+    public String invokeWs(T routingTD, T request, String adminCode) {
+        String response = null;
 
         List<InvokeWsFactory> invokeWsList = getInvokeWs(routingTD, request, adminCode);
 
         if (invokeWsList.size() == 1) {
-            return (InlineResponse200) invokeWsList.get(0).getInvokeWs().invoke();
+            return invokeWsList.get(0).getInvokeWs().invoke().toString();
         }
 
         for (InvokeWsFactory invokeWs : invokeWsList) {
             if (!invokeWs.isSynchronous() && invokeWs.getType().equals("source")) {
                 AsyncFactory asyncFactory = new AsyncFactory(invokeWsList);
                 asyncFactory.start();
-                return (InlineResponse200) invokeWs.getInvokeWs().invoke();
+                return invokeWs.getInvokeWs().invoke().toString();
             }
 
             if (invokeWs.getType().equals("source")) {
-                response = (InlineResponse200) invokeWs.getInvokeWs().invoke();
+                response = invokeWs.getInvokeWs().invoke().toString();
             } else {
                 invokeWs.getInvokeWs().invoke();
             }

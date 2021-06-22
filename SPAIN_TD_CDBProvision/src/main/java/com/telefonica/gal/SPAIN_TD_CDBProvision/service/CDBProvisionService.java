@@ -4,5 +4,5 @@ import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
 import com.telefonica.gal.provisionApi.model.InlineResponse200;
 
 public interface CDBProvisionService {
-    InlineResponse200 provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest);
+    String provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest);
 }

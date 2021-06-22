@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,20 +26,18 @@ public class ApiCDBProvisionServiceServiceImpl implements ApiCDBProvisionService
     }
 
     @Override
-    @PutMapping("/provision/OTT/{adminCode}")
-    public ResponseEntity<InlineResponse200> provisionOTTAdminCodePut(@RequestParam String adminCode, @RequestBody CDBProvisionRequest cdbProvisionRequest) throws Exception{
+    @PutMapping //("/provision/OTT/{adminCode}")
+    public ResponseEntity<String> provisionOTTAdminCodePut(@RequestParam String adminCode, @RequestBody CDBProvisionRequest cdbProvisionRequest) throws Exception{
         try {
             LOGGER.info("Customer request CreateUser=========== ");
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(CDBProvisionRequest.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            return new ResponseEntity<InlineResponse200>(cdbProvisionService.provisionOTTAdminCodePut(adminCode, cdbProvisionRequest), HttpStatus.OK);
+            ResponseEntity<String> responseEntity = new ResponseEntity<String>(cdbProvisionService.provisionOTTAdminCodePut(adminCode, cdbProvisionRequest), HttpStatus.OK);
 
+            return responseEntity;
         } catch (Exception e) {
             LOGGER.info("Exception:  " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
 }

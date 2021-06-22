@@ -36,8 +36,10 @@ public class ApiCustomerProvisionServiceServiceImpl implements ApiCustomerProvis
 
             JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMERPROVISIONREQUEST.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(
-                    (CUSTOMERPROVISIONREQUEST) jaxbUnmarshaller.unmarshal(new StringReader(xml_request))), HttpStatus.OK);
+
+            CUSTOMERPROVISIONREQUEST customerprovisionrequest = (CUSTOMERPROVISIONREQUEST) jaxbUnmarshaller.unmarshal(new StringReader(xml_request));
+
+            return new ResponseEntity<CUSTOMERPROVISIONRESPONSE>(customerProvisionService.customersProvision(customerprovisionrequest), HttpStatus.OK);
 
         } catch (Exception e) {
             LOGGER.info("Exception:  " + e.getMessage());

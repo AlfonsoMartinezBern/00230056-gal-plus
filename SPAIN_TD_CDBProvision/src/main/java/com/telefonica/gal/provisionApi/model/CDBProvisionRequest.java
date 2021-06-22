@@ -2,19 +2,21 @@ package com.telefonica.gal.provisionApi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class CDBProvisionRequest {
 
     @JsonProperty("clientSegmentName")
     private String clientSegmentName;
 
     @JsonProperty("devices")
-    private ProvisionOttUserBASEDevices devices;
+    private ProvisionOttUserBASEDevicesDevices devices;
 
     @JsonProperty("serviceFlags")
     private ProvisionOttUserBASEFlagsServiceFlags serviceFlags;
 
     @JsonProperty("subscribedProducts")
-    private ProvisionOttUserBASESubscribedProducts subscribedProducts;
+    private List<SubscribedProductWRITE> subscribedProducts;
 
     public String getClientSegmentName() {
         return clientSegmentName;
@@ -22,14 +24,6 @@ public class CDBProvisionRequest {
 
     public void setClientSegmentName(String clientSegmentName) {
         this.clientSegmentName = clientSegmentName;
-    }
-
-    public ProvisionOttUserBASEDevices getDevices() {
-        return devices;
-    }
-
-    public void setDevices(ProvisionOttUserBASEDevices devices) {
-        this.devices = devices;
     }
 
     public ProvisionOttUserBASEFlagsServiceFlags getServiceFlags() {
@@ -40,12 +34,19 @@ public class CDBProvisionRequest {
         this.serviceFlags = serviceFlags;
     }
 
-    public ProvisionOttUserBASESubscribedProducts getSubscribedProducts() {
+    public List<SubscribedProductWRITE> getSubscribedProducts() {
         return subscribedProducts;
     }
 
-    public void setSubscribedProducts(ProvisionOttUserBASESubscribedProducts subscribedProducts) {
+    public void setSubscribedProducts(List<SubscribedProductWRITE> subscribedProducts) {
         this.subscribedProducts = subscribedProducts;
     }
 
+    public ProvisionOttUserBASEDevicesDevices getDevices() {
+        return devices;
+    }
+
+    public void setDevices(ProvisionOttUserBASEDevicesDevices devices) {
+        this.devices = devices;
+    }
 }

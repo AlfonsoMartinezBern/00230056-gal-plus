@@ -4,6 +4,7 @@ import com.telefonica.gal.SPAIN_TD_CDBProvision.exceptions.ErrorMessage;
 import com.telefonica.gal.SPAIN_TD_CDBProvision.validator.CDBProvisionValidator;
 import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.factory.FactoryTD;
 import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRoutingTD;
+import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
 import com.telefonica.gal.provisionApi.model.InlineResponse200;
@@ -30,11 +31,13 @@ public class CDBProvisionServiceImpl implements CDBProvisionService {
     }
 
     @Override
-    public InlineResponse200 provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) {
+    public String provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) {
 
         try {
             cdbProvisionValidator.isValid(adminCode, cdbProvisionRequest);
-            return factoryTD.invokeWs(dynamicRoutingTD.search(new RoutingTDKey(CDBProvision)), cdbProvisionRequest, adminCode);
+            RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(new RoutingTDKey(CDBProvision));
+
+            return factoryTD.invokeWs(routingTDInfo, cdbProvisionRequest, adminCode).toString();
 
         } catch (ErrorMessage errorMessage) {
             /*CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
