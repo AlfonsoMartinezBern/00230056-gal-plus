@@ -6,6 +6,7 @@ import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.factory.FactoryTD;
 import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRoutingTD;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
+import com.telefonica.gal.provisionApi.model.InlineResponse200;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class CDBProvisionServiceImpl implements CDBProvisionService {
     }
 
     @Override
-    public void provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) {
+    public InlineResponse200 provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) {
 
         try {
             cdbProvisionValidator.isValid(adminCode, cdbProvisionRequest);
