@@ -58,12 +58,19 @@ public class CustomerProvisionValidator {
             throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_SERVICE_TYPE.getValue(), userId, operationId);
 
         //STB_IP
+        if (customer.getLISTSTBIPS().getSTBIP().isEmpty()) {
+            throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_DEVICE.getValue(), userId, operationId);
+        }
         for (String ip : customer.getLISTSTBIPS().getSTBIP()) {
+            if (ip.length() > 15 || ip.isEmpty()) throw new CustomerException().getErrorInfoListService(
+                    ErrorCodeEnum.FORMAT_ERROR_DEVICE.getValue(),ip ,userId, operationId);
+        }
+        /*for (String ip : customer.getLISTSTBIPS().getSTBIP()) {
             //if (ip.isEmpty() || ip.isBlank() || ip == null)
             if (ip == null)
                 throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_DEVICE.getValue(), userId, operationId);
             if (ip.length() > 15 || ip.isEmpty()) throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_DEVICE.getValue(), userId, operationId);
-        }
+        }*/
 
         // TV_SERVICE_ID
         if (customer.getLISTTVSERVICES() != null) {
