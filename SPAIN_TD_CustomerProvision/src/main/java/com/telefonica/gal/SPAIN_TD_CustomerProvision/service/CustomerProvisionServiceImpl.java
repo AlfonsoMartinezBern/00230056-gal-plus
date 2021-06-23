@@ -6,16 +6,20 @@ import com.telefonica.gal.SPAIN_TD_CustomerProvision.exceptions.ErrorMessage;
 import com.telefonica.gal.SPAIN_TD_CustomerProvision.validator.CustomerProvisionValidator;
 import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRoutingTD;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
-import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
 import com.telefonica.gal.customerProvision.response.CUSTOMER;
 import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
 import com.telefonica.gal.customerProvision.response.CUSTOMERS;
+import com.telefonica.gal.dto.customer.CustomerProvisionRequest;
 import com.telefonica.gal.factory.FactoryTD;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
 import java.math.BigInteger;
 import java.util.UUID;
 
@@ -38,11 +42,19 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
     }
 
     @Override
-    public CUSTOMERPROVISIONRESPONSE customersProvision(CUSTOMERPROVISIONREQUEST request) {
+    public CUSTOMERPROVISIONRESPONSE customersProvision(String xmlRequest) {
 
         try {
-            customerProvisionValidator.isValid(request);
-            return factoryTD.invokeWs(dynamicRoutingTD.search(new RoutingTDKey(CustomerProvision)), request, null);
+            JAXBContext jaxbContext = JAXBContext.newInstance(CustomerProvisionRequest.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            com.telefonica.gal.dto.customer.CustomerProvisionRequest customerProvisionRequest = (com.telefonica.gal.dto.customer.CustomerProvisionRequest)
+                    jaxbUnmarshaller.unmarshal(new StringReader(xmlRequest));
+
+            customerProvisionValidator.isValid(customerProvisionRequest);
+
+            return factoryTD.invokeWs(dynamicRoutingTD.search(new RoutingTDKey(CustomerProvision)),
+                    customerProvisionRequest, null);
 
         } catch (ErrorMessage errorMessage) {
            CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
@@ -63,7 +75,13 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
            logCustomer.setMessage(errorMessage.getMessage());
            loggerWithCustomLayout.error(logCustomer);
 
+            System.out.println("Exception ErrorMessage ........................");
+
            return response;
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return null;
         }
     }
+
 }

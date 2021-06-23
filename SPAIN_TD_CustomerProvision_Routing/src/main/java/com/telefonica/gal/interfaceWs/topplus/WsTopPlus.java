@@ -12,6 +12,8 @@ import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import com.telefonica.gal.dto.LogInfoCustomerOp;
 import com.telefonica.gal.dto.MessageInfoCustomer;
 import com.telefonica.gal.dto.ServiceInfoCustomer;
+import com.telefonica.gal.dto.customer.Customer;
+import com.telefonica.gal.dto.customer.CustomerProvisionRequest;
 import com.telefonica.gal.exception.HttpErrorsCustomerProvision;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.logs.CustomerServiceMessage;
@@ -48,9 +50,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private final static CustomerProvisionRequestMapper CUSTOMER_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
             CustomerProvisionRequestMapper.class);
 
-
-    @Autowired
-    CUSTOMERPROVISIONREQUEST customerRequest;
+    CustomerProvisionRequest customerRequest = new CustomerProvisionRequest();
 
     @Autowired
     Endpoint endpointTD;
@@ -108,13 +108,14 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
         restTemplate.setErrorHandler(new HttpErrorsCustomerProvision());
 
-        customerRequest = (CUSTOMERPROVISIONREQUEST) request;
+
+        customerRequest = (CustomerProvisionRequest) request;
         endpointTD = (Endpoint) endPoint;
 
         try {
-            for (CUSTOMER customer : customerRequest.getCUSTOMERS().getCUSTOMER()) {
+            for (Customer customer : customerRequest.getCustomers().getCustomer()) {
 
-                switch (customer.getOPERATIONTYPE()) {
+                switch (customer.getOperationtype()) {
                     case "ON":
                         requestON = new User();
                         requestON = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
@@ -137,7 +138,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         break;
 
                     case "OFF":
-                        String uniqueId = customer.getUSERID();
+                        String uniqueId = customer.getUserid();
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + uniqueId;
 
                         restTemplate.delete(URL, ResultOK.class);
@@ -197,8 +198,8 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     default:
                         break;
                 }
-                customerReponse.setUSERID(customer.getUSERID());
-                customerReponse.setOPERATIONID(customer.getOPERATIONID());
+                customerReponse.setUSERID(customer.getUserid());
+                customerReponse.setOPERATIONID(customer.getOperationid());
             }
             result.setCUSTOMERS(customers);
 
@@ -221,7 +222,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         return responseCustomer;
     }
 
-    private void generateLogs(final CUSTOMER request,
+    private void generateLogs(final Customer request,
                               final User user,
                               final String responseEntity,
                               final com.telefonica.gal.customerProvision.response.CUSTOMER response,
@@ -233,7 +234,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         serviceInfoCustomer= new ServiceInfoCustomer("SPAIN_TD_CustomerProvision");
 
         //XML
-        JAXBContext jaxbContext = JAXBContext.newInstance(CUSTOMER.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         String xmlString;
 
@@ -241,7 +242,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         xmlString = sw.toString();
 
         indexKey.put("InstancedId", instancedId);
-        indexKey.put("UniquedId", request.getUSERID());
+        indexKey.put("UniquedId", request.getUserid());
 
         messageInfoCustomer.setMessageOriginalFormat(MediaType.APPLICATION_JSON.toString());
         messageInfoCustomer.setIndexKey(indexKey);
