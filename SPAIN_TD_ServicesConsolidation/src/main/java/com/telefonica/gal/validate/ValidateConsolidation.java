@@ -24,21 +24,21 @@ public class ValidateConsolidation  {
         String operationId = request.getOPERATIONID();
 
 
-        if (request.getOPERATIONID() == null) {
-            throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_OPERATION_ID.getValue(), userId, operationId);
+        if (request.getOPERATIONID() == null || request.getOPERATIONID().isEmpty()) {
+            throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_OPERATION_ID.getValue(), userId, "");
         }
 
 
-        if (request.getOPERATIONID().isEmpty() || request.getOPERATIONID().length() > 11) {
+        if (request.getOPERATIONID().length() > 11) {
             throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_OPERATION_ID.getValue(), userId, operationId);
         }
 
 
-        if (request.getUSERID() == null) {
-            throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_USER_ID.getValue(), userId, operationId);
+        if (request.getUSERID() == null || request.getUSERID().isEmpty()) {
+            throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_USER_ID.getValue(), "", operationId);
         }
 
-        if (request.getUSERID().isEmpty() || request.getUSERID().length() > 32) {
+        if (request.getUSERID().length() > 32) {
             throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_USER_ID.getValue(), userId, operationId);
         }
 
@@ -47,12 +47,12 @@ public class ValidateConsolidation  {
         if (request.getLISTTVSERVICES() != null) {
 
             for (TVSERVICE tvservice : request.getLISTTVSERVICES().getTVSERVICE()) {
-                if (tvservice.getTVSERVICEID() == null) {
+                if (tvservice.getTVSERVICEID() == null || tvservice.getTVSERVICEID().isEmpty()) {
                     throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_TV_SERVICE_ID.getValue(), userId, operationId);
 
                 }
 
-                if (tvservice.getTVSERVICEID().isEmpty() || tvservice.getTVSERVICEID().length() > 32) {
+                if (tvservice.getTVSERVICEID().length() > 32) {
 
                     throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_ID.getValue(), userId, operationId);
 
@@ -72,12 +72,12 @@ public class ValidateConsolidation  {
 
         if (request.getLISTVODSERVICES() != null) {
             for (VODSERVICE vodservice : request.getLISTVODSERVICES().getVODSERVICE()) {
-                if (vodservice.getVODSERVICEID() == null) {
+                if (vodservice.getVODSERVICEID() == null || vodservice.getVODSERVICEID().isEmpty()) {
                     throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_VOD_SERVICE_ID.getValue(), userId, operationId);
 
                 }
 
-                if (vodservice.getVODSERVICEID().isEmpty() || vodservice.getVODSERVICEID().length() > 32) {
+                if ( vodservice.getVODSERVICEID().length() > 32) {
                     throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_ID.getValue(), userId, operationId);
 
                     /*throw new ConsolidationException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_ID.getValue(),
@@ -85,7 +85,7 @@ public class ValidateConsolidation  {
 
                 } else {
                     if( vodservice.getVODSERVICEOPER() == null) {
-                        throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);
+                        throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_VOD_SERVICE_ID.getValue(), userId, operationId);
 
                         /*throw new ConsolidationException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(),
                                 vodservice.getVODSERVICEOPER().toString());*/
