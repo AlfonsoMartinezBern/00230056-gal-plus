@@ -10,7 +10,9 @@ import com.telefonica.gal.customerProvision.request.TVSERVICE;
 import com.telefonica.gal.customerProvision.request.VODSERVICE;
 import com.telefonica.gal.dto.customer.Customer;
 import com.telefonica.gal.dto.customer.ListTVServices;
+import com.telefonica.gal.dto.customer.ListVodServices;
 import com.telefonica.gal.dto.customer.TvService;
+import com.telefonica.gal.dto.customer.VodService;
 import com.telefonica.gal.provisionApi.model.ProductOperation;
 import com.telefonica.gal.provisionApi.model.Subscription;
 import com.telefonica.gal.provisionApi.model.User;
@@ -65,7 +67,7 @@ public interface CustomerProvisionRequestMapper {
         /*LISTTVSERVICES listtvservices = customer.getLISTTVSERVICES();
         LISTVODSERVICES listvodservices = customer.getLISTVODSERVICES();*/
         ListTVServices listtvservices = customer.getListtvservices();
-        LISTVODSERVICES listvodservices = customer.getListvodservices();
+        ListVodServices listvodservices = customer.getListvodservices();
 
         Subscription subscription = new Subscription();
         List<Subscription> subscriptionList = new ArrayList<>();;
@@ -78,11 +80,11 @@ public interface CustomerProvisionRequestMapper {
             subscriptionList.add(subscription);
         }
 
-        for(VODSERVICE vodservice : listvodservices.getVODSERVICE()) {
+        for(VodService vodservice : listvodservices.getVodservice()) {
             subscription = new Subscription();
-            subscription.setOperation(getOperation(vodservice.getVODSERVICEOPER()));
+            subscription.setOperation(getOperation(vodservice.getVodserviceoper()));
             subscription.setPendingConsolidation(0);
-            subscription.setProductId(vodservice.getVODSERVICEID());
+            subscription.setProductId(vodservice.getVodserviceid());
             subscriptionList.add(subscription);
         }
 

@@ -8,6 +8,7 @@ import com.telefonica.gal.customerProvision.request.*;
 import com.telefonica.gal.dto.customer.Customer;
 import com.telefonica.gal.dto.customer.CustomerProvisionRequest;
 import com.telefonica.gal.dto.customer.TvService;
+import com.telefonica.gal.dto.customer.VodService;
 
 public class CustomerProvisionValidator {
 
@@ -121,25 +122,22 @@ public class CustomerProvisionValidator {
         if(!isNumericDownstream) throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_SUSCRIBER_LINE_DOWNSTREAM.getValue(), userId, operationId);
 
         if (customer.getListvodservices() != null) {
-            if (customer.getListvodservices().getVODSERVICE() != null) {
-                for (VODSERVICE vodservice : customer.getListvodservices().getVODSERVICE()) {
-                    String vodServiceID = vodservice.getVODSERVICEID();
-                    String vodServiceOp = vodservice.getVODSERVICEOPER().value();
-
+            if (customer.getListvodservices().getVodservice() != null) {
+                for (VodService vodservice : customer.getListvodservices().getVodservice()) {
                     // VOD_SERVICE_ID, si LIST_VOD_SERVICE presente
-                    if (vodservice.getVODSERVICEID() == null || vodservice.getVODSERVICEID().isBlank() || vodservice.getVODSERVICEID().isEmpty())
+                    if (vodservice.getVodserviceid() == null || vodservice.getVodserviceid().isBlank() || vodservice.getVodserviceid().isEmpty())
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_VOD_SERVICE_ID.getValue(), userId, operationId);
                     /*if (vodservice.getVODSERVICEID().isBlank() || vodservice.getVODSERVICEID().isEmpty())
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_ID.getValue(), userId, operationId);*/
-                    if (!vodservice.getVODSERVICEID().matches("^\\p{ASCII}*$") || vodservice.getVODSERVICEID().length() > 32)
+                    if (!vodservice.getVodserviceid().matches("^\\p{ASCII}*$") || vodservice.getVodserviceid().length() > 32)
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_ID.getValue(), userId, operationId);
 
                     //VOD_SERVICE_OPER si VOD_SERVICE_ID presente
-                    if(vodservice.getVODSERVICEOPER() == null || vodservice.getVODSERVICEOPER().value().isBlank() || vodservice.getVODSERVICEOPER().value().isEmpty())
+                    if(vodservice.getVodserviceoper() == null || vodservice.getVodserviceoper().value().isBlank() || vodservice.getVodserviceoper().value().isEmpty())
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_TV_SERVICE_OPER.getValue(), userId, operationId);
                     /*if (vodservice.getVODSERVICEOPER().value().isBlank() || vodservice.getVODSERVICEOPER().value().isEmpty())
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);*/
-                    if (!vodservice.getVODSERVICEOPER().value().equals("ON") && !vodservice.getVODSERVICEOPER().value().equals("OFF") && !vodservice.getVODSERVICEOPER().value().equals("KEEP"))
+                    if (!vodservice.getVodserviceoper().value().equals("ON") && !vodservice.getVodserviceoper().value().equals("OFF") && !vodservice.getVodserviceoper().value().equals("KEEP"))
                         throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);
 
                 }

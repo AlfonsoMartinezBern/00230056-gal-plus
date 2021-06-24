@@ -1,7 +1,6 @@
 package com.telefonica.gal.dto.customer;
 
 import com.telefonica.gal.customerProvision.request.LISTOPERATORBONUS;
-import com.telefonica.gal.customerProvision.request.LISTVODSERVICES;
 import com.telefonica.gal.customerProvision.request.OTTSERVICEDATA;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -39,7 +38,7 @@ public class Customer {
     @XmlElement(name = "LIST_TV_SERVICES", required = true)
     protected ListTVServices listtvservices;
     @XmlElement(name = "LIST_VOD_SERVICES", required = true)
-    protected LISTVODSERVICES listvodservices;
+    protected ListVodServices listvodservices;
     @XmlElement(name = "POP")
     protected String pop;
     @XmlElement(name = "TV_HD")
@@ -149,11 +148,11 @@ public class Customer {
         this.listtvservices = listtvservices;
     }
 
-    public LISTVODSERVICES getListvodservices() {
+    public ListVodServices getListvodservices() {
         return listvodservices;
     }
 
-    public void setListvodservices(LISTVODSERVICES listvodservices) {
+    public void setListvodservices(ListVodServices listvodservices) {
         this.listvodservices = listvodservices;
     }
 
