@@ -6,7 +6,7 @@ import org.springframework.web.client.ResponseErrorHandler;
 
 import java.io.IOException;
 
-public class HttpErrorsCustomerProvision implements ResponseErrorHandler {
+public class HttpErrorsCDBProvision implements ResponseErrorHandler {
     @Override
     public boolean hasError(ClientHttpResponse clientHttpResponse) throws IOException {
         return clientHttpResponse.getStatusCode() != HttpStatus.OK;

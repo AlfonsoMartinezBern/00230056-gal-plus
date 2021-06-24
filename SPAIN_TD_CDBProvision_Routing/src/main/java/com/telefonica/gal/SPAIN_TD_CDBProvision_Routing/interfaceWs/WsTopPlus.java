@@ -1,6 +1,6 @@
 package com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.interfaceWs;
 
-import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.exception.HttpErrorsCustomerProvision;
+import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.exception.HttpErrorsCDBProvision;
 import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.mapper.CDBProvisionRequestMapper;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.td.error.facade.ISpainTDError;
@@ -54,7 +54,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private String operationId;
     private String url;
     private T endPoint;
-    private T request;
+    private T cdbrequest;
     private String adminCode;
     private T serviceID;
     private String URL;
@@ -65,12 +65,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     private InlineResponse200 result = new InlineResponse200();
     //private com.telefonica.gal.customerProvision.response.CUSTOMER customerReponse =
     //       new com.telefonica.gal.customerProvision.response.CUSTOMER();
-    private User requestON = new User();
-    private User requestMOD = new User();
-    private User requestN = new User();
-    private User requestD = new User();
-    private User requestTraslado = new User();
-    private User requestTrasladoND = new User();
+    private User request = new User();
 
     //PRUEBAS
     RestTemplate restTemplate = new RestTemplate();
@@ -80,7 +75,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     public WsTopPlus(T endPoint, T request, String adminCode) {
         this.endPoint = endPoint;
-        this.request = request;
+        this.cdbrequest = request;
         this.adminCode = adminCode;
     }
 
@@ -88,31 +83,31 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     public T invoke() {
         mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
-        restTemplate.setErrorHandler(new HttpErrorsCustomerProvision());
+        restTemplate.setErrorHandler(new HttpErrorsCDBProvision());
 
-        cdbProvisionRequest = (CDBProvisionRequest) request;
+        cdbProvisionRequest = (CDBProvisionRequest) cdbrequest;
         endpointTD = (Endpoint) endPoint;
 
         try {
-            LOGGER.info("==== REQUEST TOP -------> " + request + "\n");
+            LOGGER.info("==== REQUEST TOP -------> " + cdbrequest + "\n");
 
-            requestON = CDB_PROVISION_REQUEST_MAPPER.userDataMapper(cdbProvisionRequest, adminCode);
+            request = CDB_PROVISION_REQUEST_MAPPER.userDataMapper(cdbProvisionRequest, adminCode);
             URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
 
             LOGGER.info("URL TOP+     ---> " + URL);
             LOGGER.info("METODO REST: postForEntity   ");
             LOGGER.info("URL Original ------->  " + CREATE_USER);
 
-            LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON);
+            LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + request);
 
-            ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, requestON, String.class);
+            ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, request, String.class);
 
             if (resultTop.getStatusCode().value() == ResponseCodeOK) {
-                return (T) responseOK(resultTop);
+                return null;
             } else {
                 JSONObject jsonObject = new JSONObject(resultTop.getBody());
                 String codeError = jsonObject.get("statusCode").toString();
-                return (T) responseInfoError(codeError);
+                return (T) responseInfoError(codeError, jsonObject);
             }
 
         } catch (Exception e) {
@@ -121,102 +116,50 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         }
     }
 
-    public InlineResponse200 responseOK(ResponseEntity<String> resultMiView) throws JSONException {
-        InlineResponse200 inlineResponse200 = new InlineResponse200();
-
-        JSONObject jsonObject = new JSONObject(resultMiView.getBody());
-
-        List<SubscribedProduct> items = new ArrayList<>();
-        SubscribedProduct subscribedProduct= new SubscribedProduct();
-        subscribedProduct.setCode(jsonObject.get("").toString());
-        /*SubscribedProduct.StateEnum stateEnum = new SubscribedProduct.StateEnum();
-        subscribedProduct.setState(jsonObject.get("").toString());
-        subscribedProduct.setType(jsonObject.get("").toString());*/
-
-        items.add(new SubscribedProduct());
-
-        inlineResponse200.setItems(items);
-
-        return inlineResponse200;
-    }
-
-    public T responseInfoError(String errorCode) {
-        ErrorKey errorKey;
-        Spain_TD_Error_Client iSpainTDError;
-        ErrorResponse errorResponse;
-        switch (errorCode) {
-            case "400":
-                InlineResponse400 response400 = new InlineResponse400();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response400.setResultCode(400);
-                response400.setResultDetail(errorResponse.getResult());
-                response400.setResultText(errorResponse.getMessage());
-                return (T) response400;
+    public String responseInfoError(String errorCode, JSONObject jsonObject) throws JSONException {
+        switch (errorCode.substring(3)) {
             case "401":
                 InlineResponse401 response401 = new InlineResponse401();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response401.setResultCode(401);
-                response401.setResultDetail(errorResponse.getResult());
-                response401.setResultText(errorResponse.getMessage());
-                return (T) response401;
+                response401.setResultCode(Integer.valueOf(errorCode));
+                response401.setResultDetail(jsonObject.get("statusDetail").toString());
+                response401.setResultText(jsonObject.get("statusMessage").toString());
+                return response401.toString();
             case "403":
                 InlineResponse403 response403 = new InlineResponse403();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response403.setResultCode(403);
-                response403.setResultDetail(errorResponse.getResult());
-                response403.setResultText(errorResponse.getMessage());
-                return (T) response403;
+                response403.setResultCode(Integer.valueOf(errorCode));
+                response403.setResultDetail(jsonObject.get("statusDetail").toString());
+                response403.setResultText(jsonObject.get("statusMessage").toString());
+                return response403.toString();
             case "404":
                 InlineResponse404 response404 = new InlineResponse404();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response404.setResultCode(404);
-                response404.setResultDetail(errorResponse.getResult());
-                response404.setResultText(errorResponse.getMessage());
-                return (T) response404;
+                response404.setResultCode(Integer.valueOf(errorCode));
+                response404.setResultDetail(jsonObject.get("statusDetail").toString());
+                response404.setResultText(jsonObject.get("statusMessage").toString());
+                return response404.toString();
             case "409":
                 InlineResponse409 response409 = new InlineResponse409();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response409.setResultCode(409);
-                response409.setResultDetail(errorResponse.getResult());
-                response409.setResultText(errorResponse.getMessage());
-                return (T) response409;
+                response409.setResultCode(Integer.valueOf(errorCode));
+                response409.setResultDetail(jsonObject.get("statusDetail").toString());
+                response409.setResultText(jsonObject.get("statusMessage").toString());
+                return response409.toString();
             case "500":
                 InlineResponse500 response500 = new InlineResponse500();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response500.setResultCode(500);
-                response500.setResultDetail(errorResponse.getResult());
-                response500.setResultText(errorResponse.getMessage());
-                return (T) response500;
+                response500.setResultCode(Integer.valueOf(errorCode));
+                response500.setResultDetail(jsonObject.get("statusDetail").toString());
+                response500.setResultText(jsonObject.get("statusMessage").toString());
+                return response500.toString();
             case "4041":
                 InlineResponse4041 response4041 = new InlineResponse4041();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response4041.setResultCode(4041);
-                response4041.setResultDetail(errorResponse.getResult());
-                response4041.setResultText(errorResponse.getMessage());
-                return (T) response4041;
+                response4041.setResultCode(Integer.valueOf(errorCode));
+                response4041.setResultDetail(jsonObject.get("statusDetail").toString());
+                response4041.setResultText(jsonObject.get("statusMessage").toString());
+                return response4041.toString();
             default:
                 InlineResponse400 response504 = new InlineResponse400();
-                errorKey = new ErrorKey(errorCode);
-                iSpainTDError = new Spain_TD_Error_Client();
-                errorResponse = iSpainTDError.search(errorKey);
-                response504.setResultCode(504);
-                response504.setResultDetail(errorResponse.getResult());
-                response504.setResultText(errorResponse.getMessage());
-                return (T) response504;
+                response504.setResultCode(Integer.valueOf(errorCode));
+                response504.setResultDetail(jsonObject.get("statusDetail").toString());
+                response504.setResultText(jsonObject.get("statusMessage").toString());
+                return response504.toString();
         }
     }
 }

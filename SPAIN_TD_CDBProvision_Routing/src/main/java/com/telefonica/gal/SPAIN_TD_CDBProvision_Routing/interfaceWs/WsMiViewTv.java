@@ -1,9 +1,7 @@
 package com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.interfaceWs;
 
+import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.exception.HttpErrorsCDBProvision;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
-import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
-import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
-import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.provisionApi.model.*;
 import org.json.JSONException;
@@ -14,14 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
-import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WsMiViewTv<T> implements InvokeWs<T> {
@@ -40,11 +37,13 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
     private T request;
     private T response;
     private T serviceID;
+    CDBProvisionRequest cdbProvisionRequest = new CDBProvisionRequest();
 
     List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
     Jaxb2RootElementHttpMessageConverter jaxbMessageConverter = new Jaxb2RootElementHttpMessageConverter();
     List<MediaType> mediaTypes = new ArrayList<MediaType>();
     StringWriter sw = new StringWriter();
+    MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
 
     RestTemplate restTemplate = new RestTemplate();
 
@@ -56,11 +55,9 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
 
     @Override
     public T invoke() {
-        mediaTypes.add(MediaType.TEXT_HTML);
-        jaxbMessageConverter.setSupportedMediaTypes(mediaTypes);
-        messageConverters.add(jaxbMessageConverter);
-
-        restTemplate.setMessageConverters(messageConverters);
+        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
+        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+        restTemplate.setErrorHandler(new HttpErrorsCDBProvision());
 
         InlineResponse400 result = new InlineResponse400();
         endpointTD = (Endpoint) endPoint;
@@ -69,81 +66,70 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
             LOGGER.info("==== REQUEST MIVIEW -------> " + request + "\n");
             LOGGER.info("URL MiView ---> " + url);
 
-            ResponseEntity<String> resultMiView = restTemplate.postForEntity(
-                    url, request, String.class);
+            cdbProvisionRequest = (CDBProvisionRequest) request;
+
+            ResponseEntity<String> resultMiView = restTemplate.postForEntity(url, cdbProvisionRequest, String.class);
 
             if (resultMiView.getStatusCode().value() == 200) {
-                return (T) responseOK(resultMiView);
+                return null;
             } else {
                 JSONObject jsonObject = new JSONObject(resultMiView.getBody());
-                String codeError = jsonObject.get("statusCode").toString();
-                return (T) responseInfo(codeError, jsonObject);
+                return (T) responseInfo(jsonObject.get("resultCode").toString(), jsonObject);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            result.setResultCode(504);
+            result.setResultDetail(e.getMessage());
+            result.setResultText(e.getMessage());
             return (T) result;
         }
     }
 
-    public InlineResponse200 responseOK(ResponseEntity<String> resultMiView) throws JSONException {
-        InlineResponse200 inlineResponse200 = new InlineResponse200();
-
-        JSONObject jsonObject = new JSONObject(resultMiView.getBody());
-
-        return inlineResponse200;
-    }
-
-    public T responseInfo(String errorCode, JSONObject jsonObject) throws JSONException {
-        switch (errorCode) {
-            case "400":
-                InlineResponse400 response400 = new InlineResponse400();
-                response400.setResultCode(400);
-                response400.setResultDetail(jsonObject.get("resultDetail").toString());
-                response400.setResultText(jsonObject.get("resultText").toString());
-                return (T) response400;
+    public String responseInfo(String errorCode, JSONObject jsonObject) throws JSONException {
+        switch (errorCode.substring(3)) {
             case "401":
                 InlineResponse401 response401 = new InlineResponse401();
-                response401.setResultCode(401);
+                response401.setResultCode(Integer.valueOf(errorCode));
                 response401.setResultDetail(jsonObject.get("resultDetail").toString());
                 response401.setResultText(jsonObject.get("resultText").toString());
-                return (T) response401;
+                return response401.toString();
             case "403":
                 InlineResponse403 response403 = new InlineResponse403();
-                response403.setResultCode(403);
+                response403.setResultCode(Integer.valueOf(errorCode));
                 response403.setResultDetail(jsonObject.get("resultDetail").toString());
                 response403.setResultText(jsonObject.get("resultText").toString());
-                return (T) response403;
+                return response403.toString();
             case "404":
                 InlineResponse404 response404 = new InlineResponse404();
-                response404.setResultCode(404);
+                response404.setResultCode(Integer.valueOf(errorCode));
                 response404.setResultDetail(jsonObject.get("resultDetail").toString());
                 response404.setResultText(jsonObject.get("resultText").toString());
-                return (T) response404;
+                return response404.toString();
             case "409":
                 InlineResponse409 response409 = new InlineResponse409();
-                response409.setResultCode(409);
+                response409.setResultCode(Integer.valueOf(errorCode));
                 response409.setResultDetail(jsonObject.get("resultDetail").toString());
                 response409.setResultText(jsonObject.get("resultText").toString());
-                return (T) response409;
+                return response409.toString();
             case "500":
                 InlineResponse500 response500 = new InlineResponse500();
-                response500.setResultCode(500);
+                response500.setResultCode(Integer.valueOf(errorCode));
                 response500.setResultDetail(jsonObject.get("resultDetail").toString());
                 response500.setResultText(jsonObject.get("resultText").toString());
-                return (T) response500;
+                return response500.toString();
             case "4041":
                 InlineResponse4041 response4041 = new InlineResponse4041();
-                response4041.setResultCode(4041);
+                response4041.setResultCode(Integer.valueOf(errorCode));
                 response4041.setResultDetail(jsonObject.get("resultDetail").toString());
                 response4041.setResultText(jsonObject.get("resultText").toString());
-                return (T) response4041;
+                return response4041.toString();
             default:
                 InlineResponse400 response504 = new InlineResponse400();
-                response504.setResultCode(504);
+                response504.setResultCode(Integer.valueOf(errorCode));
                 response504.setResultDetail(jsonObject.get("resultDetail").toString());
                 response504.setResultText(jsonObject.get("resultText").toString());
-                return (T) response504;
+                return response504.toString();
         }
     }
 }

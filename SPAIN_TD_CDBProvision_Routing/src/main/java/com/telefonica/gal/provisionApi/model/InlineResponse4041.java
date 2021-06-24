@@ -107,10 +107,10 @@ public class InlineResponse4041   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse4041 {\n");
-    
-    sb.append("    resultCode: ").append(toIndentedString(resultCode)).append("\n");
-    sb.append("    resultText: ").append(toIndentedString(resultText)).append("\n");
+    sb.append("{\n");
+
+    sb.append("    resultCode: ").append(toIndentedString(resultCode)).append(",\n");
+    sb.append("    resultText: ").append(toIndentedString(resultText)).append(",\n");
     sb.append("    resultDetail: ").append(toIndentedString(resultDetail)).append("\n");
     sb.append("}");
     return sb.toString();

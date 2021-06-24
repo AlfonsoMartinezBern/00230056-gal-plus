@@ -2,16 +2,12 @@ package com.telefonica.gal.SPAIN_TD_CDBProvision.api;
 
 import com.telefonica.gal.SPAIN_TD_CDBProvision.service.CDBProvisionService;
 import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
-import com.telefonica.gal.provisionApi.model.InlineResponse200;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 
 @RestController
 @RequestMapping(path = "/cdbprovision")
