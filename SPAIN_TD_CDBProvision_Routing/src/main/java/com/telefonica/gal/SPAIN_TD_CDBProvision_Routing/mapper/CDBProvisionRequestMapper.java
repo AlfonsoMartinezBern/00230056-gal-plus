@@ -25,7 +25,11 @@ public interface CDBProvisionRequestMapper {
     User userDataMapper(CDBProvisionRequest request, String adminCode);
 
     default Integer getLimitVodPurchases(CDBProvisionRequest request) {
-        return Integer.valueOf(request.getServiceFlags().getTransactionalPurchases().toString());
+        if (request.getServiceFlags().getTransactionalPurchases().equals(true)) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
     default UserProducts getUserProducts(CDBProvisionRequest request) {
@@ -46,7 +50,7 @@ public interface CDBProvisionRequestMapper {
         return userProducts;
     }
 
-    default ProductsMode getProductsMode(){
+    default ProductsMode getProductsMode() {
         return ProductsMode.SNAPSHOT;
     }
 }

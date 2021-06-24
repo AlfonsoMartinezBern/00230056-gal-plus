@@ -15,7 +15,7 @@ public class CustomerException {
 
         errorMessage.setMessage(errorResponse.getErrorInfo().getErrorDescription());
         errorMessage.setCodError(errorResponse.getErrorInfo().getErrorCode());
-        errorMessage.setOperationid(operationId);
+        errorMessage.setOperationid(operationId == null ? "" : operationId);
         errorMessage.setUserid(userId);
 
         return errorMessage;
