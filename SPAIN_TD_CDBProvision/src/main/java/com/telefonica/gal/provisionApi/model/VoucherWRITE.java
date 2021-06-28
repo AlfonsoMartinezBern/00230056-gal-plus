@@ -15,6 +15,7 @@ import javax.validation.constraints.*;
 @ApiModel(description = "A specific voucher to be purchased for a certain OTT user.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:14:01.690707800+02:00[Europe/Paris]")
 
+
 public class VoucherWRITE   {
   @JsonProperty("code")
   private String code;

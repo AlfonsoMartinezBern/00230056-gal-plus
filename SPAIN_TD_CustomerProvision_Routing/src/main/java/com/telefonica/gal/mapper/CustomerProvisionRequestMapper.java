@@ -8,6 +8,11 @@ import com.telefonica.gal.customerProvision.request.ObjectFactory;
 import com.telefonica.gal.customerProvision.request.OperationType;
 import com.telefonica.gal.customerProvision.request.TVSERVICE;
 import com.telefonica.gal.customerProvision.request.VODSERVICE;
+import com.telefonica.gal.dto.customer.Customer;
+import com.telefonica.gal.dto.customer.ListTVServices;
+import com.telefonica.gal.dto.customer.ListVodServices;
+import com.telefonica.gal.dto.customer.TvService;
+import com.telefonica.gal.dto.customer.VodService;
 import com.telefonica.gal.provisionApi.model.ProductOperation;
 import com.telefonica.gal.provisionApi.model.Subscription;
 import com.telefonica.gal.provisionApi.model.User;
@@ -20,62 +25,66 @@ import java.util.List;
 @Mapper(uses = ObjectFactory.class)
 public interface CustomerProvisionRequestMapper {
 
-    @Mapping(source = "cUSTOMER.USERID", target = "uniqueId")
+    @Mapping(source = "customer.userid", target = "uniqueId")
     @Mapping(constant = "IPTV", target = "serviceType")
-    @Mapping(source = "cUSTOMER.USERTYPE", target = "commercialOffer")
-    @Mapping(source = "cUSTOMER.SERVICETYPE", target = "application")
+    @Mapping(source = "customer.usertype", target = "commercialOffer")
+    @Mapping(source = "customer.servicetype", target = "application")
     @Mapping(source = "endpoint.platformID", target = "platformId")
-    @Mapping(target = "addressing", expression = "java(checkAddressing(cUSTOMER))")
-    @Mapping(source = "cUSTOMER.LISTSTBIPS.STBIP", target = "stbIps")
-    @Mapping(source = "cUSTOMER.MAXNUMSTBS", target = "maxDevices")
-    @Mapping(target = "tvHd", expression = "java(checkTvHD(cUSTOMER))")
-    @Mapping(source = "cUSTOMER.LINEQUALITY" , target = "lineQuality")
-    @Mapping(source = "cUSTOMER.LIMITVODPURCHASES", target = "limitVodPurchases")
-    @Mapping(source = "cUSTOMER.LIMITPPVPURCHASES", target = "limitPPVPurchases")
-    @Mapping(source = "cUSTOMER.LIMITUSERBONUSPURCHASES", target = "limitUserBonusPurchases")
-    @Mapping(source = "cUSTOMER.SUBSCRIBERLINE.UPSTREAM", target = "subscriberLineUpstream")
-    @Mapping(source = "cUSTOMER.SUBSCRIBERLINE.DOWNSTREAM", target = "subscriberLineDownstream")
-    @Mapping(source = "cUSTOMER.GEOGRAFICAREA" , target = "userVideoServiceInfo.geographicArea")
-    @Mapping(source = "cUSTOMER.POP" , target = "userVideoServiceInfo.serverCodeList")
+    @Mapping(target = "addressing", expression = "java(checkAddressing(customer))")
+    @Mapping(source = "customer.liststbips.stbip", target = "stbIps")
+    @Mapping(source = "customer.maxnumstbs", target = "maxDevices")
+    @Mapping(target = "tvHd", expression = "java(checkTvHD(customer))")
+    @Mapping(source = "customer.linequality" , target = "lineQuality")
+    @Mapping(source = "customer.limitvodpurchases", target = "limitVodPurchases")
+    @Mapping(source = "customer.limitppvpurchases", target = "limitPPVPurchases")
+    @Mapping(source = "customer.limituserbonuspurchases", target = "limitUserBonusPurchases")
+    @Mapping(source = "customer.subscriberline.upstream", target = "subscriberLineUpstream")
+    @Mapping(source = "customer.subscriberline.downstream", target = "subscriberLineDownstream")
+    @Mapping(source = "customer.geograficarea" , target = "userVideoServiceInfo.geographicArea")
+    @Mapping(source = "customer.pop" , target = "userVideoServiceInfo.serverCodeList")
     @Mapping(constant = "SNAPSHOT", target = "products.productsMode")
-    @Mapping(target = "products.subscriptionsList", expression = "java(getSuscriptionsList(cUSTOMER))")
-    User customerDataMapper(CUSTOMER cUSTOMER, Endpoint endpoint);
+    @Mapping(target = "products.subscriptionsList", expression = "java(getSuscriptionsList(customer))")
+    //User customerDataMapper(CUSTOMER customer, Endpoint endpoint);
+    User customerDataMapper(Customer customer, Endpoint endpoint);
 
-    default String checkAddressing(CUSTOMER cUSTOMER) {
-        String addressing = cUSTOMER.getADDRESSING();
+    default String checkAddressing(Customer customer) {
+        String addressing = customer.getAddressing();
         if (addressing.isEmpty() || addressing.equals("") && addressing == "") {
             return "STATIC_IP";
         }
         return addressing;
     }
 
-    default Integer checkTvHD(CUSTOMER customer) {
-        String tvhd = customer.getTVHD();
+    default Integer checkTvHD(Customer customer) {
+        String tvhd = customer.getTvhd();
         if (!tvhd.isEmpty() && !tvhd.equals("") && tvhd != "") {
             return Integer.valueOf(tvhd);
         }
         return 0;
     }
 
-    default List<Subscription> getSuscriptionsList(CUSTOMER customer) {
-        LISTTVSERVICES listtvservices = customer.getLISTTVSERVICES();
-        LISTVODSERVICES listvodservices = customer.getLISTVODSERVICES();
+    default List<Subscription> getSuscriptionsList(Customer customer) {
+        /*LISTTVSERVICES listtvservices = customer.getLISTTVSERVICES();
+        LISTVODSERVICES listvodservices = customer.getLISTVODSERVICES();*/
+        ListTVServices listtvservices = customer.getListtvservices();
+        ListVodServices listvodservices = customer.getListvodservices();
+
         Subscription subscription = new Subscription();
         List<Subscription> subscriptionList = new ArrayList<>();;
 
-        for(TVSERVICE tvservice : listtvservices.getTVSERVICE()) {
+        for(TvService tvservice : listtvservices.getTvservice()) {
             subscription = new Subscription();
-            subscription.setOperation(getOperation(tvservice.getTVSERVICEOPER()));
+            subscription.setOperation(getOperation(tvservice.getTvserviceoper()));
             subscription.setPendingConsolidation(0);
-            subscription.setProductId(tvservice.getTVSERVICEID());
+            subscription.setProductId(tvservice.getTvserviceid());
             subscriptionList.add(subscription);
         }
 
-        for(VODSERVICE vodservice : listvodservices.getVODSERVICE()) {
+        for(VodService vodservice : listvodservices.getVodservice()) {
             subscription = new Subscription();
-            subscription.setOperation(getOperation(vodservice.getVODSERVICEOPER()));
+            subscription.setOperation(getOperation(vodservice.getVodserviceoper()));
             subscription.setPendingConsolidation(0);
-            subscription.setProductId(vodservice.getVODSERVICEID());
+            subscription.setProductId(vodservice.getVodserviceid());
             subscriptionList.add(subscription);
         }
 

@@ -13,6 +13,7 @@ public class CDBProvisionRequest {
     @JsonProperty("serviceFlags")
     private ProvisionOttUserBASEFlagsServiceFlags serviceFlags;
 
+
     @JsonProperty("subscribedProducts")
     private ProvisionOttUserBASESubscribedProducts subscribedProducts;
 
@@ -37,6 +38,7 @@ public class CDBProvisionRequest {
     }
 
     public void setServiceFlags(ProvisionOttUserBASEFlagsServiceFlags serviceFlags) {
+
         this.serviceFlags = serviceFlags;
     }
 
@@ -47,5 +49,4 @@ public class CDBProvisionRequest {
     public void setSubscribedProducts(ProvisionOttUserBASESubscribedProducts subscribedProducts) {
         this.subscribedProducts = subscribedProducts;
     }
-
 }

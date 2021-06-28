@@ -7,7 +7,6 @@ public class InvokeWsFactory {
     protected String type;
     protected boolean synchronous;
 
-
     public InvokeWsFactory(InvokeWs invokeWs, String type, boolean synchronous) {
         this.invokeWs = invokeWs;
         this.type = type;

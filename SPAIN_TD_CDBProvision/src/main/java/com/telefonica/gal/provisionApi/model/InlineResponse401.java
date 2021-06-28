@@ -10,6 +10,7 @@ import java.util.Objects;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:14:01.690707800+02:00[Europe/Paris]")
 
+
 public class InlineResponse401   {
   @JsonProperty("resultCode")
   private Integer resultCode;
@@ -104,10 +105,9 @@ public class InlineResponse401   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("{\n");
-    
-    sb.append("    resultCode: ").append(toIndentedString(resultCode)).append(",\n");
-    sb.append("    resultText: ").append(toIndentedString(resultText)).append(",\n");
-    sb.append("    resultDetail: ").append(toIndentedString(resultDetail)).append("\n");
+    sb.append("    \"resultCode\": \"").append(toIndentedString(resultCode)).append("\",\n");
+    sb.append("    \"resultText\": \"").append(toIndentedString(resultText)).append("\",\n");
+    sb.append("    \"resultDetail\": \"").append(toIndentedString(resultDetail)).append("\"\n");
     sb.append("}");
     return sb.toString();
   }

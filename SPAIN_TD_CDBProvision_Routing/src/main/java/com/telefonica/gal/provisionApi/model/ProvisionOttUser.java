@@ -27,6 +27,7 @@ import javax.validation.constraints.*;
 @ApiModel(description = "A specific user provisioned in the platform from the OTT platform.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:14:01.690707800+02:00[Europe/Paris]")
 
+
 public class ProvisionOttUser   {
   @JsonProperty("adminCode")
   private String adminCode;

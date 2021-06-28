@@ -6,6 +6,9 @@ import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.provisionApi.model.*;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.telefonica.gal.customerProvision.request.CUSTOMERPROVISIONREQUEST;
+import com.telefonica.gal.customerProvision.response.CUSTOMERPROVISIONRESPONSE;
+import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ import org.springframework.web.client.RestTemplate;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import java.util.List;
 
 public class WsMiViewTv<T> implements InvokeWs<T> {
@@ -38,6 +44,7 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
     private T response;
     private T serviceID;
     CDBProvisionRequest cdbProvisionRequest = new CDBProvisionRequest();
+    private CUSTOMERS customers = new CUSTOMERS();
 
     List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
     Jaxb2RootElementHttpMessageConverter jaxbMessageConverter = new Jaxb2RootElementHttpMessageConverter();
@@ -132,4 +139,5 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
                 return response504.toString();
         }
     }
+
 }

@@ -10,13 +10,13 @@ public class CDBProvisionRequest {
     private String clientSegmentName;
 
     @JsonProperty("devices")
-    private ProvisionOttUserBASEDevicesDevices devices;
+    private ProvisionOttUserBASEDevices devices;
 
     @JsonProperty("serviceFlags")
-    private ProvisionOttUserBASEFlagsServiceFlags serviceFlags;
+    private ProvisionOttUserBASEFlags serviceFlags;
 
     @JsonProperty("subscribedProducts")
-    private List<SubscribedProductWRITE> subscribedProducts;
+    private ProvisionOttUserBASESubscribedProducts subscribedProducts;
 
     public String getClientSegmentName() {
         return clientSegmentName;
@@ -26,27 +26,27 @@ public class CDBProvisionRequest {
         this.clientSegmentName = clientSegmentName;
     }
 
-    public ProvisionOttUserBASEFlagsServiceFlags getServiceFlags() {
-        return serviceFlags;
-    }
-
-    public void setServiceFlags(ProvisionOttUserBASEFlagsServiceFlags serviceFlags) {
-        this.serviceFlags = serviceFlags;
-    }
-
-    public List<SubscribedProductWRITE> getSubscribedProducts() {
-        return subscribedProducts;
-    }
-
-    public void setSubscribedProducts(List<SubscribedProductWRITE> subscribedProducts) {
-        this.subscribedProducts = subscribedProducts;
-    }
-
-    public ProvisionOttUserBASEDevicesDevices getDevices() {
+    public ProvisionOttUserBASEDevices getDevices() {
         return devices;
     }
 
-    public void setDevices(ProvisionOttUserBASEDevicesDevices devices) {
+    public void setDevices(ProvisionOttUserBASEDevices devices) {
         this.devices = devices;
+    }
+
+    public ProvisionOttUserBASEFlags getServiceFlags() {
+        return serviceFlags;
+    }
+
+    public void setServiceFlags(ProvisionOttUserBASEFlags serviceFlags) {
+        this.serviceFlags = serviceFlags;
+    }
+
+    public ProvisionOttUserBASESubscribedProducts getSubscribedProducts() {
+        return subscribedProducts;
+    }
+
+    public void setSubscribedProducts(ProvisionOttUserBASESubscribedProducts subscribedProducts) {
+        this.subscribedProducts = subscribedProducts;
     }
 }

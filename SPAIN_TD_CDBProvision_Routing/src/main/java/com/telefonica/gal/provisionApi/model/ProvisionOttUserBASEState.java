@@ -15,6 +15,7 @@ import javax.validation.constraints.*;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:14:01.690707800+02:00[Europe/Paris]")
 
+
 public class ProvisionOttUserBASEState   {
   /**
    * State of this user. Possible values are these (and only these)\\:   * 1 = active state (this is the default value).   * 0 = suspended state.   * -1 = cancelled state.

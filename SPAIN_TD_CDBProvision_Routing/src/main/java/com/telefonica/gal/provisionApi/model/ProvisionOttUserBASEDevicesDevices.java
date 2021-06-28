@@ -15,6 +15,7 @@ import javax.validation.constraints.*;
 @ApiModel(description = "Object containing the following elements.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:14:01.690707800+02:00[Europe/Paris]")
 
+
 public class ProvisionOttUserBASEDevicesDevices   {
   @JsonProperty("maxNumDevices")
   private Integer maxNumDevices;

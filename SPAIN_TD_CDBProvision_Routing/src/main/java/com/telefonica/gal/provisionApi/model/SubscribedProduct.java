@@ -16,6 +16,7 @@ import javax.validation.constraints.*;
 @ApiModel(description = "A specific product subscribed by a certain OTT user. Products that may be subscribed by the users are \"subscriptions\" and \"TV Packages\"; both types are managed together in this API.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:14:01.690707800+02:00[Europe/Paris]")
 
+
 public class SubscribedProduct   {
   @JsonProperty("code")
   private String code;

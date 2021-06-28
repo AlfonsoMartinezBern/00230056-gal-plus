@@ -105,9 +105,9 @@ public class InlineResponse500   {
     StringBuilder sb = new StringBuilder();
     sb.append("{\n");
 
-    sb.append("    resultCode: ").append(toIndentedString(resultCode)).append(",\n");
-    sb.append("    resultText: ").append(toIndentedString(resultText)).append(",\n");
-    sb.append("    resultDetail: ").append(toIndentedString(resultDetail)).append("\n");
+    sb.append("    \"resultCode\": \"").append(toIndentedString(resultCode)).append("\",\n");
+    sb.append("    \"resultText\": \"").append(toIndentedString(resultText)).append("\",\n");
+    sb.append("    \"resultDetail\": \"").append(toIndentedString(resultDetail)).append("\"\n");
     sb.append("}");
     return sb.toString();
   }

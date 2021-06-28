@@ -1,5 +1,6 @@
 package com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.interfaceWs;
 
+
 import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.exception.HttpErrorsCDBProvision;
 import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.mapper.CDBProvisionRequestMapper;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
@@ -10,6 +11,7 @@ import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
 import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.provisionApi.model.*;
 import org.json.JSONException;
+import com.telefonica.gal.provisionApi.model.User;
 import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
@@ -21,15 +23,15 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.math.BigInteger;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
 
     private static final Integer ResponseCodeOK = 200;
+
     private static final String codeResponseOK = "0";
 
     private final static CDBProvisionRequestMapper CDB_PROVISION_REQUEST_MAPPER = Mappers.getMapper(
@@ -38,6 +40,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     @Autowired
     CDBProvisionRequest cdbProvisionRequest;
+
 
     @Autowired
     Endpoint endpointTD;
@@ -71,7 +74,6 @@ public class WsTopPlus<T> implements InvokeWs<T> {
     RestTemplate restTemplate = new RestTemplate();
     MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
     StringWriter sw = new StringWriter();
-
 
     public WsTopPlus(T endPoint, T request, String adminCode) {
         this.endPoint = endPoint;
@@ -109,6 +111,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 String codeError = jsonObject.get("statusCode").toString();
                 return (T) responseInfoError(codeError, jsonObject);
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();

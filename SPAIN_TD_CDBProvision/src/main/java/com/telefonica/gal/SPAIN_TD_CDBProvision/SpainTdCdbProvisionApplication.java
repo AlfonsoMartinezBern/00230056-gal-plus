@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.telefonica.gal.client.spain", "com.telefonica.gal"})
+
 public class SpainTdCdbProvisionApplication {
 
 	public static void main(String[] args) {

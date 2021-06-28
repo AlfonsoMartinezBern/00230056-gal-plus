@@ -30,6 +30,7 @@ public class FactoryTD<T> {
             if (!invokeWs.isSynchronous() && invokeWs.getType().equals("source")) {
                 AsyncFactory asyncFactory = new AsyncFactory(invokeWsList);
                 asyncFactory.start();
+
                 return invokeWs.getInvokeWs().invoke().toString();
             }
 
@@ -67,7 +68,6 @@ public class FactoryTD<T> {
         for (Flow flow: flowList) {
             Endpoint endpoint = (routingTDInfo.getEndpointById(flow.getEndpointID()));
             response.add(invokeFactoryWithFlow(request, adminCode, flow, endpoint));
-
         }
 
         return response;

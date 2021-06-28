@@ -45,7 +45,7 @@
 			"errorCode": "GAL-02",
 			"errorInfo": {
 				"errorCode": "2",
-				"errorDescription": "Formato erróneo en el dato ‘USER_ID’"
+				"errorDescription": "Formato erróneo en el dato 'USER_ID'"
 			}
 		},
 
@@ -53,7 +53,7 @@
 			"errorCode": "GAL-03",
 			"errorInfo": {
 				"errorCode": "3",
-				"errorDescription": "Falta campo obligatorio ‘USER_ID’"
+				"errorDescription": "Falta campo obligatorio 'USER_ID'"
 			}
 		},
 		{
@@ -136,7 +136,7 @@
 			"errorCode": "GAL-27",
 			"errorInfo": {
 				"errorCode": "27",
-				"errorDescription": "Formato erróneo en el dato ‘TV_PACKAGE’: "
+				"errorDescription": "Formato erróneo en el dato 'TV_PACKAGE': "
 			}
 		},
 
@@ -144,7 +144,7 @@
 			"errorCode": "GAL-28",
 			"errorInfo": {
 				"errorCode": "28",
-				"errorDescription": "Falta campo obligatorio ‘TV_SERVICE_ID’"
+				"errorDescription": "Falta campo obligatorio 'TV_SERVICE_ID'"
 			}
 		},
 
@@ -284,7 +284,7 @@
 			"errorCode": "GAL-200",
 			"errorInfo": {
 				"errorCode": "200",
-				"errorDescription": "Formato erróneo en el dato ‘OPERATION_ID’"
+				"errorDescription": "Formato erróneo en el dato 'OPERATION_ID'"
 			}
 		},
 
@@ -292,7 +292,7 @@
 			"errorCode": "GAL-201",
 			"errorInfo": {
 				"errorCode": "201",
-				"errorDescription": "Falta campo obligatorio ‘OPERATION_ID’"
+				"errorDescription": "Falta campo obligatorio 'OPERATION_ID'"
 			}
 		}
 	]

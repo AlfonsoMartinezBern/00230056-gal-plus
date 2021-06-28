@@ -16,6 +16,7 @@ import javax.validation.constraints.*;
 @ApiModel(description = "Object containing the following elements.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-17T12:14:01.690707800+02:00[Europe/Paris]")
 
+
 public class ProvisionOttUserBASEFlagsServiceFlags   {
   /**
    * Flag enabling/disabling the user to apply transactional purchases\\:   * 0 = option is disabled.   * 1 = option is enabled (this is the default value).  Other values are not expected, and will be forbidden by the server. 
