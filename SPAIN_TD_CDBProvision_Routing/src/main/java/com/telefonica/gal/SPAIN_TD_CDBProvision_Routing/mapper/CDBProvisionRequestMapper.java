@@ -38,7 +38,7 @@ public interface CDBProvisionRequestMapper {
         List<Subscription> subscriptionsList = new ArrayList<>();
         Subscription subscription = new Subscription();
 
-        for (SubscribedProduct subscribedProduct : request.getSubscribedProducts().getSubscribedProducts()) {
+        for (SubscribedProduct subscribedProduct : request.getSubscribedProducts()) {
             subscription.setOperation(ProductOperation.ON);
             subscription.setProductId(subscribedProduct.getCode());
             subscription.setPendingConsolidation(0);

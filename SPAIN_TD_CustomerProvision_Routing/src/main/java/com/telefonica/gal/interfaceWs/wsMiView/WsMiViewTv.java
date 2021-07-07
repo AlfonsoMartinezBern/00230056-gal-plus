@@ -11,6 +11,7 @@ import com.telefonica.gal.interfaceWs.InvokeWs;
 import com.telefonica.gal.logs.CustomerServiceMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import java.util.UUID;
 
 public class WsMiViewTv<T> implements InvokeWs<T> {
 
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(WsMiViewTv.class.getName());
     private static Logger loggerCustomer = LogManager.getLogger("LOGS_CUSTOMER_V1");
 
     @Autowired
@@ -75,6 +77,8 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         endpointTD = (Endpoint) endPoint;
         url = endpointTD.getTargetEndpoint();
         try {
+            LOGGER.info("==== REQUEST MIVIEW -------> " + customerRequest.toString() + "\n");
+            LOGGER.info("URL MiView ---> " + url);
 
             ResponseEntity<CUSTOMERPROVISIONRESPONSE> resultMiView = restTemplate.postForEntity(
                     url, customerRequest, CUSTOMERPROVISIONRESPONSE.class);

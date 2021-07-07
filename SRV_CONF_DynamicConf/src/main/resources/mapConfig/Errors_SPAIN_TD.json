@@ -45,7 +45,7 @@
 			"errorCode": "GAL-02",
 			"errorInfo": {
 				"errorCode": "2",
-				"errorDescription": "Formato erróneo en el dato 'USER_ID'"
+				"errorDescription": "Formato erróneo en el dato 'USER_ID'"
 			}
 		},
 
@@ -136,7 +136,7 @@
 			"errorCode": "GAL-27",
 			"errorInfo": {
 				"errorCode": "27",
-				"errorDescription": "Formato erróneo en el dato 'TV_PACKAGE': "
+				"errorDescription": "Formato erróneo en el dato 'TV_PACKAGE': "
 			}
 		},
 
@@ -152,7 +152,7 @@
 			"errorCode": "GAL-30",
 			"errorInfo": {
 				"errorCode": "30",
-				"errorDescription": "Formato erróneo en el dato 'SUBSCRIPTION':  "
+				"errorDescription": "Formato erróneo en el dato 'SUBSCRIPTION': "
 			}
 		},
 		{
@@ -214,7 +214,7 @@
 			"errorCode": "GAL-49",
 			"errorInfo": {
 				"errorCode": "49",
-				"errorDescription": "Formato erróneo en atributo 'operation' del campo 'TV_PACKAGE': "
+				"errorDescription": "Formato erróneo en el atributo 'operation' del campo 'TV_PACKAGE': "
 			}
 		},
 
@@ -230,7 +230,7 @@
 			"errorCode": "GAL-51",
 			"errorInfo": {
 				"errorCode": "51",
-				"errorDescription": "Formato erróneo en atributo 'operation' del campo 'SUBSCRIPTION':"
+				"errorDescription": "Formato erróneo en el atributo 'operation' del campo 'SUBSCRIPTION':"
 			}
 		},
 
@@ -260,7 +260,7 @@
 			"errorCode": "GAL-78",
 			"errorInfo": {
 				"errorCode": "78",
-				"errorDescription": "Formato erroneo en el dato SUBSCRIBER_LINE_DOWNSTREAM"
+				"errorDescription": "Formato erróneo en el dato SUBSCRIBER_LINE_DOWNSTREAM"
 			}
 		},
 
@@ -268,14 +268,14 @@
 			"errorCode": "GAL-83",
 			"errorInfo": {
 				"errorCode": "83",
-				"errorDescription": "Formato erróneo en el dato 'ADDRESSING'"
+				"errorDescription": "Formato erróneo en el dato 'ADDRESSING'"
 			}
 		},
 		{
 			"errorCode": "GAL-86",
 			"errorInfo": {
 				"errorCode": "86",
-				"errorDescription": "Formato erróneo en el dato 'MAX_NUM_STBS'"
+				"errorDescription": "Formato erróneo en el dato 'MAX_NUM_STBS'"
 			}
 		},
 
@@ -284,7 +284,7 @@
 			"errorCode": "GAL-200",
 			"errorInfo": {
 				"errorCode": "200",
-				"errorDescription": "Formato erróneo en el dato 'OPERATION_ID'"
+				"errorDescription": "Formato erróneo en el dato 'OPERATION_ID'"
 			}
 		},
 

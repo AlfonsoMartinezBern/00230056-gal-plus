@@ -1,4 +1,4 @@
-package com.telefonica.gal.SPAIN_TD_CDBProvision.utils;
+package com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.utils;
 
 public enum ErrorCodeEnum {
 

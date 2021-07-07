@@ -5,7 +5,6 @@ import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.interfaceWs.WsTopPlus;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Flow;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
-import com.telefonica.gal.provisionApi.model.InlineResponse200;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

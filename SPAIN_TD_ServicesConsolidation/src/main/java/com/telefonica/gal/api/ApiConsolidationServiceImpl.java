@@ -37,11 +37,8 @@ public class ApiConsolidationServiceImpl implements ApiConsolidationService {
 
         LOGGER.info("CONSOLIDATION SERVICE ============" );
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(SERVICESCONSOLIDATIONREQUEST.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return new ResponseEntity<SERVICESCONSOLIDATIONRESPONSE>(service.consolidationPackageService(
-                    (SERVICESCONSOLIDATIONREQUEST) jaxbUnmarshaller.unmarshal(new StringReader(xml_request))), HttpStatus.OK);
+            return new ResponseEntity<SERVICESCONSOLIDATIONRESPONSE>(service.consolidationPackageService(xml_request), HttpStatus.OK);
 
         } catch (Exception e) {
             LOGGER.info("Exception:  " + e.getMessage());

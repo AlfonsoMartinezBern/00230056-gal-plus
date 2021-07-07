@@ -4,7 +4,6 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.Endpoint;
 import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
-import com.telefonica.gal.dto.LogInfo;
 import com.telefonica.gal.dto.LogInfoOpPlus;
 import com.telefonica.gal.dto.MessageInfo;
 import com.telefonica.gal.dto.ServiceInfoDto;
@@ -30,6 +29,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -42,7 +42,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class WsTopPlus<T> implements InvokeWs<T> {
-    //private static final Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
     private static Logger loggerWithCustomLayout = LogManager.getLogger("LOGS_OP");
 
     private static final Integer ResponseCodeOK = 200;
@@ -101,6 +101,13 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                 user = SERVICES_CONSOLIDATION_REQUEST_MAPPER.servicesConsolidationMapper(customer);
                 URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" +
                         user.getUniqueId() +"/products";
+
+                LOGGER.info("==== REQUEST TOP -------> " + request + "\n");
+
+                LOGGER.info("URL TOP+     ---> " + URL);
+                LOGGER.info("METODO REST: exchange(put)   ");
+
+                LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + user);
 
                 customerResponse = invokeTop(URL, customer, user);
 

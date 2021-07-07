@@ -10,6 +10,7 @@ import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQ
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class WsMiViewTv<T> implements InvokeWs<T> {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
     private static Logger loggerWithCustomLayout = LogManager.getLogger("LOGS_V1");
 
     private String url;
@@ -60,6 +62,11 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
         mediaTypes.add(MediaType.TEXT_HTML);
         jaxbMessageConverter.setSupportedMediaTypes(mediaTypes);
         messageConverters.add(jaxbMessageConverter);
+
+        LOGGER.info("==== REQUEST MIVIEW -------> " + request + "\n");
+
+        LOGGER.info("URL MIVIEW     ---> " + url);
+        LOGGER.info("METODO REST: postForEntity   ");
 
         restTemplate.setMessageConverters(messageConverters);
         restTemplate.setErrorHandler(new HttpErrors());

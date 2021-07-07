@@ -3,16 +3,17 @@ package com.telefonica.gal.exception;
 import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
 import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ConsolidationException {
+public class CustomerException {
 
+    @Autowired
     private Spain_TD_Error_Client iSpainTDError;
 
-    public ErrorMessage getErrorInfo(String errorMsg, String userId, String operationId) {
-        ErrorKey errorKey = new ErrorKey(errorMsg);
+    public ErrorMessage getErrorInfo (String errorMsg, String userId, String operationId) {
         iSpainTDError = new Spain_TD_Error_Client();
         ErrorMessage errorMessage = new ErrorMessage();
-        ErrorResponse errorResponse = iSpainTDError.search(errorKey);
+        ErrorResponse errorResponse = iSpainTDError.search(new ErrorKey(errorMsg));
 
         errorMessage.setMessage(errorResponse.getErrorInfo().getErrorDescription());
         errorMessage.setCodError(errorResponse.getErrorInfo().getErrorCode());
@@ -22,13 +23,13 @@ public class ConsolidationException {
         return errorMessage;
     }
 
-    public ErrorMessage getErrorInfoListService(String errorMsg, String service, String userId, String operationId) {
-        ErrorKey errorKey = new ErrorKey(errorMsg);
+    public ErrorMessage getErrorInfoListService (String errorMsg, String valor, String userId, String operationId) {
         iSpainTDError = new Spain_TD_Error_Client();
-        ErrorMessage errorMessage = new ErrorMessage();
-        ErrorResponse errorResponse = iSpainTDError.search(errorKey);
 
-        errorMessage.setMessage(errorResponse.getErrorInfo().getErrorDescription() + "" + service);
+        ErrorMessage errorMessage = new ErrorMessage();
+        ErrorResponse errorResponse = iSpainTDError.search(new ErrorKey(errorMsg));
+
+        errorMessage.setMessage(errorResponse.getErrorInfo().getErrorDescription() + valor);
         errorMessage.setCodError(errorResponse.getErrorInfo().getErrorCode());
         errorMessage.setOperationid(operationId);
         errorMessage.setUserid(userId);

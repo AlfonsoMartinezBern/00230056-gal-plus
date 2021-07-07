@@ -4,5 +4,5 @@ import com.telefonica.gal.servicesConsolidation.request.SERVICESCONSOLIDATIONREQ
 import com.telefonica.gal.servicesConsolidation.response.SERVICESCONSOLIDATIONRESPONSE;
 
 public interface ConsolidationService {
-    SERVICESCONSOLIDATIONRESPONSE consolidationPackageService(SERVICESCONSOLIDATIONREQUEST request);
+    SERVICESCONSOLIDATIONRESPONSE consolidationPackageService(String xml_request);
 }

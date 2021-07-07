@@ -24,6 +24,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.mapstruct.factory.Mappers;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,7 @@ import java.util.UUID;
 public class WsTopPlus<T> implements InvokeWs<T> {
 
     private static Logger loggerCustomer = LogManager.getLogger("LOGS_CUSTOMER_OP");
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(WsTopPlus.class.getName());
 
     private static final Integer ResponseCodeOK = 200;
     private static final String  codeResponseOK = "0";
@@ -108,9 +110,10 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
         restTemplate.setErrorHandler(new HttpErrorsCustomerProvision());
 
-
         customerRequest = (CustomerProvisionRequest) request;
         endpointTD = (Endpoint) endPoint;
+
+        LOGGER.info("==== REQUEST TOP -------> " + customerRequest + "\n");
 
         try {
             for (Customer customer : customerRequest.getCustomers().getCustomer()) {
@@ -119,9 +122,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "ON":
                         requestON = new User();
                         requestON = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
+                        LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestON);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
+                        LOGGER.info("URL TOP+     ---> " + URL);
 
                         ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, requestON, String.class);
+                        LOGGER.info("METODO REST: postForEntity   ");
 
                         if(resultTop.getStatusCode().value() == ResponseCodeOK) {
                             customerReponse = responseInfoError(codeResponseOK);
@@ -140,8 +146,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "OFF":
                         String uniqueId = customer.getUserid();
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + uniqueId;
+                        LOGGER.info("UNIQUEID PETICION DELETE TOP ========> " + uniqueId);
+                        LOGGER.info("URL TOP+     ---> " + URL);
 
                         restTemplate.delete(URL, ResultOK.class);
+                        LOGGER.info("METODO REST: delete   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
 
@@ -154,9 +163,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "MOD":
                         requestMOD = new User();
                         requestMOD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
+                        LOGGER.info("TRANSFORMACION PETICION MODIFICATION TOP ========> " + requestMOD);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
+                        LOGGER.info("URL TOP+     ---> " + URL);
 
                         restTemplate.put(URL, requestMOD);
+                        LOGGER.info("METODO REST: put   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
 
@@ -169,9 +181,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "N":
                         requestN = new User();
                         requestN = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
+                        LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestN);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestN.getUniqueId() +"/move/start";
+                        LOGGER.info("URL TOP+     ---> " + URL);
 
                         restTemplate.put(URL, requestN);
+                        LOGGER.info("METODO REST: put   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
 
@@ -184,9 +199,12 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     case "D":
                         requestD = new User();
                         requestD = CUSTOMER_PROVISION_REQUEST_MAPPER.customerDataMapper(customer, endpointTD);
+                        LOGGER.info("TRANSFORMACION PETICION CREATE TOP ========> " + requestD);
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/"+ requestD.getUniqueId() +"/move/end";
+                        LOGGER.info("URL TOP+     ---> " + URL);
 
                         restTemplate.put(URL, requestD);
+                        LOGGER.info("METODO REST: put   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
 
@@ -198,6 +216,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                     default:
                         break;
                 }
+
                 customerReponse.setUSERID(customer.getUserid());
                 customerReponse.setOPERATIONID(customer.getOperationid());
             }

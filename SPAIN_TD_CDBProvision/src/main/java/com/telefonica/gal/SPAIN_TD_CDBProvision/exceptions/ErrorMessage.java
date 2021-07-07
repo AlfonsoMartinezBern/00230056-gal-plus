@@ -1,40 +1,51 @@
 package com.telefonica.gal.SPAIN_TD_CDBProvision.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ErrorMessage extends Throwable {
-    private String message;
-    private String codError;
-    private String userid;
-    private String operationid;
+    private Integer resultCode;
+    private String resultText;
+    private String resultDetail;
 
-    public String getMessage() {
-        return message;
+    public Integer getResultCode() {
+        return resultCode;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setResultCode(Integer resultCode) {
+        this.resultCode = resultCode;
     }
 
-    public String getCodError() {
-        return codError;
+    public String getResultText() {
+        return resultText;
     }
 
-    public void setCodError(String codError) {
-        this.codError = codError;
+    public void setResultText(String resultText) {
+        this.resultText = resultText;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getResultDetail() {
+        return resultDetail;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setResultDetail(String resultDetail) {
+        this.resultDetail = resultDetail;
     }
 
-    public String getOperationid() {
-        return operationid;
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        sb.append("    \"resultCode\": \"").append(toIndentedString(resultCode)).append("\",\n");
+        sb.append("    \"resultText\": \"").append(toIndentedString(resultText)).append("\",\n");
+        sb.append("    \"resultDetail\": \"").append(toIndentedString(resultDetail)).append("\"\n");
+        sb.append("}");
+        return sb.toString();
     }
 
-    public void setOperationid(String operationid) {
-        this.operationid = operationid;
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
     }
+
 }

@@ -1,9 +1,6 @@
-package com.telefonica.gal.SPAIN_TD_CDBProvision.exceptions;
+package com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.exceptions;
 
 import com.telefonica.gal.client.spain.td.error.facade.Spain_TD_Error_Client;
-import com.telefonica.gal.client.spain.td.error.msg.ErrorKey;
-import com.telefonica.gal.client.spain.td.error.msg.ErrorResponse;
-import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
 
 public class CustomerException {
 

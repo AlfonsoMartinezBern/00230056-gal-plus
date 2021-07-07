@@ -1,5 +1,7 @@
 package com.telefonica.gal.SPAIN_TD_CDBProvision.service;
 
+import com.telefonica.gal.SPAIN_TD_CDBProvision.dto.LogCustomer;
+import com.telefonica.gal.SPAIN_TD_CDBProvision.dto.ServiceInfoCustomer;
 import com.telefonica.gal.SPAIN_TD_CDBProvision.exceptions.ErrorMessage;
 import com.telefonica.gal.SPAIN_TD_CDBProvision.validator.CDBProvisionValidator;
 import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.factory.FactoryTD;
@@ -7,14 +9,22 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.facade.ISpainDynamicRou
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDInfo;
 import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
+import java.util.UUID;
+
 @Service
 public class CDBProvisionServiceImpl implements CDBProvisionService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CDBProvisionServiceImpl.class.getName());
+    private static Logger loggerWithCustomLayout = LogManager.getLogger("LOGS_CUSTOMER_V1");
+    private ServiceInfoCustomer serviceInfoDto = new ServiceInfoCustomer("SPAIN_TD_CDBProvision");
     private static final String CDBProvision = "CDBProvision";
 
     private ISpainDynamicRoutingTD dynamicRoutingTD;
@@ -30,28 +40,27 @@ public class CDBProvisionServiceImpl implements CDBProvisionService {
     }
 
     @Override
-    public String provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) {
+    public String provisionOTTAdminCodePut(String adminCode, String request) {
 
         try {
-            cdbProvisionValidator.isValid(adminCode, cdbProvisionRequest);
-            RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(new RoutingTDKey(CDBProvision));
+            CDBProvisionRequest cdbProvisionRequest = new CDBProvisionRequest(request);
 
-            return factoryTD.invokeWs(routingTDInfo, cdbProvisionRequest, adminCode).toString();
+            cdbProvisionValidator.isValid(cdbProvisionRequest);
+            RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(new RoutingTDKey(CDBProvision));
+            String result = factoryTD.invokeWs(routingTDInfo, cdbProvisionRequest, adminCode);
+
+            return result.contains("InlineResponse200") ? "" : result;
 
         } catch (ErrorMessage errorMessage) {
-            /*CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
-            CUSTOMERS customers = new CUSTOMERS();
-            CUSTOMER customerResponseError = new CUSTOMER();
-
-            customerResponseError.setUSERID(errorMessage.getUserid());
-            customerResponseError.setOPERATIONID(errorMessage.getOperationid());
-            customerResponseError.setRESULTCODE(new BigInteger(errorMessage.getCodError()));
-            customerResponseError.setDESCRIPTION(errorMessage.getMessage());
-
-            customers.getCUSTOMER().add(customerResponseError);
-            response.setCUSTOMERS(customers);*/ // TODO
-
-            return null; //response
+            LogCustomer logCustomer = new LogCustomer();
+            logCustomer.setIdLog(UUID.randomUUID().toString());
+            logCustomer.setServiceInfo(serviceInfoDto);
+            logCustomer.setMessage(errorMessage.getMessage());
+            loggerWithCustomLayout.error(logCustomer);
+            return errorMessage.toString();
+        } catch (Exception e) {
+            loggerWithCustomLayout.error(e.getMessage());
+            return null;
         }
     }
 }

@@ -16,6 +16,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
 import java.math.BigInteger;
 import java.util.Map;
 import java.util.UUID;
@@ -41,13 +45,18 @@ public class ConsolidationServiceImpl implements ConsolidationService {
     }
 
     @Override
-    public SERVICESCONSOLIDATIONRESPONSE consolidationPackageService(SERVICESCONSOLIDATIONREQUEST request) {
+    public SERVICESCONSOLIDATIONRESPONSE consolidationPackageService(String xml_request) {
         RoutingTDKey tdKey;
         RoutingTDInfo routingTDInfo;
         Map<String, Object> haspMap = null;
 
         try {
-            validateConsolidation.isValid(request);
+            JAXBContext jaxbContext = JAXBContext.newInstance(SERVICESCONSOLIDATIONREQUEST.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            SERVICESCONSOLIDATIONREQUEST request = (SERVICESCONSOLIDATIONREQUEST) jaxbUnmarshaller.unmarshal(new StringReader(xml_request));
+
+            validateConsolidation.isValid(request, xml_request);
 
             routingTDInfo = new RoutingTDInfo();
             tdKey = new RoutingTDKey(ServicesConsolidation);
@@ -75,6 +84,9 @@ public class ConsolidationServiceImpl implements ConsolidationService {
             loggerWithCustomLayout.error(logDto);
 
             return servicesconsolidationresponse;
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return null;
         }
 
     }

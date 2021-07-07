@@ -1,5 +1,6 @@
 package com.telefonica.gal.SPAIN_TD_CustomerProvision.service;
 
+import com.telefonica.gal.SPAIN_TD_CustomerProvision.api.ApiCustomerProvisionServiceServiceImpl;
 import com.telefonica.gal.SPAIN_TD_CustomerProvision.dto.LogCustomer;
 import com.telefonica.gal.SPAIN_TD_CustomerProvision.dto.ServiceInfoCustomer;
 import com.telefonica.gal.SPAIN_TD_CustomerProvision.exceptions.ErrorMessage;
@@ -13,6 +14,7 @@ import com.telefonica.gal.dto.customer.CustomerProvisionRequest;
 import com.telefonica.gal.factory.FactoryTD;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,41 +47,40 @@ public class CustomerProvisionServiceImpl implements CustomerProvisionService {
     public CUSTOMERPROVISIONRESPONSE customersProvision(String xmlRequest) {
 
         try {
+
             JAXBContext jaxbContext = JAXBContext.newInstance(CustomerProvisionRequest.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
             com.telefonica.gal.dto.customer.CustomerProvisionRequest customerProvisionRequest = (com.telefonica.gal.dto.customer.CustomerProvisionRequest)
                     jaxbUnmarshaller.unmarshal(new StringReader(xmlRequest));
 
-            customerProvisionValidator.isValid(customerProvisionRequest);
+            customerProvisionValidator.isValid(customerProvisionRequest, xmlRequest);
 
             return factoryTD.invokeWs(dynamicRoutingTD.search(new RoutingTDKey(CustomerProvision)),
                     customerProvisionRequest, null);
 
         } catch (ErrorMessage errorMessage) {
-           CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
-           CUSTOMERS customers = new CUSTOMERS();
-           CUSTOMER customer = new CUSTOMER();
-           LogCustomer logCustomer = new LogCustomer();
+            CUSTOMERPROVISIONRESPONSE response = new CUSTOMERPROVISIONRESPONSE();
+            CUSTOMERS customers = new CUSTOMERS();
+            CUSTOMER customer = new CUSTOMER();
+            LogCustomer logCustomer = new LogCustomer();
 
-           customer.setUSERID(errorMessage.getUserid());
-           customer.setOPERATIONID(errorMessage.getOperationid());
-           customer.setRESULTCODE(new BigInteger(errorMessage.getCodError()));
-           customer.setDESCRIPTION(errorMessage.getMessage());
+            customer.setUSERID(errorMessage.getUserid());
+            customer.setOPERATIONID(errorMessage.getOperationid());
+            customer.setRESULTCODE(new BigInteger(errorMessage.getCodError()));
+            customer.setDESCRIPTION(errorMessage.getMessage());
 
-           customers.getCUSTOMER().add(customer);
-           response.setCUSTOMERS(customers);
+            customers.getCUSTOMER().add(customer);
+            response.setCUSTOMERS(customers);
 
-           logCustomer.setIdLog(UUID.randomUUID().toString());
-           logCustomer.setServiceInfo(serviceInfoDto);
-           logCustomer.setMessage(errorMessage.getMessage());
-           loggerWithCustomLayout.error(logCustomer);
+            logCustomer.setIdLog(UUID.randomUUID().toString());
+            logCustomer.setServiceInfo(serviceInfoDto);
+            logCustomer.setMessage(errorMessage.getMessage());
+            loggerWithCustomLayout.error(logCustomer);
 
-            System.out.println("Exception ErrorMessage ........................");
-
-           return response;
+            return response;
         } catch (JAXBException e) {
-            e.printStackTrace();
+            loggerWithCustomLayout.info("Exception:  " + e.getMessage());
             return null;
         }
     }
