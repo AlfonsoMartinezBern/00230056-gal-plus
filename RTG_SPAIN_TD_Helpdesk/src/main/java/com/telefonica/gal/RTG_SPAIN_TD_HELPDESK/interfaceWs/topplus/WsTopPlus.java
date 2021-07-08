@@ -91,12 +91,11 @@ public class WsTopPlus<T> implements InvokeWs<T> {
             if (includeInternalProducts != null)
                 URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + getProfileRequest.getCod_admin()+ "?includeInternalProducts=" + includeInternalProducts;
             else
-                URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + getProfileRequest.getCod_admin()+ "?includeInternalProducts=" + includeInternalProducts;
+                URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + getProfileRequest.getCod_admin();
 
             System.out.println(URL);
             ResponseEntity<UserResponse> resultTop = restTemplate.getForEntity(URL, UserResponse.class);
 
-            Gson gson = new Gson();
             result = GETPROFILE_RESPONSE_MAPPER.mapTOPResponse(resultTop.getBody());
             result.setOrden_hidra(getProfileRequest.getOrden_hidra());
 
@@ -148,8 +147,6 @@ public class WsTopPlus<T> implements InvokeWs<T> {
         ErrorKey errorKey = new ErrorKey(errorCode);
         iSpainTDError = new Spain_TD_Error_Client();
         ErrorResponse errorResponse = iSpainTDError.search(errorKey);
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(errorResponse));
         Error error = new Error();
         error.setCod_error("PGIM.0007.E" + errorResponse.getErrorInfo().getErrorCode());
         error.setTexto_error(errorResponse.getErrorInfo().getErrorDescription());

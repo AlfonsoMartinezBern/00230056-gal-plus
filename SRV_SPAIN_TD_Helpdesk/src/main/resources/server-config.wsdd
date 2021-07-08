@@ -1,38 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
  <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
- <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
- <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
- <service name="AdminService" provider="java:MSG">
-  <parameter name="allowedMethods" value="AdminService"/>
-  <parameter name="enableRemoteAdmin" value="false"/>
-  <parameter name="className" value="org.apache.axis.utils.Admin"/>
-  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
- </service>
- <service name="Version" provider="java:RPC">
-  <parameter name="allowedMethods" value="getVersion"/>
-  <parameter name="className" value="org.apache.axis.Version"/>
- </service>
- <service name="service-deployed-on-startup" provider="java:RPC" style="rpc" use="encoded">
-  <parameter name="allowedMethods" value="*"/>
-  <parameter name="className" value="com.telefonica.gal.SRV_SPAIN_TD_Helpdesk.service.ServiceDeployedOnStartup"/>
- </service>
- <service name="service-managed-by-spring-di" provider="java:RPC" style="rpc" use="encoded">
-  <parameter name="allowedMethods" value="helloWorld"/>
-  <operation name="helloWorld">
-   <documentation>This operation echoes Hello World and Name</documentation>
-   <parameter name="name">
-       <documentation>a string</documentation>
-   </parameter>
-  </operation>
-  <parameter name="className" value="com.telefonica.gal.SRV_SPAIN_TD_Helpdesk.service.ServiceManagedBySpringDI"/>
- </service>
  <service name="SigaHDServer.php" provider="java:RPC" style="rpc" use="encoded">
     <parameter name="wsdlTargetNamespace" value="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
     <parameter name="wsdlServiceElement" value="MiViewTV_CDBIF_LEGIF_SIGAHD"/>
     <parameter name="schemaUnqualified" value="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
     <parameter name="wsdlServicePort" value="MiViewTV_CDBIF_LEGIF_SIGAHDPort"/>
-    <parameter name="className" value="com.telefonica.gal.SRV_SPAIN_TD_Helpdesk.api.ApiHelpdeskServiceImpl"/>      <parameter name="wsdlPortType" value="MiViewTV_CDBIF_LEGIF_SIGAHDPortType"/>
+    <parameter name="className" value="com.telefonica.gal.SRV_SPAIN_TD_Helpdesk.api.ApiHelpdeskServiceImpl"/>
+    <parameter name="wsdlPortType" value="MiViewTV_CDBIF_LEGIF_SIGAHDPortType"/>
     <parameter name="typeMappingVersion" value="1.1"/>
     <parameter name="allowedMethods" value="*"/>
     <parameter name="sendMultiRefs" value="false"/>

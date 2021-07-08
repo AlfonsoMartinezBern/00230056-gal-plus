@@ -74,7 +74,6 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
             call.setOperationName(new javax.xml.namespace.QName("http://CDBIF_LEGIF_SIGAHD.MiViewTV", "getProfile"));
             try {
                 result = (GetProfileResponse) call.invoke(new java.lang.Object[] {getProfileRequest});
-                Gson gson = new Gson();
                 generateLogs(getProfileRequest,
                         result,
                         null,
