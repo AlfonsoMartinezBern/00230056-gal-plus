@@ -17,7 +17,7 @@
 			}
 		},
 		{
-			
+
 			"errorCode": "503000",
 			"errorInfo": {
 				"errorCode": "1",
@@ -25,7 +25,7 @@
 			}
 		},
 		{
-			
+
 			"errorCode": "404001",
 			"errorInfo": {
 				"errorCode": "29",
@@ -33,7 +33,7 @@
 			}
 		},
 		{
-			
+
 			"errorCode": "400006",
 			"errorInfo": {
 				"errorCode": "26",
@@ -297,6 +297,78 @@
 		},
 
 		{
+			"errorCode": "GAL-0001",
+			"errorInfo": {
+				"errorCode": "0001",
+				"errorDescription": "Format error: Client identifier"
+			}
+		},
+
+		{
+			"errorCode": "GAL-0002",
+			"errorInfo": {
+				"errorCode": "0002",
+				"errorDescription": "Field Format error: Hydra order."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0003",
+			"errorInfo": {
+				"errorCode": "0003",
+				"errorDescription": "Format error: Start date."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0004",
+			"errorInfo": {
+				"errorCode": "0004",
+				"errorDescription": "Format error: End date."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0005",
+			"errorInfo": {
+				"errorCode": "0005",
+				"errorDescription": "Record date interval limit has been exceeded."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0006",
+			"errorInfo": {
+				"errorCode": "0006",
+				"errorDescription": "Client identifier does not exist."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0007",
+			"errorInfo": {
+				"errorCode": "0007",
+				"errorDescription": "Database error."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0008",
+			"errorInfo": {
+				"errorCode": "0008",
+				"errorDescription": "Communications error"
+			}
+		},
+
+		{
+			"errorCode": "GAL-0009",
+			"errorInfo": {
+				"errorCode": "0009",
+				"errorDescription": "Parameter 'end point respuesta' is wrong."
+			}
+		},
+
+		{
 			"errorCode": "SAT-01",
 			"errorInfo": {
 				"errorCode": "Bad request",
@@ -336,5 +408,5 @@
 			}
 		}
 	]
-	
+
 }

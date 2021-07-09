@@ -22,10 +22,10 @@ configFile:
      name: Errors_UNICA_BU.json   
  spain:
   td:
-   path: /home/gatby/telefonica/00230056-gal-plus/SRV_CONF_DynamicConf/src/main/resources/mapConfig/
+   path: /home/jon/Proyectos/00230056-gal-plus/SRV_CONF_DynamicConf/src/main/resources/mapConfig/
    name: DynamicRouting_SPAIN_TD.json
    error:
-     path: /home/gatby/telefonica/00230056-gal-plus/SRV_CONF_DynamicConf/src/main/resources/mapConfig/
+     path: /home/jon/Proyectos/00230056-gal-plus/SRV_CONF_DynamicConf/src/main/resources/mapConfig/
      name: Errors_SPAIN_TD.json
   bu:
    path: src/main/resources/mapConfig/

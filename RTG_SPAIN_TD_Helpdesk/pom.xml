@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.telefonica.gal</groupId>
+	<artifactId>RTG_SPAIN_TD_Helpdesk</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>RTG_SPAIN_TD_Helpdesk</name>
+	<description>Helpdesk routing</description>
+	<properties>
+		<java.version>11</java.version>
+		<openapi-generator-version>5.1.0</openapi-generator-version>
+		<springfox.version>2.5.0</springfox.version>
+		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!--		           CLR_SPAIN_TD_DynR             -->
+		<dependency>
+			<groupId>com.telefonica.gal.spain</groupId>
+			<artifactId>CLR_SPAIN_TD_DynR</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!--		                                         -->
+		<!--		           CLR_SPAIN_TD_Error            -->
+		<dependency>
+			<groupId>com.telefonica.gal.spain.td</groupId>
+			<artifactId>CLR_SPAIN_TD_Error</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<!--		                                         -->
+		<!--		           FCT_Routing                   -->
+		<dependency>
+			<groupId>com.telefonica.gal</groupId>
+			<artifactId>factoryRouting</artifactId>
+			<version>1.0.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--		                                         -->
+		<!--       LOGS log4j2  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+			<version>2.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin.external.google</groupId>
+			<artifactId>android-json</artifactId>
+			<version>0.0.20131108.vaadin1</version>
+		</dependency>
+		<!--		                                         -->
+		<!--	   FOR build-helper-maven-plugin             -->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.20</version>
+		</dependency>
+		<!--		                                         -->
+		<!--		           Lombok                        -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!--		                                         -->
+		<!--		           CXF                           -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-codegen-plugin</artifactId>
+			<version>3.3.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf.xjc-utils</groupId>
+			<artifactId>cxf-xjc-runtime</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-bindings-soap</artifactId>
+			<version>3.3.5</version>
+		</dependency>
+		<!--		                                         -->
+		<!--		         AXIS-PLUGIN                     -->
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>axistools-maven-plugin</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!--		                                         -->
+		<!--		            MAPSTRUCT                    -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>mapstruct-jdk8</artifactId>
+			<groupId>org.mapstruct</groupId>
+			<version>1.3.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<!--		                                         -->
+		<!--		                OPEN API                 -->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator-maven-plugin</artifactId>
+			<version>5.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<!--		                                         -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.7</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>5.1.0</version>
+				<executions>
+					<execution>
+						<id>generate-swagger-spring-mvc</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/ProvisionApi_v0.0.17_20210604.yaml</inputSpec>
+							<modelPackage>com.telefonica.gal.provisionApi.model</modelPackage>
+							<apiPackage>com.telefonica.gal.provisionApi.api</apiPackage>
+							<generatorName>spring</generatorName>
+							<library>spring-mvc</library>
+							<output>${project.build.directory}/generated-sources/swagger</output>
+							<configOptions>
+								<sourceFolder>src/main/java</sourceFolder>
+								<groupId>${project.groupId}</groupId>
+								<artifactId>${project.artifactId}</artifactId>
+								<version>${project.version}</version>
+								<rootArtifactId>springbootApplication</rootArtifactId>
+							</configOptions>
+							<addCompileSourceRoot>false</addCompileSourceRoot>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>axistools-maven-plugin</artifactId>
+				<version>1.4</version>
+				<configuration>
+					<sourceDirectory>${project.basedir}/src/main/resources/wsdl/getProfile</sourceDirectory>
+					<allElements>true</allElements>
+					<typeMappingVersion>1.1</typeMappingVersion>
+					<wrapArrays>true</wrapArrays>
+					<serverSide>true</serverSide>
+					<skeletonDeploy>true</skeletonDeploy>
+					<wsdlFiles>
+						<wsdlFile>SigaHDServer.wsdl</wsdlFile>
+					</wsdlFiles>
+					<packageSpace>com.telefonica.gal.wsdl.getProfile</packageSpace>
+					<outputDirectory>${project.build.directory}/generated-sources/wsdl/getProfile</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.axis</groupId>
+						<artifactId>axis</artifactId>
+						<version>1.4</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.axis</groupId>
+						<artifactId>axis-jaxrpc</artifactId>
+						<version>1.4</version>
+					</dependency>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>1.2</version>
+					</dependency>
+					<dependency>
+						<groupId>commons-discovery</groupId>
+						<artifactId>commons-discovery</artifactId>
+						<version>0.5</version>
+					</dependency>
+					<dependency>
+						<groupId>axis</groupId>
+						<artifactId>axis-wsdl4j</artifactId>
+						<version>1.5.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.axis</groupId>
+						<artifactId>axis-saaj</artifactId>
+						<version>1.4</version>
+					</dependency>
+					<dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>activation</artifactId>
+						<version>1.1.1</version>
+					</dependency>
+					<dependency>
+						<groupId>javax.mail</groupId>
+						<artifactId>mail</artifactId>
+						<version>1.4.7</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>openApi</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/swagger/src/main/java</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>wsdl</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/wsdl/getProfile</source>
+								<source>${project.build.directory}/generated-sources/jaxb2/getProfile</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

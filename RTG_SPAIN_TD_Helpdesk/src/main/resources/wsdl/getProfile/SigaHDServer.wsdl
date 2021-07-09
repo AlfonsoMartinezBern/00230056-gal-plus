@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://CDBIF_LEGIF_SIGAHD.MiViewTV" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV">
+ <wsdl:types>
+  <xsd:schema targetNamespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV">
+   <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+   <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+   <xsd:complexType name="Error">
+    <xsd:sequence>
+     <xsd:element name="cod_error" type="xsd:string"/>
+     <xsd:element name="texto_error" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="Diagnostico">
+    <xsd:sequence>
+     <xsd:element name="cod_diagnostico" type="xsd:string"/>
+     <xsd:element name="texto_diagnostico" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HidraTypeResult">
+    <xsd:sequence>
+     <xsd:element name="diagnostico" type="tns:Diagnostico" minOccurs="0"/>
+     <xsd:element name="error" type="tns:Error" minOccurs="0"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="Channel">
+    <xsd:all>
+     <xsd:element name="name" type="xsd:string"/>
+     <xsd:element name="addressIP" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="ChannelList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Channel[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="Package">
+    <xsd:all>
+     <xsd:element name="code" type="xsd:string"/>
+     <xsd:element name="title" type="xsd:string"/>
+     <xsd:element name="date_subscriber" type="xsd:string"/>
+     <xsd:element name="date_end_subscriber" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="state" type="xsd:string"/>
+     <xsd:element name="channelList" type="tns:ChannelList"/>
+     <xsd:element name="isInternal" type="xsd:boolean" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="PackageList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Package[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="Subscription">
+    <xsd:all>
+     <xsd:element name="code" type="xsd:string"/>
+     <xsd:element name="title" type="xsd:string"/>
+     <xsd:element name="date_subscriber" type="xsd:string"/>
+     <xsd:element name="date_end_subscriber" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="state" type="xsd:string"/>
+     <xsd:element name="isInternal" type="xsd:boolean" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="BoughtVoD">
+    <xsd:all>
+     <xsd:element name="title" type="xsd:string"/>
+     <xsd:element name="date_buy" type="xsd:string"/>
+     <xsd:element name="date_caducity" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="SubscriptionList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Subscription[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="BoughtVoDList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:BoughtVoD[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="StringArray">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:string[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="ottDataType">
+    <xsd:all>
+     <xsd:element name="mobility_mode" type="xsd:string"/>
+     <xsd:element name="service_user" type="xsd:string"/>
+     <xsd:element name="service_access_key_status" type="xsd:string" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="profileType">
+    <xsd:all>
+     <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="iniDate" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="endDate" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="customer_data1" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="customer_data2" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="geograficAreaId" type="xsd:int"/>
+     <xsd:element name="geograficAreaDesc" type="xsd:string"/>
+     <xsd:element name="userType" type="xsd:string"/>
+     <xsd:element name="serviceTypeId" type="xsd:string"/>
+     <xsd:element name="serviceTypeDesc" type="xsd:string"/>
+     <xsd:element name="hdTV" type="xsd:int"/>
+     <xsd:element name="limitVodPurchases" type="xsd:int"/>
+     <xsd:element name="limitPpvPurchases" type="xsd:int"/>
+     <xsd:element name="limitUserVoucherPurchases" type="xsd:int"/>
+     <xsd:element name="addressing" type="xsd:string"/>
+     <xsd:element name="ipStbList" type="tns:StringArray"/>
+     <xsd:element name="maxNumStbs" type="xsd:int"/>
+     <xsd:element name="upStreamSubscriberLine" type="xsd:int"/>
+     <xsd:element name="downStreamSubscriberLine" type="xsd:int"/>
+     <xsd:element name="ottServiceData" type="tns:ottDataType" minOccurs="0"/>
+     <xsd:element name="menu" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="pricePlan" type="xsd:string" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="PackagesChannels_ContractedRequest">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="cod_admin" type="xsd:string"/>
+     <xsd:element name="date_ini" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="date_end" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="include_internal_products" type="xsd:boolean" minOccurs="0" default="false"/>
+
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="PackagesChannels_ContractedResponse">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="hidra_type_result" type="tns:HidraTypeResult"/>
+     <xsd:element name="packageList" type="tns:PackageList" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="ServicesSubscription_ContractedRequest">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="cod_admin" type="xsd:string"/>
+     <xsd:element name="date_ini" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="date_end" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="include_internal_products" type="xsd:boolean" minOccurs="0" default="false"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="ServicesSubscription_ContractedResponse">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="hidra_type_result" type="tns:HidraTypeResult"/>
+     <xsd:element name="subscriptionList" type="tns:SubscriptionList" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="VoD_BoughtRequest">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="cod_admin" type="xsd:string"/>
+     <xsd:element name="date_ini" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="date_end" type="xsd:string" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="VoD_BoughtResponse">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="hidra_type_result" type="tns:HidraTypeResult"/>
+     <xsd:element name="boughtVoDList" type="tns:BoughtVoDList" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="getProfileRequest">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="cod_admin" type="xsd:string"/>
+     <xsd:element name="include_internal_products" type="xsd:boolean" minOccurs="0" default="false"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="getProfileResponse">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="hidra_type_result" type="tns:HidraTypeResult"/>
+     <xsd:element name="customer_profile" type="tns:profileType" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="getUserIdRequest">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="customer_data" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="getUserIdResponse">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="hidra_type_result" type="tns:HidraTypeResult"/>
+     <xsd:element name="cod_admin" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="MS_PackagesChannels_ContractedResponse">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="hidra_type_result" type="tns:HidraTypeResult"/>
+     <xsd:element name="packageList" type="tns:MS_PackageList" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="MS_PackageList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:MS_Package[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="MS_Package">
+    <xsd:all>
+     <xsd:element name="code" type="xsd:string"/>
+     <xsd:element name="title" type="xsd:string"/>
+     <xsd:element name="date_subscriber" type="xsd:string"/>
+     <xsd:element name="date_end_subscriber" type="xsd:string" minOccurs="0"/>
+     <xsd:element name="state" type="xsd:string"/>
+     <xsd:element name="channelList" type="tns:MS_ChannelList"/>
+     <xsd:element name="isInternal" type="xsd:boolean" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="MS_ChannelList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:MS_Channel[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="MS_Channel">
+    <xsd:all>
+     <xsd:element name="name" type="xsd:string"/>
+     <xsd:element name="medias" type="tns:MediaList"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="MediaList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Media[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="Media">
+    <xsd:all>
+     <xsd:element name="mediaType" type="xsd:string"/>
+     <xsd:element name="mediaDesc" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="MS_getProfileResponse">
+    <xsd:all>
+     <xsd:element name="orden_hidra" type="xsd:string"/>
+     <xsd:element name="hidra_type_result" type="tns:HidraTypeResult"/>
+     <xsd:element name="status" type="xsd:string"/>
+     <xsd:element name="profile" type="tns:Profile"/>
+     <xsd:element name="deviceTypes" type="tns:DeviceTypeList"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="Profile">
+    <xsd:all>
+     <xsd:element name="userType" type="xsd:string"/>
+     <xsd:element name="tvPackages" type="tns:TVPackageList"/>
+     <xsd:element name="subscriptions" type="tns:MSSubscriptionList"/>
+     <xsd:element name="operatorVouchers" type="tns:OperatorVoucherList"/>
+     <xsd:element name="purchasesLimits" type="tns:PurchasesLimits"/>
+     <xsd:element name="authentication" type="tns:Authentication" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="TVPackageList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:TVPackage[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="TVPackage">
+    <xsd:all>
+     <xsd:element name="code" type="xsd:string"/>
+     <xsd:element name="title" type="xsd:string"/>
+     <xsd:element name="status" type="xsd:string"/>
+     <xsd:element name="isInternal" type="xsd:boolean" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="MSSubscriptionList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:MSSubscription[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="MSSubscription">
+    <xsd:all>
+     <xsd:element name="code" type="xsd:string"/>
+     <xsd:element name="title" type="xsd:string"/>
+     <xsd:element name="status" type="xsd:string"/>
+     <xsd:element name="isInternal" type="xsd:boolean" minOccurs="0"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="OperatorVoucherList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:OperatorVoucher[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="OperatorVoucher">
+    <xsd:all>
+     <xsd:element name="code" type="xsd:string"/>
+     <xsd:element name="title" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="PurchasesLimits">
+    <xsd:all>
+     <xsd:element name="vod" type="xsd:int"/>
+     <xsd:element name="ppv" type="xsd:int"/>
+     <xsd:element name="userVoucher" type="xsd:int"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="Authentication">
+    <xsd:all>
+     <xsd:element name="username" type="xsd:string"/>
+     <xsd:element name="password" type="xsd:string"/>
+     <xsd:element name="keyStatus" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="DeviceTypeList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:DeviceType[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="DeviceType">
+    <xsd:all>
+     <xsd:element name="type" type="xsd:string"/>
+     <xsd:element name="maxDevices" type="xsd:int"/>
+     <xsd:element name="iptvData" type="tns:IPTVData" minOccurs="0"/>
+     <xsd:element name="devices" type="tns:DeviceList"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="IPTVData">
+    <xsd:all>
+     <xsd:element name="serviceType" type="xsd:string"/>
+     <xsd:element name="serviceTypeDesc" type="xsd:string"/>
+     <xsd:element name="pop" type="xsd:string"/>
+     <xsd:element name="geographicArea" type="xsd:int"/>
+     <xsd:element name="geographicAreaDesc" type="xsd:string"/>
+     <xsd:element name="hdtv" type="xsd:int"/>
+     <xsd:element name="bandwidth" type="tns:Bandwidth"/>
+     <xsd:element name="addressing" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="Bandwidth">
+    <xsd:all>
+     <xsd:element name="upstream" type="xsd:int"/>
+     <xsd:element name="downstream" type="xsd:int"/>
+    </xsd:all>
+   </xsd:complexType>
+   <xsd:complexType name="DeviceList">
+    <xsd:complexContent>
+     <xsd:restriction base="SOAP-ENC:Array">
+      <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Device[]"/>
+     </xsd:restriction>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="Device">
+    <xsd:all>
+     <xsd:element name="deviceId" type="xsd:string"/>
+     <xsd:element name="status" type="xsd:int"/>
+     <xsd:element name="provisionType" type="xsd:string"/>
+    </xsd:all>
+   </xsd:complexType>
+  </xsd:schema>
+ </wsdl:types>
+ <message name="packagesChannels_ContractedRequest">
+  <part name="packagesChannels_ContractedRequest" type="tns:PackagesChannels_ContractedRequest" />
+ </message>
+ <message name="packagesChannels_ContractedResponse">
+  <part name="packagesChannels_ContractedResponse" type="tns:PackagesChannels_ContractedResponse" />
+ </message>
+ <message name="servicesSubscription_ContractedRequest">
+  <part name="servicesSubscription_ContractedRequest" type="tns:ServicesSubscription_ContractedRequest" />
+ </message>
+ <message name="servicesSubscription_ContractedResponse">
+  <part name="servicesSubscription_ContractedResponse" type="tns:ServicesSubscription_ContractedResponse" />
+ </message>
+ <message name="voD_BoughtRequest">
+  <part name="voD_BoughtRequest" type="tns:VoD_BoughtRequest" />
+ </message>
+ <message name="voD_BoughtResponse">
+  <part name="voD_BoughtResponse" type="tns:VoD_BoughtResponse" />
+ </message>
+ <message name="getProfileRequest">
+  <part name="getProfileRequest" type="tns:getProfileRequest" />
+ </message>
+ <message name="getProfileResponse">
+  <part name="getProfileResponse" type="tns:getProfileResponse" />
+ </message>
+ <message name="getUserIdRequest">
+  <part name="getUserIdRequest" type="tns:getUserIdRequest" />
+ </message>
+ <message name="getUserIdResponse">
+  <part name="getUserIdResponse" type="tns:getUserIdResponse" />
+ </message>
+ <message name="ms_packagesChannels_ContractedRequest">
+  <part name="packagesChannels_ContractedRequest" type="tns:PackagesChannels_ContractedRequest" />
+ </message>
+ <message name="ms_packagesChannels_ContractedResponse">
+  <part name="packagesChannels_ContractedResponse" type="tns:MS_PackagesChannels_ContractedResponse" />
+ </message>
+ <message name="ms_getProfileRequest">
+  <part name="getProfileRequest" type="tns:getProfileRequest" />
+ </message>
+ <message name="ms_getProfileResponse">
+  <part name="getProfileResponse" type="tns:MS_getProfileResponse" />
+ </message>
+ <portType name="MiViewTV_CDBIF_LEGIF_SIGAHDPortType">
+  <operation name="packagesChannels_Contracted">
+   <input message="tns:packagesChannels_ContractedRequest"/>
+   <output message="tns:packagesChannels_ContractedResponse"/>
+  </operation>
+  <operation name="servicesSubscription_Contracted">
+   <input message="tns:servicesSubscription_ContractedRequest"/>
+   <output message="tns:servicesSubscription_ContractedResponse"/>
+  </operation>
+  <operation name="voD_Bought">
+   <input message="tns:voD_BoughtRequest"/>
+   <output message="tns:voD_BoughtResponse"/>
+  </operation>
+  <operation name="getProfile">
+   <input message="tns:getProfileRequest"/>
+   <output message="tns:getProfileResponse"/>
+  </operation>
+  <operation name="getUserId">
+   <input message="tns:getUserIdRequest"/>
+   <output message="tns:getUserIdResponse"/>
+  </operation>
+  <operation name="ms_packagesChannels_Contracted">
+   <input message="tns:ms_packagesChannels_ContractedRequest"/>
+   <output message="tns:ms_packagesChannels_ContractedResponse"/>
+  </operation>
+  <operation name="ms_getProfile">
+   <input message="tns:ms_getProfileRequest"/>
+   <output message="tns:ms_getProfileResponse"/>
+  </operation>
+ </portType>
+ <binding name="MiViewTV_CDBIF_LEGIF_SIGAHDBinding" type="tns:MiViewTV_CDBIF_LEGIF_SIGAHDPortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="packagesChannels_Contracted">
+   <soap:operation soapAction="https://127.0.0.1:9304/SigaHDServer.php" style="rpc"/>
+   <input>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </input>
+   <output>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </output>
+  </operation>
+  <operation name="servicesSubscription_Contracted">
+   <soap:operation soapAction="https://127.0.0.1:9304/SigaHDServer.php" style="rpc"/>
+   <input>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </input>
+   <output>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </output>
+  </operation>
+  <operation name="voD_Bought">
+   <soap:operation soapAction="https://127.0.0.1:9304/SigaHDServer.php" style="rpc"/>
+   <input>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </input>
+   <output>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </output>
+  </operation>
+  <operation name="getProfile">
+   <soap:operation soapAction="https://127.0.0.1:9304/SigaHDServer.php" style="rpc"/>
+   <input>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </input>
+   <output>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </output>
+  </operation>
+  <operation name="getUserId">
+   <soap:operation soapAction="https://127.0.0.1:9304/SigaHDServer.php" style="rpc"/>
+   <input>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </input>
+   <output>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </output>
+  </operation>
+  <operation name="ms_packagesChannels_Contracted">
+   <soap:operation soapAction="https://127.0.0.1:9304/SigaHDServer.php" style="rpc"/>
+   <input>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </input>
+   <output>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </output>
+  </operation>
+  <operation name="ms_getProfile">
+   <soap:operation soapAction="https://127.0.0.1:9304/SigaHDServer.php" style="rpc"/>
+   <input>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </input>
+   <output>
+    <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="MiViewTV_CDBIF_LEGIF_SIGAHD">
+  <port name="MiViewTV_CDBIF_LEGIF_SIGAHDPort" binding="tns:MiViewTV_CDBIF_LEGIF_SIGAHDBinding">
+   <soap:address location="https://127.0.0.1:9304/SigaHDServer.php"/>
+  </port>
+ </service>
+</definitions>

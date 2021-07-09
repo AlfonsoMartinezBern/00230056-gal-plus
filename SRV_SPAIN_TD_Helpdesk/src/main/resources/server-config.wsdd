@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <service name="SigaHDServer.php" provider="java:RPC" style="rpc" use="encoded">
+    <parameter name="wsdlTargetNamespace" value="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+    <parameter name="wsdlServiceElement" value="MiViewTV_CDBIF_LEGIF_SIGAHD"/>
+    <parameter name="schemaUnqualified" value="http://CDBIF_LEGIF_SIGAHD.MiViewTV"/>
+    <parameter name="wsdlServicePort" value="MiViewTV_CDBIF_LEGIF_SIGAHDPort"/>
+    <parameter name="className" value="com.telefonica.gal.SRV_SPAIN_TD_Helpdesk.api.ApiHelpdeskServiceImpl"/>
+    <parameter name="wsdlPortType" value="MiViewTV_CDBIF_LEGIF_SIGAHDPortType"/>
+    <parameter name="typeMappingVersion" value="1.1"/>
+    <parameter name="allowedMethods" value="*"/>
+    <parameter name="sendMultiRefs" value="false"/>
+
+    <operation name="getProfile" returnQName="getProfileResponse" returnType='ns:getProfileResponse'>
+        <documentation>This operation returns getProfile Response</documentation>
+        <parameter name="getProfileRequest" type="ns:getProfileRequest" mode="in">
+            <documentation>getProfile Request</documentation>
+        </parameter>
+    </operation>
+
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MS_getProfileResponse"
+        type="java:com.telefonica.gal.wsdl.getProfile.MS_getProfileResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Diagnostico"
+        type="java:com.telefonica.gal.wsdl.getProfile.Diagnostico"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:getProfileResponse"
+        type="java:com.telefonica.gal.wsdl.getProfile.GetProfileResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:getUserIdRequest"
+        type="java:com.telefonica.gal.wsdl.getProfile.GetUserIdRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Profile"
+        type="java:com.telefonica.gal.wsdl.getProfile.Profile"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:PurchasesLimits"
+        type="java:com.telefonica.gal.wsdl.getProfile.PurchasesLimits"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:OperatorVoucherList"
+        type="java:com.telefonica.gal.wsdl.getProfile.OperatorVoucher[]"
+        innerType="cmp-ns:OperatorVoucher" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MSSubscriptionList"
+        type="java:com.telefonica.gal.wsdl.getProfile.MSSubscription[]"
+        innerType="cmp-ns:MSSubscription" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Bandwidth"
+        type="java:com.telefonica.gal.wsdl.getProfile.Bandwidth"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:VoD_BoughtResponse"
+        type="java:com.telefonica.gal.wsdl.getProfile.VoD_BoughtResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MS_Channel"
+        type="java:com.telefonica.gal.wsdl.getProfile.MS_Channel"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MS_ChannelList"
+        type="java:com.telefonica.gal.wsdl.getProfile.MS_Channel[]"
+        innerType="cmp-ns:MS_Channel" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:TVPackage"
+        type="java:com.telefonica.gal.wsdl.getProfile.TVPackage"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:PackagesChannels_ContractedResponse"
+        type="java:com.telefonica.gal.wsdl.getProfile.PackagesChannels_ContractedResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:ServicesSubscription_ContractedRequest"
+        type="java:com.telefonica.gal.wsdl.getProfile.ServicesSubscription_ContractedRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:getProfileRequest"
+        type="java:com.telefonica.gal.wsdl.getProfile.GetProfileRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:getUserIdResponse"
+        type="java:com.telefonica.gal.wsdl.getProfile.GetUserIdResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:IPTVData"
+        type="java:com.telefonica.gal.wsdl.getProfile.IPTVData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Error"
+        type="java:com.telefonica.gal.wsdl.getProfile.Error"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:DeviceList"
+        type="java:com.telefonica.gal.wsdl.getProfile.Device[]"
+        innerType="cmp-ns:Device" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:HidraTypeResult"
+        type="java:com.telefonica.gal.wsdl.getProfile.HidraTypeResult"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Authentication"
+        type="java:com.telefonica.gal.wsdl.getProfile.Authentication"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:PackageList"
+        type="java:com.telefonica.gal.wsdl.getProfile._package[]"
+        innerType="cmp-ns:Package" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:VoD_BoughtRequest"
+        type="java:com.telefonica.gal.wsdl.getProfile.VoD_BoughtRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:SubscriptionList"
+        type="java:com.telefonica.gal.wsdl.getProfile.Subscription[]"
+        innerType="cmp-ns:Subscription" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MS_Package"
+        type="java:com.telefonica.gal.wsdl.getProfile.MS_Package"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MS_PackageList"
+        type="java:com.telefonica.gal.wsdl.getProfile.MS_Package[]"
+        innerType="cmp-ns:MS_Package" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:BoughtVoDList"
+        type="java:com.telefonica.gal.wsdl.getProfile.BoughtVoD[]"
+        innerType="cmp-ns:BoughtVoD" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:OperatorVoucher"
+        type="java:com.telefonica.gal.wsdl.getProfile.OperatorVoucher"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MediaList"
+        type="java:com.telefonica.gal.wsdl.getProfile.Media[]"
+        innerType="cmp-ns:Media" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:StringArray"
+        type="java:java.lang.String[]"
+        innerType="cmp-ns:string" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:profileType"
+        type="java:com.telefonica.gal.wsdl.getProfile.ProfileType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:BoughtVoD"
+        type="java:com.telefonica.gal.wsdl.getProfile.BoughtVoD"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:ChannelList"
+        type="java:com.telefonica.gal.wsdl.getProfile.Channel[]"
+        innerType="cmp-ns:Channel" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Subscription"
+        type="java:com.telefonica.gal.wsdl.getProfile.Subscription"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:TVPackageList"
+        type="java:com.telefonica.gal.wsdl.getProfile.TVPackage[]"
+        innerType="cmp-ns:TVPackage" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Device"
+        type="java:com.telefonica.gal.wsdl.getProfile.Device"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Channel"
+        type="java:com.telefonica.gal.wsdl.getProfile.Channel"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:ottDataType"
+        type="java:com.telefonica.gal.wsdl.getProfile.OttDataType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:ServicesSubscription_ContractedResponse"
+        type="java:com.telefonica.gal.wsdl.getProfile.ServicesSubscription_ContractedResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Media"
+        type="java:com.telefonica.gal.wsdl.getProfile.Media"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:PackagesChannels_ContractedRequest"
+        type="java:com.telefonica.gal.wsdl.getProfile.PackagesChannels_ContractedRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <arrayMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:DeviceTypeList"
+        type="java:com.telefonica.gal.wsdl.getProfile.DeviceType[]"
+        innerType="cmp-ns:DeviceType" xmlns:cmp-ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MSSubscription"
+        type="java:com.telefonica.gal.wsdl.getProfile.MSSubscription"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:DeviceType"
+        type="java:com.telefonica.gal.wsdl.getProfile.DeviceType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:MS_PackagesChannels_ContractedResponse"
+        type="java:com.telefonica.gal.wsdl.getProfile.MS_PackagesChannels_ContractedResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+    <typeMapping
+        xmlns:ns="http://CDBIF_LEGIF_SIGAHD.MiViewTV"
+        qname="ns:Package"
+        type="java:com.telefonica.gal.wsdl.getProfile._package"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    />
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+  <parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>
