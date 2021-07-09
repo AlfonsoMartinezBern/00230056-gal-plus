@@ -294,6 +294,46 @@
 				"errorCode": "201",
 				"errorDescription": "Falta campo obligatorio 'OPERATION_ID'"
 			}
+		},
+
+		{
+			"errorCode": "SAT-01",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "Parameter [clientSegmentName] not found in the request"
+			}
+		},
+
+		{
+			"errorCode": "SAT-02",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "transactionalPurchases value not valid"
+			}
+		},
+
+		{
+			"errorCode": "SAT-03",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "downloadToGo value not valid"
+			}
+		},
+
+		{
+			"errorCode": "SAT-04",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "maxNumDevices value not valid"
+			}
+		},
+
+		{
+			"errorCode": "SAT-05",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "Parameter [code] is required in subscribedProducts ."
+			}
 		}
 	]
 	

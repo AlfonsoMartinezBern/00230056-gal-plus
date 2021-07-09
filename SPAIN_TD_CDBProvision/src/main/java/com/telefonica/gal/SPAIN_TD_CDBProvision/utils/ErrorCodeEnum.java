@@ -2,11 +2,11 @@ package com.telefonica.gal.SPAIN_TD_CDBProvision.utils;
 
 public enum ErrorCodeEnum {
 
-    OBLIGATORY_FIELD_CLIENT_SEGMENT_NAME("Parameter [clientSegmentName] not found in the request"),
-    FORMAT_ERROR_TRANSACTIONAL_PURCHASES("transactionalPurchases value not valid"),
-    FORMAT_ERROR_DOWNLOAD_TO_GO("downloadToGo value not valid"),
-    FORMAT_ERROR_MAX_NUM_DEVICES("maxNumDevices value not valid"),
-    OBLIGATORY_FIELD_CODE("Parameter [code] is required in subscribedProducts .");
+    OBLIGATORY_FIELD_CLIENT_SEGMENT_NAME("SAT-01"),
+    FORMAT_ERROR_TRANSACTIONAL_PURCHASES("SAT-02"),
+    FORMAT_ERROR_DOWNLOAD_TO_GO("SAT-03"),
+    FORMAT_ERROR_MAX_NUM_DEVICES("SAT-04"),
+    OBLIGATORY_FIELD_CODE("SAT-05");
 
     private String value;
 

@@ -53,15 +53,10 @@ public class ValidateConsolidation {
             for (TVSERVICE tvservice : request.getLISTTVSERVICES().getTVSERVICE()) {
                 if (tvservice.getTVSERVICEID() == null || tvservice.getTVSERVICEID().isEmpty()) {
                     throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_TV_SERVICE_ID.getValue(), userId, operationId);
-
                 }
 
-                if (tvservice.getTVSERVICEID().length() > 32) {
-
+                if (!tvservice.getTVSERVICEID().matches("[\\p{ASCII}&&[^\\x5F]]{1,32}")) {
                     throw new ConsolidationException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_ID.getValue(), tvservice.getTVSERVICEID(), userId, operationId);
-
-                    /*throw new ConsolidationException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_ID.getValue(),
-                                                                    tvservice.getTVSERVICEID());*/
 
                 } else {
                     if (tvservice.getTVSERVICEOPER() == null)
@@ -83,7 +78,7 @@ public class ValidateConsolidation {
                     throw new ConsolidationException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_ID.getValue(), vodservice.getVODSERVICEID(), userId, operationId);
                 } else {
                     if (vodservice.getVODSERVICEOPER() == null)
-                        throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_VOD_SERVICE_ID.getValue(), userId, operationId);
+                        throw new ConsolidationException().getErrorInfo(ErrorCodeEnum.OBLIGATORY_FIELD_VOD_SERVICE_OPER.getValue(), userId, operationId);
                     if (!vodservice.getVODSERVICEOPER().value().equals("ON") && !vodservice.getVODSERVICEOPER().value().equals("OFF") && !vodservice.getVODSERVICEOPER().value().equals("KEEP"))
                         throw new ConsolidationException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), vodservice.getVODSERVICEOPER().toString(), userId, operationId);
                 }
@@ -120,7 +115,7 @@ public class ValidateConsolidation {
                         tvServiceOper = new JSONObject(new JSONObject(tvService.toString()).toString()).get("VOD_SERVICE_OPER").toString();
                         if (tvServiceOper == null || tvServiceOper == "" || tvServiceOper.isEmpty() || tvServiceOper.isBlank()) return;
                         if (!tvServiceOper.equals("ON") && !tvServiceOper.equals("OFF") && !tvServiceOper.equals("MOD"))
-                            throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);
+                            throw new CustomerException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), tvServiceOper, userId, operationId);
                     }
                 }
             } else {
@@ -139,7 +134,7 @@ public class ValidateConsolidation {
                     tvServiceOper = new JSONObject(new JSONObject(new JSONObject(new JSONObject(customerString).get("LIST_TV_SERVICES").toString()).get("TV_SERVICE").toString()).toString()).get("TV_SERVICE_OPER").toString();
                     if (tvServiceOper == null || tvServiceOper == "" || tvServiceOper.isEmpty() || tvServiceOper.isBlank()) return;
                     if (!tvServiceOper.equals("ON") && !tvServiceOper.equals("OFF") && !tvServiceOper.equals("MOD"))
-                        throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_OPER.getValue(), userId, operationId);
+                        throw new CustomerException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_TV_SERVICE_OPER.getValue(), tvServiceOper, userId, operationId);
                 }
 
                 if (customerString.contains("\"VOD_SERVICE\":[")) {
@@ -147,13 +142,13 @@ public class ValidateConsolidation {
                         tvServiceOper = new JSONObject(new JSONObject(tvService.toString()).toString()).get("VOD_SERVICE_OPER").toString();
                         if (tvServiceOper == null || tvServiceOper == "" || tvServiceOper.isEmpty() || tvServiceOper.isBlank()) return;
                         if (!tvServiceOper.equals("ON") && !tvServiceOper.equals("OFF") && !tvServiceOper.equals("MOD"))
-                            throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);
+                            throw new CustomerException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), tvServiceOper, userId, operationId);
                     }
                 } else {
                     tvServiceOper = new JSONObject(new JSONObject(new JSONObject(new JSONObject(customerString).get("LIST_VOD_SERVICES").toString()).get("VOD_SERVICE").toString()).toString()).get("VOD_SERVICE_OPER").toString();
                     if (tvServiceOper == null || tvServiceOper == "" || tvServiceOper.isEmpty() || tvServiceOper.isBlank()) return;
                     if (!tvServiceOper.equals("ON") && !tvServiceOper.equals("OFF") && !tvServiceOper.equals("MOD"))
-                        throw new CustomerException().getErrorInfo(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), userId, operationId);
+                        throw new CustomerException().getErrorInfoListService(ErrorCodeEnum.FORMAT_ERROR_VOD_SERVICE_OPER.getValue(), tvServiceOper, userId, operationId);
                 }
             }
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-{ 
+{
 "version":"0.0.1",
 "info":"created 2021-03-22",
 "routes":
@@ -21,7 +21,7 @@
     }],
      "flows": [{"step":1,"endpointID":"02","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"01","type":"replica","active":true, "synchronous":true}]
   },
-  
+
   {
     "operationTD": "ServicesConsolidation",
     "endpoints": [{
@@ -40,7 +40,7 @@
     }],
      "flows": [{"step":1,"endpointID":"02","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"01","type":"replica","active":true, "synchronous":true}]
   },
-  
+
   {
     "operationTD": "CDBProvision",
     "endpoints": [{

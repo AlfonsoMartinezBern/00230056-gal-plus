@@ -19,8 +19,8 @@ public class CDBProvisionValidator {
             throw new CustomerException().getErrorInfo(resultCode, ErrorCodeEnum.OBLIGATORY_FIELD_CLIENT_SEGMENT_NAME.getValue(), "Bad request.");
 
         }
-        // Formato clientSegmentName
 
+        // Formato clientSegmentName
         if (cdbProvisionRequest.getServiceFlags() != null) {
             if (cdbProvisionRequest.getServiceFlags().getTransactionalPurchases() != null) {
                 cdbProvisionRequest.getServiceFlags().getTransactionalPurchases();
