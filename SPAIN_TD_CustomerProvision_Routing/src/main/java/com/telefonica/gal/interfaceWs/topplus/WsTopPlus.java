@@ -115,6 +115,9 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
         LOGGER.info("==== REQUEST TOP -------> " + customerRequest + "\n");
 
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("x-mock-match-request-body", "true");
+
         try {
             for (Customer customer : customerRequest.getCustomers().getCustomer()) {
 
@@ -126,7 +129,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users";
                         LOGGER.info("URL TOP+     ---> " + URL);
 
-                        ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, requestON, String.class);
+                        ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, requestON, String.class, params);
                         LOGGER.info("METODO REST: postForEntity   ");
 
                         if(resultTop.getStatusCode().value() == ResponseCodeOK) {
@@ -149,7 +152,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         LOGGER.info("UNIQUEID PETICION DELETE TOP ========> " + uniqueId);
                         LOGGER.info("URL TOP+     ---> " + URL);
 
-                        restTemplate.delete(URL, ResultOK.class);
+                        restTemplate.delete(URL, ResultOK.class, params);
                         LOGGER.info("METODO REST: delete   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
@@ -167,7 +170,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestMOD.getUniqueId();
                         LOGGER.info("URL TOP+     ---> " + URL);
 
-                        restTemplate.put(URL, requestMOD);
+                        restTemplate.put(URL, requestMOD, params);
                         LOGGER.info("METODO REST: put   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
@@ -185,7 +188,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/" + requestN.getUniqueId() +"/move/start";
                         LOGGER.info("URL TOP+     ---> " + URL);
 
-                        restTemplate.put(URL, requestN);
+                        restTemplate.put(URL, requestN, params);
                         LOGGER.info("METODO REST: put   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
@@ -203,7 +206,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
                         URL = endpointTD.getTargetEndpoint() + "/instances/" + endpointTD.getInstanceID() + "/users/"+ requestD.getUniqueId() +"/move/end";
                         LOGGER.info("URL TOP+     ---> " + URL);
 
-                        restTemplate.put(URL, requestD);
+                        restTemplate.put(URL, requestD, params);
                         LOGGER.info("METODO REST: put   ");
 
                         customerReponse = responseInfoError(codeResponseOK);
