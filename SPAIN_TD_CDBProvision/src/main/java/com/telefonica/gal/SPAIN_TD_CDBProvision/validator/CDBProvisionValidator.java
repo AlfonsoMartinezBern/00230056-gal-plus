@@ -36,8 +36,10 @@ public class CDBProvisionValidator {
             }
 
         }
+
         if (cdbProvisionRequest.getDevices() != null && cdbProvisionRequest.getDevices().getMaxNumDevices() != null) {
-            if (cdbProvisionRequest.getDevices().getMaxNumDevices() > 99)
+            if (cdbProvisionRequest.getDevices().getMaxNumDevices() < -1 ||
+                cdbProvisionRequest.getDevices().getMaxNumDevices() > 99)
                 throw new CustomerException().getErrorInfo(resultCode, ErrorCodeEnum.FORMAT_ERROR_MAX_NUM_DEVICES.getValue(), "Bad request.");
         }
 

@@ -1,14 +1,11 @@
 package com.telefonica.gal.provisionApi.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.exceptions.CustomerException;
-import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.exceptions.ErrorMessage;
-import com.telefonica.gal.SPAIN_TD_CDBProvision_Routing.utils.ErrorCodeEnum;
-import com.telefonica.gal.provisionApi.model.ProvisionOttUserBASEFlagsServiceFlags.TransactionalPurchasesEnum;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CDBProvisionRequest {
 
     @JsonProperty("clientSegmentName")
@@ -18,7 +15,7 @@ public class CDBProvisionRequest {
     private ProvisionOttUserBASEDevicesDevices devices;
 
     @JsonProperty("serviceFlags")
-    private ProvisionOttUserBASEFlagsServiceFlags serviceFlags;
+    private ServiceFlags serviceFlags;
 
     @JsonProperty("subscribedProducts")
     private List<SubscribedProduct> subscribedProducts;
@@ -31,13 +28,21 @@ public class CDBProvisionRequest {
         this.clientSegmentName = clientSegmentName;
     }
 
-    public ProvisionOttUserBASEFlagsServiceFlags getServiceFlags() {
+    public ServiceFlags getServiceFlags() {
+        return serviceFlags;
+    }
+
+    public void setServiceFlags(ServiceFlags serviceFlags) {
+        this.serviceFlags = serviceFlags;
+    }
+
+    /*public ProvisionOttUserBASEFlagsServiceFlags getServiceFlags() {
         return serviceFlags;
     }
 
     public void setServiceFlags(ProvisionOttUserBASEFlagsServiceFlags serviceFlags) {
         this.serviceFlags = serviceFlags;
-    }
+    }*/
 
     public ProvisionOttUserBASEDevicesDevices getDevices() {
         return devices;
@@ -57,7 +62,7 @@ public class CDBProvisionRequest {
 
     public CDBProvisionRequest() {}
 
-    public CDBProvisionRequest(String request) throws ErrorMessage {
+    /*public CDBProvisionRequest(String request) throws ErrorMessage {
         SubscribedProduct subscribedProduct = new SubscribedProduct();
         String row_aux;
         int index, sw = 0;
@@ -140,5 +145,5 @@ public class CDBProvisionRequest {
                 }
             }
         }
-    }
+    }*/
 }

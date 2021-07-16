@@ -2,7 +2,7 @@ Configuration:
   properties:
     property:
       name: log-path
-      value: "/home/desarrollo"
+      value: "${env:HOME}"
 
   appenders:
     Console:

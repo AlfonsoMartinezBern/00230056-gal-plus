@@ -11,14 +11,9 @@ import com.telefonica.gal.client.spain.dynamicrouting.td.msg.RoutingTDKey;
 import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import java.io.StringReader;
 import java.util.UUID;
 
 @Service
@@ -40,9 +35,29 @@ public class CDBProvisionServiceImpl implements CDBProvisionService {
     }
 
     @Override
-    public String provisionOTTAdminCodePut(String adminCode, String request) {
+    public String provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest request) {
 
         try {
+            cdbProvisionValidator.isValid(request);
+
+            System.out.println("System request is Valid");
+
+            RoutingTDInfo routingTDInfo = dynamicRoutingTD.search(new RoutingTDKey(CDBProvision));
+            String result = factoryTD.invokeWs(routingTDInfo, request, adminCode);
+
+            return result.contains("InlineResponse200") ? "" : result;
+
+        } catch (ErrorMessage errorMessage) {
+            LogCustomer logCustomer = new LogCustomer();
+            logCustomer.setIdLog(UUID.randomUUID().toString());
+            logCustomer.setServiceInfo(serviceInfoDto);
+            logCustomer.setMessage(errorMessage.getMessage());
+            loggerWithCustomLayout.error(logCustomer);
+            return errorMessage.toString();
+        }
+
+
+        /*try {
             CDBProvisionRequest cdbProvisionRequest = new CDBProvisionRequest(request);
 
             cdbProvisionValidator.isValid(cdbProvisionRequest);
@@ -61,6 +76,6 @@ public class CDBProvisionServiceImpl implements CDBProvisionService {
         } catch (Exception e) {
             loggerWithCustomLayout.error(e.getMessage());
             return null;
-        }
+        }*/
     }
 }

@@ -1,6 +1,5 @@
 package com.telefonica.gal.SPAIN_TD_CDBProvision.api;
 
-import com.telefonica.gal.SPAIN_TD_CDBProvision.dto.LogCustomer;
 import com.telefonica.gal.SPAIN_TD_CDBProvision.dto.ServiceInfoCustomer;
 import com.telefonica.gal.SPAIN_TD_CDBProvision.exceptions.ErrorMessage;
 import com.telefonica.gal.SPAIN_TD_CDBProvision.service.CDBProvisionService;
@@ -12,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/cdbprovision")
@@ -31,7 +28,7 @@ public class ApiCDBProvisionServiceImpl implements ApiCDBProvisionService {
 
     @Override
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/rest/provision/OTT/{adminCode}")
-    public ResponseEntity<String> provisionOTTAdminCodePut(@PathVariable String adminCode, @RequestBody String cdbProvisionRequest) throws ErrorMessage{
+    public ResponseEntity<String> provisionOTTAdminCodePut(@PathVariable String adminCode, @RequestBody CDBProvisionRequest cdbProvisionRequest) throws ErrorMessage{
             LOGGER.info("Customer request CreateUser=========== ");
 
             ResponseEntity<String> responseEntity = new ResponseEntity<String>(cdbProvisionService.provisionOTTAdminCodePut(adminCode, cdbProvisionRequest), HttpStatus.OK);

@@ -2,9 +2,8 @@ package com.telefonica.gal.SPAIN_TD_CDBProvision.api;
 
 import com.telefonica.gal.SPAIN_TD_CDBProvision.exceptions.ErrorMessage;
 import com.telefonica.gal.provisionApi.model.CDBProvisionRequest;
-
 import org.springframework.http.ResponseEntity;
 
 public interface ApiCDBProvisionService {
-    ResponseEntity<String> provisionOTTAdminCodePut(String adminCode, String cdbProvisionRequest) throws Exception, ErrorMessage;
+    ResponseEntity<String> provisionOTTAdminCodePut(String adminCode, CDBProvisionRequest cdbProvisionRequest) throws Exception, ErrorMessage;
 }

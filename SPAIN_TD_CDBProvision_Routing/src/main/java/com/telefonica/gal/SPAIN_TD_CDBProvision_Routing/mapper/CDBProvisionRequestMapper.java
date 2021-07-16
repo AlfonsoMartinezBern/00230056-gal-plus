@@ -25,7 +25,7 @@ public interface CDBProvisionRequestMapper {
     User userDataMapper(CDBProvisionRequest request, String adminCode);
 
     default Integer getLimitVodPurchases(CDBProvisionRequest request) {
-        if (request.getServiceFlags().getTransactionalPurchases().equals(true)) {
+        if (request.getServiceFlags().getTransactionalPurchases().equals(1)) {
             return -1;
         } else {
             return 0;
