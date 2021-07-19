@@ -83,6 +83,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
 
     @Override
     public T invoke() {
+        String responseOK = new String("");
         mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
         restTemplate.setErrorHandler(new HttpErrorsCDBProvision());
@@ -105,7 +106,7 @@ public class WsTopPlus<T> implements InvokeWs<T> {
             ResponseEntity<String> resultTop = restTemplate.postForEntity(URL, request, String.class);
 
             if (resultTop.getStatusCode().value() == ResponseCodeOK) {
-                return null;
+                return (T) responseOK;
             } else {
                 JSONObject jsonObject = new JSONObject(resultTop.getBody());
                 String codeError = jsonObject.get("statusCode").toString();

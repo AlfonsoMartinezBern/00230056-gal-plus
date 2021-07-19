@@ -20,25 +20,25 @@ public interface CDBProvisionRequestMapper {
     @Mapping(constant = "OTT", target = "serviceType")
     @Mapping(source = "request.clientSegmentName", target = "commercialOffer")
     @Mapping(target = "limitVodPurchases", expression = "java(getLimitVodPurchases(request))")
-    @Mapping(target = "products.productsMode", expression = "java(getProductsMode())")
+    //@Mapping(target = "products.productsMode", expression = "java(getProductsMode())")
     @Mapping(target = "products", expression = "java(getUserProducts(request))")
     User userDataMapper(CDBProvisionRequest request, String adminCode);
 
-    default Integer getLimitVodPurchases(CDBProvisionRequest request) {
-        if (request.getServiceFlags().getTransactionalPurchases().equals(1)) {
+    default Integer getLimitVodPurchases(CDBProvisionRequest cDBProvisionRequest) {
+        if (cDBProvisionRequest.getServiceFlags().getTransactionalPurchases().equals(1)) {
             return -1;
         } else {
             return 0;
         }
     }
 
-    default UserProducts getUserProducts(CDBProvisionRequest request) {
+    default UserProducts getUserProducts(CDBProvisionRequest cDBProvisionRequest) {
         UserProducts userProducts = new UserProducts();
 
         List<Subscription> subscriptionsList = new ArrayList<>();
         Subscription subscription = new Subscription();
 
-        for (SubscribedProduct subscribedProduct : request.getSubscribedProducts()) {
+        for (SubscribedProduct subscribedProduct : cDBProvisionRequest.getSubscribedProducts()) {
             subscription.setOperation(ProductOperation.ON);
             subscription.setProductId(subscribedProduct.getCode());
             subscription.setPendingConsolidation(0);
@@ -46,11 +46,12 @@ public interface CDBProvisionRequestMapper {
         }
 
         userProducts.setSubscriptionsList(subscriptionsList);
+        userProducts.setProductsMode(ProductsMode.SNAPSHOT);
 
         return userProducts;
     }
 
-    default ProductsMode getProductsMode() {
+    /*default ProductsMode getProductsMode() {
         return ProductsMode.SNAPSHOT;
-    }
+    }*/
 }

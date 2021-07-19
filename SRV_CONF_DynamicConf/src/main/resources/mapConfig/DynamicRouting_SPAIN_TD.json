@@ -47,17 +47,17 @@
     "id": "01",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://localhost:8096/",
+    "targetEndpoint": "http://localhost:8096/test",
     "endpointType": "MIVIEWTV"
     },
     {
     "id": "02",
     "instanceID": 2,
     "platformID": 2,
-    "targetEndpoint": "http://localhost:8095/",
+    "targetEndpoint": "http://localhost:8095/test",
     "endpointType": "TOP+"
     }],
-     "flows": [{"step":1,"endpointID":"02","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"01","type":"replica","active":true, "synchronous":true}]
+     "flows": [{"step":1,"endpointID":"01","type":"source","active":true, "synchronous":true },{"step":2,"endpointID":"02","type":"replica","active":true, "synchronous":true}]
   },
   {
     "operationTD": "Helpdesk",

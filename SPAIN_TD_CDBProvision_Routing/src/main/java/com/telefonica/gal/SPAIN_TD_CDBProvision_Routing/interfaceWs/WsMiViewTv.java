@@ -12,6 +12,9 @@ import com.telefonica.gal.customerProvision.response.CUSTOMERS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -62,23 +65,31 @@ public class WsMiViewTv<T> implements InvokeWs<T> {
 
     @Override
     public T invoke() {
+        String responseOK = new String("");
         mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL));
         restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
         restTemplate.setErrorHandler(new HttpErrorsCDBProvision());
 
         InlineResponse400 result = new InlineResponse400();
         endpointTD = (Endpoint) endPoint;
-        url = endpointTD.getTargetEndpoint() + "/instances/" + adminCode + "/users";
+
+        //url = endpointTD.getTargetEndpoint() + "/instances/" + adminCode + "/users";
+        url = endpointTD.getTargetEndpoint() + "/cdbprovision/rest/provision/OTT/"+ adminCode;
+
         try {
             LOGGER.info("==== REQUEST MIVIEW -------> " + request + "\n");
             LOGGER.info("URL MiView ---> " + url);
 
             cdbProvisionRequest = (CDBProvisionRequest) request;
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<CDBProvisionRequest> requestEntity = new HttpEntity<>(cdbProvisionRequest, headers);
 
-            ResponseEntity<String> resultMiView = restTemplate.postForEntity(url, cdbProvisionRequest, String.class);
+            //ResponseEntity<String> resultMiView = restTemplate.postForEntity(url, cdbProvisionRequest, String.class);
+            ResponseEntity<String> resultMiView = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class);
 
-            if (resultMiView.getStatusCode().value() == 200) {
-                return null;
+            if (resultMiView.getStatusCode().value() == 201) {
+                return (T) responseOK;
             } else {
                 JSONObject jsonObject = new JSONObject(resultMiView.getBody());
                 return (T) responseInfo(jsonObject.get("resultCode").toString(), jsonObject);
