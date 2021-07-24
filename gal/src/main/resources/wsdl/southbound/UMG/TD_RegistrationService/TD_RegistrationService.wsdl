@@ -1,0 +1,96 @@
+<wsdl:definitions targetNamespace="GVP.GAL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="GVP.GAL" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="GVP.GAL/Imports">
+      <xsd:import schemaLocation="TD_RegistrationService.xsd" namespace="GVP.GAL"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4_5.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1.xsd" namespace="http://www.telefonica.com/ServiceId"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4.xsd" namespace="http://www.telefonica.com/schemas/TD_RegistrationService/common"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2.xsd" namespace="http://www.example.org/variables"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4_5_6.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4_5_6_7.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITD_RegistrationService_CreateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_CreateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_ModifyUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_ModifyUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_EnableUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_EnableUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DisableUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DisableUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveDevicesFromAccountRequest">
+    <wsdl:part name="RemoveDevicesFromAccount" element="tns:RemoveDevicesFromAccount"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveDevicesFromAccountResponse">
+    <wsdl:part name="RemoveDevicesFromAccountResponse" element="tns:RemoveDevicesFromAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RegisterDevices_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDevices"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RegisterDevices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDevicesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RemoveDevices_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDevices"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RemoveDevices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDevicesResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ITD_RegistrationService">
+    <wsdl:operation name="CreateUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/CreateUser" message="tns:ITD_RegistrationService_CreateUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/CreateUserResponse" message="tns:ITD_RegistrationService_CreateUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/ModifyUser" message="tns:ITD_RegistrationService_ModifyUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/ModifyUserResponse" message="tns:ITD_RegistrationService_ModifyUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/DeleteUser" message="tns:ITD_RegistrationService_DeleteUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/DeleteUserResponse" message="tns:ITD_RegistrationService_DeleteUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="EnableUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/EnableUser" message="tns:ITD_RegistrationService_EnableUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/EnableUserResponse" message="tns:ITD_RegistrationService_EnableUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/DisableUser" message="tns:ITD_RegistrationService_DisableUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/DisableUserResponse" message="tns:ITD_RegistrationService_DisableUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDevicesFromAccount">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccount" name="RemoveDevicesFromAccountRequest" message="tns:RemoveDevicesFromAccountRequest"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccountResponse" name="RemoveDevicesFromAccountResponse" message="tns:RemoveDevicesFromAccountResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterDevices">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/RegisterDevices" message="tns:ITD_RegistrationService_RegisterDevices_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/RegisterDevices" message="tns:ITD_RegistrationService_RegisterDevices_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDevices">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevices" message="tns:ITD_RegistrationService_RemoveDevices_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevices" message="tns:ITD_RegistrationService_RemoveDevices_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

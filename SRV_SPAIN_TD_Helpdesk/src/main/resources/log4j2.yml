@@ -1,0 +1,62 @@
+Configuration:
+  properties:
+    property:
+      name: log-path
+      value: "logs"
+
+  appenders:
+    Console:
+      name: CONSOLE_ROOT
+      target: SYSTEM_OUT
+      PatternLayout:
+        alwaysWriteExceptions: true
+        pattern: "[%threadName] %-5level %logger{36} - %message{nolookups} %ex{separator(|)} %n"
+    File:
+      - name: FILE_APPENDER_HELPDESK_MIVIEW
+        fileName: ${log-path}/logs/SRV_SPAIN_TD_Helpdesk/Helpdesk_MIView.log
+        JSONLayout:
+          compact: false
+          complete: true
+          eventEOL: true
+          objectMessageAsJsonObject: true
+      - name: FILE_APPENDER_HELPDESK_OP
+        fileName: ${log-path}/logs/SRV_SPAIN_TD_Helpdesk/Helpdesk_OP.log
+        JSONLayout:
+          compact: false
+          complete: true
+          eventEOL: true
+          objectMessageAsJsonObject: true
+      - name: FILE_APPENDER_HELPDESK_V1
+        fileName: ${log-path}/logs/SRV_SPAIN_TD_Helpdesk/Helpdesk_V1.log
+        JSONLayout:
+          compact: false
+          complete: true
+          eventEOL: true
+          objectMessageAsJsonObject: true
+
+  Loggers:
+    logger:
+      - name: LOGS_HELPDESK_V1
+        level: info
+        additivity: false
+        appender-ref:
+          - ref: FILE_APPENDER_HELPDESK_V1
+            level: info
+      - name: LOGS_HELPDESK_MIVIEW
+        level: info
+        additivity: false
+        appender-ref:
+          - ref: FILE_APPENDER_HELPDESK_MIVIEW
+            level: info
+      - name: LOGS_HELPDESK_OP
+        level: info
+        additivity: false
+        appender-ref:
+          - ref: FILE_APPENDER_HELPDESK_OP
+            level: info
+
+    Root:
+      level: info
+      AppenderRef:
+        ref: CONSOLE_ROOT
+

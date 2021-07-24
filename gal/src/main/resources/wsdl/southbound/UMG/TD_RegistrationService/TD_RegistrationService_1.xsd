@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.telefonica.com/ServiceId" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/ServiceId">
+  <xs:simpleType name="ServiceIdType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="OTT"/>
+      <xs:enumeration value="IPTV"/>
+      <xs:enumeration value="OTT and IPTV"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ServiceIdType" nillable="true" type="tns:ServiceIdType"/>
+</xs:schema>

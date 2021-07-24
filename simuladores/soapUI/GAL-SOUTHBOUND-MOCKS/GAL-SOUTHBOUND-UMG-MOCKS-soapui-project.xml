@@ -1,0 +1,2983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="40c1db39-d305-4fbd-b5ab-0acc1052247b" activeEnvironment="Default" name="GAL_SOUTHBOUND_UMG_MOCKS" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="53f5577b-39c7-4f35-871c-de3c74390256" wsaVersion="NONE" name="BasicHttpBinding_ITD_RegistrationService" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_ITD_RegistrationService" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl"><con:part><con:url>file:/C:/Users/Jose/Documents/00%20PROYECTOS/TELEFONICA/GAL+/GAL/SOFTWARE/GAL-master/OSBGAL/services/resources/southbound/wsdl/UMG/TD_RegistrationService/TD_RegistrationService_1.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TD_RegistrationService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:i0="GVP.GAL" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:import namespace="GVP.GAL" location="TD_RegistrationService.wsdl"/>
+  <wsdl:types/>
+  <wsdl:binding name="BasicHttpBinding_ITD_RegistrationService" type="i0:ITD_RegistrationService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/CreateUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUser">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/ModifyUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/DeleteUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableUser">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/EnableUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/DisableUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDevicesFromAccount">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccount" style="document"/>
+      <wsdl:input name="RemoveDevicesFromAccountRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RemoveDevicesFromAccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterDevices">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/RegisterDevices" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDevices">
+      <soap:operation soapAction="GVP.GAL/ITD_RegistrationService/RemoveDevices" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TD_RegistrationService">
+    <wsdl:port name="BasicHttpBinding_ITD_RegistrationService" binding="tns:BasicHttpBinding_ITD_RegistrationService">
+      <soap:address location="http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="GVP.GAL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="GVP.GAL" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="GVP.GAL/Imports">
+      <xsd:import schemaLocation="TD_RegistrationService.xsd" namespace="GVP.GAL"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4_5.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1.xsd" namespace="http://www.telefonica.com/ServiceId"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4.xsd" namespace="http://www.telefonica.com/schemas/TD_RegistrationService/common"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2.xsd" namespace="http://www.example.org/variables"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4_5_6.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      <xsd:import schemaLocation="TD_RegistrationService_1_2_3_4_5_6_7.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITD_RegistrationService_CreateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_CreateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_ModifyUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_ModifyUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_EnableUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_EnableUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DisableUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableUser"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_DisableUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveDevicesFromAccountRequest">
+    <wsdl:part name="RemoveDevicesFromAccount" element="tns:RemoveDevicesFromAccount"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveDevicesFromAccountResponse">
+    <wsdl:part name="RemoveDevicesFromAccountResponse" element="tns:RemoveDevicesFromAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RegisterDevices_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDevices"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RegisterDevices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDevicesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RemoveDevices_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDevices"/>
+  </wsdl:message>
+  <wsdl:message name="ITD_RegistrationService_RemoveDevices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDevicesResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ITD_RegistrationService">
+    <wsdl:operation name="CreateUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/CreateUser" message="tns:ITD_RegistrationService_CreateUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/CreateUserResponse" message="tns:ITD_RegistrationService_CreateUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/ModifyUser" message="tns:ITD_RegistrationService_ModifyUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/ModifyUserResponse" message="tns:ITD_RegistrationService_ModifyUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/DeleteUser" message="tns:ITD_RegistrationService_DeleteUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/DeleteUserResponse" message="tns:ITD_RegistrationService_DeleteUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="EnableUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/EnableUser" message="tns:ITD_RegistrationService_EnableUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/EnableUserResponse" message="tns:ITD_RegistrationService_EnableUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/DisableUser" message="tns:ITD_RegistrationService_DisableUser_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/DisableUserResponse" message="tns:ITD_RegistrationService_DisableUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDevicesFromAccount">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccount" name="RemoveDevicesFromAccountRequest" message="tns:RemoveDevicesFromAccountRequest"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccountResponse" name="RemoveDevicesFromAccountResponse" message="tns:RemoveDevicesFromAccountResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterDevices">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/RegisterDevices" message="tns:ITD_RegistrationService_RegisterDevices_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/RegisterDevices" message="tns:ITD_RegistrationService_RegisterDevices_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDevices">
+      <wsdl:input wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevices" message="tns:ITD_RegistrationService_RemoveDevices_InputMessage"/>
+      <wsdl:output wsaw:Action="GVP.GAL/ITD_RegistrationService/RemoveDevices" message="tns:ITD_RegistrationService_RemoveDevices_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="GVP.GAL" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="GVP.GAL">
+  <xs:import schemaLocation="TD_RegistrationService_1.xsd" namespace="http://www.telefonica.com/ServiceId"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2.xsd" namespace="http://www.example.org/variables"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3_4_5_6.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+  <xs:element name="CreateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q1:ServiceIdType" xmlns:q1="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="user" nillable="true" type="q2:UserDataContract" xmlns:q2="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="deviceIdsType">
+    <xs:sequence>
+      <xs:element name="deviceId" nillable="true" type="q3:ArrayOfstring" xmlns:q3="http://www.example.org/variables">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="deviceIdsType" nillable="true" type="tns:deviceIdsType"/>
+  <xs:element name="CreateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateUserResult" nillable="true" type="q4:ResultDataContractOfstring" xmlns:q4="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q5:ServiceIdType" xmlns:q5="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="user" nillable="true" type="q6:UserDataContract" xmlns:q6="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ModifyUserResult" nillable="true" type="q7:ResultDataContractOfboolean" xmlns:q7="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q8:ServiceIdType" xmlns:q8="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteUserResult" nillable="true" type="q9:ResultDataContractOfboolean" xmlns:q9="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q10:ServiceIdType" xmlns:q10="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="user" nillable="true" type="q11:UserDataContract" xmlns:q11="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EnableUserResult" nillable="true" type="q12:ResultDataContractOfboolean" xmlns:q12="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisableUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q13:ServiceIdType" xmlns:q13="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisableUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DisableUserResult" nillable="true" type="q14:ResultDataContractOfboolean" xmlns:q14="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="RemoveDevicesFromAccountRequestBody">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+      <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+      <xs:element minOccurs="0" name="serviceId" type="q15:ServiceIdType" xmlns:q15="http://www.telefonica.com/ServiceId"/>
+      <xs:element minOccurs="0" name="accountId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="deviceIds" nillable="true" type="tns:deviceIdsType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveDevicesFromAccountRequestBody" nillable="true" type="tns:RemoveDevicesFromAccountRequestBody"/>
+  <xs:element name="RemoveDevicesFromAccount" nillable="true" type="tns:RemoveDevicesFromAccountRequestBody"/>
+  <xs:complexType name="RemoveDevicesFromAccountResponseBody">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RemoveDevicesFromAccountResult" nillable="true" type="q16:ResultDataContractOfboolean" xmlns:q16="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveDevicesFromAccountResponseBody" nillable="true" type="tns:RemoveDevicesFromAccountResponseBody"/>
+  <xs:element name="RemoveDevicesFromAccountResponse" nillable="true" type="tns:RemoveDevicesFromAccountResponseBody"/>
+  <xs:element name="RegisterDevices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q17:ServiceIdType" xmlns:q17="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="deviceInfoList" nillable="true" type="q18:DeviceInfoListType" xmlns:q18="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterDevicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterDevicesResult" nillable="true" type="q19:ResultDataContractOfboolean" xmlns:q19="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDevices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceId" type="xs:int"/>
+        <xs:element minOccurs="0" name="platformId" type="xs:int"/>
+        <xs:element minOccurs="0" name="serviceId" type="q20:ServiceIdType" xmlns:q20="http://www.telefonica.com/ServiceId"/>
+        <xs:element minOccurs="0" name="uniqueId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="deviceInfoList" nillable="true" type="q21:DeviceInfoListType" xmlns:q21="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDevicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveDevicesResult" nillable="true" type="q22:ResultDataContractOfboolean" xmlns:q22="http://schemas.datacontract.org/2004/07/GVP.GAL.API"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService_1.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://www.telefonica.com/ServiceId" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/ServiceId">
+  <xs:simpleType name="ServiceIdType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="OTT"/>
+      <xs:enumeration value="IPTV"/>
+      <xs:enumeration value="OTT and IPTV"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ServiceIdType" nillable="true" type="tns:ServiceIdType"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService_1_2.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://www.example.org/variables" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/variables">
+  <xs:complexType name="ArrayOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+  <xs:complexType name="Variables">
+    <xs:sequence>
+      <xs:element name="Variable" nillable="true" type="tns:Variable">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Variables" nillable="true" type="tns:Variables"/>
+  <xs:complexType name="Variable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Var" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Variable" nillable="true" type="tns:Variable"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService_1_2_3.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/GVP.GAL.Model">
+  <xs:import schemaLocation="TD_RegistrationService_1.xsd" namespace="http://www.telefonica.com/ServiceId"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3_4.xsd" namespace="http://www.telefonica.com/schemas/TD_RegistrationService/common"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2.xsd" namespace="http://www.example.org/variables"/>
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3_4_5.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+  <xs:complexType name="UserDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UserId" type="xs:int"/>
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="CustomFields" nillable="true" type="tns:ArrayOfUserCustomFieldDataContract"/>
+      <xs:element minOccurs="0" name="Status" type="tns:UserStatus"/>
+      <xs:element minOccurs="0" name="InstanceId" type="xs:int"/>
+      <xs:element minOccurs="0" name="EWallet" type="xs:double"/>
+      <xs:element minOccurs="0" name="PlatformId" type="xs:int"/>
+      <xs:element minOccurs="0" name="Products" nillable="true" type="tns:ArrayOfProductDataContract"/>
+      <xs:element minOccurs="0" name="videoServiceAdditionalInfo" nillable="true" type="tns:VideoServiceAdditionalInfoType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="serviceId" type="q1:ServiceIdType" xmlns:q1="http://www.telefonica.com/ServiceId"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDataContract" nillable="true" type="tns:UserDataContract"/>
+  <xs:complexType name="ArrayOfUserCustomFieldDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserCustomFieldDataContract" nillable="true" type="tns:UserCustomFieldDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserCustomFieldDataContract" nillable="true" type="tns:ArrayOfUserCustomFieldDataContract"/>
+  <xs:complexType name="UserCustomFieldDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserCustomFieldDataContract" nillable="true" type="tns:UserCustomFieldDataContract"/>
+  <xs:simpleType name="UserStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Active"/>
+      <xs:enumeration value="AwaitingEmailConfirmation"/>
+      <xs:enumeration value="Suspended"/>
+      <xs:enumeration value="Excluded"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserStatus" nillable="true" type="tns:UserStatus"/>
+  <xs:complexType name="ArrayOfProductDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDataContract" nillable="true" type="tns:ProductDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductDataContract" nillable="true" type="tns:ArrayOfProductDataContract"/>
+  <xs:complexType name="ProductDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductType" type="tns:ProductType"/>
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequiresPin" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="PricingModel" nillable="true" type="tns:PricingModelDataContract"/>
+      <xs:element minOccurs="0" name="SerieId" type="xs:int"/>
+      <xs:element minOccurs="0" name="SeasonId" type="xs:int"/>
+      <xs:element minOccurs="0" name="Producer" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="PurchaseType" type="tns:SubscriptionPurchaseType"/>
+      <xs:element minOccurs="0" name="ReleaseDate" type="xs:long"/>
+      <xs:element minOccurs="0" name="Year" type="xs:int"/>
+      <xs:element minOccurs="0" name="Genres" nillable="true" type="tns:ArrayOfGenreDataContract"/>
+      <xs:element minOccurs="0" name="ImdbRating" type="xs:int"/>
+      <xs:element minOccurs="0" name="AgeRating" type="xs:int"/>
+      <xs:element minOccurs="0" name="Stars" type="xs:double"/>
+      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImageDataContract"/>
+      <xs:element minOccurs="0" name="Staff" nillable="true" type="tns:ArrayOfMovieStaffDataContract"/>
+      <xs:element minOccurs="0" name="Medias" nillable="true" type="tns:ArrayOfMediaDataContract"/>
+      <xs:element minOccurs="0" name="Subtitles" nillable="true" type="tns:ArrayOfSubtitleDataContract"/>
+      <xs:element minOccurs="0" name="Tags" nillable="true" type="tns:ArrayOfProductTagDataContract"/>
+      <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ExpireDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="Status" type="tns:ProductStatus"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductDataContract" nillable="true" type="tns:ProductDataContract"/>
+  <xs:simpleType name="ProductType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Credit"/>
+      <xs:enumeration value="Movie"/>
+      <xs:enumeration value="Bundle"/>
+      <xs:enumeration value="Subscription"/>
+      <xs:enumeration value="Playlist"/>
+      <xs:enumeration value="Season"/>
+      <xs:enumeration value="Serie"/>
+      <xs:enumeration value="PayPerView"/>
+      <xs:enumeration value="LiveChannel"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductType" nillable="true" type="tns:ProductType"/>
+  <xs:complexType name="PricingModelDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Chargingclass" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="UserType" type="tns:UserType"/>
+      <xs:element minOccurs="0" name="Price" type="xs:double"/>
+      <xs:element minOccurs="0" name="RecurrenceType" type="tns:RecurrenceType"/>
+      <xs:element minOccurs="0" name="DevicesType" nillable="true" type="tns:ArrayOfDeviceTypeDataContract"/>
+      <xs:element minOccurs="0" name="Isrecurring" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="GrantAllDevices" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="Quality" type="tns:Quality"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PricingModelDataContract" nillable="true" type="tns:PricingModelDataContract"/>
+  <xs:simpleType name="UserType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Telefonica"/>
+      <xs:enumeration value="NonTelefonica"/>
+      <xs:enumeration value="Both"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserType" nillable="true" type="tns:UserType"/>
+  <xs:simpleType name="RecurrenceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Daily"/>
+      <xs:enumeration value="Weekly"/>
+      <xs:enumeration value="Monthly"/>
+      <xs:enumeration value="Quarter"/>
+      <xs:enumeration value="Half"/>
+      <xs:enumeration value="Yearly"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RecurrenceType" nillable="true" type="tns:RecurrenceType"/>
+  <xs:complexType name="ArrayOfDeviceTypeDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeviceTypeDataContract" nillable="true" type="tns:DeviceTypeDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDeviceTypeDataContract" nillable="true" type="tns:ArrayOfDeviceTypeDataContract"/>
+  <xs:complexType name="DeviceTypeDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeviceTypeDataContract" nillable="true" type="tns:DeviceTypeDataContract"/>
+  <xs:simpleType name="Quality">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="HighDefinitionFull"/>
+      <xs:enumeration value="HighDefinition"/>
+      <xs:enumeration value="StandardDefinition"/>
+      <xs:enumeration value="LowDefinition"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Quality" nillable="true" type="tns:Quality"/>
+  <xs:simpleType name="SubscriptionPurchaseType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="ApiOnly"/>
+      <xs:enumeration value="ProvisioningOnly"/>
+      <xs:enumeration value="Both"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SubscriptionPurchaseType" nillable="true" type="tns:SubscriptionPurchaseType"/>
+  <xs:complexType name="ArrayOfGenreDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GenreDataContract" nillable="true" type="tns:GenreDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGenreDataContract" nillable="true" type="tns:ArrayOfGenreDataContract"/>
+  <xs:complexType name="GenreDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GenreDataContract" nillable="true" type="tns:GenreDataContract"/>
+  <xs:complexType name="ArrayOfImageDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImageDataContract" nillable="true" type="tns:ImageDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImageDataContract" nillable="true" type="tns:ArrayOfImageDataContract"/>
+  <xs:complexType name="ImageDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Width" type="xs:int"/>
+      <xs:element minOccurs="0" name="Height" type="xs:int"/>
+      <xs:element minOccurs="0" name="Type" type="tns:ImageType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImageDataContract" nillable="true" type="tns:ImageDataContract"/>
+  <xs:simpleType name="ImageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Cover"/>
+      <xs:enumeration value="VideoFrame"/>
+      <xs:enumeration value="Banner"/>
+      <xs:enumeration value="Icon"/>
+      <xs:enumeration value="Background"/>
+      <xs:enumeration value="Logo"/>
+      <xs:enumeration value="OriginalCover"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ImageType" nillable="true" type="tns:ImageType"/>
+  <xs:complexType name="ArrayOfMovieStaffDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MovieStaffDataContract" nillable="true" type="tns:MovieStaffDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMovieStaffDataContract" nillable="true" type="tns:ArrayOfMovieStaffDataContract"/>
+  <xs:complexType name="MovieStaffDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Role" type="tns:Role"/>
+      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:PersonDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MovieStaffDataContract" nillable="true" type="tns:MovieStaffDataContract"/>
+  <xs:simpleType name="Role">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="MiscStaff"/>
+      <xs:enumeration value="Director"/>
+      <xs:enumeration value="Actor"/>
+      <xs:enumeration value="Producer"/>
+      <xs:enumeration value="Writer"/>
+      <xs:enumeration value="Composer"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Role" nillable="true" type="tns:Role"/>
+  <xs:complexType name="PersonDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonDataContract" nillable="true" type="tns:PersonDataContract"/>
+  <xs:complexType name="ArrayOfMediaDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MediaDataContract" nillable="true" type="tns:MediaDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMediaDataContract" nillable="true" type="tns:ArrayOfMediaDataContract"/>
+  <xs:complexType name="MediaDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Languages" nillable="true" type="tns:ArrayOfLanguageDataContract"/>
+      <xs:element minOccurs="0" name="Quality" type="tns:Quality"/>
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Aspect" type="xs:double"/>
+      <xs:element minOccurs="0" name="DRM" type="tns:DRMType"/>
+      <xs:element minOccurs="0" name="Type" type="tns:MediaType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MediaDataContract" nillable="true" type="tns:MediaDataContract"/>
+  <xs:complexType name="ArrayOfLanguageDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LanguageDataContract" nillable="true" type="tns:LanguageDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLanguageDataContract" nillable="true" type="tns:ArrayOfLanguageDataContract"/>
+  <xs:complexType name="LanguageDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LanguageDataContract" nillable="true" type="tns:LanguageDataContract"/>
+  <xs:simpleType name="DRMType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Widevine"/>
+      <xs:enumeration value="PlayReady"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DRMType" nillable="true" type="tns:DRMType"/>
+  <xs:simpleType name="MediaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Movie"/>
+      <xs:enumeration value="Trailer"/>
+      <xs:enumeration value="Teaser"/>
+      <xs:enumeration value="Interview"/>
+      <xs:enumeration value="MakingOf"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MediaType" nillable="true" type="tns:MediaType"/>
+  <xs:complexType name="ArrayOfSubtitleDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubtitleDataContract" nillable="true" type="tns:SubtitleDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubtitleDataContract" nillable="true" type="tns:ArrayOfSubtitleDataContract"/>
+  <xs:complexType name="SubtitleDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int"/>
+      <xs:element minOccurs="0" name="Language" nillable="true" type="tns:LanguageDataContract"/>
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubtitleDataContract" nillable="true" type="tns:SubtitleDataContract"/>
+  <xs:complexType name="ArrayOfProductTagDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductTagDataContract" nillable="true" type="tns:ProductTagDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductTagDataContract" nillable="true" type="tns:ArrayOfProductTagDataContract"/>
+  <xs:complexType name="ProductTagDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Type" type="tns:TagType"/>
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductTagDataContract" nillable="true" type="tns:ProductTagDataContract"/>
+  <xs:simpleType name="TagType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Stars"/>
+      <xs:enumeration value="Favorite"/>
+      <xs:enumeration value="Watched"/>
+      <xs:enumeration value="Wishlist"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TagType" nillable="true" type="tns:TagType"/>
+  <xs:complexType name="VideoServiceAdditionalInfoType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creditLimit" nillable="true" type="xs:decimal">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="geographicArea" nillable="true" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="blackoutArea" nillable="true" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="timezone" nillable="true" type="q2:TimeZoneType" xmlns:q2="http://www.telefonica.com/schemas/TD_RegistrationService/common">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DVRenabled" nillable="true" type="xs:boolean">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SDMediaStreams" nillable="true" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="HDMediaStreams" nillable="true" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="serviceGroup" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="subscriberGroups" nillable="true" type="tns:SubscriberGroupsType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="serverCodeList" nillable="true" type="tns:serverCodeListType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deviceIds" nillable="true" type="tns:DeviceIdsType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="masterDeviceId" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="dvbtTuners" nillable="true" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TimeShiftStatusId" nillable="true" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TimeShiftStatusDate" nillable="true" type="xs:dateTime">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VideoServiceAdditionalInfoType" nillable="true" type="tns:VideoServiceAdditionalInfoType"/>
+  <xs:complexType name="SubscriberGroupsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="subscriberGroup" nillable="true" type="q3:ArrayOfstring" xmlns:q3="http://www.example.org/variables">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriberGroupsType" nillable="true" type="tns:SubscriberGroupsType"/>
+  <xs:complexType name="serverCodeListType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serverCode" nillable="true" type="q4:ArrayOfstring" xmlns:q4="http://www.example.org/variables">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="serverCodeListType" nillable="true" type="tns:serverCodeListType"/>
+  <xs:complexType name="DeviceIdsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="deviceId" nillable="true" type="q5:ArrayOfstring" xmlns:q5="http://www.example.org/variables"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeviceIdsType" nillable="true" type="tns:DeviceIdsType"/>
+  <xs:simpleType name="UserPinType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="ParentalControl"/>
+      <xs:enumeration value="PurchaseControl"/>
+      <xs:enumeration value="AdultControl"/>
+      <xs:enumeration value="All">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">99</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserPinType" nillable="true" type="tns:UserPinType"/>
+  <xs:simpleType name="StatusCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotImplemented">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NotSupported">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UnknownError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OK">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidInstanceId">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidPlatformId">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserAlreadyExists">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserDoesNotExist">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ProductDoesNotExist">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ProductAlreadyDeleted">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserAlreadyHasSubscription">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserDoesnotHaveSubscription">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserDoesnotHaveProduct">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserIsAlreadyEnabled">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserIsAlreadyDisabled">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CannotDeleteEnabledUser">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MissingMandatoryParameter">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidParameter">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">13</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidParameterValue">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">14</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Wrongorunsupportedparametervalue">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidParameterLength">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidParameterFormat">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">17</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidServiceId">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">18</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceNotRegistered">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">19</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceAlreadyRegisteredToOtherUser">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">52</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserDoesNotHaveAnyDevices">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">54</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Serviceunavailable">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">100</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidPassword">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">102</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Usernotauthorized">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">103</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CannotconnecttogSDP">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">196</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InternalservererroringSDP_D26">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">197</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InternalservererrorinOBsystem">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">198</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OtherAuthenticationError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">199</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ProductAlreadyExists">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">202</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidChargingClass">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">203</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InternalservererroringSDP">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">297</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OtherProductLoadingError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">299</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ServiceDisabled">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">303</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OtherPurchaseError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">399</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ProductAlreadyInCancelling">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">400</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ProductAlreadyInTrial">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">401</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TrialNotAllowed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">402</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EndDateAlreadyExpired">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">403</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidInputValue">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1002</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidRequestedOperation">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1003</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Expectedparametermissing">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1020</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Wrongorunsupportedparameter">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1021</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GenericClientError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1099</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SubscriptionExpiredError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1100</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SubscriptionInactiveError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1101</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PinDoesNotExist">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1102</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UserAccountDoesNotExist">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">700</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ExceptionInUMGDatabase">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">701</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidPinValuesInOTT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">702</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidInputData">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">703</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ErrorInRollback">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">704</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MultipleErrorsDetectedByUMG">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">705</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidSystemConfiguration">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">706</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UMG2MiBConnectionFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">708</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UMG2GALConnectionFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">709</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IPTVConnector2UMGConnectorConnectionFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">711</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidPrincipalId">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">800</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EmptyGroups">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">801</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TooManyGroups">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">802</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PrincipalIdDoesNotExist">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">803</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NoDefaultServiceGroup">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">804</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ServiceGroupNameNullOrEmpty">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">805</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ServiceGroupDoesNotExists">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">806</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AccountIsNull">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">807</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AccountExternalIdIsNullOrEmpty">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">808</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceIdIsEmpty">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">809</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceExternalIdIsNullOrEmpty">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">810</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CreateAccountFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">811</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AccountAlreadyExixts">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">812</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceExternalIdAlreadyExists">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">813</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UsernameIsNullOrEmpty">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">814</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidDevice">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">816</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceExternalIdAlreadySet">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">817</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidPin">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">818</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NullRequestOrMandatoryParameter">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">819</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceExistsForThisAccount">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">820</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BillingRecordExistsForThisAccount">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">821</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UsersExistsForThisAccount">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">822</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BillingRecordDoesNotExistForThisAccount">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">823</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UsersDoesNotExistForThisAccount">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">824</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceDoesNotBelongToAccount">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">825</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceDoesNotExist">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">826</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateDeviceFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">827</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateAccountFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">828</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NegativeHDStreams">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">829</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NegativeSDStreams">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">830</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TooManySDStreams">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">831</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FailedToUpdateAllAccountValues">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">832</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateAccountValuesFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">833</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateAccountValuesIsNotSupportedOnServiceGroup">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">834</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReadAllAccountValuesFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">835</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReadGroupMembershipFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">836</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReadDevicePinsFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">837</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateEnableDateForPinByTypeFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">838</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateDevicePinByTypeFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">839</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SetStreamManagementProfileFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">840</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GroupDoesNotExist">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">841</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReadGroupFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">842</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IPTVConnector2MediaRoomConnectionFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">843</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UMG2IPTVConnectorConnectionFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">844</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FailedToUpdateAllDeviceValues">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">845</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateDeviceValuesFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">846</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReadAccountGroupsFailed">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">847</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceBelongsToOtherUser">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">501</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InvalidDeviceTypeId">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">502</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OtherRegisterDevicesError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">503</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeviceDoesNotBelongToUser">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">504</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OtherRemoveDevicesError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">505</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="StatusCode" nillable="true" type="tns:StatusCode"/>
+  <xs:simpleType name="Severity">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Info"/>
+      <xs:enumeration value="Warning"/>
+      <xs:enumeration value="Error"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Severity" nillable="true" type="tns:Severity"/>
+  <xs:simpleType name="ProductStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="Active"/>
+      <xs:enumeration value="Canceled"/>
+      <xs:enumeration value="PendingActivation"/>
+      <xs:enumeration value="PendingCancellation"/>
+      <xs:enumeration value="Expired"/>
+      <xs:enumeration value="Failed"/>
+      <xs:enumeration value="Trial"/>
+      <xs:enumeration value="Cancelling"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProductStatus" nillable="true" type="tns:ProductStatus"/>
+  <xs:complexType name="UserDetailedDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonUserInfo" nillable="true" type="tns:CommonUserInfoDataContract"/>
+      <xs:element minOccurs="0" name="UserAttributes" nillable="true" type="tns:UserAttributesDataContract"/>
+      <xs:element minOccurs="0" name="UserActivePurchases" nillable="true" type="tns:ArrayOfUserActivePurchasesDataContract"/>
+      <xs:element minOccurs="0" name="UserHistoryPurchases" nillable="true" type="tns:ArrayOfUserHistoryPurchasesDataContract"/>
+      <xs:element minOccurs="0" name="UserDevices" nillable="true" type="tns:ArrayOfUserDevicesDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDetailedDataContract" nillable="true" type="tns:UserDetailedDataContract"/>
+  <xs:complexType name="CommonUserInfoDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Status" type="tns:UserStatus"/>
+      <xs:element minOccurs="0" name="ServiceType" type="q6:ServiceIdType" xmlns:q6="http://www.telefonica.com/ServiceId"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonUserInfoDataContract" nillable="true" type="tns:CommonUserInfoDataContract"/>
+  <xs:complexType name="UserAttributesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OttUserAttributes" nillable="true" type="tns:OttUserAttributesDataContract"/>
+      <xs:element minOccurs="0" name="IptvUserAttributes" nillable="true" type="tns:VideoServiceAdditionalInfoType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserAttributesDataContract" nillable="true" type="tns:UserAttributesDataContract"/>
+  <xs:complexType name="OttUserAttributesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OttUserAttributesDataContract" nillable="true" type="tns:OttUserAttributesDataContract"/>
+  <xs:complexType name="ArrayOfUserActivePurchasesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserActivePurchasesDataContract" nillable="true" type="tns:UserActivePurchasesDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserActivePurchasesDataContract" nillable="true" type="tns:ArrayOfUserActivePurchasesDataContract"/>
+  <xs:complexType name="UserActivePurchasesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductStatus" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductType" type="tns:ProductType"/>
+      <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="ExpireDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="Price" type="xs:double"/>
+      <xs:element minOccurs="0" name="ChargingClass" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Quality" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserActivePurchasesDataContract" nillable="true" type="tns:UserActivePurchasesDataContract"/>
+  <xs:complexType name="ArrayOfUserHistoryPurchasesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserHistoryPurchasesDataContract" nillable="true" type="tns:UserHistoryPurchasesDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserHistoryPurchasesDataContract" nillable="true" type="tns:ArrayOfUserHistoryPurchasesDataContract"/>
+  <xs:complexType name="UserHistoryPurchasesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductStatus" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductType" type="tns:ProductType"/>
+      <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="ExpireDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="Price" type="xs:double"/>
+      <xs:element minOccurs="0" name="ChargingClass" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Quality" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserHistoryPurchasesDataContract" nillable="true" type="tns:UserHistoryPurchasesDataContract"/>
+  <xs:complexType name="ArrayOfUserDevicesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDevicesDataContract" nillable="true" type="tns:UserDevicesDataContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDevicesDataContract" nillable="true" type="tns:ArrayOfUserDevicesDataContract"/>
+  <xs:complexType name="UserDevicesDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="deviceTrustedId" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deviceExternalId" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deviceTypeId" type="xs:int"/>
+      <xs:element minOccurs="0" name="deviceName" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDevicesDataContract" nillable="true" type="tns:UserDevicesDataContract"/>
+  <xs:complexType name="DeviceInfoListType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="deviceInfo" nillable="true" type="tns:DeviceInfoType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeviceInfoListType" nillable="true" type="tns:DeviceInfoListType"/>
+  <xs:complexType name="DeviceInfoType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="deviceTrustedId" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deviceExternalId" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deviceTypeId" type="xs:int"/>
+      <xs:element minOccurs="0" name="deviceName" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeviceInfoType" nillable="true" type="tns:DeviceInfoType"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService_1_2_3_4.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://www.telefonica.com/schemas/TD_RegistrationService/common" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/schemas/TD_RegistrationService/common">
+  <xs:simpleType name="TimeZoneType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GMT_Minus_0400_Santiago"/>
+      <xs:enumeration value="GMT_Minus_0300_Brasilia"/>
+      <xs:enumeration value="GMT_Minus_0300_Buenos_Aires_Georgetown"/>
+      <xs:enumeration value="GMT_GreenwichMeanTime_Dublin_Edinburgh_Lisbon_London"/>
+      <xs:enumeration value="GMT_Plus_0100_Brussels_Copenhagen_Madrid_Paris"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TimeZoneType" nillable="true" type="tns:TimeZoneType"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService_1_2_3_4_5.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService_1_2_3_4_5_6.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GVP.GAL.API" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+  <xs:import schemaLocation="TD_RegistrationService_1_2_3.xsd" namespace="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+  <xs:complexType name="ResultDataContractOfboolean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q1:StatusCode" xmlns:q1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q2:Severity" xmlns:q2="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfboolean" nillable="true" type="tns:ResultDataContractOfboolean"/>
+  <xs:complexType name="ResultDataContractOfUserDataContractPvrQt8hh">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q3:StatusCode" xmlns:q3="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q4:Severity" xmlns:q4="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="q5:UserDataContract" xmlns:q5="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfUserDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfUserDataContractPvrQt8hh"/>
+  <xs:complexType name="ResultDataContractOfUserDetailedDataContractPvrQt8hh">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q6:StatusCode" xmlns:q6="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q7:Severity" xmlns:q7="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="q8:UserDetailedDataContract" xmlns:q8="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfUserDetailedDataContractPvrQt8hh" nillable="true" type="tns:ResultDataContractOfUserDetailedDataContractPvrQt8hh"/>
+  <xs:complexType name="ResultDataContractOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StatusCode" type="q9:StatusCode" xmlns:q9="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="Severity" type="q10:Severity" xmlns:q10="http://schemas.datacontract.org/2004/07/GVP.GAL.Model"/>
+      <xs:element minOccurs="0" name="StatusMessage" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultDataContractOfstring" nillable="true" type="tns:ResultDataContractOfstring"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\Jose\Documents\00%20PROYECTOS\TELEFONICA\GAL+\GAL\SOFTWARE\GAL-master\OSBGAL\services\resources\southbound\wsdl\UMG\TD_RegistrationService\TD_RegistrationService_1_2_3_4_5_6_7.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+  <xs:complexType name="ArrayOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:endpoint>http://ENMAD0734:10100/UMG_TD_RegistrationService</con:endpoint></con:endpoints><con:operation id="bd3df68c-1718-4778-b4b0-35412a170482" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/CreateUser" name="CreateUser" bindingOperationName="CreateUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f9fe1a53-5b69-41f8-9c74-bf901813a21d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model" xmlns:var="http://www.example.org/variables">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:CreateUser>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:user>\r
+            <!--Optional:-->\r
+            <gvp1:UserId>?</gvp1:UserId>\r
+            <!--Optional:-->\r
+            <gvp1:UniqueId>?</gvp1:UniqueId>\r
+            <!--Optional:-->\r
+            <gvp1:FirstName>?</gvp1:FirstName>\r
+            <!--Optional:-->\r
+            <gvp1:LastName>?</gvp1:LastName>\r
+            <!--Optional:-->\r
+            <gvp1:Email>?</gvp1:Email>\r
+            <!--Optional:-->\r
+            <gvp1:CustomFields>\r
+               <!--Zero or more repetitions:-->\r
+               <gvp1:UserCustomFieldDataContract>\r
+                  <!--Optional:-->\r
+                  <gvp1:Key>?</gvp1:Key>\r
+                  <!--Optional:-->\r
+                  <gvp1:Value>?</gvp1:Value>\r
+               </gvp1:UserCustomFieldDataContract>\r
+            </gvp1:CustomFields>\r
+            <!--Optional:-->\r
+            <gvp1:Status>?</gvp1:Status>\r
+            <!--Optional:-->\r
+            <gvp1:InstanceId>?</gvp1:InstanceId>\r
+            <!--Optional:-->\r
+            <gvp1:EWallet>?</gvp1:EWallet>\r
+            <!--Optional:-->\r
+            <gvp1:PlatformId>?</gvp1:PlatformId>\r
+            <!--Optional:-->\r
+            <gvp1:Products>\r
+               <!--Zero or more repetitions:-->\r
+               <gvp1:ProductDataContract>\r
+                  <!--Optional:-->\r
+                  <gvp1:ProductId>?</gvp1:ProductId>\r
+                  <!--Optional:-->\r
+                  <gvp1:ProductType>?</gvp1:ProductType>\r
+                  <!--Optional:-->\r
+                  <gvp1:Title>?</gvp1:Title>\r
+                  <!--Optional:-->\r
+                  <gvp1:Description>?</gvp1:Description>\r
+                  <!--Optional:-->\r
+                  <gvp1:RequiresPin>?</gvp1:RequiresPin>\r
+                  <!--Optional:-->\r
+                  <gvp1:PricingModel>\r
+                     <!--Optional:-->\r
+                     <gvp1:ID>?</gvp1:ID>\r
+                     <!--Optional:-->\r
+                     <gvp1:Title>?</gvp1:Title>\r
+                     <!--Optional:-->\r
+                     <gvp1:Chargingclass>?</gvp1:Chargingclass>\r
+                     <!--Optional:-->\r
+                     <gvp1:UserType>?</gvp1:UserType>\r
+                     <!--Optional:-->\r
+                     <gvp1:Price>?</gvp1:Price>\r
+                     <!--Optional:-->\r
+                     <gvp1:RecurrenceType>?</gvp1:RecurrenceType>\r
+                     <!--Optional:-->\r
+                     <gvp1:DevicesType>\r
+                        <!--Zero or more repetitions:-->\r
+                        <gvp1:DeviceTypeDataContract>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Name>?</gvp1:Name>\r
+                        </gvp1:DeviceTypeDataContract>\r
+                     </gvp1:DevicesType>\r
+                     <!--Optional:-->\r
+                     <gvp1:Isrecurring>?</gvp1:Isrecurring>\r
+                     <!--Optional:-->\r
+                     <gvp1:GrantAllDevices>?</gvp1:GrantAllDevices>\r
+                     <!--Optional:-->\r
+                     <gvp1:StartDate>?</gvp1:StartDate>\r
+                     <!--Optional:-->\r
+                     <gvp1:EndDate>?</gvp1:EndDate>\r
+                     <!--Optional:-->\r
+                     <gvp1:Quality>?</gvp1:Quality>\r
+                  </gvp1:PricingModel>\r
+                  <!--Optional:-->\r
+                  <gvp1:SerieId>?</gvp1:SerieId>\r
+                  <!--Optional:-->\r
+                  <gvp1:SeasonId>?</gvp1:SeasonId>\r
+                  <!--Optional:-->\r
+                  <gvp1:Producer>?</gvp1:Producer>\r
+                  <!--Optional:-->\r
+                  <gvp1:PurchaseType>?</gvp1:PurchaseType>\r
+                  <!--Optional:-->\r
+                  <gvp1:ReleaseDate>?</gvp1:ReleaseDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:Year>?</gvp1:Year>\r
+                  <!--Optional:-->\r
+                  <gvp1:Genres>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:GenreDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Title>?</gvp1:Title>\r
+                     </gvp1:GenreDataContract>\r
+                  </gvp1:Genres>\r
+                  <!--Optional:-->\r
+                  <gvp1:ImdbRating>?</gvp1:ImdbRating>\r
+                  <!--Optional:-->\r
+                  <gvp1:AgeRating>?</gvp1:AgeRating>\r
+                  <!--Optional:-->\r
+                  <gvp1:Stars>?</gvp1:Stars>\r
+                  <!--Optional:-->\r
+                  <gvp1:Images>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:ImageDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Url>?</gvp1:Url>\r
+                        <!--Optional:-->\r
+                        <gvp1:Width>?</gvp1:Width>\r
+                        <!--Optional:-->\r
+                        <gvp1:Height>?</gvp1:Height>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                     </gvp1:ImageDataContract>\r
+                  </gvp1:Images>\r
+                  <!--Optional:-->\r
+                  <gvp1:Staff>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:MovieStaffDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:Role>?</gvp1:Role>\r
+                        <!--Optional:-->\r
+                        <gvp1:Person>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Title>?</gvp1:Title>\r
+                        </gvp1:Person>\r
+                     </gvp1:MovieStaffDataContract>\r
+                  </gvp1:Staff>\r
+                  <!--Optional:-->\r
+                  <gvp1:Medias>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:MediaDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Languages>\r
+                           <!--Zero or more repetitions:-->\r
+                           <gvp1:LanguageDataContract>\r
+                              <!--Optional:-->\r
+                              <gvp1:ID>?</gvp1:ID>\r
+                              <!--Optional:-->\r
+                              <gvp1:Title>?</gvp1:Title>\r
+                              <!--Optional:-->\r
+                              <gvp1:Code>?</gvp1:Code>\r
+                           </gvp1:LanguageDataContract>\r
+                        </gvp1:Languages>\r
+                        <!--Optional:-->\r
+                        <gvp1:Quality>?</gvp1:Quality>\r
+                        <!--Optional:-->\r
+                        <gvp1:Extension>?</gvp1:Extension>\r
+                        <!--Optional:-->\r
+                        <gvp1:Aspect>?</gvp1:Aspect>\r
+                        <!--Optional:-->\r
+                        <gvp1:DRM>?</gvp1:DRM>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                     </gvp1:MediaDataContract>\r
+                  </gvp1:Medias>\r
+                  <!--Optional:-->\r
+                  <gvp1:Subtitles>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:SubtitleDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Language>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Title>?</gvp1:Title>\r
+                           <!--Optional:-->\r
+                           <gvp1:Code>?</gvp1:Code>\r
+                        </gvp1:Language>\r
+                        <!--Optional:-->\r
+                        <gvp1:URL>?</gvp1:URL>\r
+                        <!--Optional:-->\r
+                        <gvp1:Extension>?</gvp1:Extension>\r
+                     </gvp1:SubtitleDataContract>\r
+                  </gvp1:Subtitles>\r
+                  <!--Optional:-->\r
+                  <gvp1:Tags>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:ProductTagDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                        <!--Optional:-->\r
+                        <gvp1:Value>?</gvp1:Value>\r
+                     </gvp1:ProductTagDataContract>\r
+                  </gvp1:Tags>\r
+                  <!--Optional:-->\r
+                  <gvp1:TransactionDate>?</gvp1:TransactionDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:TransactionId>?</gvp1:TransactionId>\r
+                  <!--Optional:-->\r
+                  <gvp1:ExpireDate>?</gvp1:ExpireDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:Status>?</gvp1:Status>\r
+               </gvp1:ProductDataContract>\r
+            </gvp1:Products>\r
+            <!--Optional:-->\r
+            <gvp1:videoServiceAdditionalInfo>\r
+               <!--Optional:-->\r
+               <gvp1:creditLimit>?</gvp1:creditLimit>\r
+               <!--Optional:-->\r
+               <gvp1:geographicArea>?</gvp1:geographicArea>\r
+               <!--Optional:-->\r
+               <gvp1:blackoutArea>?</gvp1:blackoutArea>\r
+               <!--Optional:-->\r
+               <gvp1:timezone>?</gvp1:timezone>\r
+               <!--Optional:-->\r
+               <gvp1:DVRenabled>?</gvp1:DVRenabled>\r
+               <!--Optional:-->\r
+               <gvp1:SDMediaStreams>?</gvp1:SDMediaStreams>\r
+               <!--Optional:-->\r
+               <gvp1:HDMediaStreams>?</gvp1:HDMediaStreams>\r
+               <!--Optional:-->\r
+               <gvp1:serviceGroup>?</gvp1:serviceGroup>\r
+               <!--Optional:-->\r
+               <gvp1:subscriberGroups>\r
+                  <!--Optional:-->\r
+                  <gvp1:subscriberGroup>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:subscriberGroup>\r
+               </gvp1:subscriberGroups>\r
+               <!--Optional:-->\r
+               <gvp1:serverCodeList>\r
+                  <!--Optional:-->\r
+                  <gvp1:serverCode>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:serverCode>\r
+               </gvp1:serverCodeList>\r
+               <!--Optional:-->\r
+               <gvp1:deviceIds>\r
+                  <!--Optional:-->\r
+                  <gvp1:deviceId>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:deviceId>\r
+               </gvp1:deviceIds>\r
+               <!--Optional:-->\r
+               <gvp1:masterDeviceId>?</gvp1:masterDeviceId>\r
+               <!--Optional:-->\r
+               <gvp1:dvbtTuners>?</gvp1:dvbtTuners>\r
+               <!--Optional:-->\r
+               <gvp1:TimeShiftStatusId>?</gvp1:TimeShiftStatusId>\r
+               <!--Optional:-->\r
+               <gvp1:TimeShiftStatusDate>?</gvp1:TimeShiftStatusDate>\r
+            </gvp1:videoServiceAdditionalInfo>\r
+            <gvp1:serviceId>?</gvp1:serviceId>\r
+         </gvp:user>\r
+      </gvp:CreateUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/CreateUser"/></con:call></con:operation><con:operation id="983bdad1-c7c3-4db1-b441-8c65e80a8924" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/DeleteUser" name="DeleteUser" bindingOperationName="DeleteUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2576a18f-3657-4e95-9866-9b6bfb1d578a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:DeleteUser>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:uniqueId>?</gvp:uniqueId>\r
+         <!--Optional:-->\r
+         <gvp:reason>?</gvp:reason>\r
+      </gvp:DeleteUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/DeleteUser"/></con:call></con:operation><con:operation id="154b73b5-99b6-4243-b82b-99295ad2df39" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/DisableUser" name="DisableUser" bindingOperationName="DisableUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8b4e6cf4-ddd5-45bf-a40e-be3c4a202a19" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:DisableUser>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:uniqueId>?</gvp:uniqueId>\r
+         <!--Optional:-->\r
+         <gvp:reason>?</gvp:reason>\r
+      </gvp:DisableUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/DisableUser"/></con:call></con:operation><con:operation id="0ac1b643-83ef-479d-848e-1e1ac29939d8" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/EnableUser" name="EnableUser" bindingOperationName="EnableUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9cdec1b5-8b14-4286-9afc-354a28a0ec13" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model" xmlns:var="http://www.example.org/variables">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:EnableUser>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:user>\r
+            <!--Optional:-->\r
+            <gvp1:UserId>?</gvp1:UserId>\r
+            <!--Optional:-->\r
+            <gvp1:UniqueId>?</gvp1:UniqueId>\r
+            <!--Optional:-->\r
+            <gvp1:FirstName>?</gvp1:FirstName>\r
+            <!--Optional:-->\r
+            <gvp1:LastName>?</gvp1:LastName>\r
+            <!--Optional:-->\r
+            <gvp1:Email>?</gvp1:Email>\r
+            <!--Optional:-->\r
+            <gvp1:CustomFields>\r
+               <!--Zero or more repetitions:-->\r
+               <gvp1:UserCustomFieldDataContract>\r
+                  <!--Optional:-->\r
+                  <gvp1:Key>?</gvp1:Key>\r
+                  <!--Optional:-->\r
+                  <gvp1:Value>?</gvp1:Value>\r
+               </gvp1:UserCustomFieldDataContract>\r
+            </gvp1:CustomFields>\r
+            <!--Optional:-->\r
+            <gvp1:Status>?</gvp1:Status>\r
+            <!--Optional:-->\r
+            <gvp1:InstanceId>?</gvp1:InstanceId>\r
+            <!--Optional:-->\r
+            <gvp1:EWallet>?</gvp1:EWallet>\r
+            <!--Optional:-->\r
+            <gvp1:PlatformId>?</gvp1:PlatformId>\r
+            <!--Optional:-->\r
+            <gvp1:Products>\r
+               <!--Zero or more repetitions:-->\r
+               <gvp1:ProductDataContract>\r
+                  <!--Optional:-->\r
+                  <gvp1:ProductId>?</gvp1:ProductId>\r
+                  <!--Optional:-->\r
+                  <gvp1:ProductType>?</gvp1:ProductType>\r
+                  <!--Optional:-->\r
+                  <gvp1:Title>?</gvp1:Title>\r
+                  <!--Optional:-->\r
+                  <gvp1:Description>?</gvp1:Description>\r
+                  <!--Optional:-->\r
+                  <gvp1:RequiresPin>?</gvp1:RequiresPin>\r
+                  <!--Optional:-->\r
+                  <gvp1:PricingModel>\r
+                     <!--Optional:-->\r
+                     <gvp1:ID>?</gvp1:ID>\r
+                     <!--Optional:-->\r
+                     <gvp1:Title>?</gvp1:Title>\r
+                     <!--Optional:-->\r
+                     <gvp1:Chargingclass>?</gvp1:Chargingclass>\r
+                     <!--Optional:-->\r
+                     <gvp1:UserType>?</gvp1:UserType>\r
+                     <!--Optional:-->\r
+                     <gvp1:Price>?</gvp1:Price>\r
+                     <!--Optional:-->\r
+                     <gvp1:RecurrenceType>?</gvp1:RecurrenceType>\r
+                     <!--Optional:-->\r
+                     <gvp1:DevicesType>\r
+                        <!--Zero or more repetitions:-->\r
+                        <gvp1:DeviceTypeDataContract>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Name>?</gvp1:Name>\r
+                        </gvp1:DeviceTypeDataContract>\r
+                     </gvp1:DevicesType>\r
+                     <!--Optional:-->\r
+                     <gvp1:Isrecurring>?</gvp1:Isrecurring>\r
+                     <!--Optional:-->\r
+                     <gvp1:GrantAllDevices>?</gvp1:GrantAllDevices>\r
+                     <!--Optional:-->\r
+                     <gvp1:StartDate>?</gvp1:StartDate>\r
+                     <!--Optional:-->\r
+                     <gvp1:EndDate>?</gvp1:EndDate>\r
+                     <!--Optional:-->\r
+                     <gvp1:Quality>?</gvp1:Quality>\r
+                  </gvp1:PricingModel>\r
+                  <!--Optional:-->\r
+                  <gvp1:SerieId>?</gvp1:SerieId>\r
+                  <!--Optional:-->\r
+                  <gvp1:SeasonId>?</gvp1:SeasonId>\r
+                  <!--Optional:-->\r
+                  <gvp1:Producer>?</gvp1:Producer>\r
+                  <!--Optional:-->\r
+                  <gvp1:PurchaseType>?</gvp1:PurchaseType>\r
+                  <!--Optional:-->\r
+                  <gvp1:ReleaseDate>?</gvp1:ReleaseDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:Year>?</gvp1:Year>\r
+                  <!--Optional:-->\r
+                  <gvp1:Genres>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:GenreDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Title>?</gvp1:Title>\r
+                     </gvp1:GenreDataContract>\r
+                  </gvp1:Genres>\r
+                  <!--Optional:-->\r
+                  <gvp1:ImdbRating>?</gvp1:ImdbRating>\r
+                  <!--Optional:-->\r
+                  <gvp1:AgeRating>?</gvp1:AgeRating>\r
+                  <!--Optional:-->\r
+                  <gvp1:Stars>?</gvp1:Stars>\r
+                  <!--Optional:-->\r
+                  <gvp1:Images>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:ImageDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Url>?</gvp1:Url>\r
+                        <!--Optional:-->\r
+                        <gvp1:Width>?</gvp1:Width>\r
+                        <!--Optional:-->\r
+                        <gvp1:Height>?</gvp1:Height>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                     </gvp1:ImageDataContract>\r
+                  </gvp1:Images>\r
+                  <!--Optional:-->\r
+                  <gvp1:Staff>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:MovieStaffDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:Role>?</gvp1:Role>\r
+                        <!--Optional:-->\r
+                        <gvp1:Person>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Title>?</gvp1:Title>\r
+                        </gvp1:Person>\r
+                     </gvp1:MovieStaffDataContract>\r
+                  </gvp1:Staff>\r
+                  <!--Optional:-->\r
+                  <gvp1:Medias>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:MediaDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Languages>\r
+                           <!--Zero or more repetitions:-->\r
+                           <gvp1:LanguageDataContract>\r
+                              <!--Optional:-->\r
+                              <gvp1:ID>?</gvp1:ID>\r
+                              <!--Optional:-->\r
+                              <gvp1:Title>?</gvp1:Title>\r
+                              <!--Optional:-->\r
+                              <gvp1:Code>?</gvp1:Code>\r
+                           </gvp1:LanguageDataContract>\r
+                        </gvp1:Languages>\r
+                        <!--Optional:-->\r
+                        <gvp1:Quality>?</gvp1:Quality>\r
+                        <!--Optional:-->\r
+                        <gvp1:Extension>?</gvp1:Extension>\r
+                        <!--Optional:-->\r
+                        <gvp1:Aspect>?</gvp1:Aspect>\r
+                        <!--Optional:-->\r
+                        <gvp1:DRM>?</gvp1:DRM>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                     </gvp1:MediaDataContract>\r
+                  </gvp1:Medias>\r
+                  <!--Optional:-->\r
+                  <gvp1:Subtitles>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:SubtitleDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Language>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Title>?</gvp1:Title>\r
+                           <!--Optional:-->\r
+                           <gvp1:Code>?</gvp1:Code>\r
+                        </gvp1:Language>\r
+                        <!--Optional:-->\r
+                        <gvp1:URL>?</gvp1:URL>\r
+                        <!--Optional:-->\r
+                        <gvp1:Extension>?</gvp1:Extension>\r
+                     </gvp1:SubtitleDataContract>\r
+                  </gvp1:Subtitles>\r
+                  <!--Optional:-->\r
+                  <gvp1:Tags>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:ProductTagDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                        <!--Optional:-->\r
+                        <gvp1:Value>?</gvp1:Value>\r
+                     </gvp1:ProductTagDataContract>\r
+                  </gvp1:Tags>\r
+                  <!--Optional:-->\r
+                  <gvp1:TransactionDate>?</gvp1:TransactionDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:TransactionId>?</gvp1:TransactionId>\r
+                  <!--Optional:-->\r
+                  <gvp1:ExpireDate>?</gvp1:ExpireDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:Status>?</gvp1:Status>\r
+               </gvp1:ProductDataContract>\r
+            </gvp1:Products>\r
+            <!--Optional:-->\r
+            <gvp1:videoServiceAdditionalInfo>\r
+               <!--Optional:-->\r
+               <gvp1:creditLimit>?</gvp1:creditLimit>\r
+               <!--Optional:-->\r
+               <gvp1:geographicArea>?</gvp1:geographicArea>\r
+               <!--Optional:-->\r
+               <gvp1:blackoutArea>?</gvp1:blackoutArea>\r
+               <!--Optional:-->\r
+               <gvp1:timezone>?</gvp1:timezone>\r
+               <!--Optional:-->\r
+               <gvp1:DVRenabled>?</gvp1:DVRenabled>\r
+               <!--Optional:-->\r
+               <gvp1:SDMediaStreams>?</gvp1:SDMediaStreams>\r
+               <!--Optional:-->\r
+               <gvp1:HDMediaStreams>?</gvp1:HDMediaStreams>\r
+               <!--Optional:-->\r
+               <gvp1:serviceGroup>?</gvp1:serviceGroup>\r
+               <!--Optional:-->\r
+               <gvp1:subscriberGroups>\r
+                  <!--Optional:-->\r
+                  <gvp1:subscriberGroup>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:subscriberGroup>\r
+               </gvp1:subscriberGroups>\r
+               <!--Optional:-->\r
+               <gvp1:serverCodeList>\r
+                  <!--Optional:-->\r
+                  <gvp1:serverCode>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:serverCode>\r
+               </gvp1:serverCodeList>\r
+               <!--Optional:-->\r
+               <gvp1:deviceIds>\r
+                  <!--Optional:-->\r
+                  <gvp1:deviceId>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:deviceId>\r
+               </gvp1:deviceIds>\r
+               <!--Optional:-->\r
+               <gvp1:masterDeviceId>?</gvp1:masterDeviceId>\r
+               <!--Optional:-->\r
+               <gvp1:dvbtTuners>?</gvp1:dvbtTuners>\r
+               <!--Optional:-->\r
+               <gvp1:TimeShiftStatusId>?</gvp1:TimeShiftStatusId>\r
+               <!--Optional:-->\r
+               <gvp1:TimeShiftStatusDate>?</gvp1:TimeShiftStatusDate>\r
+            </gvp1:videoServiceAdditionalInfo>\r
+            <gvp1:serviceId>?</gvp1:serviceId>\r
+         </gvp:user>\r
+      </gvp:EnableUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/EnableUser"/></con:call></con:operation><con:operation id="b1b2980e-7f85-4237-ae75-ec5d3f669d6c" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/ModifyUser" name="ModifyUser" bindingOperationName="ModifyUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d999e14c-fa2e-45c2-8d8e-25e5059a5705" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model" xmlns:var="http://www.example.org/variables">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:ModifyUser>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:user>\r
+            <!--Optional:-->\r
+            <gvp1:UserId>?</gvp1:UserId>\r
+            <!--Optional:-->\r
+            <gvp1:UniqueId>?</gvp1:UniqueId>\r
+            <!--Optional:-->\r
+            <gvp1:FirstName>?</gvp1:FirstName>\r
+            <!--Optional:-->\r
+            <gvp1:LastName>?</gvp1:LastName>\r
+            <!--Optional:-->\r
+            <gvp1:Email>?</gvp1:Email>\r
+            <!--Optional:-->\r
+            <gvp1:CustomFields>\r
+               <!--Zero or more repetitions:-->\r
+               <gvp1:UserCustomFieldDataContract>\r
+                  <!--Optional:-->\r
+                  <gvp1:Key>?</gvp1:Key>\r
+                  <!--Optional:-->\r
+                  <gvp1:Value>?</gvp1:Value>\r
+               </gvp1:UserCustomFieldDataContract>\r
+            </gvp1:CustomFields>\r
+            <!--Optional:-->\r
+            <gvp1:Status>?</gvp1:Status>\r
+            <!--Optional:-->\r
+            <gvp1:InstanceId>?</gvp1:InstanceId>\r
+            <!--Optional:-->\r
+            <gvp1:EWallet>?</gvp1:EWallet>\r
+            <!--Optional:-->\r
+            <gvp1:PlatformId>?</gvp1:PlatformId>\r
+            <!--Optional:-->\r
+            <gvp1:Products>\r
+               <!--Zero or more repetitions:-->\r
+               <gvp1:ProductDataContract>\r
+                  <!--Optional:-->\r
+                  <gvp1:ProductId>?</gvp1:ProductId>\r
+                  <!--Optional:-->\r
+                  <gvp1:ProductType>?</gvp1:ProductType>\r
+                  <!--Optional:-->\r
+                  <gvp1:Title>?</gvp1:Title>\r
+                  <!--Optional:-->\r
+                  <gvp1:Description>?</gvp1:Description>\r
+                  <!--Optional:-->\r
+                  <gvp1:RequiresPin>?</gvp1:RequiresPin>\r
+                  <!--Optional:-->\r
+                  <gvp1:PricingModel>\r
+                     <!--Optional:-->\r
+                     <gvp1:ID>?</gvp1:ID>\r
+                     <!--Optional:-->\r
+                     <gvp1:Title>?</gvp1:Title>\r
+                     <!--Optional:-->\r
+                     <gvp1:Chargingclass>?</gvp1:Chargingclass>\r
+                     <!--Optional:-->\r
+                     <gvp1:UserType>?</gvp1:UserType>\r
+                     <!--Optional:-->\r
+                     <gvp1:Price>?</gvp1:Price>\r
+                     <!--Optional:-->\r
+                     <gvp1:RecurrenceType>?</gvp1:RecurrenceType>\r
+                     <!--Optional:-->\r
+                     <gvp1:DevicesType>\r
+                        <!--Zero or more repetitions:-->\r
+                        <gvp1:DeviceTypeDataContract>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Name>?</gvp1:Name>\r
+                        </gvp1:DeviceTypeDataContract>\r
+                     </gvp1:DevicesType>\r
+                     <!--Optional:-->\r
+                     <gvp1:Isrecurring>?</gvp1:Isrecurring>\r
+                     <!--Optional:-->\r
+                     <gvp1:GrantAllDevices>?</gvp1:GrantAllDevices>\r
+                     <!--Optional:-->\r
+                     <gvp1:StartDate>?</gvp1:StartDate>\r
+                     <!--Optional:-->\r
+                     <gvp1:EndDate>?</gvp1:EndDate>\r
+                     <!--Optional:-->\r
+                     <gvp1:Quality>?</gvp1:Quality>\r
+                  </gvp1:PricingModel>\r
+                  <!--Optional:-->\r
+                  <gvp1:SerieId>?</gvp1:SerieId>\r
+                  <!--Optional:-->\r
+                  <gvp1:SeasonId>?</gvp1:SeasonId>\r
+                  <!--Optional:-->\r
+                  <gvp1:Producer>?</gvp1:Producer>\r
+                  <!--Optional:-->\r
+                  <gvp1:PurchaseType>?</gvp1:PurchaseType>\r
+                  <!--Optional:-->\r
+                  <gvp1:ReleaseDate>?</gvp1:ReleaseDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:Year>?</gvp1:Year>\r
+                  <!--Optional:-->\r
+                  <gvp1:Genres>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:GenreDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Title>?</gvp1:Title>\r
+                     </gvp1:GenreDataContract>\r
+                  </gvp1:Genres>\r
+                  <!--Optional:-->\r
+                  <gvp1:ImdbRating>?</gvp1:ImdbRating>\r
+                  <!--Optional:-->\r
+                  <gvp1:AgeRating>?</gvp1:AgeRating>\r
+                  <!--Optional:-->\r
+                  <gvp1:Stars>?</gvp1:Stars>\r
+                  <!--Optional:-->\r
+                  <gvp1:Images>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:ImageDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Url>?</gvp1:Url>\r
+                        <!--Optional:-->\r
+                        <gvp1:Width>?</gvp1:Width>\r
+                        <!--Optional:-->\r
+                        <gvp1:Height>?</gvp1:Height>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                     </gvp1:ImageDataContract>\r
+                  </gvp1:Images>\r
+                  <!--Optional:-->\r
+                  <gvp1:Staff>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:MovieStaffDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:Role>?</gvp1:Role>\r
+                        <!--Optional:-->\r
+                        <gvp1:Person>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Title>?</gvp1:Title>\r
+                        </gvp1:Person>\r
+                     </gvp1:MovieStaffDataContract>\r
+                  </gvp1:Staff>\r
+                  <!--Optional:-->\r
+                  <gvp1:Medias>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:MediaDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Languages>\r
+                           <!--Zero or more repetitions:-->\r
+                           <gvp1:LanguageDataContract>\r
+                              <!--Optional:-->\r
+                              <gvp1:ID>?</gvp1:ID>\r
+                              <!--Optional:-->\r
+                              <gvp1:Title>?</gvp1:Title>\r
+                              <!--Optional:-->\r
+                              <gvp1:Code>?</gvp1:Code>\r
+                           </gvp1:LanguageDataContract>\r
+                        </gvp1:Languages>\r
+                        <!--Optional:-->\r
+                        <gvp1:Quality>?</gvp1:Quality>\r
+                        <!--Optional:-->\r
+                        <gvp1:Extension>?</gvp1:Extension>\r
+                        <!--Optional:-->\r
+                        <gvp1:Aspect>?</gvp1:Aspect>\r
+                        <!--Optional:-->\r
+                        <gvp1:DRM>?</gvp1:DRM>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                     </gvp1:MediaDataContract>\r
+                  </gvp1:Medias>\r
+                  <!--Optional:-->\r
+                  <gvp1:Subtitles>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:SubtitleDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:ID>?</gvp1:ID>\r
+                        <!--Optional:-->\r
+                        <gvp1:Language>\r
+                           <!--Optional:-->\r
+                           <gvp1:ID>?</gvp1:ID>\r
+                           <!--Optional:-->\r
+                           <gvp1:Title>?</gvp1:Title>\r
+                           <!--Optional:-->\r
+                           <gvp1:Code>?</gvp1:Code>\r
+                        </gvp1:Language>\r
+                        <!--Optional:-->\r
+                        <gvp1:URL>?</gvp1:URL>\r
+                        <!--Optional:-->\r
+                        <gvp1:Extension>?</gvp1:Extension>\r
+                     </gvp1:SubtitleDataContract>\r
+                  </gvp1:Subtitles>\r
+                  <!--Optional:-->\r
+                  <gvp1:Tags>\r
+                     <!--Zero or more repetitions:-->\r
+                     <gvp1:ProductTagDataContract>\r
+                        <!--Optional:-->\r
+                        <gvp1:Type>?</gvp1:Type>\r
+                        <!--Optional:-->\r
+                        <gvp1:Value>?</gvp1:Value>\r
+                     </gvp1:ProductTagDataContract>\r
+                  </gvp1:Tags>\r
+                  <!--Optional:-->\r
+                  <gvp1:TransactionDate>?</gvp1:TransactionDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:TransactionId>?</gvp1:TransactionId>\r
+                  <!--Optional:-->\r
+                  <gvp1:ExpireDate>?</gvp1:ExpireDate>\r
+                  <!--Optional:-->\r
+                  <gvp1:Status>?</gvp1:Status>\r
+               </gvp1:ProductDataContract>\r
+            </gvp1:Products>\r
+            <!--Optional:-->\r
+            <gvp1:videoServiceAdditionalInfo>\r
+               <!--Optional:-->\r
+               <gvp1:creditLimit>?</gvp1:creditLimit>\r
+               <!--Optional:-->\r
+               <gvp1:geographicArea>?</gvp1:geographicArea>\r
+               <!--Optional:-->\r
+               <gvp1:blackoutArea>?</gvp1:blackoutArea>\r
+               <!--Optional:-->\r
+               <gvp1:timezone>?</gvp1:timezone>\r
+               <!--Optional:-->\r
+               <gvp1:DVRenabled>?</gvp1:DVRenabled>\r
+               <!--Optional:-->\r
+               <gvp1:SDMediaStreams>?</gvp1:SDMediaStreams>\r
+               <!--Optional:-->\r
+               <gvp1:HDMediaStreams>?</gvp1:HDMediaStreams>\r
+               <!--Optional:-->\r
+               <gvp1:serviceGroup>?</gvp1:serviceGroup>\r
+               <!--Optional:-->\r
+               <gvp1:subscriberGroups>\r
+                  <!--Optional:-->\r
+                  <gvp1:subscriberGroup>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:subscriberGroup>\r
+               </gvp1:subscriberGroups>\r
+               <!--Optional:-->\r
+               <gvp1:serverCodeList>\r
+                  <!--Optional:-->\r
+                  <gvp1:serverCode>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:serverCode>\r
+               </gvp1:serverCodeList>\r
+               <!--Optional:-->\r
+               <gvp1:deviceIds>\r
+                  <!--Optional:-->\r
+                  <gvp1:deviceId>\r
+                     <!--Zero or more repetitions:-->\r
+                     <var:string>?</var:string>\r
+                  </gvp1:deviceId>\r
+               </gvp1:deviceIds>\r
+               <!--Optional:-->\r
+               <gvp1:masterDeviceId>?</gvp1:masterDeviceId>\r
+               <!--Optional:-->\r
+               <gvp1:dvbtTuners>?</gvp1:dvbtTuners>\r
+               <!--Optional:-->\r
+               <gvp1:TimeShiftStatusId>?</gvp1:TimeShiftStatusId>\r
+               <!--Optional:-->\r
+               <gvp1:TimeShiftStatusDate>?</gvp1:TimeShiftStatusDate>\r
+            </gvp1:videoServiceAdditionalInfo>\r
+            <gvp1:serviceId>?</gvp1:serviceId>\r
+         </gvp:user>\r
+      </gvp:ModifyUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/ModifyUser"/></con:call></con:operation><con:operation id="ccb865cb-b4af-4693-83cc-f74b5f2877a6" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/RegisterDevices" name="RegisterDevices" bindingOperationName="RegisterDevices" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="78560481-9d89-4f99-ace5-70f2b34f5e18" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:RegisterDevices>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:uniqueId>?</gvp:uniqueId>\r
+         <!--Optional:-->\r
+         <gvp:deviceInfoList>\r
+            <!--Zero or more repetitions:-->\r
+            <gvp1:deviceInfo>\r
+               <!--Optional:-->\r
+               <gvp1:deviceTrustedId>?</gvp1:deviceTrustedId>\r
+               <!--Optional:-->\r
+               <gvp1:deviceExternalId>?</gvp1:deviceExternalId>\r
+               <!--Optional:-->\r
+               <gvp1:deviceTypeId>?</gvp1:deviceTypeId>\r
+               <!--Optional:-->\r
+               <gvp1:deviceName>?</gvp1:deviceName>\r
+            </gvp1:deviceInfo>\r
+         </gvp:deviceInfoList>\r
+      </gvp:RegisterDevices>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/RegisterDevices"/></con:call></con:operation><con:operation id="69f8e10c-9f30-4946-9eed-b61f1abc2019" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/RemoveDevices" name="RemoveDevices" bindingOperationName="RemoveDevices" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="90e36cb7-b768-4c31-a3d5-c04ffcf70e93" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.Model">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:RemoveDevices>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:uniqueId>?</gvp:uniqueId>\r
+         <!--Optional:-->\r
+         <gvp:deviceInfoList>\r
+            <!--Zero or more repetitions:-->\r
+            <gvp1:deviceInfo>\r
+               <!--Optional:-->\r
+               <gvp1:deviceTrustedId>?</gvp1:deviceTrustedId>\r
+               <!--Optional:-->\r
+               <gvp1:deviceExternalId>?</gvp1:deviceExternalId>\r
+               <!--Optional:-->\r
+               <gvp1:deviceTypeId>?</gvp1:deviceTypeId>\r
+               <!--Optional:-->\r
+               <gvp1:deviceName>?</gvp1:deviceName>\r
+            </gvp1:deviceInfo>\r
+         </gvp:deviceInfoList>\r
+      </gvp:RemoveDevices>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/RemoveDevices"/></con:call></con:operation><con:operation id="e29601db-7d0b-4c5b-90ad-19f223e88063" isOneWay="false" action="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccount" name="RemoveDevicesFromAccount" bindingOperationName="RemoveDevicesFromAccount" type="Request-Response" outputName="RemoveDevicesFromAccountResponse" inputName="RemoveDevicesFromAccountRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ab3de4ae-d9a4-4d39-b8a7-52f6e2b8b81d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.22.40.93/Telefonica.UMG.GALConnector/TD_RegistrationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:var="http://www.example.org/variables">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <gvp:RemoveDevicesFromAccount>\r
+         <!--Optional:-->\r
+         <gvp:instanceId>?</gvp:instanceId>\r
+         <!--Optional:-->\r
+         <gvp:platformId>?</gvp:platformId>\r
+         <!--Optional:-->\r
+         <gvp:serviceId>?</gvp:serviceId>\r
+         <!--Optional:-->\r
+         <gvp:accountId>?</gvp:accountId>\r
+         <!--Optional:-->\r
+         <gvp:deviceIds>\r
+            <gvp:deviceId>\r
+               <!--Zero or more repetitions:-->\r
+               <var:string>?</var:string>\r
+            </gvp:deviceId>\r
+         </gvp:deviceIds>\r
+      </gvp:RemoveDevicesFromAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccount"/></con:call></con:operation></con:interface><con:mockService id="55fa3e86-328a-42f5-abbc-0ea275952f16" port="10100" path="/UMG_TD_RegistrationService" host="localhost" name="GAL_SOUTHBOUND_UMG_MOCKS" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:afterRequestScript>def timeout = 2000
+Thread.sleep(timeout)</con:afterRequestScript><con:mockOperation name="CreateUser" id="128e678c-d326-4360-a86e-eeadf173ffc6" interface="BasicHttpBinding_ITD_RegistrationService" operation="CreateUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="f2212c3b-ae1b-4cb3-8ad2-5eecf65b066a" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:CreateUserResponse>
+         <gvp:CreateUserResult>
+            <gvp1:StatusCode>OK</gvp1:StatusCode>
+         </gvp:CreateUserResult>
+      </gvp:CreateUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/CreateUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="DeleteUser" id="662985f7-a46d-42ef-a050-b5aad9b61571" interface="BasicHttpBinding_ITD_RegistrationService" operation="DeleteUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="16d93f5e-86e5-4df9-95b3-30cc014cba28" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:DeleteUserResponse>
+         <!--Optional:-->
+         <gvp:DeleteUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:DeleteUserResult>
+      </gvp:DeleteUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/DeleteUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="DisableUser" id="3b21797f-4261-47a5-9700-81deabad3064" interface="BasicHttpBinding_ITD_RegistrationService" operation="DisableUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="2d852454-9418-4c2d-8066-a0975bdd28f3" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:DisableUserResponse>
+         <!--Optional:-->
+         <gvp:DisableUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:DisableUserResult>
+      </gvp:DisableUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/DisableUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="EnableUser" id="cbc4fcd3-d4e6-4272-bd08-f19f873ccbc1" interface="BasicHttpBinding_ITD_RegistrationService" operation="EnableUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="7d8ce25d-3053-4cf8-9519-41a1c7c5b754" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:EnableUserResponse>
+         <!--Optional:-->
+         <gvp:EnableUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:EnableUserResult>
+      </gvp:EnableUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/EnableUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="ModifyUser" id="54ab1c7a-4481-4999-98c0-001493ae7496" interface="BasicHttpBinding_ITD_RegistrationService" operation="ModifyUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="7c746dc4-6cd0-4a50-923d-ff64e8cf8aa2" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:ModifyUserResponse>
+         <!--Optional:-->
+         <gvp:ModifyUserResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:ModifyUserResult>
+      </gvp:ModifyUserResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/ModifyUser"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="RegisterDevices" id="81058fa4-afcb-4b27-8458-770eb24dcb1d" interface="BasicHttpBinding_ITD_RegistrationService" operation="RegisterDevices"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="6b5cbe29-a8b2-4e86-b4ca-f2f38d049567" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:RegisterDevicesResponse>
+         <!--Optional:-->
+         <gvp:RegisterDevicesResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:RegisterDevicesResult>
+      </gvp:RegisterDevicesResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/RegisterDevices"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="RemoveDevices" id="97ad141d-5620-4925-bd96-338c07364e16" interface="BasicHttpBinding_ITD_RegistrationService" operation="RemoveDevices"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="97a7e885-f744-43ed-bce3-219363b3c5ac" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:RemoveDevicesResponse>
+         <!--Optional:-->
+         <gvp:RemoveDevicesResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:RemoveDevicesResult>
+      </gvp:RemoveDevicesResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/RemoveDevices"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="RemoveDevicesFromAccount" id="332bdcb0-7ab4-4889-93b0-688cc1733eb1" interface="BasicHttpBinding_ITD_RegistrationService" operation="RemoveDevicesFromAccount"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="4aae6fbe-6942-4f32-a9cb-5de50443cf7d" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gvp="GVP.GAL" xmlns:gvp1="http://schemas.datacontract.org/2004/07/GVP.GAL.API">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gvp:RemoveDevicesFromAccountResponse>
+         <!--Optional:-->
+         <gvp:RemoveDevicesFromAccountResult>
+            <!--Optional:-->
+            <gvp1:StatusCode>?</gvp1:StatusCode>
+            <!--Optional:-->
+            <gvp1:Severity>?</gvp1:Severity>
+            <!--Optional:-->
+            <gvp1:StatusMessage>?</gvp1:StatusMessage>
+            <!--Optional:-->
+            <gvp1:Content>?</gvp1:Content>
+         </gvp:RemoveDevicesFromAccountResult>
+      </gvp:RemoveDevicesFromAccountResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="GVP.GAL/ITD_RegistrationService/RemoveDevicesFromAccount"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

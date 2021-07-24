@@ -1,0 +1,1149 @@
+openapi: 3.0.0
+info:
+  description: >
+    Description
+
+    ===============
+
+
+
+    The API described in this document is a MiViewTV REST API created to
+    offer PROVISING methods for OTT users. 
+
+
+
+    Originally, this API is only oriented for current users of Yomvi platform that
+    are NOT provisioned in MiViewTV main DataBase as MiViewTV users. That would
+    be the case of the SATELLITE and ANDORRA users.
+    
+    
+    However, some methods of this API may be also used for other users of the platform (even IPTV users). Specificaly, the methods for managing the subscribed products of a user.
+
+
+
+
+    ---
+
+
+
+    ## Document code ######
+
+
+    MiViewTV-V050.70.16
+    
+    
+    ---
+
+
+
+    ## API Revision History ######
+
+    Table below lists <b>most recent versions</b> of this API.
+    
+    
+    For details on <b>previous versions</b> check [this other page](./Confluence_pages/versions.html).
+
+    <table>
+
+    <thead>
+
+    <th width=100>Version</th><th width=100>Date</th><th>Change Description</th>
+
+    </thead>
+
+    <tbody>
+
+    <tr><td><b>v1.0.1</td><td>14/12/2018</td><td>Official version for <b>E7</b>
+    </td></tr>
+    <tr><td>v1.9.1</td><td>10/07/2019</td><td>Draft for <b>E9.1</b> version:
+    
+      - Available Authentication mechanisms are detailed in a new section.
+      
+      - New errors regarding authentication are added on "Errors" section.
+    </td></tr>
+    <tr><td>v1.9.2</td><td>14/07/2019</td><td>New draft for <b>E9.1</b> version:
+    
+      - DeviceType for "mvtvott1" Authentication mechanism is corrected: "PROVISION_TKN".      
+    </td></tr>
+    <tr><td><b>v2.0.0</td><td>11/09/2019</td><td>Official version for <b>E9.1</b>:
+    
+      - Some error texts are corrected.      
+    </td></tr>
+    <tr><td>v2.9.1</td><td>12/09/2019</td><td>Draft for <b>E9.2</b> version:
+    
+      - "SubscribedProducts" PUT method is updated to support NON-consolidated assignments.
+      - "Voucher purchase" resource is added. 
+      - New errors regarding both modifications are added on "Errors" section.
+    </td></tr>
+    </tbody></table>
+
+
+
+
+    ---
+
+
+
+    ## General rules for this API usage ######
+
+
+    Information regarding general rules for using this API can be found in [this
+    page](./Confluence_pages/general.html).
+
+
+
+    ---
+
+
+
+    ## Authentication mechanisms available for this API ######
+
+
+    Detailed information regarding the different authentication mechanisms that may be used for this API can be found in [this
+    page](./Confluence_pages/authentication.html).
+
+
+
+    ---
+
+
+
+    ## Errors ######
+
+
+    In this API specification, only some examples for resultCode values are
+
+    provided.
+
+
+
+    To see the list with ALL errors of this API, please refer to [this
+
+    page](./Confluence_pages/errors.html).
+
+
+
+    ---
+  version: 2.9.1
+  title: MIVIEWTV OTT PROVISION REST API
+tags:
+  - name: OTT User Provision
+  - name: Subscribed Products of an OTT User
+  - name: Purchased Vouchers of an OTT User
+paths:
+  '/provision/OTT/{adminCode}':
+    description: >-
+      A provision/OTT resource represents a specific user provisioned in the
+      platform from the OTT platform.
+    put:
+      tags:
+        - OTT User Provision
+      summary: Create a user
+      description: |
+        This operation allows a BSS/OSS system to create an OTT user.
+        Some notes about existing users\:
+          * If a user already exists with the same identifier and is not CANCELLED, an error is returned.
+          * If a user already exists with the same identifier and is CANCELLED, the request may be succesful\: it would be a "recover" request.
+            * In that case, the user would be recovered but as a new user (the values would be taken from this request, not from the pre-existent values for the user).
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+      requestBody:
+        description: A JSON object containing additional parameters to create a user.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/provisionOttUser_BASE.clientSegment_REQ'
+                - $ref: '#/components/schemas/provisionOttUser_BASE.devices'
+                - $ref: '#/components/schemas/provisionOttUser_BASE.flags'
+                - $ref: >-
+                    #/components/schemas/provisionOttUser_BASE.subscribedProducts_WRITE
+        required: true
+      responses:
+        '201':
+          description: >
+            Created
+
+
+            Location:
+            http://api.imagenio.telefonica.net/cdbprovision/rest/provision/OTT/codigo1234
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-SegmentNotFound'
+        '409':
+          $ref: '#/components/responses/409-Conflict-Activation'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+    patch:
+      tags:
+        - OTT User Provision
+      summary: Modify a user
+      description: |
+        This operation allows modifying certain parameters of a given user.
+          * NOTE\: Cancelled users cannot be modified using this request.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+      requestBody:
+        description: A JSON object containing additional parameters to modify a user.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/provisionOttUser_BASE.clientSegment'
+                - $ref: '#/components/schemas/provisionOttUser_BASE.devices'
+                - $ref: '#/components/schemas/provisionOttUser_BASE.flags'
+                - $ref: >-
+                    #/components/schemas/provisionOttUser_BASE.subscribedProducts_WRITE
+                - $ref: '#/components/schemas/provisionOttUser_BASE.state_WRITE'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/200-User'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '409':
+          $ref: '#/components/responses/409-Conflict-Activation'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+    get:
+      tags:
+        - OTT User Provision
+      summary: Obtain the properties of a user
+      description: |
+        This operation allows obtaining the parameters of a given user.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+      responses:
+        '200':
+          $ref: '#/components/responses/200-User'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+    delete:
+      tags:
+        - OTT User Provision
+      summary: Cancel/Delete a user
+      description: >
+        This operation allows requesting the deletion of a given user. Actually,
+        this only means that this user will be marked with the "cancelled"
+        state\: it will not be immediately deleted from the system.
+
+
+        This operation will return an error if the user to be cancelled does not
+        exist anymore (i.e. it has already been removed from the system after
+        having been X days in the cancelled state).
+          * However, if the user to be cancelled still exists in the platform but with a "cancelled" state, the operation will be directly successful (with no need to modify the user).
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+  '/provision/OTT/{adminCode}/subscribedProducts/{code}':
+    description: >-
+      A provision/OTT/{adminCode}/subscribedProduct resource represents a
+      specific product subscribed by a certain OTT user (whose id is
+      {adminCode}). Products that may be subscribed by the users are
+      "subscriptions" and "TV Packages"; both types are managed together in this
+      API.
+    put:
+      tags:
+        - Subscribed Products of an OTT User
+      summary: Add a product to a user
+      description: >
+        This operation allows a BSS/OSS system to add a product to an OTT user
+        (aka, product subscription operation).
+        
+        
+        By using the "<i>pendingConsolidation</i>" flag, the BSS/OSS system may decide whether the product must be CONSOLIDATED, or not, for the user.
+        
+          * NOTE\: Cancelled users cannot be modified using this request.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+        - $ref: '#/components/parameters/code'
+      requestBody:
+        description: A JSON object containing additional information regarding this specifc operation.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/subscribedProduct_PUT'
+        required: false
+      responses:
+        '201':
+          description: >
+            Created
+
+
+            Location:
+            http://api.imagenio.telefonica.net/cdbprovision/rest/provision/OTT/codigo1234/subscribedProducts/EXTCOD125
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '409':
+          $ref: '#/components/responses/409-Conflict-Activation'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+    delete:
+      tags:
+        - Subscribed Products of an OTT User
+      summary: Remove a product from a user
+      description: >
+        This operation allows a BSS/OSS system to remove a product from an OTT
+        user (aka, product un-subscription operation).
+          * NOTE\: Cancelled users cannot be modified using this request.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+        - $ref: '#/components/parameters/code'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+    get:
+      tags:
+        - Subscribed Products of an OTT User
+      summary: Obtain the properties of a product (belonging to a user)
+      description: >
+        This operation allows a BSS/OSS system to obtain the properties of a
+        product (belonging to an OTT user).
+          * This operation does NOT support Partial response
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+        - $ref: '#/components/parameters/code'
+      responses:
+        '200':
+          $ref: '#/components/responses/200-Product'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+  '/provision/OTT/{adminCode}/subscribedProducts':
+    get:
+      tags:
+        - Subscribed Products of an OTT User
+      summary: Get the list of products of a user
+      description: >
+        This operation allows a BSS/OSS system to obtain the list of products
+        subscribed by an OTT user.
+          * This operation does NOT support Partial response, Sorting nor Filtering.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+      responses:
+        '200':
+          $ref: '#/components/responses/200-ProductList'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+  '/provision/OTT/{adminCode}/purchases/vouchers':
+    description: >-
+      A provision/OTT/{adminCode}/purchases/voucher resource represents a
+      specific voucher product purchased by a certain OTT user (whose id is {adminCode}). In this API, an external provision system will be able to purchase vouchers for a user, remove a voucher to a user and check the vouchers that a certain user has.
+      
+      * Other products that may be purchased by the users in the platform are "VoD products" and "PPVs"; however, those types are still NOT managed in this API.
+    post:
+      tags:
+        - Purchased Vouchers of an OTT User
+      summary: Add a voucher to a user
+      description: >
+        This operation allows a BSS/OSS system to add a voucher product to an OTT user (aka, voucher purchase operation). With this operation, any kind of voucher can be purchased (operator and user vouchers).
+        
+        
+        A single user may own the same voucher several times simultaneously. For that reason, in this API each purchased voucher has 2 identifiers: one is the commercial code of the purchased product and the other is the ID of the purchase. So, the same user may have several "purchases" (each one with a different "<i>id</i>") of the same "product" (all of them would have the same "<i>code</i>").
+        
+        * When purchasing a voucher with this method, the "<i>code</i>" of the voucher is sent. With that, the server creates the purchase as a new REST resource, with its own "<i>id</i>".
+
+
+        
+          (i) NOTE\: Cancelled users cannot be modified using this request.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+      requestBody:
+        description: A JSON object containing additional information regarding this specifc operation.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/voucher_WRITE'
+        required: true
+      responses:
+        '201':
+          description: >
+            Created
+
+
+            Location:
+            http://api.imagenio.telefonica.net/cdbprovision/rest/provision/OTT/codigo1234/purchases/vouchers/1234
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+    get:
+      tags:
+        - Purchased Vouchers of an OTT User
+      summary: Get the list of voucher purchases of a user
+      description: >
+        This operation allows a BSS/OSS system to obtain the list of vouchers
+        purchased by an OTT user.
+          * This operation does NOT support Partial response, Sorting nor Filtering.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+      responses:
+        '200':
+          $ref: '#/components/responses/200-VoucherList'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+  '/provision/OTT/{adminCode}/purchases/vouchers/{id}':
+    delete:
+      tags:
+        - Purchased Vouchers of an OTT User
+      summary: Remove a voucher purchase from a user
+      description: >
+        This operation allows a BSS/OSS system to remove a voucher from an OTT user that could have it purchased (aka, voucher purchase cancellation operation). This operation may be only applied on vouchers that have NOT been activated yet.
+          * NOTE\: Cancelled users cannot be modified using this request.
+          
+        A single user may own the same voucher several times simultaneously. For that reason, in this API each purchased voucher has 2 identifiers: one is the commercial code of the purchased product and the other is the ID of the purchase. So, the same user may have several "purchases" (each one with a different "<i>id</i>") of the same "product" (all of them would have the same "<i>code</i>").
+        
+        * When trying to cancel a specific voucher-purchase with this method, the "<i>id</i>" of the "purchase" is sent.
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+    get:
+      tags:
+        - Purchased Vouchers of an OTT User
+      summary: Obtain the properties of a voucher (belonging to a user)
+      description: >
+        This operation allows a BSS/OSS system to obtain the properties of a certain
+        voucher purchased by a user.
+          * This operation does NOT support Partial response
+          
+        A single user may own the same voucher several times simultaneously. For that reason, in this API each purchased voucher has 2 identifiers: one is the commercial code of the purchased product and the other is the ID of the purchase. So, the same user may have several "purchases" (each one with a different "<i>id</i>") of the same "product" (all of them would have the same "<i>code</i>").
+        
+        * When looking for a specific purchased voucher with this method, the "<i>id</i>" of the "purchase" is sent. So, if the server finds that purchase, it will return the voucher information, including the "<i>code</i>" of the crresponding product.
+          
+      parameters:
+        - $ref: '#/components/parameters/adminCode'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          $ref: '#/components/responses/200-Voucher'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+        '403':
+          $ref: '#/components/responses/403-Forbidden'
+        '404':
+          $ref: '#/components/responses/404-UserNotFound'
+        '500':
+          $ref: '#/components/responses/500-ServerError'
+        '503':
+          $ref: '#/components/responses/503-ServerUnavailable'
+        '504':
+          $ref: '#/components/responses/504-GatewayTimeout'
+servers:
+  - url: ' https://{host}:{port}/{Path}/'
+    description: Generic API server
+    variables:
+      Path:
+        default: cdbprovision/rest
+components:
+  parameters:
+    adminCode:
+      name: adminCode
+      in: path
+      description: |
+        Unique identifier of the user in operator's network and BSS/OSS systems.
+      required: true
+      schema:
+        type: string
+      example: codigo1234
+    code:
+      name: code
+      in: path
+      description: >
+        Unique identifier of the product in operator's BSS/OSS systems (aka
+        "Commercial code").
+      required: true
+      schema:
+        type: string
+      example: EXTCOD125
+    id:
+      name: id
+      in: path
+      description: >
+        Unique identifier of the purchase. Please, note that this is NOT the product ID of the voucher.
+      required: true
+      schema:
+        type: string
+      example: 1234
+  schemas:
+    provisionOttUser_BASE.clientSegment:
+      type: object
+      properties:
+        clientSegmentName:
+          type: string
+          description: >
+            Client segment the user belongs to (referenced by its name).
+
+
+            This parameter defines which products may be contracted or purchased
+            by this user.
+          example: SAT1
+    provisionOttUser_BASE.clientSegment_REQ:
+      type: object
+      required:
+        - clientSegmentName
+      properties:
+        clientSegmentName:
+          type: string
+          description: >
+            Client segment the user belongs to (referenced by its name).
+
+
+            This parameter defines which products may be contracted or purchased
+            by this user.
+          example: SAT1
+    provisionOttUser_BASE.state:
+      type: object
+      properties:
+        state:
+          type: integer
+          description: |-
+            State of this user. Possible values are these (and only these)\:
+              * 1 = active state (this is the default value).
+              * 0 = suspended state.
+              * -1 = cancelled state.
+          enum:
+            - 0
+            - 1
+            - -1
+          example: 1
+    provisionOttUser_BASE.state_WRITE:
+      type: object
+      properties:
+        state:
+          type: integer
+          description: |-
+            State of this user. Possible values are these (and only these)\:
+              * 1 = active state (this is the default value).
+              * 0 = suspended state.
+              * NOTE\: To set state=-1 (cancelled user), a DELETE request must be used instead.
+          enum:
+            - 0
+            - 1
+          example: 1
+    provisionOttUser_BASE.subscribedProducts:
+      type: object
+      properties:
+        subscribedProducts:
+          type: array
+          description: >-
+            List of products (subscriptions and TV Packages) subscribed by this
+            user.
+          items:
+            type: object
+            allOf:
+              - $ref: '#/components/schemas/subscribedProduct'
+    provisionOttUser_BASE.subscribedProducts_WRITE:
+      type: object
+      properties:
+        subscribedProducts:
+          type: array
+          description: >
+            List of products (subscriptions and TV Packages) to be subscribed by
+            this user.
+
+
+            This will be the FULL list of products that the user must be
+            subscribed to after this modification (i.e. "final picture"
+            modification).
+            
+            
+            In case this field is NOT included in the request, current user's subscribed product list is left unmodified.
+            BUT, in case the field is included as an EMPTY list (value equal to []), the user is left with NO subscribed product in the database.
+          items:
+            type: object
+            allOf:
+              - $ref: '#/components/schemas/subscribedProduct_WRITE'
+    provisionOttUser_BASE.devices:
+      type: object
+      properties:
+        devices:
+          type: object
+          description: Object containing the following elements.
+          properties:
+            maxNumDevices:
+              type: integer
+              description: |
+                Maximum number of devices the user may register in the platform.
+
+                The possible values are numbers\:
+                  * A NEGATIVE value means there is NO maximum for this user (unlimited).
+                  * A 0 value means the user may NOT register any device.
+                  * A POSITIVE value is to be taken as the specific maximum for this user.
+
+                The default value is -1.
+
+                The maximum value is 99.
+              example: 5
+    provisionOttUser_BASE.flags:
+      type: object
+      properties:
+        serviceFlags:
+          type: object
+          description: Object containing the following elements.
+          properties:
+            transactionalPurchases:
+              type: integer
+              description: >
+                Flag enabling/disabling the user to apply transactional
+                purchases\:
+                  * 0 = option is disabled.
+                  * 1 = option is enabled (this is the default value).
+
+                Other values are not expected, and will be forbidden by the
+                server.
+              enum:
+                - 0
+                - 1
+              example: 1
+            downloadToGo:
+              type: integer
+              description: >
+                Flag enabling/disabling the user to enjoy "Download to go"
+                services\:
+                  * 0 = option is disabled.
+                  * 1 = option is enabled (this is the default value).
+
+                Other values are not expected, and will be forbidden by the
+                server.
+              enum:
+                - 0
+                - 1
+              example: 1
+    provisionOttUser_BASE.links:
+      type: object
+      properties:
+        links:
+          type: array
+          description: List of hypermedia links related to this OTT user.
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/linkUserSelf'
+              - $ref: '#/components/schemas/linkUserProducts'
+    provisionOttUser:
+      description: A specific user provisioned in the platform from the OTT platform.
+      type: object
+      allOf:
+        - type: object
+          properties:
+            adminCode:
+              type: string
+              description: >-
+                Unique identifier of the user in operator's network and BSS/OSS
+                systems.
+              example: codigo1234
+        - $ref: '#/components/schemas/provisionOttUser_BASE.clientSegment'
+        - $ref: '#/components/schemas/provisionOttUser_BASE.devices'
+        - $ref: '#/components/schemas/provisionOttUser_BASE.flags'
+        - $ref: '#/components/schemas/provisionOttUser_BASE.state'
+        - $ref: '#/components/schemas/provisionOttUser_BASE.subscribedProducts'
+    subscribedProduct_BASE.links:
+      type: object
+      properties:
+        links:
+          type: array
+          description: List of hypermedia links related to this product.
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/linkProductSelf'
+    subscribedProduct:
+      description: >-
+        A specific product subscribed by a certain OTT user. Products that may
+        be subscribed by the users are "subscriptions" and "TV Packages"; both
+        types are managed together in this API.
+      type: object
+      properties:
+        code:
+          type: string
+          description: >-
+            Unique identifier of the product in operator's BSS/OSS systems (aka
+            "*Commercial code*").
+          example: EXTCOD125
+        state:
+          type: integer
+          description: >
+            State of this product for the user. Possible values are these (and
+            only these)\:
+              * 1 = Still being provisioned (aka, pending consolidation order from Provision API).
+              * 2 = Active.
+              * 3 = Being cancelled (aka, pending removal order from Provision API).
+
+            This attribute is generated and maintained by the server.
+          enum:
+            - 1
+            - 2
+            - 3
+          example: 2
+        type:
+          type: integer
+          description: |-
+            Type  of the product. Possible values are these (and only these)\:
+              * 0 = Subscriptions.
+              * 1 = TV Packages.
+          enum:
+            - 0
+            - 1
+          example: 1
+    subscribedProduct_WRITE:
+      description: >-
+        A specific product to be subscribed by a certain OTT user. Products that
+        may be subscribed by the users are "subscriptions" and "TV Packages";
+        both types are managed together in this API.
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+          description: >-
+            Unique identifier of the product in operator's BSS/OSS systems (aka
+            "*Commercial code*").
+          example: EXTCOD125
+    subscribedProduct_PUT:
+#      description: >-
+#        When using the API to assign a specific subscription product to a user via the "subscribedProducts" resource, some parameters may be sent in the payload to "customize" that operation.
+      type: object
+      properties:
+        pendingConsolidation:
+          type: integer
+          description: |
+            Flag that specifies whether this product must be assigned to the user in a CONSOLIDATED (0), or in a NON-consolidated (1) state.
+        
+            OPTIONAL parameter. Default value: 0.
+          example: 1
+    voucher_BASE.links:
+      type: object
+      properties:
+        links:
+          type: array
+          description: List of hypermedia links related to this voucher.
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/linkVoucherSelf'
+    voucher:
+      description: >-
+        A specific voucher purchased by a certain OTT user. In this API, an external provision system will be able to purchase vouchers for a user, remove a voucher to a user and check the vouchers that a certain user has got.
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier of the purchase. Please, note that this is NOT the product ID of the voucher..
+          example: 1234
+        code:
+          type: string
+          description: >-
+            Unique identifier of the voucher product in operator's BSS/OSS systems (aka
+            "*Commercial code*").
+          example: EXTCOD1234
+        state:
+          type: integer
+          description: >
+            State of this voucher for the user. Possible values are these (and
+            only these)\:
+              * 0 = Purchased but not activated (this means it has not been used yet).
+              * 1 = Activated and still not finished (there are pending items to purchase).
+              * 2 = Cannot be used anymore\: it is either finished (there are NO pending items) or expired.
+
+            This attribute is generated and maintained by the server.
+          enum:
+            - 0
+            - 1
+            - 2
+          example: 1
+        isOperatorVoucher:
+          type: integer
+          description: |-
+            Flag that indicates the type of voucher in terms of how it can be purchased. Two possible values\:
+              * 0 = User voucher. These vouchers can be purchased by the users on their own (using FrontEnd APIs).
+              * 1 = Operator voucher. These vouchers can ONLY be assigned to the users by the operator (i.e. External Provision systems), using provision APIs such as this one.
+          enum:
+            - 0
+            - 1
+          example: 1
+        isRenewable:
+          type: integer
+          description: |-
+            Flag that indicates the type of voucher. Two possible values\:
+              * 0 = Non renewable voucher (default case). Currently, only this type of vouchers will be used in this API.
+              * 1 = Monthly renewable voucher. Currently, this type of vouchers will NOT be used in this API.
+          enum:
+            - 0
+            - 1
+          example: 1
+    voucher_WRITE:
+      description: >-
+        A specific voucher to be purchased for a certain OTT user.
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+          description: >-
+            Unique identifier of the voucher product in operator's BSS/OSS systems (aka
+            "*Commercial code*").
+          example: EXTCOD1234
+    linkUserSelf:
+      description: \"Self\" Hypermedia link to this OTT user.
+      type: object
+      properties:
+        href:
+          type: string
+          example: >-
+            http://api.imagenio.telefonica.net/cdbprovision/rest/provision/OTT/codigo1234
+        rel:
+          type: string
+          enum:
+            - self
+    linkUserProducts:
+      description: Hypermedia link to this OTT user's products list.
+      type: object
+      properties:
+        href:
+          type: string
+          example: >-
+            http://api.imagenio.telefonica.net/cdbprovision/rest/provision/OTT/codigo1234/subscribedProducts
+        rel:
+          type: string
+          enum:
+            - subscribedProducts
+    linkProductSelf:
+      description: \"Self\" Hypermedia link to this product.
+      type: object
+      properties:
+        href:
+          type: string
+          example: >-
+            http://api.imagenio.telefonica.net/cdbprovision/rest/provision/OTT/codigo1234/subscribedProducts/EXTCOD125
+        rel:
+          type: string
+          enum:
+            - self
+    linkVoucherSelf:
+      description: \"Self\" Hypermedia link to this voucher.
+      type: object
+      properties:
+        href:
+          type: string
+          example: >-
+            http://api.imagenio.telefonica.net/cdbprovision/rest/provision/OTT/codigo1234/purchases/vouchers/1234
+        rel:
+          type: string
+          enum:
+            - self
+  responses:
+    200-User:
+      description: OK
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/provisionOttUser'
+              - $ref: '#/components/schemas/provisionOttUser_BASE.links'
+    200-Product:
+      description: OK
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/subscribedProduct'
+              - $ref: '#/components/schemas/subscribedProduct_BASE.links'
+    200-ProductList:
+      description: OK
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  allOf:
+                    - $ref: '#/components/schemas/subscribedProduct'
+                    - $ref: '#/components/schemas/subscribedProduct_BASE.links'
+    200-Voucher:
+      description: OK
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/voucher'
+              - $ref: '#/components/schemas/voucher_BASE.links'
+    200-VoucherList:
+      description: OK
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  allOf:
+                    - $ref: '#/components/schemas/voucher'
+                    - $ref: '#/components/schemas/voucher_BASE.links'
+    400-BadRequest:
+      description: >
+        Bad request
+
+        * NOTE: Applicable for syntax errors in general, wrong parameter value
+        format, etc.
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              resultCode:
+                type: integer
+                example: 40001
+              resultText:
+                type: string
+                example: Bad request
+              resultDetail:
+                type: string
+    401-Unauthorized:
+      description: |
+        Unauthorized
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              resultCode:
+                type: integer
+                example: 40103
+              resultText:
+                type: string
+                example: 'Authentication failed, request unknown'
+              resultDetail:
+                type: string
+    403-Forbidden:
+      description: |
+        Forbidden
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              resultCode:
+                type: integer
+                example: 4039198
+              resultText:
+                type: string
+                example: The user belongs to a FORBIDDEN segment for this request
+              resultDetail:
+                type: string
+    404-SegmentNotFound:
+      description: |
+        Not Found
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              resultCode:
+                type: integer
+                example: 4049052
+              resultText:
+                type: string
+                example: The clientSegment is not found in the platform DB
+              resultDetail:
+                type: string
+    404-UserNotFound:
+      description: |
+        Not Found
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              resultCode:
+                type: integer
+                example: 40410
+              resultText:
+                type: string
+                example: The user is not found in the platform DB
+              resultDetail:
+                type: string
+    409-Conflict-Activation:
+      description: |
+        Conflict
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              resultCode:
+                type: integer
+                example: 4099079
+              resultText:
+                type: string
+                example: >-
+                  Product cannot be activated for this user. It is
+                  incompatible with another one
+              resultDetail:
+                type: string
+    500-ServerError:
+      description: Internal server error
+      content:
+        application/vnd.miviewtv.v1+json:
+          schema:
+            type: object
+            properties:
+              resultCode:
+                type: integer
+                example: 50002
+              resultText:
+                type: string
+                example: Server error while reading data.
+              resultDetail:
+                type: string
+    503-ServerUnavailable:
+      description: >
+        Service Unavailable
+
+        * NOTE: the server is currently unavailable because it is overloaded or
+        down for maintenance.
+    504-GatewayTimeout:
+      description: |
+        Gateway Timeout
+        * NOTE: Applicable when a FE Proxy is put in place.

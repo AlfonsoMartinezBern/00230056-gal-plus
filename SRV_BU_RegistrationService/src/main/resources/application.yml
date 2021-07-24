@@ -1,0 +1,11 @@
+server:
+ port: 8889
+
+webservice:
+ identityManagement:
+  uri: "/ws"
+  targetNamespace: "http://www.telefonica.com/BU_RegistrationService/Import"
+  xsd: "wsdl/southbound/BU_RegistrationService/GetAccountForDevice.xsd"
+ 
+dynamicRouting:
+  uri: http://localhost:8081/dynamicConfig/unica/bu

@@ -1,0 +1,412 @@
+{
+	"version": "0.0.1",
+	"info": "Error SPAIN TD created 2021-05-26",
+	"errors": [
+		{
+			"errorCode": "0",
+			"errorInfo": {
+				"errorCode": "0",
+				"errorDescription": "OK"
+			}
+		},
+		{
+			"errorCode": "409001",
+			"errorInfo": {
+				"errorCode": "26",
+				"errorDescription": "Operación nula"
+			}
+		},
+		{
+
+			"errorCode": "503000",
+			"errorInfo": {
+				"errorCode": "1",
+				"errorDescription": "Fallo de comunicación con la Base de Datos"
+			}
+		},
+		{
+
+			"errorCode": "404001",
+			"errorInfo": {
+				"errorCode": "29",
+				"errorDescription": "Dato ‘TV_SERVICE_ID’ no definido:"
+			}
+		},
+		{
+
+			"errorCode": "400006",
+			"errorInfo": {
+				"errorCode": "26",
+				"errorDescription": "Operación nula"
+			}
+		},
+		{
+
+			"errorCode": "GAL-02",
+			"errorInfo": {
+				"errorCode": "2",
+				"errorDescription": "Formato erróneo en el dato 'USER_ID'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-03",
+			"errorInfo": {
+				"errorCode": "3",
+				"errorDescription": "Falta campo obligatorio 'USER_ID'"
+			}
+		},
+		{
+			"errorCode": "GAL-04",
+			"errorInfo": {
+				"errorCode": "4",
+				"errorDescription": "Formato erróneo en el dato 'OPERATION_TYPE'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-05",
+			"errorInfo": {
+				"errorCode": "5",
+				"errorDescription": "Falta campo obligatorio 'OPERATION_TYPE'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-10",
+			"errorInfo": {
+				"errorCode": "10",
+				"errorDescription": "Formato erróneo en el dato 'GEOGRAFIC_AREA'"
+			}
+		},
+		{
+			"errorCode": "GAL-11",
+			"errorInfo": {
+				"errorCode": "11",
+				"errorDescription": "Falta campo obligatorio 'GEOGRAFIC_AREA'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-13",
+			"errorInfo": {
+				"errorCode": "13",
+				"errorDescription": "Formato erróneo en el dato 'USER_TYPE'."
+			}
+		},
+		{
+			"errorCode": "GAL-14",
+			"errorInfo": {
+				"errorCode": "14",
+				"errorDescription": "Falta campo obligatorio 'USER_TYPE'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-16",
+			"errorInfo": {
+				"errorCode": "16",
+				"errorDescription": "Formato erróneo en el dato 'SERVICE_TYPE'"
+			}
+		},
+		{
+			"errorCode": "GAL-17",
+			"errorInfo": {
+				"errorCode": "17",
+				"errorDescription": "Falta campo obligatorio 'SERVICE_TYPE'."
+			}
+		},
+
+		{
+			"errorCode": "GAL-24",
+			"errorInfo": {
+				"errorCode": "24",
+				"errorDescription": "Formato erróneo en el dato 'DEVICE':"
+			}
+		},
+		{
+			"errorCode": "GAL-25",
+			"errorInfo": {
+				"errorCode": "25",
+				"errorDescription": "Falta campo obligatorio 'DEVICE'"
+			}
+		},
+		{
+
+			"errorCode": "GAL-27",
+			"errorInfo": {
+				"errorCode": "27",
+				"errorDescription": "Formato erróneo en el dato 'TV_PACKAGE': "
+			}
+		},
+
+		{
+			"errorCode": "GAL-28",
+			"errorInfo": {
+				"errorCode": "28",
+				"errorDescription": "Falta campo obligatorio 'TV_SERVICE_ID'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-30",
+			"errorInfo": {
+				"errorCode": "30",
+				"errorDescription": "Formato erróneo en el dato 'SUBSCRIPTION': "
+			}
+		},
+		{
+			"errorCode": "GAL-31",
+			"errorInfo": {
+				"errorCode": "31",
+				"errorDescription": "Falta campo obligatorio 'SUBSCRIPTION': "
+			}
+		},
+
+		{
+			"errorCode": "GAL-33",
+			"errorInfo": {
+				"errorCode": "33",
+				"errorDescription": "Formato erróneo en el dato 'POP'"
+			}
+		},
+		{
+			"errorCode": "GAL-34",
+			"errorInfo": {
+				"errorCode": "34",
+				"errorDescription": "Falta campo obligatorio 'POP'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-43",
+			"errorInfo": {
+				"errorCode": "43",
+				"errorDescription": "Falta campo obligatorio 'OPERATOR_BONUS'"
+			}
+		},
+		{
+
+			"errorCode": "GAL-46",
+			"errorInfo": {
+				"errorCode": "46",
+				"errorDescription": "Falta atributo obligatorio 'operation' en campo 'OPERATOR_BONUS'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-47",
+			"errorInfo": {
+				"errorCode": "47",
+				"errorDescription": "Formato erróneo en atributo 'operation' del campo 'OPERATOR_BONUS':"
+			}
+		},
+
+		{
+			"errorCode": "GAL-48",
+			"errorInfo": {
+				"errorCode": "48",
+				"errorDescription": "Falta atributo obligatorio 'operation' en campo 'TV_PACKAGE'."
+			}
+		},
+		{
+
+			"errorCode": "GAL-49",
+			"errorInfo": {
+				"errorCode": "49",
+				"errorDescription": "Formato erróneo en el atributo 'operation' del campo 'TV_PACKAGE': "
+			}
+		},
+
+		{
+			"errorCode": "GAL-50",
+			"errorInfo": {
+				"errorCode": "50",
+				"errorDescription": "Falta atributo obligatorio 'operation' en campo 'SUBSCRIPTION'."
+			}
+		},
+
+		{
+			"errorCode": "GAL-51",
+			"errorInfo": {
+				"errorCode": "51",
+				"errorDescription": "Formato erróneo en el atributo 'operation' del campo 'SUBSCRIPTION':"
+			}
+		},
+
+		{
+			"errorCode": "GAL-75",
+			"errorInfo": {
+				"errorCode": "75",
+				"errorDescription": "Falta campo obligatorio SUBSCRIBER_LINE_UPSTREAM"
+			}
+		},
+		{
+			"errorCode": "GAL-76",
+			"errorInfo": {
+				"errorCode": "76",
+				"errorDescription": "Formato erróneo en el dato SUBSCRIBER_LINE_UPSTREAM"
+			}
+		},
+
+		{
+			"errorCode": "GAL-77",
+			"errorInfo": {
+				"errorCode": "77",
+				"errorDescription": "Falta campo obligatorio SUBSCRIBER_LINE_DOWNSTREAM"
+			}
+		},
+		{
+			"errorCode": "GAL-78",
+			"errorInfo": {
+				"errorCode": "78",
+				"errorDescription": "Formato erróneo en el dato SUBSCRIBER_LINE_DOWNSTREAM"
+			}
+		},
+
+		{
+			"errorCode": "GAL-83",
+			"errorInfo": {
+				"errorCode": "83",
+				"errorDescription": "Formato erróneo en el dato 'ADDRESSING'"
+			}
+		},
+		{
+			"errorCode": "GAL-86",
+			"errorInfo": {
+				"errorCode": "86",
+				"errorDescription": "Formato erróneo en el dato 'MAX_NUM_STBS'"
+			}
+		},
+
+		{
+
+			"errorCode": "GAL-200",
+			"errorInfo": {
+				"errorCode": "200",
+				"errorDescription": "Formato erróneo en el dato 'OPERATION_ID'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-201",
+			"errorInfo": {
+				"errorCode": "201",
+				"errorDescription": "Falta campo obligatorio 'OPERATION_ID'"
+			}
+		},
+
+		{
+			"errorCode": "GAL-0001",
+			"errorInfo": {
+				"errorCode": "0001",
+				"errorDescription": "Format error: Client identifier"
+			}
+		},
+
+		{
+			"errorCode": "GAL-0002",
+			"errorInfo": {
+				"errorCode": "0002",
+				"errorDescription": "Field Format error: Hydra order."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0003",
+			"errorInfo": {
+				"errorCode": "0003",
+				"errorDescription": "Format error: Start date."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0004",
+			"errorInfo": {
+				"errorCode": "0004",
+				"errorDescription": "Format error: End date."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0005",
+			"errorInfo": {
+				"errorCode": "0005",
+				"errorDescription": "Record date interval limit has been exceeded."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0006",
+			"errorInfo": {
+				"errorCode": "0006",
+				"errorDescription": "Client identifier does not exist."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0007",
+			"errorInfo": {
+				"errorCode": "0007",
+				"errorDescription": "Database error."
+			}
+		},
+
+		{
+			"errorCode": "GAL-0008",
+			"errorInfo": {
+				"errorCode": "0008",
+				"errorDescription": "Communications error"
+			}
+		},
+
+		{
+			"errorCode": "GAL-0009",
+			"errorInfo": {
+				"errorCode": "0009",
+				"errorDescription": "Parameter 'end point respuesta' is wrong."
+			}
+		},
+
+		{
+			"errorCode": "SAT-01",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "Parameter [clientSegmentName] not found in the request"
+			}
+		},
+
+		{
+			"errorCode": "SAT-02",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "transactionalPurchases value not valid"
+			}
+		},
+
+		{
+			"errorCode": "SAT-03",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "downloadToGo value not valid"
+			}
+		},
+
+		{
+			"errorCode": "SAT-04",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "maxNumDevices value not valid"
+			}
+		},
+
+		{
+			"errorCode": "SAT-05",
+			"errorInfo": {
+				"errorCode": "Bad request",
+				"errorDescription": "Parameter [code] is required in subscribedProducts ."
+			}
+		}
+	]
+
+}

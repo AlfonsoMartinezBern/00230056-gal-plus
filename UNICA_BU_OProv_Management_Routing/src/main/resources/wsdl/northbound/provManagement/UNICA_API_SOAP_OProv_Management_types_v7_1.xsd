@@ -1,0 +1,983 @@
+<!-- Release Date: January 20, 2012 --><xsd:schema targetNamespace="http://www.telefonica.com/schemas/UNICA/SOAP/OProv_Management/v7/" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.telefonica.com/schemas/UNICA/SOAP/OProv_Management/v7/" xmlns:uct="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1">
+	<xsd:import namespace="http://www.telefonica.com/schemas/UNICA/SOAP/common/v1" schemaLocation="UNICA_API_SOAP_common_types_v1_1.xsd"/>
+
+	<xsd:complexType name="PolicyInfoType">
+		<xsd:sequence>
+			<xsd:element name="operator" type="tns:OBIDType"/>
+			<xsd:element name="policies">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="policy" type="tns:SLAType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="OBIDType">
+		<xsd:sequence>
+			<xsd:element name="countryCode" type="xsd:string"/>
+			<xsd:element name="OBCode" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SLAType">
+		<xsd:sequence>
+			<xsd:element name="SLAId" type="xsd:int"/>
+			<xsd:element name="SLAName" type="xsd:string"/>
+			<xsd:element name="SLAValue" type="tns:SLAValueType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SLAValueType">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="valueType1" type="xsd:boolean"/>
+				<xsd:element name="valueType2" type="xsd:date"/>
+				<xsd:element name="valueType3" type="xsd:dateTime"/>
+				<xsd:element name="valueType4" type="xsd:int"/>
+				<xsd:element name="valueType5" type="xsd:string"/>
+				<xsd:element name="valueType6" type="xsd:time"/>
+				<xsd:element name="valueType7">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="child_value" type="xsd:date" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="valueType8">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="child_value" type="xsd:dateTime" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="valueType9">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="child_value" type="xsd:int" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="valueType10">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="child_value" type="xsd:string" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="valueType11">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="child_value" type="xsd:time" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="valueType12">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="child_value" type="tns:TrafficControlType" maxOccurs="unbounded"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="valueType13">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="child_value" type="tns:SyncMessagingResponsesControlType" maxOccurs="2"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="TrafficControlType">
+		<xsd:sequence>
+			<xsd:element name="rate" type="xsd:int"/>
+			<xsd:element name="periodType" type="xsd:int"/>
+			<xsd:element name="periodTypeInterval" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ChargingProfileType">
+		<xsd:sequence>
+			<xsd:element name="chargingID" type="uct:E164Type" minOccurs="0"/>
+			<xsd:element name="defaultPaymentMethod" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="MessageVerificationType">
+		<xsd:sequence>
+			<xsd:element name="subject" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="body" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="UserCreationType">
+		<xsd:sequence>
+			<xsd:element name="userNickName" type="uct:UserIdType" minOccurs="0"/>
+			<xsd:element name="userPassword" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="userIdentity" type="uct:E164Type" minOccurs="0"/>
+			<xsd:element name="email" type="uct:EmailAddressType" minOccurs="0"/>
+				<xsd:element name="externalIdentity" type="uct:OtherIdType" minOccurs="0"/>
+			<xsd:element name="language" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="userChargingProfile" type="tns:ChargingProfileType" minOccurs="0"/>
+			<xsd:element name="verificationMessage" type="tns:MessageVerificationType"/>
+			<xsd:element name="channel">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="userRole" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="UserUpdateType">
+		<xsd:sequence>
+			<xsd:element name="userNickName" type="uct:UserIdType" minOccurs="0"/>
+			<xsd:element name="userIdentities" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="userIdentity" type="uct:UserIdType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="externalIdentity" type="uct:OtherIdType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="userStatus" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="userDescription" type="tns:GenericInfoType" minOccurs="0"/>
+			<xsd:element name="userPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="userPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="userChargingProfile" type="tns:ChargingProfileType" nillable="true" minOccurs="0"/>
+			<xsd:element name="verificationMessage" type="tns:MessageVerificationType" minOccurs="0"/>
+			<xsd:element name="channel" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="UserInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalUserID" type="uct:UserIdType"/>
+			<xsd:element name="userNickName" type="uct:UserIdType" minOccurs="0"/>
+			<xsd:element name="userIdentities" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="userIdentity" type="uct:UserIdType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="externalIdentity" type="uct:OtherIdType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="userOB" type="tns:OBIDType" minOccurs="0"/>
+			<xsd:element name="userStatus" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="userDescription" type="tns:GenericInfoType" minOccurs="0"/>
+			<xsd:element name="userPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="userPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="userChargingProfile" type="tns:ChargingProfileType" minOccurs="0"/>
+			<xsd:element name="activatedServices" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="activatedService" type="tns:ActivatedServiceInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="activatedApplications" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="activatedApplication" type="tns:ActivatedAppInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="isAppProvider" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ActivatedProductInfoType">
+		<xsd:sequence>
+			<xsd:element name="productId" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="commercialCode" type="xsd:string" minOccurs="0"/>
+        	<xsd:element name="category" type="xsd:string" minOccurs="0"/>
+         	<xsd:element name="priceAmount" type="xsd:decimal" minOccurs="0"/>
+         	<xsd:element name="priceCurrency" type="xsd:string" minOccurs="0"/>
+         	<xsd:element name="priceTax" type="xsd:decimal" minOccurs="0"/>
+         	<xsd:element name="productClass" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="purchaseOrderDate" type="xsd:dateTime" minOccurs="0"/>			
+			<xsd:element name="startDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="endDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="status" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="additionalInfo" type="uct:ExtensionType" minOccurs="0"/>				
+		</xsd:sequence>			
+	</xsd:complexType>
+
+	<xsd:complexType name="ActivatedProductsInfoType">
+		<xsd:sequence>
+			<xsd:element name="activatedProduct" type="tns:ActivatedProductInfoType" maxOccurs="unbounded"/>
+		</xsd:sequence>			
+	</xsd:complexType>
+
+	<xsd:complexType name="ActivatedServiceInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalServiceIdentifier" type="xsd:int"/>
+			<xsd:element name="activationStatus">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+						<xsd:enumeration value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="isLocationActive" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="activatedProductsInfo" type="tns:ActivatedProductsInfoType" minOccurs="0"/>
+			<xsd:element name="additionalServiceInfo" type="uct:ExtensionType" minOccurs="0"/>									
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ActivatedAppInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalAppIdentifier" type="xsd:int"/>
+			<xsd:element name="userAppPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="userAppPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="GenericInfoType">
+		<xsd:sequence>
+			<xsd:element name="language" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="languageCountry" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="displayName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="namePreffix" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="nameSuffix" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="middleName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="mails" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="mail" type="uct:EmailAddressType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="phoneNumbers" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="phoneNumber" type="uct:E164Type" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="sex" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="birthday" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="address" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="postalCode" type="xsd:int" minOccurs="0"/>
+			<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="state" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="nativeLanguage" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="nationality" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="lastUpdated" type="xsd:date" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppProvAdProfileType">
+		<xsd:sequence>
+			<xsd:element name="publisherID" type="xsd:int"/>
+			<xsd:element name="operator" type="tns:OBIDType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppProvPaymentProfileType">
+		<xsd:sequence>
+			<xsd:element name="merchantID" type="xsd:string"/>
+			<xsd:choice>
+				<xsd:element name="securityKey" type="xsd:string"/>
+				<xsd:element name="password" type="xsd:string"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppProviderCreationType">
+		<xsd:sequence>
+			<xsd:element name="appProvDescription" type="tns:GenericInfoType" minOccurs="0"/>
+			<xsd:element name="appProvPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appProvPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appProvChargingProfile" type="tns:ChargingProfileType" minOccurs="0"/>
+			<xsd:element name="appProvAdProfile" type="tns:AppProvAdProfileType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="appProvPaymentProfile" type="tns:AppProvPaymentProfileType" minOccurs="0"/>
+			<xsd:element name="appProviderShortcodes" type="tns:AppProviderShortcodesType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppProviderUpdateType">
+		<xsd:sequence>
+			<xsd:element name="appProvDescription" type="tns:GenericInfoType" minOccurs="0"/>
+			<xsd:element name="appProvPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appProvPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appProvChargingProfile" type="tns:ChargingProfileType" nillable="true" minOccurs="0"/>
+			<xsd:element name="appProvAdProfile" type="tns:AppProvAdProfileType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="appProvPaymentProfile" type="tns:AppProvPaymentProfileType" minOccurs="0"/>
+			<xsd:element name="trustedAppProvCertificate" type="tns:CredentialType" minOccurs="0"/>
+			<xsd:element name="subjectCN" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="appProviderShortcodes" type="tns:AppProviderShortcodesType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppProviderInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalAppProvID" type="uct:UserIdType"/>
+			<xsd:element name="appProvDescription" type="tns:GenericInfoType" minOccurs="0"/>
+			<xsd:element name="appProvPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appProvPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appProvChargingProfile" type="tns:ChargingProfileType" minOccurs="0"/>
+			<xsd:element name="appProvAdProfile" type="tns:AppProvAdProfileType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="appProvPaymentProfile" type="tns:AppProvPaymentProfileType" minOccurs="0"/>
+			<xsd:element name="isTrustedAppProv" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="trustedAppProvCertificate" type="tns:CredentialType" minOccurs="0"/>
+			<xsd:element name="subjectCN" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="appProviderShortcodes" type="tns:AppProviderShortcodesType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ApplicationCreationType">
+		<xsd:sequence>
+			<xsd:element name="globalServiceID" type="xsd:int"/>
+			<xsd:element name="globalAppProvID" type="uct:UserIdType"/>
+			<xsd:element name="appStatus">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="DEVELOPMENT"/>
+						<xsd:enumeration value="TESTING"/>
+						<xsd:enumeration value="COMMERCIAL"/>
+						<xsd:enumeration value="INACTIVE"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="appOBs">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appOB" type="tns:OBIDType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appAPIs">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appAPI" type="tns:AppAPIType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appExtendedInfo" type="tns:ExtendedInfoType" maxOccurs="4"/>
+			<xsd:element name="appChargingInfo" type="tns:ChargingInfoType" minOccurs="0"/>
+			<xsd:element name="appPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appTrustability" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="appSecurityProfile" type="tns:SecurityProfileType" minOccurs="0"/>
+			<xsd:element name="appReleaseInfo" type="tns:ReleaseInfoType" minOccurs="0"/>
+			<xsd:element name="reverseSecurityCertificate" type="tns:CredentialType" minOccurs="0"/>
+			<xsd:element name="obfuscationMode" type="tns:ObfuscationModeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="appIcon" type="xsd:base64Binary" minOccurs="0"/>
+				<xsd:element name="supportEmail" type="xsd:anyURI" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="BasicInfoType">
+		<xsd:sequence>
+			<xsd:element name="language" type="xsd:string"/>
+			<xsd:element name="languageCountry" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="name" type="xsd:string"/>
+			<xsd:element name="summary" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ExtendedInfoType">
+		<xsd:sequence>
+			<xsd:element name="resourceDetails" type="tns:BasicInfoType"/>
+			<xsd:element name="hwRequirements" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="hwRequirement" type="xsd:string" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="swRequirements" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="swRequirement" type="xsd:string" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ChargingInfoType">
+		<xsd:sequence>
+			<xsd:element name="contract" type="xsd:boolean"/>
+			<xsd:element name="chargingModel" type="tns:ChargingModelType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ChargingModelType">
+		<xsd:sequence>
+			<xsd:element name="operator" type="tns:OBIDType"/>
+			<xsd:element name="chargingOperation">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+						<xsd:enumeration value="4"/>
+						<xsd:enumeration value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="chargedPartyProfile">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+						<xsd:enumeration value="4"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="chargedParty" type="tns:ChargingProfileType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ApplicationUpdateType">
+		<xsd:sequence>
+			<xsd:element name="appStatus" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="DEVELOPMENT"/>
+						<xsd:enumeration value="TESTING"/>
+						<xsd:enumeration value="COMMERCIAL"/>
+						<xsd:enumeration value="INACTIVE"/>
+						<xsd:enumeration value="DEPRECATED"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="appOBs" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appOB" type="tns:OBIDType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appAPIs" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appAPI" type="tns:AppAPIType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appExtendedInfo" type="tns:ExtendedInfoType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="appPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appChargingProfile" type="tns:ChargingInfoType" nillable="true" minOccurs="0"/>
+			<xsd:element name="appTrustability" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="appSecurityProfile" type="tns:SecurityProfileType" nillable="true" minOccurs="0"/>
+			<xsd:element name="appReleaseInfo" type="tns:ReleaseInfoType" minOccurs="0"/>
+			<xsd:element name="reverseSecurityCertificate" type="tns:CredentialType" minOccurs="0"/>
+			<xsd:element name="obfuscationMode" type="tns:ObfuscationModeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="appIcon" type="xsd:base64Binary" minOccurs="0"/>
+				<xsd:element name="supportEmail" type="xsd:anyURI" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CredentialType">
+		<xsd:sequence>
+			<xsd:element name="credentialType">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="credentialID" type="xsd:string"/>
+			<xsd:element name="credentialSecret" type="xsd:base64Binary" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ReleaseInfoType">
+		<xsd:sequence>
+			<xsd:element name="release" type="xsd:string"/>
+			<xsd:element name="releaseDate" type="xsd:date" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppAPIType">
+		<xsd:sequence>
+			<xsd:element name="globalAPIID" type="xsd:int"/>
+			<xsd:element name="appSecurityProfile" type="tns:SecurityProfileType" minOccurs="0"/>
+			<xsd:element name="appAssets" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appAsset" type="tns:AppAssetType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appAPIChargingModel" type="tns:ChargingModelType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SecurityProfileType">
+		<xsd:sequence>
+			<xsd:element name="transportSecurity" type="xsd:boolean"/>
+			<xsd:element name="appAPIAuth" type="tns:AppAPIAuthType"/>
+			<xsd:element name="accessTokenRequired" type="xsd:boolean"/>
+			<xsd:element name="sharedAccessToken" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="mandatoryAppAPI" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="allowedTokenTypes" minOccurs="0" maxOccurs="4">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="appLoginAllowed" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="requestorIdAllowed" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="signature" type="xsd:boolean"/>
+			<xsd:element name="signatureMethod" type="xsd:int" minOccurs="0"/>
+			<xsd:element name="reverseSecurity" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppAPIAuthType">
+		<xsd:sequence>
+			<xsd:element name="authMethod">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+						<xsd:enumeration value="3"/>
+						<xsd:enumeration value="4"/>
+						<xsd:enumeration value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="appCredentials" type="tns:CredentialType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppAssetType">
+		<xsd:sequence>
+			<xsd:element name="globalAssetID" type="xsd:int"/>
+			<xsd:element name="appAssetChargingModel" type="tns:ChargingModelType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="appAssetSpecificInfo" type="tns:AppAssetSpecificInfoType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AppAssetSpecificInfoType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="inboundMessagingInfo" type="tns:InboundMessagingInfoType"/>
+				<xsd:element name="adInfo" type="tns:AdInfoType"/>
+				<xsd:element name="paymentInfo" type="tns:PaymentInfoType"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="InboundMessagingInfoType">
+		<xsd:sequence>
+			<xsd:element name="appNumbering" type="tns:AppNumberingType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="callbackURL" type="xsd:anyURI" minOccurs="0"/>
+			<xsd:element name="keyword" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="isLocated" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+
+	<xsd:complexType name="AppNumberingType">
+		<xsd:sequence>
+			<xsd:element name="oBID" type="tns:OBIDType"/>
+			<xsd:choice>
+				<xsd:element name="reservedRoutingNumber" type="uct:E164Type" maxOccurs="unbounded"/>
+				<xsd:element name="sharedRoutingNumber" type="uct:E164Type" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AdInfoType">
+		<xsd:sequence>
+			<xsd:element name="externalId" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="adSpace" type="tns:AdSpaceInfoType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AdSpaceInfoType">
+		<xsd:sequence>
+			<xsd:element name="operator" type="tns:OBIDType"/>
+			<xsd:element name="adSpaceID" type="xsd:int"/>
+			<xsd:element name="adCategory" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ApplicationInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalAppID" type="xsd:int"/>
+			<xsd:element name="globalServiceID" type="xsd:int" minOccurs="0"/>
+			<xsd:element name="globalAppProvID" type="uct:UserIdType" minOccurs="0"/>
+			<xsd:element name="appStatus" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="DEVELOPMENT"/>
+						<xsd:enumeration value="TESTING"/>
+						<xsd:enumeration value="COMMERCIAL"/>
+						<xsd:enumeration value="INACTIVE"/>
+						<xsd:enumeration value="DEPRECATED"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="appOBs" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appOB" type="tns:OBIDType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appAPIs" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appAPI" type="tns:AppAPIType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appExtendedInfo" type="tns:ExtendedInfoType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="appPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="appPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="appChargingProfile" type="tns:ChargingInfoType" minOccurs="0"/>
+			<xsd:element name="appTrustability" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="appSecurityProfile" type="tns:SecurityProfileType" minOccurs="0"/>
+			<xsd:element name="appReleaseInfo" type="tns:ReleaseInfoType" minOccurs="0"/>
+			<xsd:element name="reverseSecurityCertificate" type="tns:CredentialType" minOccurs="0"/>
+			<xsd:element name="obfuscationMode" type="tns:ObfuscationModeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="appIcon" type="xsd:base64Binary" minOccurs="0"/>
+				<xsd:element name="supportEmail" type="xsd:anyURI" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AssetInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalAssetID" type="xsd:int"/>
+			<xsd:element name="assetType" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="assetOBs" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="assetOB" type="tns:OBIDType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="assetDescription" type="tns:BasicInfoType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="basedOnAssets" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="basedOnAsset" type="xsd:string" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="assetPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="assetPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="assetPrimitives" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="assetPrimitive" type="xsd:string" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="assetReleaseInfo" type="tns:ReleaseInfoType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="APIInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalAPIID" type="xsd:int"/>
+			<xsd:element name="apiSystemName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="apiDescription" type="tns:BasicInfoType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="apiPublication" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="apiBinding" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="apiPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="apiPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="apiAssets" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="apiAsset" type="xsd:string" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="apiReleaseInfo" type="tns:ReleaseInfoType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ServiceInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalServiceID" type="xsd:int"/>
+			<xsd:element name="serviceDescription" type="tns:BasicInfoType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="ownerOB" type="tns:OBIDType" minOccurs="0"/>
+			<xsd:element name="servingOBs" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="servingOB" type="tns:OBIDType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="defServiceSecurity" type="tns:SecurityProfileType" minOccurs="0"/>
+			<xsd:element name="defServiceCharging" type="tns:ChargingInfoType" minOccurs="0"/>
+			<xsd:element name="servicePolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="servicePolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="serviceReleaseInfo" type="tns:ReleaseInfoType" minOccurs="0"/>
+			<xsd:element name="defAppPolicies" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="defAppPolicy" type="tns:PolicyInfoType" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="localOBProductInfo" type="tns:ProductInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="oAuthServiceURL" type="xsd:anyURI" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ProductInfoType">
+		<xsd:sequence>
+			<xsd:element name="operator" type="tns:OBIDType"/>
+			<xsd:element name="productID" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="OBInfoType">
+		<xsd:sequence>
+			<xsd:element name="globalOBID" type="xsd:int"/>
+			<xsd:element name="OBType" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="OBIdentity" type="tns:OBIDType" minOccurs="0"/>
+			<xsd:element name="E164Numbering" type="xsd:int" minOccurs="0"/>
+			<xsd:element name="OBDescription" type="tns:BasicInfoType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="OBProvisioningFlows" type="tns:OBProvisioningType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="OBProvisioningType">
+		<xsd:sequence>
+			<xsd:element name="activateLocation" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="SyncMessagingResponsesControlType">
+		<xsd:sequence>
+			<xsd:element name="typeOfMessage">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:int">
+						<xsd:annotation>
+							<xsd:documentation>'0' for SMS, '1' for MMS, '99' for any
+								combination of messages.
+								Other future types of messages and combinations will be described
+								between '2' and '98'</xsd:documentation>
+						</xsd:annotation>
+						<xsd:enumeration value="0"/>
+						<xsd:enumeration value="1"/>
+						<xsd:enumeration value="99"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="numberOfMessages" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ObfuscationModeType">
+		<xsd:sequence>
+			<xsd:element name="operator" type="tns:OBIDType"/>
+			<xsd:element name="isEnabled" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+		<xsd:complexType name="PaymentInfoType">
+		<xsd:sequence>
+		<xsd:element name="notifyAfterPurchase" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="definedTaxesAllowed" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="AppProviderShortcodesType">
+		<xsd:sequence>
+			<xsd:element name="operatorId" type="xsd:string"/>
+			<xsd:element name="shortcodeInfo" type="tns:ShortcodeInfoType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+		<xsd:complexType name="ShortcodeInfoType">
+		<xsd:sequence>
+			<xsd:element name="shortcode" type="uct:E164Type"/>
+			<xsd:element name="isConsumed" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+</xsd:schema>

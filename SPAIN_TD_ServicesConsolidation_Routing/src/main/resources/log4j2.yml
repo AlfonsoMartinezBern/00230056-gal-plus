@@ -1,0 +1,45 @@
+Configuration:
+  properties:
+    property:
+      name: log-path
+      value: "/home/desarrollo"
+
+  appenders:
+    Console:
+      #- name: JSON_LAYOUT_APPENDER
+      #   target: SYSTEM_OUT
+      #   JSONLayout:
+      #     compact: true
+      #     complete: false
+      #     objectMessageAsJsonObject: true
+
+      - name: CONSOLE_ROOT
+        target: SYSTEM_OUT
+        PatternLayout:
+          alwaysWriteExceptions: true
+          pattern: "[%threadName] %-5level %logger{36} - %message{nolookups} %ex{separator(|)} %n"
+    File:
+      name: FILE_APPENDER
+      #fileName: ${log-path}/SPAIN_TD_ServicesConsolidation/ServicesConsolidation.log
+      fileName: /home/desarrollo/logs/SPAIN_TD_ServicesConsolidation/ServicesConsolidation.log
+      #PatternLayout:
+      JSONLayout:
+        compact: false
+        complete: true
+        eventEOL: true
+        objectMessageAsJsonObject: true
+        #pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n "
+
+  Loggers:
+    logger:
+      - name: LOGS_V1
+        level: info
+        additivity: false
+        appender-ref:
+          #- ref: JSON_LAYOUT_APPENDER
+          - ref: FILE_APPENDER
+            level: info
+    Root:
+      level: info
+      AppenderRef:
+        ref: CONSOLE_ROOT

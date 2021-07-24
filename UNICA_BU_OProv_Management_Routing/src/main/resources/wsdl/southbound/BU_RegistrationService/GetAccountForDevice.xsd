@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Version 2.1, 20121017 -->
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://www.telefonica.com/BU_RegistrationService/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http://www.telefonica.com/BU_RegistrationService/">
+      <xsd:element name="GetAccountForDevice">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="instanceId" type="xsd:int"
+          		maxOccurs="1" minOccurs="1" />
+          	<xsd:element name="platformId" type="xsd:int"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="IP" type="xsd:string" maxOccurs="1"
+          		minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="MAC" type="xsd:string" maxOccurs="1"
+          		minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="GUID" type="xsd:string" maxOccurs="1"
+          		minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="RegistrationId" type="xsd:int"
+          		maxOccurs="1" minOccurs="0">
+          	</xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetAccountForDeviceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="GetAccountForDeviceResult" type="Q1:GetAccountForDeviceResultType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+		<xsd:complexType name="GetAccountForDeviceResultType">
+	       <xsd:sequence>
+	       	<xsd:element name="StatusCode" type="Q1:StatusCode"
+	       		maxOccurs="1" minOccurs="1" />
+	       	<xsd:element name="Severity" type="Q1:Severity" maxOccurs="1"
+	       		minOccurs="1">
+	       	</xsd:element>
+	       	<xsd:element name="StatusMessage" type="xsd:string"
+	       		maxOccurs="1" minOccurs="1">
+	       	</xsd:element>
+	       	<xsd:element name="Content" type="Q1:Cont" maxOccurs="1"
+	       		minOccurs="0">
+	       	</xsd:element>
+	       </xsd:sequence>
+		</xsd:complexType>
+      
+      
+      <xsd:complexType name="Cont">
+        	<xsd:sequence>
+          	<xsd:element name="UniqueId" type="xsd:string"
+          		maxOccurs="1" minOccurs="0" />
+          	</xsd:sequence>	
+      </xsd:complexType>
+
+
+  <xsd:simpleType name="StatusCode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="NotImplemented">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-3</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="NotSupported">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-2</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UnknownError">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OK">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidInstanceId">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidPlatformId">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UserAlreadyExists">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UserDoesNotExist">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ProductDoesNotExist">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ProductAlreadyDeleted">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UserAlreadyHasSubscription">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UserDoesnotHaveSubscription">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UserDoesnotHaveProduct">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UserIsAlreadyEnabled">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="UserIsAlreadyDisabled">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CannotDeleteEnabledUser">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="MissingMandatoryParameter">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidParameter">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">13</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidParameterValue">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">14</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Wrongorunsupportedparametervalue">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidParameterLength">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidParameterFormat">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">17</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Serviceunavailable">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">100</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidPassword">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">102</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Usernotauthorized">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">103</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="CannotconnecttogSDP">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">196</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InternalservererroringSDP_D26">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">197</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InternalservererrorinOBsystem">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">198</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OtherAuthenticationError">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">199</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ProductAlreadyExists">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">202</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidChargingClass">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">203</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InternalservererroringSDP">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">297</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OtherProductLoadingError">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">299</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ServiceDisabled">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">303</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OtherPurchaseError">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">399</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidInputValue">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1002</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="InvalidRequestedOperation">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1003</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Expectedparametermissing">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1020</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Wrongorunsupportedparameter">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1021</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="GenericClientError">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1099</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SubscriptionExpiredError">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1100</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SubscriptionInactiveError">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1101</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="PinDoesNotExist">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1102</EnumerationValue>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="StatusCode" nillable="true" type="Q1:StatusCode" />
+  <xsd:simpleType name="Severity">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Unknown" />
+      <xsd:enumeration value="Info" />
+      <xsd:enumeration value="Warning" />
+      <xsd:enumeration value="Error" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="Severity" nillable="true" type="Q1:Severity" />
+
+
+</xsd:schema>

@@ -1,0 +1,5 @@
+package com.telefonica.gal.dynamicconf.facade;
+
+public enum DynamicConfType {
+	UNICA_TD_ROUTING,UNICA_TD_WSSE,UNICA_BU_ROUTING,SPAIN_TD_ROUTING,SPAIN_BU_ROUTING, UNICA_ERROR_BU_ROUTING, UNICA_ERROR_TD_ROUTING,  SPAIN_TD_ERROR
+}

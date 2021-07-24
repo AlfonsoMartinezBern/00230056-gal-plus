@@ -1,0 +1,12 @@
+server:
+  port: 8100
+interface:
+  consolidationService: "ServicesConsolidation"
+servicesConsolidation:
+  xsd: "xsd/request/ServicesConsolidation_request.xsd"
+demo:
+  dynamicRouting:
+    uri: http://192.168.40.14:31659/dynamicConfig/spain/td
+  error:
+    uri: http://192.168.40.14:31659/dynamicConfig/spain/td/error
+
