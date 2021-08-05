@@ -1,0 +1,80 @@
+{ 
+"version":"0.0.1",
+"info":"created 2021-03-22",
+"routes":
+[
+  {
+    "serviceID": "OTT",
+    "operationTD": "CreateUser",
+    "uri": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management",
+    "endpoints": [{
+    "id": "03",
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://localhost:10100/UMG_TD_RegistrationService_2?wsdl",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "UMG"
+    },
+    {
+    "id": "02",
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
+    "endpointType": "GVP.GAL"
+    }],
+     "flows": [
+	 {"step":2,"endpointID":"03","type":"replica","active":true,"synchronous":true},
+	 {"step":1,"endpointID":"02","type":"source","active":true,"synchronous":true}]
+  },
+{
+    "serviceID": "OTT",
+    "operationTD": "CreateUser",
+    "uri": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Management_ASYNC",
+    "endpoints": [{
+    "id": "03",
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService?wsdl",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "GVP.GAL"
+    },
+    {
+    "id": "02",
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://localhost:10100/UMG_TD_RegistrationService_2?wsdl",
+    "endpointType": "UMG"
+    }],
+     "flows": [{"step":1,"endpointID":"03","type":"source","active":true,"synchronous":false},{"step":2,"endpointID":"02","type":"replica","active":true,"synchronous":false}]
+  },
+  {
+    "serviceID": "OTT",
+    "operationTD": "CreateUser",
+    "uri": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_Managementx",
+    "endpoints": [{
+    "id": "01",
+    "instanceID": 2,
+    "platformID": 2,
+    "targetEndpoint": "http://localhost:20100/GVP_TD_RegistrationService_2?wsdl",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "GVP.GAL"
+    }],
+    "flows":[{"step":1,"endpointID":"01","type":"source","active":true}]
+  },
+  {
+    "serviceID": "IPTV",
+    "operationTD": "CreateUser",
+	"uri": "http://telefonica.com/OB2/BSS/SIMULATOR/OProv_ManagementX",
+   
+    "endpoints": [{
+    "id": "01",
+    "instanceID": 3,
+    "platformID": 1,
+    "targetEndpoint": "http://localhost:10100/UMG_TD_RegistrationService?wsdl",
+    "alterFlow": "SERIE_SEASON_TO_MOVIE",
+    "endpointType": "UMG"
+    }],
+    "flows":[]
+  }
+]
+}
